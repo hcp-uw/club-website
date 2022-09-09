@@ -1,13 +1,13 @@
-#Repository for the club website
+# Repository for the club website
 
-###Developer Setup:
+## Developer Setup:
 1) Install Yarn
 2) Clone the website locally into `${HOME}`
 3) Go to `${HOME}/club-website/.`
 4) Install all dependencies using `yarn install`
 5) Run the application using `yarn start`
 
-# Getting Started with Create React App
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
