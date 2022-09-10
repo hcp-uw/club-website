@@ -1,0 +1,19 @@
+.appbar {
+    backdrop-filter: blur(1000px);
+}
+
+.page {
+    align-self: center;
+    margin-left: auto;
+}
+
+.page-button {
+    min-width: 150px;
+    width: 10vw;
+    height: 50px;
+}
+
+.logo {
+    align-self: center;
+    display: block;
+}
