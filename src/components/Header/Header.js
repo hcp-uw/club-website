@@ -78,7 +78,7 @@ function Header(props) {
                                     <MenuIcon  sx={{ fontSize: 40 }}/>
                                 </IconButton>
                         }
-                        <div className={isMobile ? 'header-logo-centered' : 'header-logo'}>
+                        <div className={isMobile ? 'header-logo centered' : 'header-logo'}>
                             <Typography variant='h1' color="#FFFFFF"> LOGO </Typography>
                         </div>
                         {

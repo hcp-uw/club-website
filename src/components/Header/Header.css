@@ -22,10 +22,9 @@
     margin-right: auto;
 }
 
-.header-logo-centered {
-    align-self: center;
-    position: relative;
+.header-logo.centered {
     margin-left: auto;
+    margin-right: unset;
 }
 
 .header-icon-place-holder {

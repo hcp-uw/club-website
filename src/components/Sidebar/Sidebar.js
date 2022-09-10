@@ -16,7 +16,7 @@ function Sidebar(props) {
 
     const renderTabs = () => {
         return pages.map((obj) =>
-            <Button color="inherit" className="header-page-button" onClick={() => navigate(obj.path)}>
+            <Button color="inherit" className="sidebar-button" onClick={() => navigate(obj.path)}>
                 <Typography variant='h4' color="#FFFFFF"> { obj.name } </Typography>
             </Button>
         )
@@ -24,8 +24,8 @@ function Sidebar(props) {
 
     return (
         <>
-            <nav className={show ? 'nav-menu active' : 'nav-menu'}>
-                <ul className='nav-menu-items' onClick={handleShow}>
+            <nav className={show ? 'sidebar active' : 'sidebar'}>
+                <ul className='sidebar-items' onClick={handleShow}>
                     { renderTabs() }
                 </ul>
             </nav>

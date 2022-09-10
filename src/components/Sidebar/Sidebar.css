@@ -1,4 +1,4 @@
-.nav-menu {
+.sidebar {
     background-color: #060b26;
     width: 250px;
     padding-top: 65px;
@@ -11,17 +11,17 @@
     transition: 850ms;
 }
 
-.nav-menu.active {
+.sidebar.active {
     left: 0;
     transition: 350ms;
 }
 
-.nav-menu-items {
+.sidebar-items {
     width: 100%;
     padding-right: 40px;
 }
 
-.header-page-button {
+.sidebar-button {
     width: 150px;
     height: 50px;
 }
