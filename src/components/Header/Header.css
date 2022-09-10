@@ -1,19 +1,34 @@
-.appbar {
-    backdrop-filter: blur(1000px);
+.header-appbar {
+    height: 65px;
 }
 
-.page {
+.header-page {
     align-self: center;
-    margin-left: auto;
 }
 
-.page-button {
-    min-width: 150px;
-    width: 10vw;
+.header-page-button {
+    width: 150px;
     height: 50px;
 }
 
-.logo {
+.header-menu {
+    position: absolute;
+}
+
+.header-logo {
     align-self: center;
-    display: block;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: auto;
+}
+
+.header-logo-centered {
+    align-self: center;
+    position: relative;
+    margin-left: auto;
+}
+
+.header-icon-place-holder {
+    width: 56px;
+    margin-left: auto;
 }

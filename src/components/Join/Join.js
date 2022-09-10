@@ -8,8 +8,8 @@ function Join(props) {
     }, [])
 
     return (
-        <div className='background'>
-            <div className='container'>
+        <div className='join-background'>
+            <div className='join-container'>
                 <Typography variant="h4" color="primary"> Join </Typography>
             </div>
         </div>

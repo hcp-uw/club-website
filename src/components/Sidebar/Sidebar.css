@@ -1,0 +1,27 @@
+.nav-menu {
+    background-color: #060b26;
+    width: 250px;
+    padding-top: 65px;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: -100%;
+    transition: 850ms;
+}
+
+.nav-menu.active {
+    left: 0;
+    transition: 350ms;
+}
+
+.nav-menu-items {
+    width: 100%;
+    padding-right: 40px;
+}
+
+.header-page-button {
+    width: 150px;
+    height: 50px;
+}

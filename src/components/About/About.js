@@ -8,8 +8,8 @@ function About(props) {
     }, [])
 
     return (
-        <div className='background'>
-            <div className='container'>
+        <div className='about-background'>
+            <div className='about-container'>
             <Typography variant="h4" color="primary"> About </Typography>
             </div>
         </div>

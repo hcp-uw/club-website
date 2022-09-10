@@ -7,11 +7,10 @@ function Events(props) {
         window.scrollTo(0, 0)
     }, [])
     return (
-        <div className='background'>
-            <div className='container'>
+        <div className='events-background'>
+            <div className='events-container'>
                 <Typography variant="h4" color="primary"> Events </Typography>
             </div>
-            
         </div>
     );
 };

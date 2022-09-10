@@ -8,8 +8,8 @@ function Home(props) {
     }, [])
 
     return (
-        <div className='background'>
-            <div className='container'>
+        <div className='home-background'>
+            <div className='home-container'>
                 <Typography variant="h4" color="primary"> Home </Typography>
             </div>
         </div>

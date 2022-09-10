@@ -1,15 +1,13 @@
-import logo from './logo.svg';
 import './App.css';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { Typography } from '@mui/material';
 import { Routes, Route, BrowserRouter as Router, } from "react-router-dom";
 
-import Header from './components/Header/Header.js';
-import Home from './components/Home/Home.js';
-import About from './components/About/About.js';
-import Projects from './components/Projects/Projects.js';
-import Events from './components/Events/Events.js';
-import Join from './components/Join/Join.js';
+import Header from './components/Header/Header';
+import Home from './components/Home/Home';
+import About from './components/About/About';
+import Projects from './components/Projects/Projects';
+import Events from './components/Events/Events';
+import Join from './components/Join/Join';
 
 let theme = createTheme({
     palette: {
@@ -17,7 +15,7 @@ let theme = createTheme({
             main: '#FFFFFF',
         },
         secondary: {
-            main: '#edf2ff',
+            main: '#B00093',
         },
     },
     typography: {
@@ -51,27 +49,27 @@ function App() {
         {
             name: 'Home',
             path: '/home',
-            component: <Home />,
+            component: () => <Home />,
         },
         {
             name: 'About Us',
             path: '/about',
-            component: <About />,
+            component: () => <About />,
         },
         {
             name: 'Projects',
             path: '/projects',
-            component: <Projects />,
+            component: () => <Projects />,
         },
         {
             name: 'Events',
             path: '/events',
-            component: <Events />,
+            component: () => <Events />,
         },
         {
             name: 'Join Us',
             path: '/join',
-            component: <Join />,
+            component: () => <Join />,
         }
     ];
 
@@ -80,7 +78,7 @@ function App() {
             <ThemeProvider theme={theme}>
                 <div className="App">
                 <Header pages={pages} />
-                { child }
+                { child() }
                 </div>
             </ThemeProvider>
         );
