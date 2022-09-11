@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import {
     Typography,
     Button,
@@ -13,11 +13,24 @@ function Sidebar(props) {
     } = props;
 
     const navigate = useNavigate();
+    const location = useLocation();
+
+    let currPage = pages.find(
+        page => location.pathname === page.path
+      );
 
     const renderTabs = () => {
+        if (currPage === undefined) {
+            currPage = pages[0];
+        }
         return pages.map((obj) =>
-            <Button color="inherit" className="sidebar-button" onClick={() => navigate(obj.path)}>
-                <Typography variant='h4' color="#FFFFFF"> { obj.name } </Typography>
+            <Button key={obj.name} color="inherit" className="sidebar-button" onClick={() => navigate(obj.path)}>
+                {
+                    obj.name === currPage.name ?
+                        <Typography variant='h4' color="#FFFFFF"> { "<" + obj.name + "/>" } </Typography>
+                    :
+                        <Typography variant='h4' color="#FFFFFF"> { obj.name } </Typography>
+                }
             </Button>
         )
     };

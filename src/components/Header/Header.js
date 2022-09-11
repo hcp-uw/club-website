@@ -8,7 +8,7 @@ import {
     useScrollTrigger
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Sidebar from '../Sidebar/Sidebar';
 import './Header.css';
 
@@ -45,12 +45,26 @@ function Header(props) {
     }, []);
 
     const navigate = useNavigate();
-    const isMobile = width <= 1000;
+    const isMobile = width <= 1200;
+
+    const location = useLocation();
+
+    let currPage = pages.find(
+        page => location.pathname === page.path
+      );
 
     const renderTabs = () => {
+        if (currPage === undefined) {
+            currPage = pages[0];
+        }
         return pages.map((obj) =>
             <Button color="inherit" className="header-page-button" onClick={() => navigate(obj.path)}>
-                <Typography variant='h4' color="#FFFFFF"> { obj.name } </Typography>
+                {
+                    obj.name === currPage.name ?
+                        <Typography variant='h4' color="#FFFFFF"> { "<" + obj.name + "/>" } </Typography>
+                    :
+                        <Typography variant='h4' color="#FFFFFF"> { obj.name } </Typography>
+                }
             </Button>
         )
     };
@@ -62,7 +76,12 @@ function Header(props) {
     return (
         <div>
             {
-                isMobile && <Sidebar pages={pages} show={showSide} handleShow={showSideBar}/>
+                isMobile &&
+                    <Sidebar
+                        pages={pages}
+                        show={showSide}
+                        handleShow={showSideBar}
+                    />
             }
             <ElevationScroll {...props} showSide={showSide}>
                 <AppBar position='fixed' className="header-appbar">

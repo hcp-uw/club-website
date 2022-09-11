@@ -1,4 +1,3 @@
-import './App.css';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { Routes, Route, BrowserRouter as Router, } from "react-router-dom";
 
@@ -8,6 +7,7 @@ import About from './components/About/About';
 import Projects from './components/Projects/Projects';
 import Events from './components/Events/Events';
 import Join from './components/Join/Join';
+import './App.css';
 
 let theme = createTheme({
     palette: {
@@ -89,7 +89,12 @@ function App() {
         <Routes>
             {
                 pages.map((route) => {
-                    return (<Route path={route.path} element={renderFrame(route.component)} />);
+                    return (
+                        <Route
+                            key={route.name}
+                            path={route.path}
+                            element={renderFrame(route.component)}
+                        />);
                 })
             }
             <Route path="*" element={renderFrame(pages[0].component)} />
