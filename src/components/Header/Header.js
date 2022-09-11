@@ -58,7 +58,7 @@ function Header(props) {
             currPage = pages[0];
         }
         return pages.map((obj) =>
-            <Button color="inherit" className="header-page-button" onClick={() => navigate(obj.path)}>
+            <Button key={obj.name} color="inherit" className="header-page-button" onClick={() => navigate(obj.path)}>
                 {
                     obj.name === currPage.name ?
                         <Typography variant='h4' color="#FFFFFF"> { "<" + obj.name + "/>" } </Typography>
