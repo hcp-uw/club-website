@@ -4,7 +4,9 @@ import Logo from '../../assets/HCPLogoText.png'
 import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown';
 import './Home.css';
 
+
 function Home(props) {
+
     useEffect(() => {
         window.scrollTo(0, 0)
     }, [])
@@ -31,6 +33,7 @@ function Home(props) {
             </div>
         </div>
     );
-};
+}
+
 
 export default Home;
