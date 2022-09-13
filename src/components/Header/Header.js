@@ -11,6 +11,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { useLocation, useNavigate } from "react-router-dom";
 import Sidebar from '../Sidebar/Sidebar';
 import './Header.css';
+import Logo from '../../assets/HCPLogoText.png'
 
 function ElevationScroll(props) {
     const { children, window, showSide } = props;
@@ -97,9 +98,12 @@ function Header(props) {
                                     <MenuIcon  sx={{ fontSize: 40 }}/>
                                 </IconButton>
                         }
-                        <div className={isMobile ? 'header-logo centered' : 'header-logo'}>
-                            <Typography variant='h1' color="#FFFFFF"> LOGO </Typography>
-                        </div>
+                        <img
+                            onClick={() => navigate(pages[0].path)}
+                            src={Logo}
+                            alt="logo"
+                            className={isMobile ? 'header-logo centered' : 'header-logo'}
+                        />
                         {
                             !isMobile &&
                                 <div className='header-page'>

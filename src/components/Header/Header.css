@@ -17,9 +17,12 @@
 
 .header-logo {
     align-self: center;
-    margin-top: auto;
     margin-bottom: auto;
     margin-right: auto;
+    height: 60px;
+    width: 170px;
+    object-fit: cover;
+    cursor: pointer;
 }
 
 .header-logo.centered {
