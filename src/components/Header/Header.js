@@ -1,30 +1,16 @@
-import { useEffect, useState, cloneElement } from 'react';
+import { useEffect, useState } from 'react';
 import {
     AppBar,
     Toolbar,
     Typography,
     Button,
     IconButton,
-    useScrollTrigger
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useLocation, useNavigate } from "react-router-dom";
 import Sidebar from '../Sidebar/Sidebar';
 import './Header.css';
-
-function ElevationScroll(props) {
-    const { children, window, showSide } = props;
-    const trigger = useScrollTrigger({
-        disableHysteresis: true,
-        threshold: 0,
-        target: window ? window() : undefined,
-    });
-
-    return cloneElement(children, {
-        elevation: (trigger || showSide) ? 4 : 0,
-        color: (trigger || showSide) ? 'secondary' : 'transparent',
-    });
-}
+import Logo from '../../assets/HCPLogoText.png'
 
 function Header(props) {
     const {
@@ -83,36 +69,37 @@ function Header(props) {
                         handleShow={showSideBar}
                     />
             }
-            <ElevationScroll {...props} showSide={showSide}>
-                <AppBar position='fixed' className="header-appbar">
-                    <Toolbar className="toolbar">
-                        {
-                            isMobile &&
-                                <IconButton
-                                    color="primary"
-                                    aria-label="menu"
-                                    className="header-menu"
-                                    onClick={showSideBar}
-                                >
-                                    <MenuIcon  sx={{ fontSize: 40 }}/>
-                                </IconButton>
-                        }
-                        <div className={isMobile ? 'header-logo centered' : 'header-logo'}>
-                            <Typography variant='h1' color="#FFFFFF"> LOGO </Typography>
-                        </div>
-                        {
-                            !isMobile &&
-                                <div className='header-page'>
-                                    { renderTabs() }
-                                </div>
-                        }
-                        {
-                            isMobile &&
-                                <div className='header-icon-place-holder' />
-                        }
-                    </Toolbar>
-                </AppBar>
-            </ElevationScroll>
+            <AppBar position='fixed' className="header-appbar" elevation="4" color='secondary'>
+                <Toolbar className="toolbar">
+                    {
+                        isMobile &&
+                            <IconButton
+                                color="primary"
+                                aria-label="menu"
+                                className="header-menu"
+                                onClick={showSideBar}
+                            >
+                                <MenuIcon  sx={{ fontSize: 40 }}/>
+                            </IconButton>
+                    }
+                    <img
+                        onClick={() => navigate(pages[0].path)}
+                        src={Logo}
+                        alt="logo"
+                        className={isMobile ? 'header-logo centered' : 'header-logo'}
+                    />
+                    {
+                        !isMobile &&
+                            <div className='header-page'>
+                                { renderTabs() }
+                            </div>
+                    }
+                    {
+                        isMobile &&
+                            <div className='header-icon-place-holder' />
+                    }
+                </Toolbar>
+            </AppBar>
         </div>
     );
 };

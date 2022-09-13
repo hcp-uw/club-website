@@ -2,11 +2,14 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { Routes, Route, BrowserRouter as Router, } from "react-router-dom";
 
 import Header from './components/Header/Header';
-import Home from './components/Home/Home';
-import About from './components/About/About';
-import Projects from './components/Projects/Projects';
-import Events from './components/Events/Events';
-import Join from './components/Join/Join';
+import Footer from './components/Footer/Footer';
+
+import Home from './pages/Home/Home';
+import About from './pages/About/About';
+import Projects from './pages/Projects/Projects';
+import Events from './pages/Events/Events';
+import Join from './pages/Join/Join';
+
 import './App.css';
 
 let theme = createTheme({
@@ -40,6 +43,11 @@ theme.typography.h1 = {
 }
 
 theme.typography.h4 = {
+    fontFamily: 'pressStart',
+    fontWeight: 300
+}
+
+theme.typography.h2 = {
     fontFamily: 'pressStart',
     fontWeight: 300
 }
@@ -79,6 +87,7 @@ function App() {
                 <div className="App">
                 <Header pages={pages} />
                 { child() }
+                <Footer />
                 </div>
             </ThemeProvider>
         );

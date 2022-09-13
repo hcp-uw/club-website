@@ -1,0 +1,8 @@
+.about-background {
+    background-image: linear-gradient(135deg, #B00093, #3627A6);
+    height: 2000px;
+}
+
+.about-container {
+    padding-top: 100px;
+}
