@@ -26,7 +26,7 @@ function Footer() {
     return (
         <>
             <footer>
-                <img src={Logo} alt="logo" id="footer-logo"/>
+                <img src={Logo} alt="logo" id="logo"/>
                 <Typography id="motto" component="h4" variant="h4" color="primary"> Let's Git Good </Typography>
                 <div id="socials">
                     {generateIcon(<InstagramIcon sx={{ fontSize: 40 }}/>, "https://instagram.com/huskycodingproject?igshid=YmMyMTA2M2Y=")}
