@@ -21,8 +21,8 @@ function ElevationScroll(props) {
     });
 
     return cloneElement(children, {
-        elevation: (trigger || showSide) ? 4 : 0,
-        color: (trigger || showSide) ? 'secondary' : 'transparent',
+        elevation: 4,
+        color: 'secondary',
     });
 }
 
