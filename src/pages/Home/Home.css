@@ -6,3 +6,25 @@
 .home-container {
     padding-top: 100px;
 }
+
+#home-logo {
+    width: 600px;
+    height: fit-content;
+    margin-bottom: -100px;
+    margin-top: -100px;
+}
+
+#home-scroll-button {
+    margin-top: 30px;
+}
+
+#home-body {
+    margin: auto;
+    padding: 10px;
+    padding-top: 100px;
+    width: 50%;
+}
+
+#purple {
+    color: rgb(206, 78, 211);
+}
