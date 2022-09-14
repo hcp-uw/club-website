@@ -23,7 +23,7 @@ function Home(props) {
         }
     }, []);
 
-    const isMobile = width <= 1200;
+    const isMobile = width <= 800;
 
     return (
         <div className='home-container'>
@@ -32,15 +32,16 @@ function Home(props) {
                 <Typography id="motto" component="h2" variant="h4" color="primary">
                     Let's Git Good!
                 </Typography>
-                <IconButton
-                    color="primary"
-                    href="#home-scroll-button"
-                    id="home-scroll-button"
-                >
-                    <ArrowCircleDownIcon sx={{ fontSize: 50 }} />
-                </IconButton>
+                <div id="home-scroll-button">
+                    <IconButton
+                        color="primary"
+                        href="#home-scroll-button"
+                    >
+                        <ArrowCircleDownIcon sx={{ fontSize: 50 }} />
+                    </IconButton>
+                </div>
             </div>
-            <div id='home-body'>
+            <div id={isMobile ? 'home-body-mobile' : 'home-body'}>
                 <Typography id="objective" variant="subtitle1" color="primary">
                     Husky Coding Project’s objective is to break the circular reasoning of
                     <Typography id="objective" component="span" variant="subtitle1" color="secondary">

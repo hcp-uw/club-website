@@ -30,7 +30,17 @@
 
 #home-body {
     background-color: #060b26;
-    padding: 80px 100px;
+    padding: 80px 20vw;
+    height: 1000px;
+    border-bottom-style: solid;
+    border-bottom-color: grey;
+    border-bottom-width: 2px;
+    border-radius: 100% / 50px 50px 0 0;
+}
+
+#home-body-mobile {
+    background-color: #060b26;
+    padding: 80px 20px;
     height: 1000px;
     border-bottom-style: solid;
     border-bottom-color: grey;
