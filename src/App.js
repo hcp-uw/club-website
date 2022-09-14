@@ -1,4 +1,4 @@
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { ThemeProvider, createTheme, responsiveFontSizes } from '@mui/material/styles';
 import { Routes, Route, BrowserRouter as Router, } from "react-router-dom";
 
 import Header from './components/Header/Header';
@@ -42,14 +42,32 @@ theme.typography.h1 = {
     fontWeight: 300
 }
 
-theme.typography.h4 = {
-    fontFamily: 'pressStart',
-    fontWeight: 300
-}
-
 theme.typography.h2 = {
     fontFamily: 'pressStart',
-    fontWeight: 300
+    fontWeight: 300,
+}
+
+theme.typography.h4 = {
+    fontFamily: 'pressStart',
+    fontWeight: 300,
+    fontSize: '1.5rem',
+    '@media (max-width:600px)': {
+        fontSize: '1.0rem',
+    },
+}
+
+theme.typography.h5 = {
+    fontFamily: 'pressStart',
+    fontWeight: 300,
+    fontSize: '1.0rem',
+}
+
+theme.typography.subtitle1 = {
+    fontWeight: 500,
+    fontSize: '1.5rem',
+    '@media (max-width:600px)': {
+        fontSize: '1.2rem',
+    },
 }
 
 function App() {
@@ -85,9 +103,9 @@ function App() {
         return (
             <ThemeProvider theme={theme}>
                 <div className="App">
-                <Header pages={pages} />
-                { child() }
-                <Footer />
+                    <Header pages={pages} />
+                    { child() }
+                    <Footer />
                 </div>
             </ThemeProvider>
         );

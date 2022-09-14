@@ -3,7 +3,7 @@ import { Typography, IconButton } from '@mui/material';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
-import Logo from '../../assets/HCPLogoText.png'
+import Logo from '../../assets/HCPLogoText-Crop.png'
 
 
 function Footer() {

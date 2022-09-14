@@ -15,8 +15,6 @@ footer > * {
 
 #logo {
     height: 100px;
-    width: 300px;
-    object-fit: cover;
 }
 
 #socials {

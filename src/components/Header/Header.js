@@ -10,7 +10,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { useLocation, useNavigate } from "react-router-dom";
 import Sidebar from '../Sidebar/Sidebar';
 import './Header.css';
-import Logo from '../../assets/HCPLogoText.png'
+import Logo from '../../assets/HCPLogoText-Crop.png'
 
 function Header(props) {
     const {
@@ -47,9 +47,9 @@ function Header(props) {
             <Button key={obj.name} color="inherit" className="header-page-button" onClick={() => navigate(obj.path)}>
                 {
                     obj.name === currPage.name ?
-                        <Typography variant='h4' color="#FFFFFF"> { "<" + obj.name + "/>" } </Typography>
+                        <Typography variant='h5' color="#FFFFFF" fontSize="1.0rem"> { "<" + obj.name + "/>" } </Typography>
                     :
-                        <Typography variant='h4' color="#FFFFFF"> { obj.name } </Typography>
+                        <Typography variant='h5' color="#FFFFFF"> { obj.name } </Typography>
                 }
             </Button>
         )
@@ -69,7 +69,7 @@ function Header(props) {
                         handleShow={showSideBar}
                     />
             }
-            <AppBar position='fixed' className="header-appbar" elevation="4" color='secondary'>
+            <AppBar position='fixed' className="header-appbar" elevation={4} color='secondary'>
                 <Toolbar className="toolbar">
                     {
                         isMobile &&
