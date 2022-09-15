@@ -27,9 +27,9 @@ function Sidebar(props) {
             <Button key={obj.name} color="inherit" className="sidebar-button" onClick={() => navigate(obj.path)}>
                 {
                     obj.name === currPage.name ?
-                        <Typography variant='h5' color="#FFFFFF"> { "<" + obj.name + "/>" } </Typography>
+                        <Typography variant='h5' color="primary"> { "<" + obj.name + "/>" } </Typography>
                     :
-                        <Typography variant='h5' color="#FFFFFF"> { obj.name } </Typography>
+                        <Typography variant='h5' color="primary"> { obj.name } </Typography>
                 }
             </Button>
         )

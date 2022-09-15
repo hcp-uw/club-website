@@ -34,7 +34,7 @@ function Footer() {
                     {generateIcon(<MailOutlineIcon sx={{ fontSize: 40 }}/>, "mailto:hcpuw@uw.edu")}
                 </div>
                 <br />
-                <Typography variant='caption' color="#FFFFFF"> Copyright © 2022 Husky Coding Project. All Rights Reserved </Typography>
+                <Typography variant='caption' color="primary"> Copyright © 2022 Husky Coding Project. All Rights Reserved </Typography>
             </footer>
         </>
     )

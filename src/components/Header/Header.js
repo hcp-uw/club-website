@@ -69,7 +69,7 @@ function Header(props) {
                         handleShow={showSideBar}
                     />
             }
-            <AppBar position='fixed' className="header-appbar" elevation={4} color='secondary'>
+            <AppBar position='fixed' className="header-appbar" elevation={4} color="secondary">
                 <Toolbar className="toolbar">
                     {
                         isMobile &&

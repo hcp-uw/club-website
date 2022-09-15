@@ -18,7 +18,19 @@ let theme = createTheme({
             main: '#FFFFFF',
         },
         secondary: {
-            main: '#B00093',
+            main: '#7A0BC0',
+        },
+        dark: {
+            light: '#7A0BC0',
+            main: '#1A1A40',
+            dark: '#270082',
+            contrastText: '#FA58B6',
+        },
+        accent: {
+            light: '#FA58B6',
+            main: '#FA58B6',
+            dark: '#FA58B6',
+            contrastText: '#FA58B6',
         },
     },
     typography: {

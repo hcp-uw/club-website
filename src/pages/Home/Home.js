@@ -44,7 +44,7 @@ function Home(props) {
             <div id={isMobile ? 'home-body-mobile' : 'home-body'}>
                 <Typography id="objective" variant="subtitle1" color="primary">
                     Husky Coding Project’s objective is to break the circular reasoning of
-                    <Typography id="objective" component="span" variant="subtitle1" color="secondary">
+                    <Typography id="objective" component="span" color="accent.main" variant="subtitle1">
                         &nbsp;“needing experience to get experience”&nbsp;
                     </Typography>
                     that prevents hundreds of students
