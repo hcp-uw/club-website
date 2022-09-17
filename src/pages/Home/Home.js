@@ -14,6 +14,7 @@ import Logo from '../../assets/HCPLogoText-Crop.png'
 import Logo2 from '../../assets/HCPLogo.jpg'
 import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown';
 import { getFeaturedEvents } from '../../api/api';
+import { useNavigate } from "react-router-dom";
 import './Home.css';
 
 
@@ -46,6 +47,8 @@ function Home(props) {
     })
 
     const isMobile = width <= 800;
+    const isMobile2 = width <= 1000 && width > 800;
+    const navigate = useNavigate();
 
     const renderMotto = () => {
         return (
@@ -141,7 +144,7 @@ function Home(props) {
                 </CardContent>
                 <div className="flex-grow" />
                 <CardActions id="home-event-learn-more">
-                    <Button size="small" color='primary'>Learn More</Button>
+                    <Button size="small" color='primary' onClick={() => navigate('/events#' + data.name)}>Learn More</Button>
                 </CardActions>
             </Card>
         );
@@ -151,9 +154,24 @@ function Home(props) {
         if (loading) {
             return <CircularProgress color='secondary' style={{alignSelf: "center"}}/>;
         }
+        if (isMobile2 && events.length === 3) {
+            return (
+                <>
+                    <div id='home-events'>
+                        { renderEvent(events[0]) }
+                        { renderEvent(events[1]) }
+                    </div>
+                    <div id='home-events'>
+                        { renderEvent(events[2]) }
+                    </div>
+                </>
+            );
+        }
         return (
             <div id={isMobile ? 'home-events-mobile' : 'home-events'}>
-                {events.map((event) => renderEvent(event)) }
+                { renderEvent(events[0]) }
+                { renderEvent(events[1]) }
+                { renderEvent(events[2]) }
             </div>
         );
     };
