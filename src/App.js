@@ -1,4 +1,4 @@
-import { ThemeProvider, createTheme, responsiveFontSizes } from '@mui/material/styles';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { Routes, Route, BrowserRouter as Router, } from "react-router-dom";
 
 import Header from './components/Header/Header';
@@ -47,6 +47,29 @@ let theme = createTheme({
             '"Segoe UI Symbol"',
         ].join(','),
     },
+    components: {
+        MuiPaper: {
+            styleOverrides: {
+                root: {
+                    backgroundColor: "#7A0BC0"
+                }
+            }
+        },
+        MuiCard: {
+            styleOverrides: {
+                root: {
+                    backgroundColor: "#7A0BC0"
+                }
+            }
+        },
+        MuiTypography: {
+            styleOverrides: {
+                gutterBottom: {
+                    marginBottom: 12,
+                },
+            },
+        },
+    }
 });
 
 theme.typography.h1 = {
@@ -66,6 +89,9 @@ theme.typography.h4 = {
     '@media (max-width:600px)': {
         fontSize: '1.0rem',
     },
+    '&.MuiTypography-gutterBottom': {
+        marginBottom: 32
+    },
 }
 
 theme.typography.h5 = {
@@ -75,11 +101,13 @@ theme.typography.h5 = {
 }
 
 theme.typography.subtitle1 = {
-    fontWeight: 500,
+    fontWeight: 300,
     fontSize: '1.5rem',
-    '@media (max-width:600px)': {
-        fontSize: '1.2rem',
-    },
+}
+
+theme.typography.subtitle2 = {
+    fontWeight: 300,
+    fontSize: '1.0rem',
 }
 
 function App() {

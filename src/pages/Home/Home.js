@@ -1,7 +1,19 @@
 import { useEffect, useState } from 'react';
-import { Typography, IconButton } from '@mui/material';
+import {
+    Typography,
+    IconButton,
+    Paper,
+    CircularProgress,
+    Card,
+    CardActions,
+    CardContent,
+    CardMedia,
+    Button,
+} from '@mui/material';
 import Logo from '../../assets/HCPLogoText-Crop.png'
+import Logo2 from '../../assets/HCPLogo.jpg'
 import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown';
+import { getFeaturedEvents } from '../../api/api';
 import './Home.css';
 
 
@@ -12,6 +24,8 @@ function Home(props) {
     }, [])
 
     const [width, setWidth] = useState(window.innerWidth);
+    const [events, setEvents] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const handleWindowSizeChange = () => {
@@ -23,10 +37,33 @@ function Home(props) {
         }
     }, []);
 
+    useEffect(() => {
+        const getData = async (data) => {
+            setEvents(data);
+            setLoading(false);
+        }
+        getFeaturedEvents(getData);
+    })
+
     const isMobile = width <= 800;
 
-    return (
-        <div className='home-container'>
+    const renderMotto = () => {
+        return (
+            <div id={isMobile ? 'home-body-mobile' : 'home-body'}>
+                <Typography id="objective" variant="subtitle1" color="primary">
+                    Husky Coding Project’s objective is to break the circular reasoning of
+                    <Typography component="span" color="accent.main" variant="subtitle1">
+                        &nbsp;“needing experience to get experience”&nbsp;
+                    </Typography>
+                    that prevents hundreds of students
+                    from landing their first software internship or job.
+                </Typography>
+            </div>
+        );
+    }
+
+    const renderLogo = () => {
+        return (
             <div id="home-logo-container">
                 <img src={Logo} alt="logo" id="home-logo"/>
                 <Typography id="motto" component="h2" variant="h4" color="primary">
@@ -41,16 +78,104 @@ function Home(props) {
                     </IconButton>
                 </div>
             </div>
+        );
+    }
+
+    const renderMeetingDetails = () => {
+        return (
             <div id={isMobile ? 'home-body-mobile' : 'home-body'}>
-                <Typography id="objective" variant="subtitle1" color="primary">
-                    Husky Coding Project’s objective is to break the circular reasoning of
-                    <Typography id="objective" component="span" color="accent.main" variant="subtitle1">
-                        &nbsp;“needing experience to get experience”&nbsp;
-                    </Typography>
-                    that prevents hundreds of students
-                    from landing their first software internship or job.
+                <Typography className="home-title" component="h4" variant="h4" color="primary">
+                    General Meetings
                 </Typography>
+                <br />
+                <Typography component="h2" variant="subtitle1" color="primary">
+                    Join us every
+                    <Typography component="span" color="accent.main" variant="subtitle1">
+                        &nbsp;Thursday&nbsp;
+                    </Typography>
+                    from
+                    <Typography component="span" color="accent.main" variant="subtitle1">
+                        &nbsp;6:30pm to 7:30pm PST&nbsp;
+                    </Typography>
+                    at
+                    <Typography component="span" color="accent.main" variant="subtitle1">
+                        &nbsp;OUG 141
+                    </Typography>
+                    !
+                </Typography>
+                <Paper id="home-meeting" elevation={12} style={{ background: "dark.light" }}>
+                    <div id="home-paper-vr">
+                        <iframe
+                            title="OUG141"
+                            id="home-vr"
+                            style={{border: '0px'}}
+                            allowFullScreen={true}
+                            scrolling="no"
+                            src="https://www.washington.edu/classroom/vrview/index.html?image=https://features.classrooms.uw.edu/room-images/panoramas/OUG_141_panorama.jpg&amp;"
+                        />
+                    </div>
+                    <Typography component="h2" variant="caption" color="primary">
+                        Odegaard Undergraduate Library 141, University of Washington
+                    </Typography>
+                </Paper>
             </div>
+        );
+    }
+
+    const renderEvent = (data) => {
+        return (
+            <Card key={data.name} className="home-event" elevation={12} sx={{ width: 300, height: 400 }}>
+                <CardMedia
+                    component="img"
+                    style={{height: 150}}
+                    image={ data.image !== null ? data.image : Logo2 }
+                    alt="event image"
+                />
+                <CardContent>
+                    <Typography gutterBottom variant="h5" component="div" color="primary">
+                        {data.name}
+                    </Typography>
+                    <Typography align="left" variant="subtitle2" color="primary" sx={{wordWrap: 'break-word', marginBottom:'-10px'}}>
+                        {data.description.length > 220 ? data.description.slice(0, 220) + '...' : data.description}
+                    </Typography>
+                </CardContent>
+                <div className="flex-grow" />
+                <CardActions id="home-event-learn-more">
+                    <Button size="small" color='primary'>Learn More</Button>
+                </CardActions>
+            </Card>
+        );
+    };
+
+    const displayEvents = () => {
+        if (loading) {
+            return <CircularProgress color='secondary' style={{alignSelf: "center"}}/>;
+        }
+        return (
+            <div id={isMobile ? 'home-events-mobile' : 'home-events'}>
+                {events.map((event) => renderEvent(event)) }
+            </div>
+        );
+    };
+
+    const renderFeaturedEvents = () => {
+        return (
+            <div id={isMobile ? 'home-body-mobile' : 'home-body'}>
+                <Typography gutterBottom className="home-title" component="h4" variant="h4" color="primary">
+                    Featured Events
+                </Typography>
+                <br />
+                { displayEvents() }
+            </div>
+        );
+    }
+
+    return (
+        <div className='home-container'>
+            { renderLogo() }
+            { renderMotto() }
+            { renderMeetingDetails() }
+            { renderFeaturedEvents() }
         </div>
     );
 }

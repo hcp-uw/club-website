@@ -3,6 +3,10 @@
     margin-top: 65px;
 }
 
+.home-title {
+    line-height: 24px;
+}
+
 #home-logo-container {
     padding-top: 30px;
     height: calc(100vh - 65px - 50px);
@@ -31,20 +35,77 @@
 #home-body {
     background-color: #1A1A40;
     padding: 80px 20vw;
-    height: 1000px;
+    height: fit-content;
     border-bottom-style: solid;
     border-bottom-color: grey;
     border-bottom-width: 2px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
 
 #home-body-mobile {
     background-color: #1A1A40;
     padding: 80px 20px;
-    height: 1000px;
+    height: fit-content;
     border-bottom-style: solid;
     border-bottom-color: grey;
     border-bottom-width: 2px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
+
+#home-meeting {
+    margin-top: 20px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+#home-paper-vr {
+    border: 0px;
+    width: 100%;
+    height: fit-content;
+}
+
+#home-vr {
+    border: 0px;
+    width: 100%;
+    aspect-ratio: 2 / 1;
+}
+
+#home-event-learn-more {
+    justify-self: flex-end;
+    display: flex;
+    justify-content: flex-end;
+}
+
+#home-events {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
+#home-events-mobile {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.home-event {
+    margin: 0px 10px 20px 10px;
+}
+
+.flex-grow {
+    flex-grow: 1;
+}
+
+.MuiCard-root{
+    display: flex;
+    flex-direction: column;
+  }
 
 html {
     scroll-behavior: smooth;
