@@ -58,5 +58,5 @@ export const getFeaturedEvents = async (callback) => {
     //     }
     // );
     await delay(3000);
-    callback(events.data.slice(0, 3))
+    callback(events.data.slice(0, 0))
 }

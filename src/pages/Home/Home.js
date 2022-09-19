@@ -154,6 +154,11 @@ function Home(props) {
         if (loading) {
             return <CircularProgress color='secondary' style={{alignSelf: "center"}}/>;
         }
+        if (events.length === 0) {
+            return <Typography component="h2" variant="subtitle1" color="primary">
+            Sadly there are no featured events at this time, check again later!
+        </Typography>;
+        }
         if (isMobile2 && events.length === 3) {
             return (
                 <>
@@ -169,9 +174,7 @@ function Home(props) {
         }
         return (
             <div id={isMobile ? 'home-events-mobile' : 'home-events'}>
-                { renderEvent(events[0]) }
-                { renderEvent(events[1]) }
-                { renderEvent(events[2]) }
+                { events.map((obj) => renderEvent(obj)) }
             </div>
         );
     };
