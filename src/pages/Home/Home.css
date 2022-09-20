@@ -32,7 +32,7 @@
     padding-bottom: 30px;
 }
 
-#home-body {
+.home-body {
     background-color: #1A1A40;
     padding: 80px 20vw;
     height: fit-content;
@@ -44,7 +44,7 @@
     flex-direction: column;
 }
 
-#home-body-mobile {
+.home-body-mobile {
     background-color: #1A1A40;
     padding: 80px 20px;
     height: fit-content;

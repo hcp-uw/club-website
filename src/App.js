@@ -139,33 +139,27 @@ function App() {
         }
     ];
 
-    const renderFrame = (child) => {
-        return (
+    return (
+        <Router>
             <ThemeProvider theme={theme}>
                 <div className="App">
                     <Header pages={pages} />
-                    { child() }
+                    <Routes>
+                        {
+                            pages.map((route) => {
+                                return (
+                                    <Route
+                                        key={route.name}
+                                        path={route.path}
+                                        element={route.component()}
+                                    />);
+                            })
+                        }
+                        <Route path="*" element={pages[0].component()} />
+                    </Routes>
                     <Footer />
                 </div>
             </ThemeProvider>
-        );
-    };
-
-    return (
-        <Router>
-        <Routes>
-            {
-                pages.map((route) => {
-                    return (
-                        <Route
-                            key={route.name}
-                            path={route.path}
-                            element={renderFrame(route.component)}
-                        />);
-                })
-            }
-            <Route path="*" element={renderFrame(pages[0].component)} />
-        </Routes>
         </Router>
     );
 }

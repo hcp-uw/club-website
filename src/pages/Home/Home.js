@@ -52,7 +52,7 @@ function Home(props) {
 
     const renderMotto = () => {
         return (
-            <div id={isMobile ? 'home-body-mobile' : 'home-body'}>
+            <div className={isMobile ? 'home-body-mobile' : 'home-body'}>
                 <Typography id="objective" variant="subtitle1" color="primary">
                     Husky Coding Project’s objective is to break the circular reasoning of
                     <Typography component="span" color="accent.main" variant="subtitle1">
@@ -86,7 +86,7 @@ function Home(props) {
 
     const renderMeetingDetails = () => {
         return (
-            <div id={isMobile ? 'home-body-mobile' : 'home-body'}>
+            <div className={isMobile ? 'home-body-mobile' : 'home-body'}>
                 <Typography className="home-title" component="h4" variant="h4" color="primary">
                     General Meetings
                 </Typography>
@@ -181,7 +181,7 @@ function Home(props) {
 
     const renderFeaturedEvents = () => {
         return (
-            <div id={isMobile ? 'home-body-mobile' : 'home-body'}>
+            <div className={isMobile ? 'home-body-mobile' : 'home-body'}>
                 <Typography gutterBottom className="home-title" component="h4" variant="h4" color="primary">
                     Featured Events
                 </Typography>
