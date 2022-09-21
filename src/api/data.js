@@ -30,7 +30,7 @@ export const events = {
         },
         {
             date: new Date('Wed, 27 July 2016 13:30:00'),
-            name: 'Default Name',
+            name: 'Default Name1',
             location: 'UW CSE2 271',
             sponsor: null,
             attendees: 100,
@@ -39,7 +39,7 @@ export const events = {
         },
         {
             date: new Date('Wed, 27 July 2019 13:30:00'),
-            name: 'Better Name',
+            name: 'Better Name1',
             location: 'UW CSE2 271',
             sponsor: "DubHacks",
             attendees: 100,
@@ -48,7 +48,7 @@ export const events = {
         },
         {
             date: new Date('Wed, 27 July 2019 13:30:00'),
-            name: 'Workshop',
+            name: 'Workshop1',
             location: 'UW Hub Building Room 12345',
             sponsor: null,
             attendees: 1000,
