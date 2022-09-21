@@ -18,7 +18,19 @@ let theme = createTheme({
             main: '#FFFFFF',
         },
         secondary: {
-            main: '#B00093',
+            main: '#7A0BC0',
+        },
+        dark: {
+            light: '#7A0BC0',
+            main: '#1A1A40',
+            dark: '#270082',
+            contrastText: '#FA58B6',
+        },
+        accent: {
+            light: '#FA58B6',
+            main: '#FA58B6',
+            dark: '#FA58B6',
+            contrastText: '#FA58B6',
         },
     },
     typography: {
@@ -35,6 +47,29 @@ let theme = createTheme({
             '"Segoe UI Symbol"',
         ].join(','),
     },
+    components: {
+        MuiPaper: {
+            styleOverrides: {
+                root: {
+                    backgroundColor: "#7A0BC0"
+                }
+            }
+        },
+        MuiCard: {
+            styleOverrides: {
+                root: {
+                    backgroundColor: "#7A0BC0"
+                }
+            }
+        },
+        MuiTypography: {
+            styleOverrides: {
+                gutterBottom: {
+                    marginBottom: 12,
+                },
+            },
+        },
+    }
 });
 
 theme.typography.h1 = {
@@ -42,14 +77,37 @@ theme.typography.h1 = {
     fontWeight: 300
 }
 
-theme.typography.h4 = {
-    fontFamily: 'pressStart',
-    fontWeight: 300
-}
-
 theme.typography.h2 = {
     fontFamily: 'pressStart',
-    fontWeight: 300
+    fontWeight: 300,
+}
+
+theme.typography.h4 = {
+    fontFamily: 'pressStart',
+    fontWeight: 300,
+    fontSize: '1.5rem',
+    '@media (max-width:600px)': {
+        fontSize: '1.0rem',
+    },
+    '&.MuiTypography-gutterBottom': {
+        marginBottom: 32
+    },
+}
+
+theme.typography.h5 = {
+    fontFamily: 'pressStart',
+    fontWeight: 300,
+    fontSize: '1.0rem',
+}
+
+theme.typography.subtitle1 = {
+    fontWeight: 300,
+    fontSize: '1.5rem',
+}
+
+theme.typography.subtitle2 = {
+    fontWeight: 300,
+    fontSize: '1.0rem',
 }
 
 function App() {
@@ -81,33 +139,27 @@ function App() {
         }
     ];
 
-    const renderFrame = (child) => {
-        return (
-            <ThemeProvider theme={theme}>
-                <div className="App">
-                <Header pages={pages} />
-                { child() }
-                <Footer />
-                </div>
-            </ThemeProvider>
-        );
-    };
-
     return (
         <Router>
-        <Routes>
-            {
-                pages.map((route) => {
-                    return (
-                        <Route
-                            key={route.name}
-                            path={route.path}
-                            element={renderFrame(route.component)}
-                        />);
-                })
-            }
-            <Route path="*" element={renderFrame(pages[0].component)} />
-        </Routes>
+            <ThemeProvider theme={theme}>
+                <div className="App">
+                    <Header pages={pages} />
+                    <Routes>
+                        {
+                            pages.map((route) => {
+                                return (
+                                    <Route
+                                        key={route.name}
+                                        path={route.path}
+                                        element={route.component()}
+                                    />);
+                            })
+                        }
+                        <Route path="*" element={pages[0].component()} />
+                    </Routes>
+                    <Footer />
+                </div>
+            </ThemeProvider>
         </Router>
     );
 }
