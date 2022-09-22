@@ -1,8 +1,30 @@
 .events-background {
-    background-image: linear-gradient(135deg, #B00093, #3627A6);
-    height: 2000px;
+    margin-top: 65px;
+    height:100%;
 }
 
-.events-container {
-    padding-top: 100px;
+#events-body {
+    background-color: #1A1A40;
+    padding: 80px 20vw;
+    height: 100%;
+    border-bottom-style: solid;
+    border-bottom-color: grey;
+    border-bottom-width: 2px;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+#events-body-mobile {
+    background-color: #1A1A40;
+    padding: 80px 20px;
+    height: 100%;
+    border-bottom-style: solid;
+    border-bottom-color: grey;
+    border-bottom-width: 2px;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    box-sizing: border-box;
 }
