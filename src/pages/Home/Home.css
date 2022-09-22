@@ -9,13 +9,14 @@
 
 #home-logo-container {
     padding-top: 30px;
-    height: calc(100vh - 65px - 50px);
+    height: calc(100vh - 65px);
     padding-bottom: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     background-image: linear-gradient(135deg, rgba(176,0,147,1) 0%, rgba(39,0,130,1) 70%);
+    box-sizing: border-box;
 }
 
 #home-logo {
