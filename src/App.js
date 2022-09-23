@@ -110,6 +110,11 @@ theme.typography.subtitle2 = {
     fontSize: '1.0rem',
 }
 
+theme.typography.subtitle3 = {
+    fontWeight: 'bold',
+    fontSize: '1.0rem',
+}
+
 function App() {
     const pages = [
         {

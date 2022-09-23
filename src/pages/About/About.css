@@ -1,8 +1,87 @@
 .about-background {
-    background-image: linear-gradient(135deg, #B00093, #3627A6);
+    background-color: #1A1A40;
     height: 2000px;
 }
 
 .about-container {
-    padding-top: 100px;
+    height: fit-content;
+    margin-top: 65px;
 }
+
+.about-title {
+    line-height: 24px;
+}
+
+.about-team {
+    margin: 0px 10px 20px 10px;
+}
+
+
+#about-body {
+    background-color: #1A1A40;
+    padding: 80px 20vw;
+    height: fit-content;
+    border-bottom-style: solid;
+    border-bottom-color: grey;
+    border-bottom-width: 2px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#about-body2 {
+    background-color: #1A1A40;
+    padding: 80px 20vw;
+    height: fit-content;
+    border-bottom-style: solid;
+    border-bottom-color: grey;
+    border-bottom-width: 2px;
+    display: flex;
+    justify-content: center;
+    text-align: left;
+    flex-direction: row;
+}
+
+#about-body-mobile {
+    background-color: #1A1A40;
+    padding: 10px 20px;
+    height: fit-content;
+    border-bottom-style: solid;
+    border-bottom-color: grey;
+    border-bottom-width: 2px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#about-body-mobile2 {
+    background-color: #1A1A40;
+    padding: 10px 20px;
+    height: fit-content;
+    border-bottom-style: solid;
+    border-bottom-color: grey;
+    border-bottom-width: 2px;
+    display: flex;
+    justify-content: center;
+    text-align: left;
+    flex-direction: row;
+}
+
+#about-teams {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    align-self: center;
+}
+
+#about-team-mobile {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    align-self: center;
+}
+
+
+
+
+
