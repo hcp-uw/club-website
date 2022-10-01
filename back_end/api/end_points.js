@@ -1,18 +1,19 @@
-import { LocalPostOfficeRounded } from "@mui/icons-material";
-import { getDatabase, ref, onValue, orderByChild, orderByValue} from "firebase/database";
+// import { LocalPostOfficeRounded } from "@mui/icons-material";
+import { ref, orderByChild } from "firebase/database";
 import { database } from "../utils";
 
-function getOfficers() {
-  const offiers = query(ref(database, 'Club_Leads'), orderByChild('Date_Joined'));
-  console.log(offiers);
+export function getOfficers() {
+  const officers = query(ref(database, 'Club_Leads'), orderByChild('Date_Joined'));
+  return officers;
 }
 
-function getEvents() {
+export function getEvents() {
   const events = query(ref(database, 'Events'), orderByChild('Date'));
-  console.log(events);
+  return events;
 }
 
-function getProjects() {
+export function getProjects() {
   const projects = query(ref(database, 'Projects'), orderByChild('Start_Date'))
-  console.log(projects)
+  return projects;
 }
+
