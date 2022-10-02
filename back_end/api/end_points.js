@@ -1,19 +1,33 @@
 // import { LocalPostOfficeRounded } from "@mui/icons-material";
-import { ref, orderByChild } from "firebase/database";
-import { database } from "../utils";
+import { ref, orderByChild,query,onValue, off} from "firebase/database";
+import { database } from "../utils/index.js";
 
 export function getOfficers() {
-  const officers = query(ref(database, 'Club_Leads'), orderByChild('Date_Joined'));
+  let officers = [];
+  const data = ref(database, 'Club_Leads');
+    onValue(data, (snapshot) => {
+      console.log([snapshot.val()]);
+      officers.push([snapshot.val()]);
+    })
   return officers;
 }
 
 export function getEvents() {
-  const events = query(ref(database, 'Events'), orderByChild('Date'));
-  return events;
+  let Events = [];
+  const data = ref(database, 'Events') ;
+    onValue(data, (snapshot) => {
+      console.log([snapshot.val()]);
+      Events.push([snapshot.val()]);
+    })
+  return Events;
 }
 
 export function getProjects() {
-  const projects = query(ref(database, 'Projects'), orderByChild('Start_Date'))
-  return projects;
+  let Projects = [];
+  const data = ref(database, 'Projects');
+    onValue(data, (snapshot) => {
+      console.log([snapshot.val()]);
+      Projects.push([snapshot.val()]);
+    })
+  return Projects;
 }
-
