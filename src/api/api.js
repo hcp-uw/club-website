@@ -1,5 +1,6 @@
 // import axios from 'axios';
 import { events } from './data';
+import { people } from './data';
 
 // const BASE_URL = 'https://random_url.com';
 // const OK = 200;
@@ -28,3 +29,9 @@ export const getFeaturedEvents = async (callback) => {
     await delay(3000);
     callback(events.data.slice(0, 3))
 }
+
+export const getPeople = async (callback) => {
+    await delay(3000);
+    callback(people.data)
+ }
+ 

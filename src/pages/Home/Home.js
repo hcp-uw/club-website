@@ -144,7 +144,7 @@ function Home(props) {
                 </CardContent>
                 <div className="flex-grow" />
                 <CardActions id="home-event-learn-more">
-                    <Button size="small" color='primary' onClick={() => navigate('/events#' + data.name)}>Learn More</Button>
+                    <Button size="small" color='primary' onClick={() => navigate('/events')}>Learn More</Button>
                 </CardActions>
             </Card>
         );
