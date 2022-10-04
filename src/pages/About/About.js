@@ -1,4 +1,4 @@
-import { useEffect, useState, Item } from 'react';
+import { useEffect, useState } from 'react';
 import { Typography, CircularProgress, Card, CardMedia, CardContent, Grid } from '@mui/material';
 import { getPeople } from '../../api/api';
 import './About.css';
