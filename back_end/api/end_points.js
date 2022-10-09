@@ -1,13 +1,19 @@
-// import { LocalPostOfficeRounded } from "@mui/icons-material";
-import { ref, get} from "firebase/database";
-import { database } from "../utils/index.js";
+import { getData } from "../utils/utils.js";
 
-// Returns all Data passed through the queryString
-// @Params queryString - String of the Query
-export async function getData(queryString) {
-  const query = await ref(database, queryString) ;
-  const qResult = await get(query);
-  const data = qResult.val();
+// Returns all club leads from database
+export async function getLeads(test = "Club_Leads") {
+  let data = await getData(test);
   return data;
 }
 
+// Returns all events from database
+export async function getEvents(test = "Events") {
+  let data = await getData(test);
+  return data;
+}
+
+// Returns all projects from database
+export async function getProjects(test = "Projects") {
+  let data = await getData(test);
+  return data;
+}

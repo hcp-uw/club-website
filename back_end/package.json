@@ -9,7 +9,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "mocha test/get_officers_test.js"
+    "test": "mocha test/*.js --exit"
   },
   "author": "Ben,Frank,Wu",
   "license": "ISC",
