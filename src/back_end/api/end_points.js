@@ -25,13 +25,13 @@ export async function getAllEvents(test = "Events") {
  *  If events are old, returns only names (array of strings)
  *  If an error occurs, will output error to console.
  */
-export async function getEvents(upcoming, verbose, test = "Events") {
-  let missingParamErrMsg = "missing parameters, please define two booleans"
+export async function getEventsBasedOnTime(upcoming, verbose, test = "Events") {
+  let missingParamErrMsg = "missing parameters, please define two booleans";
   let typeErrMsg = "incorrect parameter type, expected boolean, got ";
 
   // Param checks
   if (upcoming == undefined || verbose == undefined) {
-    console.error(missingParamErrMsg)
+    console.error(missingParamErrMsg);
     return;
   }
   // Type checks
@@ -68,10 +68,22 @@ export async function getEvents(upcoming, verbose, test = "Events") {
   }
 
   // Checking return format
+  let keys = Object.keys(data);
   if (verbose) {
-      return data
+    // Parsing into list and sorting the data by date
+    let values = Object.values(data);
+    let ret = [];
+    for (let i = 0; i < keys.length; i++) {
+      let key = keys[i];
+      let value = values[i];
+      ret.push({key, value});
+    }
+    ret.sort(function(a, b) {
+      return new Date(b.value.Date) - new Date(a.value.Date);
+    })
+    return ret;
   }
-  return Object.keys(data);
+  return keys;
 }
 
 /* ------------------- Projects Endpoints ------------------- */
