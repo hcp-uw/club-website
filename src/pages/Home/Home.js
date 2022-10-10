@@ -98,7 +98,7 @@ function Home(props) {
                     </Typography>
                     from
                     <Typography component="span" color="accent.main" variant="subtitle1">
-                        &nbsp;6:30pm to 7:30pm PST&nbsp;
+                        &nbsp;6:00pm to 7:30pm PST&nbsp;
                     </Typography>
                     at
                     <Typography component="span" color="accent.main" variant="subtitle1">

@@ -24,6 +24,7 @@ function Join(props) {
                 <iframe
                     className='iframe'
                     title="club sign up google form"
+                    frameBorder={0}
                     src="https://docs.google.com/forms/d/e/1FAIpQLSc5wyLuacKqZpezaffwB8jZZVz9yBo83tvA-U_vsRMiPbGslA/viewform?embedded=true"
                 >
                     Loading…
@@ -34,26 +35,22 @@ function Join(props) {
 
     const displayJoinPageMobile = () => {
         return (
-            <Button color="secondary" variant="contained" href={"https://forms.gle/JpJaoznG4FBvS1paA"} target="_blank"> Link to Google Form </Button>
+            <Button color="secondary" variant="contained" href={"https://forms.gle/JpJaoznG4FBvS1paA"} target="_blank"> Link to Form </Button>
         );
     };
 
     const renderJoinPage = () => {
-        if (isMobile) {
-            return (
-                <div id='join-container-mobile'>
-                    <Typography variant="h2" color="primary" paddingBottom={2}> Join </Typography>
-                    {displayJoinPageMobile()}
-                </div>
-            );
-        } else {
-            return (
-                <div id='join-container'>
-                    <Typography variant="h2" color="primary" paddingBottom={2}> Join </Typography>
-                    {displayJoinPage()}
-                </div>
-            );
-        }
+        return (
+            <div id={isMobile ? 'join-container-mobile' : 'join-container'}>
+                <Typography variant="h4" color="primary" paddingBottom={2}> Join Us </Typography>
+                <br />
+                <Typography id="objective" variant="subtitle1" color="primary">
+                    Fill out the form below to join HCP!
+                </Typography>
+                <br />
+                {isMobile ? displayJoinPageMobile() : displayJoinPage()}
+            </div>
+        );
     }
 
     return (

@@ -56,8 +56,7 @@
     flex-direction: row;
     justify-content: center;
     box-sizing: border-box;
-    max-width: 400px;
-    width: 80vw;
+    width: auto;
     margin-right: 30px;
     aspect-ratio: 1;
 }
@@ -79,8 +78,9 @@
     justify-content: flex-start;
     align-items: flex-start;
     height: 400px;
-    max-width: 400px;
-    width: 80vw;
+    overflow-y: auto;
+    width: auto;
+    padding-top: 30px;
 }
 
 .events-text-mobile {

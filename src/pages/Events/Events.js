@@ -3,7 +3,7 @@ import {
     Typography,
     CircularProgress
 } from '@mui/material';
-import { getFeaturedEvents } from '../../api/api';
+import { getAllEvents } from '../../api/api';
 import Logo2 from '../../assets/HCPLogo.jpg';
 import './Events.css';
 
@@ -27,7 +27,7 @@ function Events(props) {
             setEvents(data);
             setLoading(false);
         }
-        getFeaturedEvents(getData);
+        getAllEvents(getData);
     }, []);
 
     const isMobile = width <= 800;
@@ -41,7 +41,7 @@ function Events(props) {
                         alt={data.name + " image"}
                     />
                 </div>
-                <div className={isMobile ? "events-image-text" : "events-text"}>
+                <div className={isMobile ? "events-text-mobile" : "events-text"}>
                     <Typography gutterBottom variant="h5" component="div" color="primary">
                         {data.name}
                     </Typography>

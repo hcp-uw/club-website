@@ -1,37 +1,58 @@
 // import axios from 'axios';
-import { events } from './data';
 import { people } from './data';
-
-// const BASE_URL = 'https://random_url.com';
-// const OK = 200;
+import { getEvents } from '../back_end/api/end_points.js';
 
 // For dummy endpoints
 const delay = ms => new Promise(
     resolve => setTimeout(resolve, ms)
   );
 
+const isValidHttpUrl = (string) => {
+    if (!string) {
+        return false;
+    }
+    let url;
+    try {
+      url = new URL(string);
+    } catch (_) {
+      return false;
+    }
+    return url.protocol === "http:" || url.protocol === "https:";
+  }
+
+const parseEvents = (data) => {
+    var ret = Object.keys(data).map((key) => {
+        var res = {
+            date: new Date(data[key].Date),
+            name: String(key).replaceAll('_', ' '),
+            location: data[key].Location,
+            description: data[key].Description,
+            image: isValidHttpUrl(data[key].Image) ? data[key].Image : null,
+        }
+        return res;
+    });
+    return ret;
+}
+
 export const getFeaturedEvents = async (callback) => {
-    // await axios.get(BASE_URL + '/test').then(
-    //     (res) => {
-    //         if (res.status === OK && res.data) {
-    //             return {
-    //                 status: OK,
-    //                 data: res.data.slice(0, 3),
-    //             }
-    //         } else {
-    //             return {
-    //                 status: OK,
-    //                 data: [],
-    //             }
-    //         }
-    //     }
-    // );
-    await delay(3000);
-    callback(events.data.slice(0, 3))
+    var data = await getEvents();
+    if (data) {
+        callback(parseEvents(data).slice(0, 3));
+    } else {
+        callback([]);
+    }
+}
+
+export const getAllEvents = async (callback) => {
+    var data = await getEvents();
+    if (data) {
+        callback(parseEvents(data));
+    } else {
+        callback([]);
+    }
 }
 
 export const getPeople = async (callback) => {
     await delay(3000);
     callback(people.data)
- }
- 
+}

@@ -44,7 +44,19 @@
 
 #about-body-mobile {
     background-color: #1A1A40;
-    padding: 10px 20px;
+    padding: 80px 20px;
+    height: fit-content;
+    border-bottom-style: solid;
+    border-bottom-color: grey;
+    border-bottom-width: 2px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#about-body-mobile-top {
+    background-color: #1A1A40;
+    padding: 60px 20px 80px 20px;
     height: fit-content;
     border-bottom-style: solid;
     border-bottom-color: grey;
@@ -56,7 +68,7 @@
 
 #about-body-mobile2 {
     background-color: #1A1A40;
-    padding: 10px 20px;
+    padding: 80px 20px;
     height: fit-content;
     border-bottom-style: solid;
     border-bottom-color: grey;

@@ -1,15 +1,14 @@
 #join-background {
-    background-image: linear-gradient(135deg, #B00093, #3627A6);
-    height: fit-content;
+    margin-top: 65px;
 }
 
 #join-background-mobile{
-    background-image: linear-gradient(135deg, #B00093, #3627A6);
+    margin-top: 65px;
     height: 100%;
 }
 
 .google-form-embed {
-    padding-top: 16px;
+    padding-top: 0px;
 }
 
 #join-container {
@@ -44,5 +43,4 @@
     /* overflow-y: hidden; */
     width: 640px;
     height: 3600px;
-    
 }

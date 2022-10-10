@@ -4,7 +4,7 @@ import {assert} from 'chai';
 describe("Testing Get all Functions.", () => {
   it('Get All Officers',async () => {
     let rsp = await getLeads("Test/Club_Leads");
-    let expected = 
+    let expected =
     {
       Billy: {
         Active: true,
@@ -22,12 +22,13 @@ describe("Testing Get all Functions.", () => {
 
   it('Get All Events', async () => {
     let rsp = await getEvents("Test/Events");
-    let expected = 
+    let expected =
     {
       Event1: {
         Attendees: 69,
         Date: '6/12/2007',
         Description: 'This is a dope event',
+        Image: 'blob',
         Location: 'UW',
         Sponsor: 'Google'
       }
@@ -37,7 +38,7 @@ describe("Testing Get all Functions.", () => {
 
   it('Get All Projects', async () => {
     let rsp = await getProjects("Test/Projects");
-    let expected = 
+    let expected =
     {
       Project1: {
         Category: 'Web_Project',

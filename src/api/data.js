@@ -17,7 +17,7 @@ export const events = {
             sponsor: "DubHacks",
             attendees: 100,
             description: "This event is MEMBERS ONLY. Actually though, should we add another column in the table for these types of events? But here is much more text than last time and should overflow some stuff! text text and a lot more text. Actually this might be too much random text. Imma go now. Ha im back. Imma go for real now. Got you again rofl. Ok im bored now, signing off. ** Mic drop ** ^-^",
-            image: null,
+            image: 'Image',
         },
         {
             date: new Date('Wed, 27 July 2019 13:30:00'),
