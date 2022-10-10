@@ -4,7 +4,6 @@ import { assert } from 'chai';
 describe( "Testing event endpionts", () => {
   it('Get upcoming events verbose', async() => {
     let get = await getEventsBasedOnTime(true, true, "Test/Events");
-    console.log(get)
     let expected = [
       {
         key: 'EventFuture',
