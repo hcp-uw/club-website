@@ -26,11 +26,19 @@ describe("Testing Get all Functions.", () => {
     {
       Event1: {
         Attendees: 69,
-        Date: '6/12/2007',
+        Date: '2007-10-20T16:00-07:00',
         Description: 'This is a dope event',
         Image: 'blob',
         Location: 'UW',
         Sponsor: 'Google'
+      },
+      EventFuture: {
+        Attendees: 21,
+        Date: '2192-10-20T16:00-07:00',
+        Description: 'This is an event in the future',
+        Image: 'blob',
+        Location: 'UW?',
+        Sponsor: 'Tettie'
       }
     };
     assert.deepEqual(rsp, expected);

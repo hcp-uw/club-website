@@ -23,25 +23,35 @@ export async function getAllEvents(test = "Events") {
  * @return List of events
  *  If events are upcoming, returns all detail (array of object)
  *  If events are old, returns only names (array of strings)
+ *  If an error occurs, will output error to console.
  */
 export async function getEvents(upcoming, verbose, test = "Events") {
-    // Type checks
-    let typeErrMsg = "incorrect parameter type, expected boolean, got ";
-    if (typeof(upcoming) != "boolean") {
-        console.error(typeErrMsg + typeof(upcoming));
-        return;
-    }
-    if (typeof(verbose) != "boolean") {
-        console.error(typeErrMsg + typeof(verbose));
-        return;
-    }
+  let missingParamErrMsg = "missing parameters, please define two booleans"
+  let typeErrMsg = "incorrect parameter type, expected boolean, got ";
 
-    // Getting date
-    let todayStr = new Date().toISOString();   // YYYY-MM-DDTHH:MM:SS.sssz
-    let today = todayStr.substring(0, todayStr.length - 5); // YYYY-MM-DDTHH:MM:SS
+  // Param checks
+  if (upcoming == undefined || verbose == undefined) {
+    console.error(missingParamErrMsg)
+    return;
+  }
+  // Type checks
+  if (typeof(upcoming) != "boolean") {
+    console.error(typeErrMsg + typeof(upcoming));
+    return;
+  }
+  if (typeof(verbose) != "boolean") {
+    console.error(typeErrMsg + typeof(verbose));
+    return;
+  }
 
-    // Creating query
-    let qRes;
+  // Getting date
+  let todayStr = new Date().toISOString();   // YYYY-MM-DDTHH:MM:SS.sssz
+  let today = todayStr.substring(0, todayStr.length - 5); // YYYY-MM-DDTHH:MM:SS
+
+  // Creating query
+  let qRes;
+  let data;
+  try {
     if (upcoming) {
         // Upcoming events
         let q = query(ref(database, test), orderByChild('Date'), startAt(today))
@@ -51,13 +61,17 @@ export async function getEvents(upcoming, verbose, test = "Events") {
         let q = query(ref(database, test), orderByChild('Date'), endAt(today))
         qRes = await get(q);
     }
-    let data = qRes.val();
+    data = qRes.val();
+  } catch (err) {
+    console.error(err);
+    return;
+  }
 
-    // Checking return format
-    if (verbose) {
-        return data
-    }
-    return Object.keys(data);
+  // Checking return format
+  if (verbose) {
+      return data
+  }
+  return Object.keys(data);
 }
 
 /* ------------------- Projects Endpoints ------------------- */
