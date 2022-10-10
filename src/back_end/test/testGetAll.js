@@ -1,4 +1,4 @@
-import { getLeads, getEvents, getProjects } from "../api/end_points.js";
+import { getLeads, getAllEvents, getProjects } from "../api/end_points.js";
 import {assert} from 'chai';
 
 describe("Testing Get all Functions.", () => {
@@ -21,7 +21,7 @@ describe("Testing Get all Functions.", () => {
   })
 
   it('Get All Events', async () => {
-    let rsp = await getEvents("Test/Events");
+    let rsp = await getAllEvents("Test/Events");
     let expected =
     {
       Event1: {
