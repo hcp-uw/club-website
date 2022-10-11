@@ -1,6 +1,6 @@
 // import axios from 'axios';
 import { people } from './data';
-import { getEvents } from '../back_end/api/end_points.js';
+import { getAllEvents } from '../back_end/api/end_points.js';
 
 // For dummy endpoints
 const delay = ms => new Promise(
@@ -43,8 +43,8 @@ export const getFeaturedEvents = async (callback) => {
     }
 }
 
-export const getAllEvents = async (callback) => {
-    var data = await getEvents();
+export const getEvents = async (callback) => {
+    var data = await getAllEvents();
     if (data) {
         callback(parseEvents(data));
     } else {

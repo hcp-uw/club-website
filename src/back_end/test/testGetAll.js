@@ -1,4 +1,4 @@
-import { getLeads, getEvents, getProjects } from "../api/end_points.js";
+import { getLeads, getAllEvents, getProjects } from "../api/end_points.js";
 import {assert} from 'chai';
 
 describe("Testing Get all Functions.", () => {
@@ -21,16 +21,24 @@ describe("Testing Get all Functions.", () => {
   })
 
   it('Get All Events', async () => {
-    let rsp = await getEvents("Test/Events");
+    let rsp = await getAllEvents("Test/Events");
     let expected =
     {
       Event1: {
         Attendees: 69,
-        Date: '6/12/2007',
+        Date: '2007-10-20T16:00-07:00',
         Description: 'This is a dope event',
         Image: 'blob',
         Location: 'UW',
         Sponsor: 'Google'
+      },
+      EventFuture: {
+        Attendees: 21,
+        Date: '2192-10-20T16:00-07:00',
+        Description: 'This is an event in the future',
+        Image: 'blob',
+        Location: 'UW?',
+        Sponsor: 'Tettie'
       }
     };
     assert.deepEqual(rsp, expected);

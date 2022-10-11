@@ -3,7 +3,7 @@ import {
     Typography,
     CircularProgress
 } from '@mui/material';
-import { getAllEvents } from '../../api/api';
+import { getEvents } from '../../api/api';
 import Logo2 from '../../assets/HCPLogo.jpg';
 import './Events.css';
 
@@ -27,7 +27,7 @@ function Events(props) {
             setEvents(data);
             setLoading(false);
         }
-        getAllEvents(getData);
+        getEvents(getData);
     }, []);
 
     const isMobile = width <= 800;
