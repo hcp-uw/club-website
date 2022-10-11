@@ -11,7 +11,7 @@ Gets events based on the current date/time. Returns the output as a list, sorted
     | Name       | Type    | Description                                               | Default                 |
     | ---------- | ------- | --------------------------------------------------------- | ----------------------- |
     | `upcoming` | Boolean | Indicates querying for upcoming events (Alternative: old) | NONE (Required Param)   |
-    | `offset`  | Boolean | Indicates returning all data (Alternative: just the name) | NONE (Required Param)   |
+    | `limit`    | Integer | Indicates the number of events to return                  | 4 (Optional Param)      |
 
 * **Returned Data Format:** List
 
@@ -20,26 +20,21 @@ Sample response shows output format, followed by sample data.
   ```
   [
     {
-      key: <String>,
-      value: {
-        Attendees: <int>,
-        Date: <DateString>,
-        Description: <String>,
-        Image: <URL>,
-        Location: <String>,
-        Sponsor: <String>
-      }
+      Attendees: <int>,
+      Date: <DateString>,
+      Description: <String>,
+      Image: <URL>,
+      Location: <String>,
+      Name: <String>m
+      Sponsor: <String>
     },
     {
-      key: 'EventFuture',
-      value: {
-        Attendees: 21,
-        Date: '2192-10-20T16:00-07:00',
-        Description: 'This is an event in the future',
-        Image: 'blob (do not use, not yet implemented)',
-        Location: 'UW?',
-        Sponsor: 'Tettie'
-      }
+      Attendees: 21,
+      Date: '2192-10-20T16:00-07:00',
+      Description: 'This is an event in the future',
+      Image: 'blob (do not use, not yet implemented)',
+      Location: 'UW?',
+      Sponsor: 'Tettie'
     },
     ...
   ]
