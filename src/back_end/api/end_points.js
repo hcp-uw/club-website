@@ -1,4 +1,4 @@
-import { ref, query, get, orderByChild, startAt, endAt} from "firebase/database";
+import { ref, query, get, orderByChild, startAt, endAt, limitToFirst, limitToLast} from "firebase/database";
 import { database } from "../utils/index.js";
 import { getData } from "../utils/utils.js";
 
@@ -19,28 +19,23 @@ export async function getAllEvents(test = "Events") {
 /*
  * Returns upcoming events, or old events
  * @Param upcoming (boolean): Indicates getting upcoming events (true) or old events
- * @Param verbose (boolean): Indicates getting all details (true), or just event name
- * @return List of events
- *  If events are upcoming, returns all detail (array of object)
- *  If events are old, returns only names (array of strings)
+ * @Param limit (integer): How many events to return, will return events closest to today's date
+ *    Optional param: Default value 4
+ * @return List of events, sorted in descending order
  *  If an error occurs, will output error to console.
  */
-export async function getEventsBasedOnTime(upcoming, verbose, test = "Events") {
+export async function getEventsBasedOnTime(upcoming, limit = 4, test = "Events") {
   let missingParamErrMsg = "missing parameters, please define two booleans";
   let typeErrMsg = "incorrect parameter type, expected boolean, got ";
 
   // Param checks
-  if (upcoming == undefined || verbose == undefined) {
+  if (upcoming == undefined) {
     console.error(missingParamErrMsg);
     return;
   }
   // Type checks
   if (typeof(upcoming) != "boolean") {
     console.error(typeErrMsg + typeof(upcoming));
-    return;
-  }
-  if (typeof(verbose) != "boolean") {
-    console.error(typeErrMsg + typeof(verbose));
     return;
   }
 
@@ -52,38 +47,29 @@ export async function getEventsBasedOnTime(upcoming, verbose, test = "Events") {
   let qRes;
   let data;
   try {
+    let q;
     if (upcoming) {
         // Upcoming events
-        let q = query(ref(database, test), orderByChild('Date'), startAt(today))
-        qRes = await get(q);
+        q = query(ref(database, test), orderByChild('Date'), startAt(today), limitToFirst(limit))
     } else {
         // Old events
-        let q = query(ref(database, test), orderByChild('Date'), endAt(today))
-        qRes = await get(q);
+        q = query(ref(database, test), orderByChild('Date'), endAt(today), limitToLast(limit))
     }
+    qRes = await get(q);
     data = qRes.val();
   } catch (err) {
     console.error(err);
     return;
   }
 
-  // Checking return format
-  let keys = Object.keys(data);
-  if (verbose) {
-    // Parsing into list and sorting the data by date
-    let values = Object.values(data);
-    let ret = [];
-    for (let i = 0; i < keys.length; i++) {
-      let key = keys[i];
-      let value = values[i];
-      ret.push({key, value});
-    }
-    ret.sort(function(a, b) {
-      return new Date(b.value.Date) - new Date(a.value.Date);
-    })
-    return ret;
-  }
-  return keys;
+  // Sorting and outputting the results
+  let values = Array.from(Object.values(data));
+  if (values.length > 1) {
+    values.sort(function(a, b) {
+      return new Date(a.Date) - new Date(b.Date);
+    });
+  };
+  return values;
 }
 
 /* ------------------- Projects Endpoints ------------------- */

@@ -11,7 +11,7 @@ Gets events based on the current date/time. Returns the output as a list, sorted
     | Name       | Type    | Description                                               | Default                 |
     | ---------- | ------- | --------------------------------------------------------- | ----------------------- |
     | `upcoming` | Boolean | Indicates querying for upcoming events (Alternative: old) | NONE (Required Param)   |
-    | `verbose`  | Boolean | Indicates returning all data (Alternative: just the name) | NONE (Required Param)   |
+    | `offset`  | Boolean | Indicates returning all data (Alternative: just the name) | NONE (Required Param)   |
 
 * **Returned Data Format:** List
 
@@ -43,10 +43,6 @@ Sample response shows output format, followed by sample data.
     },
     ...
   ]
-  ```
-* **Success Response: (non-verbose)**
-  ```
-  ["Event1", ...] <String[]>
   ```
 
 * **Error Response:**
