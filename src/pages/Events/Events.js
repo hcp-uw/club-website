@@ -3,7 +3,8 @@ import {
     Typography,
     CircularProgress
 } from '@mui/material';
-import { getFeaturedEvents } from '../../api/api';
+import { getAllEvents } from '../../api/api';
+import Logo2 from '../../assets/HCPLogo.jpg';
 import './Events.css';
 
 function Events(props) {
@@ -26,17 +27,49 @@ function Events(props) {
             setEvents(data);
             setLoading(false);
         }
-        getFeaturedEvents(getData);
-    });
-
-    useEffect(() => {
-        window.scrollTo(0, 0)
+        getAllEvents(getData);
     }, []);
 
     const isMobile = width <= 800;
 
-    const renderEvent = () => {
-        return <></>
+    const renderEvent = (data) => {
+        return (
+            <div key={data.name} className={isMobile ? "events-container-mobile" : "events-container"}>
+                <div className={isMobile ? "events-image-mobile" : "events-image"}>
+                    <img
+                        src={ data.image !== null ? data.image : Logo2 }
+                        alt={data.name + " image"}
+                    />
+                </div>
+                <div className={isMobile ? "events-text-mobile" : "events-text"}>
+                    <Typography gutterBottom variant="h5" component="div" color="primary">
+                        {data.name}
+                    </Typography>
+                    <Typography align="left" variant="subtitle2" component="div" color="primary" sx={{wordWrap: 'break-word'}}>
+                        { data.description }
+                    </Typography>
+                    <br />
+                    <Typography align="left" variant="subtitle2" component="div" color="primary" sx={{wordWrap: 'break-word'}}>
+                        <Typography component="span" variant="subtitle2" style={{ fontWeight: 600 }}>
+                            {"Location: "}
+                        </Typography>
+                        { data.location }
+                    </Typography>
+                    <Typography align="left" variant="subtitle2" component="div" color="primary" sx={{wordWrap: 'break-word'}}>
+                        <Typography component="span" variant="subtitle2" style={{ fontWeight: 600 }}>
+                            {"Date: "}
+                        </Typography>
+                        { data.date.toDateString() }
+                    </Typography>
+                    <Typography align="left" variant="subtitle2" component="div" color="primary" sx={{wordWrap: 'break-word'}}>
+                        <Typography component="span" variant="subtitle2" style={{ fontWeight: 600 }}>
+                            {"Time: "}
+                        </Typography>
+                        { data.date.toTimeString() }
+                    </Typography>
+                </div>
+            </div>
+        );
     }
 
     const displayEvents = () => {
@@ -49,9 +82,7 @@ function Events(props) {
         </Typography>;
         }
         return (
-            <div id={isMobile ? 'home-events-mobile' : 'home-events'}>
-                { events.map((obj) => renderEvent(obj)) }
-            </div>
+            events.map((obj) => renderEvent(obj))
         );
     };
 
@@ -66,7 +97,7 @@ function Events(props) {
     }
 
     return (
-        <div className='events-background'>
+        <div className={events.length === 0 ? 'events-background-none' : 'events-background'}>
             { renderEvents() }
         </div>
     );

@@ -98,7 +98,7 @@ function Home(props) {
                     </Typography>
                     from
                     <Typography component="span" color="accent.main" variant="subtitle1">
-                        &nbsp;6:30pm to 7:30pm PST&nbsp;
+                        &nbsp;6:00pm to 7:30pm PST&nbsp;
                     </Typography>
                     at
                     <Typography component="span" color="accent.main" variant="subtitle1">
@@ -144,7 +144,7 @@ function Home(props) {
                 </CardContent>
                 <div className="flex-grow" />
                 <CardActions id="home-event-learn-more">
-                    <Button size="small" color='primary' onClick={() => navigate('/events#' + data.name)}>Learn More</Button>
+                    <Button size="small" color='primary' onClick={() => navigate('/events')}>Learn More</Button>
                 </CardActions>
             </Card>
         );

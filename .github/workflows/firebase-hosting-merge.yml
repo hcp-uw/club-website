@@ -15,8 +15,10 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16
-      - name: Install Dependencies
+      - name: Install FE Dependencies
         run: yarn install --frozen-lockfile
+      - name: Install BE Dependencies
+        run: npm install --prefix ./src/back_end
       - name: Build
         run: yarn build
       - uses: FirebaseExtended/action-hosting-deploy@v0
