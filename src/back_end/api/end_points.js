@@ -29,7 +29,7 @@ export async function getEventsBasedOnTime(upcoming, limit = 4, test = "Events")
   let typeErrMsg = "incorrect parameter type, expected boolean, got ";
 
   // Param checks
-  if (upcoming == undefined) {
+  if (upcoming === undefined) {
     console.error(missingParamErrMsg);
     return;
   }
