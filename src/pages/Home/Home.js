@@ -10,7 +10,7 @@ import {
     CardMedia,
     Button,
 } from '@mui/material';
-import Logo from '../../assets/HCPLogoText-Crop.png'
+import Logo from '../../assets/HCPLogo-highres.png'
 import Logo2 from '../../assets/HCPLogo.jpg'
 import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown';
 import { getFeaturedEvents } from '../../api/api';
@@ -135,7 +135,7 @@ function Home(props) {
                     alt="event image"
                 />
                 <CardContent>
-                    <Typography gutterBottom variant="h5" component="div" color="primary">
+                    <Typography gutterBottom variant="subtitle1" fontWeight={500} component="div" color="primary">
                         {data.name}
                     </Typography>
                     <Typography align="left" variant="subtitle2" color="primary" sx={{wordWrap: 'break-word', marginBottom:'-10px'}}>

@@ -1,6 +1,6 @@
 // import axios from 'axios';
 import { people } from './data';
-import { getAllEvents } from '../back_end/api/end_points.js';
+import * as api from '../back_end/api/end_points.js';
 
 // For dummy endpoints
 const delay = ms => new Promise(
@@ -21,13 +21,13 @@ const isValidHttpUrl = (string) => {
   }
 
 const parseEvents = (data) => {
-    var ret = Object.keys(data).map((key) => {
+    var ret = data.map((obj) => {
         var res = {
-            date: new Date(data[key].Date),
-            name: String(key).replaceAll('_', ' '),
-            location: data[key].Location,
-            description: data[key].Description,
-            image: isValidHttpUrl(data[key].Image) ? data[key].Image : null,
+            date: new Date(obj.Date),
+            name: obj.Name,
+            location: obj.Location,
+            description: obj.Description,
+            image: isValidHttpUrl(obj.Image) ? obj.Image : null,
         }
         return res;
     });
@@ -35,7 +35,7 @@ const parseEvents = (data) => {
 }
 
 export const getFeaturedEvents = async (callback) => {
-    var data = await getEvents();
+    var data = await api.getEventsBasedOnTime(true);
     if (data) {
         callback(parseEvents(data).slice(0, 3));
     } else {
@@ -43,8 +43,8 @@ export const getFeaturedEvents = async (callback) => {
     }
 }
 
-export const getEvents = async (callback) => {
-    var data = await getAllEvents();
+export const getAllEvents = async (callback, upcoming) => {
+    var data = await api.getEventsBasedOnTime(upcoming);
     if (data) {
         callback(parseEvents(data));
     } else {
