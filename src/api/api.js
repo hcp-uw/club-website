@@ -35,7 +35,7 @@ const parseEvents = (data) => {
 }
 
 export const getFeaturedEvents = async (callback) => {
-    var data = await getAllEvents();
+    var data = await getEvents();
     if (data) {
         callback(parseEvents(data).slice(0, 3));
     } else {
@@ -43,7 +43,7 @@ export const getFeaturedEvents = async (callback) => {
     }
 }
 
-export const getAllEvents = async (callback) => {
+export const getEvents = async (callback) => {
     var data = await getAllEvents();
     if (data) {
         callback(parseEvents(data));
