@@ -2,9 +2,9 @@ General README for these functions... we can fill it out at some point @Ben
 But for now I will use this as a TODO list.
 
 Ben:
-- Return active club leads              (TODO)
-- Return shortened form of projects     (TODO)
-- Endpoint Documentation                (TODO)
+- Return active club leads              (This PR)
+- Return shortened form of projects     (This PR)
+- Endpoint Documentation                (This PR)
 
 Frank:
 - Return old events / upcoming events   (This PR)
