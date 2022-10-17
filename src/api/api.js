@@ -1,5 +1,6 @@
 // import axios from 'axios';
 import { people } from './data';
+import { projects } from './data';
 import * as api from '../back_end/api/end_points.js';
 
 // For dummy endpoints
@@ -56,3 +57,9 @@ export const getPeople = async (callback) => {
     await delay(3000);
     callback(people.data)
 }
+
+export const getProjects = async (callback) => {
+    await delay(3000);
+    callback(projects.data)
+}
+
