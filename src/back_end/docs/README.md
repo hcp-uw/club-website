@@ -7,7 +7,7 @@ Ben:
 - Endpoint Documentation                (This PR)
 
 Frank:
-- Return old events / upcoming events   (This PR)
+- Return old events / upcoming events   (Done)
 - Return details for projects           (TODO)
 - Return all currently active projects  (TODO)
 - Endpoint Documentation                (TODO)
