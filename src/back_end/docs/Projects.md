@@ -1,5 +1,5 @@
 ## <span style="color:deepskyblue">Projects Data Endpoints</span>
-Documentation for all callable back-end functions related to Events data
+Documentation for all callable back-end functions related to Projects data
 
 ## <span style="color:deepskyblue"> getShortenedProject
 Returns all projects in shortened form (Name, Description, Image).

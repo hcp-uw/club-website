@@ -1,5 +1,5 @@
 ## <span style="color:deepskyblue">Leads Data Endpoints</span>
-Documentation for all callable back-end functions related to Events data
+Documentation for all callable back-end functions related to Leads data
 
 ## <span style="color:deepskyblue"> getActiveLeads
 Returns all club leads (and information associated) that are currently active.
