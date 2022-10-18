@@ -6,14 +6,14 @@ import { getData } from "../utils/utils.js";
 // Returns all club leads from database
 export async function getLeads(test = "Club_Leads") {
   let data = await getData(test);
-  return data;
+  return Array.from(Object.values(data));
 }
 
 /* -------------------- Events Endpoints -------------------- */
 // Returns all events from database
 export async function getAllEvents(test = "Events") {
   let data = await getData(test);
-  return data;
+  return Array.from(Object.values(data));
 }
 
 /*
@@ -76,7 +76,7 @@ export async function getEventsBasedOnTime(upcoming, limit = 4, test = "Events")
 // Returns all projects from database
 export async function getProjects(test = "Projects") {
   let data = await getData(test);
-  return data;
+  return Array.from(Object.values(data));
 }
 
 /*
