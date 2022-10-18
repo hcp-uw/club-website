@@ -1,7 +1,7 @@
 import { getEventsBasedOnTime } from '../api/end_points.js';
 import { assert } from 'chai';
 
-describe( "Testing event endpionts", () => {
+describe( "Testing event endpoints", () => {
   it('Get upcoming events', async() => {
     let get = await getEventsBasedOnTime(true, 4, "Test/Events");
     let expected = [

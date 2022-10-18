@@ -9,8 +9,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "mocha test/*.js --exit",
-    "testEvents": "mocha test/testEvents.js --exit"
+    "test": "mocha test/*.js --exit"
   },
   "author": "Ben,Frank,Wu",
   "license": "ISC",

@@ -13,9 +13,21 @@ describe("Testing Get all Functions.", () => {
         Date_Left: 'NA',
         Email: 'something@gmail.com',
         Image: 'NA',
+        Name: 'Billy',
         Role: 'Co-Chair',
         Team: 'Project1'
-      }
+      },
+      Joe: {
+        Active: false,
+        Class_Standing: "Junior",
+        Date_Joined: "5/2/2020",
+        Date_Left: "6/30/2021",
+        Email: "another@gmail.com",
+        Image: "N/A",
+        Name: "Joe",
+        Role: "Treasurer",
+        Team: "Project2",
+        }
     };
     assert.deepEqual(rsp, expected);
   })
@@ -30,7 +42,17 @@ describe("Testing Get all Functions.", () => {
         Description: 'This is a dope event',
         Image: 'blob',
         Location: 'UW',
+        Name: "Event1",
         Sponsor: 'Google'
+      },
+      Event2: {
+        Attendees: 24,
+        Date: "2008-10-20T16:00-07:00",
+        Description: "Social event",
+        Image: "blob",
+        Location: "UW",
+        Name: "Event2",
+        Sponsor: "Kasey",
       },
       EventFuture: {
         Attendees: 21,
@@ -38,6 +60,7 @@ describe("Testing Get all Functions.", () => {
         Description: 'This is an event in the future',
         Image: 'blob',
         Location: 'UW?',
+        Name: 'EventFuture',
         Sponsor: 'Tettie'
       }
     };
@@ -56,8 +79,21 @@ describe("Testing Get all Functions.", () => {
         Git_Link: 'link',
         Image: 'Image',
         Members: 'Billy',
+        Name: 'Project1',
         PM: 'Billy',
         Start_Date: '1/1/2001'
+      },
+      Project2: {
+        Category: "Web_project",
+        Completed: true,
+        Description: "TestDesc",
+        End_Date: "",
+        Git_link: "link",
+        Image: "Image",
+        Members: "Billy,Joe",
+        Name: "Project2",
+        PM: "Joe",
+        Start_Date: "1/1/2020",
       }
     };
     assert.deepEqual(rsp, expected);

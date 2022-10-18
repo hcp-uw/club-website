@@ -1,4 +1,4 @@
-import { ref, query, get, orderByChild, startAt, endAt, limitToFirst, limitToLast} from "firebase/database";
+import { ref, query, get, orderByChild, startAt, endAt, limitToFirst, limitToLast, equalTo} from "firebase/database";
 import { database } from "../utils/index.js";
 import { getData } from "../utils/utils.js";
 
@@ -77,4 +77,47 @@ export async function getEventsBasedOnTime(upcoming, limit = 4, test = "Events")
 export async function getProjects(test = "Projects") {
   let data = await getData(test);
   return data;
+}
+
+/*
+ * Returns all Active Club_Leads
+ */
+export async function getActiveLeads(test = "Club_Leads") {
+  let qRes;
+  let data;
+  try {
+    let q = query(ref(database, test),orderByChild('Active'), equalTo(true));
+    qRes = await get(q);
+    data = qRes.val();
+  } catch (err) {
+    console.error(err);
+    return;
+  }
+  return Array.from(Object.values(data));
+}
+
+/*
+ * Returns all projects in shortened form.
+ */
+export async function getShortenedProject(test = "Projects") {
+  let qRes;
+  let data;
+  try {
+    let q = query(ref(database, test));
+    qRes = await get(q);
+    data = qRes.val();
+  } catch (err) {
+    console.error(err);
+    return;
+  }
+  let values = Array.from(Object.values(data))
+  let returnVals = [];
+  values.forEach((val) => {
+    returnVals.push(
+      {"Name": val['Name'],
+      "Description": val['Description'],
+      "Image": val['Image'] 
+      })
+  })
+  return returnVals;
 }
