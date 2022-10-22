@@ -16,7 +16,7 @@ export async function getActiveLeads(test = "Club_Leads") {
   let qRes;
   let data;
   try {
-    let q = query(ref(database, test),orderByChild('Active'), equalTo(true));
+    let q = query(ref(database, test), orderByChild('Active'), equalTo(true));
     qRes = await get(q);
     data = qRes.val();
   } catch (err) {
@@ -39,7 +39,6 @@ export async function getAllEvents(test = "Events") {
  * @Param limit (integer): How many events to return, will return events closest to today's date
  *    Optional param: Default value 4
  * @return List of events, sorted in descending order
- *  If an error occurs, will output error to console.
  */
 export async function getEventsBasedOnTime(upcoming, limit = 4, test = "Events") {
   let missingParamErrMsg = "missing parameters, please define two booleans";
@@ -116,8 +115,33 @@ export async function getShortenedProject(test = "Projects") {
     returnVals.push(
       {"Name": val['Name'],
       "Description": val['Description'],
-      "Image": val['Image'] 
+      "Image": val['Image']
       })
   })
   return returnVals;
+}
+
+/*
+ * Gets projects based on if they are active (currently working) or not. Default gets active projects
+ * @Param active (boolean): Indicates getting active projects or inactive projects
+ * @return a list of projects
+ */
+export async function getActiveProjects(active = true, test = "Projects") {
+  let data;
+  try {
+    if (active) {
+      // Querys based on the End_Date being empty
+      let q = query(ref(database, test), orderByChild("End_Date"), equalTo(""));
+      let qRes = await get(q);
+      data = qRes.val();
+    } else {
+      let q = query(ref(database, test), orderByChild("End_Date"), startAt("!"));
+      let qRes = await get(q);
+      data = qRes.val();
+    }
+  } catch (err) {
+    console.error(err);
+    return;
+  }
+  return data == undefined ? data : Array.from(Object.values(data));
 }

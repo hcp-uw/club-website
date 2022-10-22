@@ -9,7 +9,7 @@ Ben:
 Frank:
 - Return old events / upcoming events   (Done)
 - Return details for projects           (TODO)
-- Return all currently active projects  (TODO)
+- Return all currently active projects  (This PR)
 - Endpoint Documentation                (TODO)
 
 General:
