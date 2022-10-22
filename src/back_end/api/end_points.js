@@ -143,5 +143,5 @@ export async function getActiveProjects(active = true, test = "Projects") {
     console.error(err);
     return;
   }
-  return data == undefined ? data : Array.from(Object.values(data));
+  return data === undefined ? data : Array.from(Object.values(data));
 }
