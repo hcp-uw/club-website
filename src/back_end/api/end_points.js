@@ -9,6 +9,23 @@ export async function getLeads(test = "Club_Leads") {
   return Array.from(Object.values(data));
 }
 
+/*
+ * Returns all Active Club_Leads
+ */
+export async function getActiveLeads(test = "Club_Leads") {
+  let qRes;
+  let data;
+  try {
+    let q = query(ref(database, test),orderByChild('Active'), equalTo(true));
+    qRes = await get(q);
+    data = qRes.val();
+  } catch (err) {
+    console.error(err);
+    return;
+  }
+  return Array.from(Object.values(data));
+}
+
 /* -------------------- Events Endpoints -------------------- */
 // Returns all events from database
 export async function getAllEvents(test = "Events") {
@@ -76,23 +93,6 @@ export async function getEventsBasedOnTime(upcoming, limit = 4, test = "Events")
 // Returns all projects from database
 export async function getProjects(test = "Projects") {
   let data = await getData(test);
-  return Array.from(Object.values(data));
-}
-
-/*
- * Returns all Active Club_Leads
- */
-export async function getActiveLeads(test = "Club_Leads") {
-  let qRes;
-  let data;
-  try {
-    let q = query(ref(database, test),orderByChild('Active'), equalTo(true));
-    qRes = await get(q);
-    data = qRes.val();
-  } catch (err) {
-    console.error(err);
-    return;
-  }
   return Array.from(Object.values(data));
 }
 
