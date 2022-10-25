@@ -1,8 +1,46 @@
-.background {
-    background-image: linear-gradient(135deg, #B00093, #3627A6);
+.projects-background {
+    background-color: #1A1A40;
     height: 2000px;
+}
+
+.projects-title {
+    line-height: 24px;
 }
 
 .container {
     padding-top: 100px;
+}
+
+.projects-container {
+    height: fit-content;
+    margin-top: 65px;
+}
+
+.project-card {
+    margin: 0px 10px 20px 10px;
+}
+
+#projects-body {
+    background-color: #1A1A40;
+    padding: 80px 16vw;
+    height: fit-content;
+    border-bottom-style: solid;
+    border-bottom-color: grey;
+    border-bottom-width: 2px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+
+#projects-body-mobile {
+    background-color: #1A1A40;
+    padding: 80px 20px;
+    height: fit-content;
+    border-bottom-style: solid;
+    border-bottom-color: grey;
+    border-bottom-width: 2px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }

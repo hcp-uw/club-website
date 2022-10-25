@@ -27,7 +27,7 @@ function Events(props) {
             setEvents(data);
             setLoading(false);
         }
-        getAllEvents(getData);
+        getAllEvents(getData, true);
     }, []);
 
     const isMobile = width <= 800;
@@ -42,7 +42,7 @@ function Events(props) {
                     />
                 </div>
                 <div className={isMobile ? "events-text-mobile" : "events-text"}>
-                    <Typography gutterBottom variant="h5" component="div" color="primary">
+                    <Typography gutterBottom variant="subtitle1" fontWeight={500} component="div" color="primary">
                         {data.name}
                     </Typography>
                     <Typography align="left" variant="subtitle2" component="div" color="primary" sx={{wordWrap: 'break-word'}}>
@@ -89,7 +89,7 @@ function Events(props) {
     const renderEvents = () => {
         return (
             <div id={isMobile ? 'events-body-mobile' : 'events-body'}>
-                <Typography variant="h2" color="primary"> Events </Typography>
+                <Typography variant="h2" color="primary"> Upcoming Events </Typography>
                 <br />
                 { displayEvents() }
             </div>
