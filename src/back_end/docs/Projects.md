@@ -8,7 +8,7 @@ Returns all projects in shortened form (Name, Description, Image).
 
 * **Returned Data Format:** List
 
-* **Success Response: ()** <br>
+* **Success Response:** <br>
 Sample response shows output format, followed by sample data.
   ```
   [
@@ -29,3 +29,45 @@ Sample response shows output format, followed by sample data.
 * **Error Response:**
   Errors will be outputted into console
 
+
+## <span style="color:deepskyblue"> getActiveProjects
+Gets projects based on if they are active (i.e. currently working).
+
+* **Function Call:** getShortenedProject(active)
+
+* **Returned Data Format:** List
+
+* **Success Response:** <br>
+Sample response shows output format, followed by sample data.
+  ```
+  [
+    {
+      "Category": String,
+      "Completed": boolean,
+      "Description": String,
+      "End_Date": DateString,
+      "Git_Link": String:Link,
+      "Image": Blob,
+      "Members": Comma-separated array,
+      "Name": String,
+      "PM": String,
+      "Start_Date": DateString
+    }
+    {
+      Category: 'Web_project',
+      Completed: true,
+      Description: 'TestDesc',
+      End_Date: '2022-5-12T00:00-07:00',
+      Git_link: 'link',
+      Image: 'Image',
+      Members: 'Billy,Joe',
+      Name: 'Project2',
+      PM: 'Joe',
+      Start_Date: '2021-8-24T00:00-07:00'
+    }
+    ...
+  ]
+  ```
+
+* **Error Response:**
+  Errors will be outputted into console

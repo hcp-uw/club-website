@@ -15,7 +15,7 @@ Gets events based on the current date/time. Returns the output as a list, sorted
 
 * **Returned Data Format:** List
 
-* **Success Response: (verbose)** <br>
+* **Success Response:** <br>
 Sample response shows output format, followed by sample data.
   ```
   [
