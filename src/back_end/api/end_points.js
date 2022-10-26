@@ -1,6 +1,6 @@
 import { ref, query, get, orderByChild, startAt, endAt, limitToFirst, limitToLast, equalTo} from "firebase/database";
 import { database } from "../utils/index.js";
-import { getData } from "../utils/utils.js";
+import { errObj, getData } from "../utils/utils.js";
 
 /* -------------------- Leads Endpoints --------------------- */
 // Returns all club leads from database
@@ -21,7 +21,7 @@ export async function getActiveLeads(test = "Club_Leads") {
     data = qRes.val();
   } catch (err) {
     console.error(err);
-    return;
+    return errObj;
   }
   return Array.from(Object.values(data));
 }
@@ -47,12 +47,12 @@ export async function getEventsBasedOnTime(upcoming, limit = 4, test = "Events")
   // Param checks
   if (upcoming === undefined) {
     console.error(missingParamErrMsg);
-    return;
+    return errObj;
   }
   // Type checks
   if (typeof(upcoming) != "boolean") {
     console.error(typeErrMsg + typeof(upcoming));
-    return;
+    return errObj;
   }
 
   // Getting date
@@ -75,7 +75,7 @@ export async function getEventsBasedOnTime(upcoming, limit = 4, test = "Events")
     data = qRes.val();
   } catch (err) {
     console.error(err);
-    return;
+    return errObj;
   }
 
   // Sorting and outputting the results
@@ -107,7 +107,7 @@ export async function getShortenedProject(test = "Projects") {
     data = qRes.val();
   } catch (err) {
     console.error(err);
-    return;
+    return errObj;
   }
   let values = Array.from(Object.values(data))
   let returnVals = [];
@@ -141,7 +141,7 @@ export async function getActiveProjects(active = true, test = "Projects") {
     }
   } catch (err) {
     console.error(err);
-    return;
+    return errObj;
   }
   return data === undefined ? data : Array.from(Object.values(data));
 }
