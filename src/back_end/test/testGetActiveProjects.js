@@ -15,7 +15,7 @@ describe("Testing Get Active Projects.", () => {
         Members: 'Billy',
         Name: 'Project1',
         PM: 'Billy',
-        Start_Date: '1/1/2001'
+        Start_Date: '2020-8-24T00:00-07:00'
       }
     ];
     assert.deepEqual(rsp, expected);
@@ -34,7 +34,7 @@ describe("Testing Get Active Projects.", () => {
         Members: 'Billy,Joe',
         Name: 'Project2',
         PM: 'Joe',
-        Start_Date: '1/1/2020'
+        Start_Date: '2021-8-24T00:00-07:00'
       }
     ];
     assert.deepEqual(rsp, expected);
