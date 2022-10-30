@@ -1,6 +1,6 @@
 import { ref, query, get, orderByChild, startAt, endAt, limitToFirst, limitToLast, equalTo} from "firebase/database";
 import { database } from "../utils/index.js";
-import { getData } from "../utils/utils.js";
+import { errObj, getData } from "../utils/utils.js";
 
 /* -------------------- Leads Endpoints --------------------- */
 // Returns all club leads from database
@@ -21,7 +21,7 @@ export async function getActiveLeads(test = "Club_Leads") {
     data = qRes.val();
   } catch (err) {
     console.error(err);
-    return;
+    return errObj;
   }
   return Array.from(Object.values(data));
 }
@@ -47,12 +47,12 @@ export async function getEventsBasedOnTime(upcoming, limit = 4, test = "Events")
   // Param checks
   if (upcoming === undefined) {
     console.error(missingParamErrMsg);
-    return;
+    return errObj;
   }
   // Type checks
   if (typeof(upcoming) != "boolean") {
     console.error(typeErrMsg + typeof(upcoming));
-    return;
+    return errObj;
   }
 
   // Getting date
@@ -75,7 +75,7 @@ export async function getEventsBasedOnTime(upcoming, limit = 4, test = "Events")
     data = qRes.val();
   } catch (err) {
     console.error(err);
-    return;
+    return errObj;
   }
 
   // Sorting and outputting the results
@@ -97,6 +97,7 @@ export async function getProjects(test = "Projects") {
 
 /*
  * Returns all projects in shortened form.
+ * @returns a list of projects with only name, description, and project logo
  */
 export async function getShortenedProject(test = "Projects") {
   let qRes;
@@ -107,7 +108,7 @@ export async function getShortenedProject(test = "Projects") {
     data = qRes.val();
   } catch (err) {
     console.error(err);
-    return;
+    return errObj;
   }
   let values = Array.from(Object.values(data))
   let returnVals = [];
@@ -121,10 +122,10 @@ export async function getShortenedProject(test = "Projects") {
   return returnVals;
 }
 
-/*
+/**
  * Gets projects based on if they are active (currently working) or not. Default gets active projects
- * @Param active (boolean): Indicates getting active projects or inactive projects
- * @return a list of projects
+ * @param {boolean} active: Indicates getting active projects or inactive projects
+ * @returns a list of projects with all details
  */
 export async function getActiveProjects(active = true, test = "Projects") {
   let data;
@@ -141,7 +142,32 @@ export async function getActiveProjects(active = true, test = "Projects") {
     }
   } catch (err) {
     console.error(err);
-    return;
+    return errObj;
   }
-  return data === undefined ? data : Array.from(Object.values(data));
+  return data === null ? [] : Array.from(Object.values(data));
+}
+
+/**
+ * @param {String} name Name of the project. Required to be exact match with the database.
+ * @returns a singular project with all details
+ */
+export async function getProjectByName(name, test = "Projects") {
+  if (name === undefined) {
+    console.error("Missing 'name' parameter input");
+    return errObj;
+  }
+  if (typeof(name) != "string") {
+    console.error("'Name' parameter input expected to be a string");
+    return errObj;
+  }
+  let data;
+  try {
+    let q = query(ref(database, test), orderByChild("Name"), equalTo(name));
+    let qRes = await get(q);
+    data = qRes.val();
+  } catch (err) {
+    console.error(err);
+    return errObj;
+  }
+  return data === null ? [] : Array.from(Object.values(data));
 }

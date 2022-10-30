@@ -9,3 +9,8 @@ export async function getData(queryString) {
   const data = qResult.val();
   return data;
 }
+
+// Error object for the API
+export const errObj = {
+  "error": "Error occured, please check console!"
+}
