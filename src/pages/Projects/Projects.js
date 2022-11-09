@@ -57,6 +57,7 @@ function Projects(props) {
 
     const renderProjectCard = (data) => {
         return (
+            <Grid>
             <Card key={data.name} className="project-card" elevation={12} sx={{ width: 300, height: 400 }}>
                 <CardMedia
                     component="img"
@@ -77,6 +78,7 @@ function Projects(props) {
                     <Button size="small" color='primary' onClick={() => navigate('/events')}>Learn More</Button>
                 </CardActions>
             </Card>
+            </Grid>
         )
     }
 

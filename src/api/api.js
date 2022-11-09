@@ -35,6 +35,36 @@ const parseEvents = (data) => {
     return ret;
 }
 
+//             name: 'Project Name',
+//             startDate: new Date('Wed, 27 July 2019 13:30:00'),
+//             endDate: new Date('Wed, 27 July 2019 13:30:00'),
+//             completed: false,
+//             category: 'Website',
+//             pm: 'student',
+//             gitLink: 'github.com',
+//             description: 'a new project that we started a while back ago. The goal of this project is to make a new sample of. We hope to gain stronger skills in frontend through increased web development skills.',
+//             members: 'person 1, person 2',
+//             image: "https://picsum.photos/200/300",
+
+const parseProjects = (data) => {
+    var ret = data.map((obj) => {
+        var res = {
+            name: obj.name,
+            startDate: new Date(obj.Start_Date),
+            endDate: new Date(obj.End_Date),
+            completed: obj.Completed,
+            category: obj.Description,
+            pm: obj.PM,
+            gitLink: obj.Git_Link,
+            description: obj.Description,
+            members: obj.Members,
+            image: isValidHttpUrl(obj.Image) ? obj.Image : null,
+        }
+        return res;
+    });
+    return ret;
+}
+
 export const getFeaturedEvents = async (callback) => {
     var data = await api.getEventsBasedOnTime(true);
     if (data) {
@@ -59,7 +89,11 @@ export const getPeople = async (callback) => {
 }
 
 export const getProjects = async (callback) => {
-    await delay(3000);
-    callback(projects.data)
+    var data = await api.getProjects();
+    if (data) {
+        callback(parseProjects(data));
+    } else {
+        callback([]);
+    }
 }
 

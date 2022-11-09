@@ -22,7 +22,7 @@
 
 #projects-body {
     background-color: #1A1A40;
-    padding: 80px 16vw;
+    padding: 80px 17.5vw;
     height: fit-content;
     border-bottom-style: solid;
     border-bottom-color: grey;
@@ -31,6 +31,7 @@
     justify-content: center;
     flex-direction: column;
 }
+
 
 
 #projects-body-mobile {
@@ -43,4 +44,20 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
+}
+
+#about-teams {
+    display: flex;
+    align-items: flex-end;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-self: center;
+    justify-content: center;
+}
+
+#about-team-mobile {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    align-self: center;
 }
