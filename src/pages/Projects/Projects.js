@@ -57,7 +57,7 @@ function Projects(props) {
 
     const renderProjectCard = (data) => {
         return (
-            <Grid>
+            <Grid item>
             <Card key={data.name} className="project-card" elevation={12} sx={{ width: 300, height: 400 }}>
                 <CardMedia
                     component="img"
@@ -99,8 +99,8 @@ function Projects(props) {
         }
         return (
             <div id={isMobile ? 'about-team-mobile' : 'about-teams'}>
-                <Grid container spacing={4} direction="row" justify="center"  alignItems="center" marginTop={5}>
-                { projects.map((obj) => renderProjectCard(obj)) }
+                <Grid container spacing={4} direction="column" justify="center" alignItems="center" marginTop={5}>
+                    { projects.map((obj) => renderProjectCard(obj)) }
                 </Grid>
             </div>
         );
