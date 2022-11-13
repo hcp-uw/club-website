@@ -145,7 +145,7 @@ function About(props) {
         }
         return (
             <div id={isMobile ? 'about-team-mobile' : 'about-teams'}>
-                <Grid container spacing={4} direction="row" justify="center"  alignItems="center" marginTop={5}>
+                <Grid container spacing={4} direction="row" justifyContent={'center'}  alignItems="center" marginTop={5} marginLeft={0}>
                 { people.map((obj) => renderPerson(obj)) }
                 </Grid>
             </div>
@@ -178,3 +178,6 @@ function About(props) {
 };
 
 export default About;
+
+
+
