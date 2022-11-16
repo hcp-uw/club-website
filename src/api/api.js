@@ -87,11 +87,11 @@ const parsePeople = (data) => {
     var ret = data.map((obj) => {
         var res = {
             active: obj.active,
-            classStanding: obj.Class_Standing,
+            year: obj.Class_Standing,
             dateJoined: new Date(obj.Date_Joined),
             dateLeft: new Date(obj.Date_Left),
             email: obj.Email,
-            image: obj.Image,
+            image: isValidHttpUrl(obj.Image) ? obj.Image : null,
             name: obj.Name,
             role: obj.Role,
             team: obj.Team
