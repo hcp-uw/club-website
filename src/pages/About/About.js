@@ -108,25 +108,24 @@ function About(props) {
 
     const renderPerson = (data) => {
         return (
-            <Grid item>
-            <div id="flex-container">
-            <Avatar
-            sx={{ width: 150, height: 150}}
-            alt= "person image"
-            src={ data.image !== null ? data.image : Logo2 }/>
-             <Typography gutterBottom variant="subtitle3" component="div" color="primary">
-                 <br/>
-                {data.name}
-            </Typography>
-            <Typography variant="subtitle2" component="div" color="primary">
-                Role: {data.role}
-                <br/>
-                Year: {data.year}
-                <br/>
-                <br/>
-            </Typography>
-        </div>
-        </Grid>
+            <div id="flex-container" key={data.name}>
+                <Avatar
+                    sx={{ width: 150, height: 150}}
+                    alt= "person image"
+                    src={ data.image !== null ? data.image : Logo2 }
+                />
+                <Typography gutterBottom variant="subtitle3" component="div" color="primary">
+                    <br/>
+                    {data.name}
+                </Typography>
+                <Typography variant="subtitle2" component="div" color="primary">
+                    Role: {data.role}
+                    <br/>
+                    Year: {data.year}
+                    <br/>
+                    <br/>
+                </Typography>
+            </div>
             // CHANGE GRID container spacing TO 4 IF YOU USE CARD
             // <Card key={data.id} className="about-team" elevation={12} sx={{ width: 200, height: 270 }}>
             //     <CardMedia 
@@ -166,10 +165,8 @@ function About(props) {
             );
         }
         return (
-            <div id={isMobile ? 'about-team-mobile' : 'about-teams'}>
-                {/* <Grid container spacing={4} direction="row" justifyContent={'center'}  alignItems="center" marginTop={5} marginLeft={0}> */}
+            <div id='about-teams'>
                 { people.map((obj) => renderPerson(obj)) }
-                {/* </Grid> */}
             </div>
         );
     }
