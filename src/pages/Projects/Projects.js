@@ -57,30 +57,6 @@ function Projects(props) {
 
     const renderProjectCard = (data) => {
         return (
-<<<<<<< HEAD
-            <Grid item xs md={4} >
-            <Card key={data.name} className="project-card" elevation={12} sx={{ width: 300, height: 400 }}>
-                <CardMedia
-                    component="img"
-                    style={{height: 170}}
-                    image={ data.image !== null ? data.image : Logo2 }
-                    alt="project image"
-                />
-                <CardContent>
-                    <Typography gutterBottom variant="subtitle1" fontWeight={500} component="div" color="primary">
-                        {data.name}
-                    </Typography>
-                    <Typography align="left" variant="subtitle2" color="primary" sx={{wordWrap: 'break-word', marginBottom:'-10px'}}>
-                        {data.description.length > 220 ? data.description.slice(0, 220) + '...' : data.description}
-                    </Typography>
-                </CardContent>
-                <div className="flex-grow" />
-                <CardActions id="home-event-learn-more">
-                    <Button size="small" color='primary' onClick={() => navigate('/events')}>Learn More</Button>
-                </CardActions>
-            </Card>
-            </Grid>
-=======
             <div key={data.name}>
                 <Card key={data.name} className="project-card" elevation={12} sx={{ width: 300, height: 400 }}>
                     <CardMedia
@@ -103,7 +79,6 @@ function Projects(props) {
                     </CardActions>
                 </Card>
             </div>
->>>>>>> 06e1e84a4ba01dc97c41a2a97a60f9abc3b91b08
         )
     }
 
