@@ -33,8 +33,8 @@ function About(props) {
             setPeople(data);
             setLoading(false);
         }
-        getPeople(getData);
-    })
+        getPeople(getData, true);
+    }, []);
 
     const renderProblemStatement = () => {
         return(

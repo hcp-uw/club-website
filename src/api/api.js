@@ -49,7 +49,7 @@ const parseEvents = (data) => {
 const parseProjects = (data) => {
     var ret = data.map((obj) => {
         var res = {
-            name: obj.name,
+            name: obj.Name,
             startDate: new Date(obj.Start_Date),
             endDate: new Date(obj.End_Date),
             completed: obj.Completed,
@@ -83,10 +83,33 @@ export const getAllEvents = async (callback, upcoming) => {
     }
 }
 
-export const getPeople = async (callback) => {
-    await delay(3000);
-    callback(people.data)
-}
+const parsePeople = (data) => {
+    var ret = data.map((obj) => {
+        var res = {
+            active: obj.active,
+            classStanding: obj.Class_Standing,
+            dateJoined: new Date(obj.Date_Joined),
+            dateLeft: new Date(obj.Date_Left),
+            email: obj.Email,
+            image: obj.Image,
+            name: obj.Name,
+            role: obj.Role,
+            team: obj.Team
+        }
+        return res;
+    });
+    return ret;
+    }
+
+    export const getPeople = async (callback) => {
+        var data = await api.getActiveLeads();
+    if (data) {
+        callback(parsePeople(data));
+    } else {
+        callback([]);
+    }
+    }
+
 
 export const getProjects = async (callback) => {
     var data = await api.getProjects();
