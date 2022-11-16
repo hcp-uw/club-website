@@ -96,11 +96,9 @@ function Projects(props) {
             );
         }
         return (
-            // <div id={isMobile ? 'about-team-mobile' : 'about-teams'}>
-                <div id='project-grid'>
-                    { projects.map((obj) => renderProjectCard(obj)) }
-                </div>
-            // </div>
+            <div id='project-grid'>
+                { projects.map((obj) => renderProjectCard(obj)) }
+            </div>
         );
     }
 

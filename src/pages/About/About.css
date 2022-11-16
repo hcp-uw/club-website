@@ -93,6 +93,13 @@
     align-self: center;
 }
 
+#leads-grid {
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
 
 
 
