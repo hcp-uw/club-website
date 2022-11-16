@@ -73,6 +73,9 @@ export async function getEventsBasedOnTime(upcoming, limit = 4, test = "Events")
     }
     qRes = await get(q);
     data = qRes.val();
+    if (data === null) {
+      return [];
+    }
   } catch (err) {
     console.error(err);
     return errObj;

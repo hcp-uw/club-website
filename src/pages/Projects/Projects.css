@@ -61,3 +61,10 @@
     flex-direction: row;
     align-self: center;
 }
+
+#project-grid {
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
