@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
-import { Typography, CircularProgress, Card, CardMedia, CardContent, Grid } from '@mui/material';
+import { Typography, CircularProgress, Card, CardMedia, CardContent, Grid, Avatar } from '@mui/material';
 import { getPeople } from '../../api/api';
 import './About.css';
 import Logo2 from '../../assets/HCPLogo.jpg'
+
 
 function About(props) {
     useEffect(() => {
@@ -107,24 +108,45 @@ function About(props) {
 
     const renderPerson = (data) => {
         return (
-            <Card key={data.id} className="about-team" elevation={12} sx={{ width: 200, height: 270 }}>
-                <CardMedia 
-                component="img" 
-                style={{height: 150}}
-                image={ data.image !== null ? data.image : Logo2 } 
-                alt="person image"  
-                />
-                <CardContent>
-                    <Typography gutterBottom variant="subtitle3" component="div" color="primary">
-                    {data.name}
-                    </Typography>
-                    <Typography variant="subtitle2" component="div" color="primary">
-                        Role: {data.role}
-                        <br/>
-                        Year: {data.year}
-                    </Typography>
-                </CardContent>
-            </Card>
+            <Grid item>
+            <div id="flex-container">
+            <Avatar
+            sx={{ width: 150, height: 150}}
+            alt= "person image"
+            src={ data.image !== null ? data.image : Logo2 }/>
+             <Typography gutterBottom variant="subtitle3" component="div" color="primary">
+                 <br/>
+                {data.name}
+            </Typography>
+            <Typography variant="subtitle2" component="div" color="primary">
+                Role: {data.role}
+                <br/>
+                Year: {data.year}
+                <br/>
+                <br/>
+            </Typography>
+        </div>
+        </Grid>
+            // CHANGE GRID container spacing TO 4 IF YOU USE CARD
+            // <Card key={data.id} className="about-team" elevation={12} sx={{ width: 200, height: 270 }}>
+            //     <CardMedia 
+            //     className="circular-style"
+            //     component="img" 
+            //     style={{height: 150}}
+            //     image={ data.image !== null ? data.image : Logo2 } 
+            //     alt="person image"  
+            //     />
+            //     <CardContent>
+            //         <Typography gutterBottom variant="subtitle3" component="div" color="primary">
+            //         {data.name}
+            //         </Typography>
+            //         <Typography variant="subtitle2" component="div" color="primary">
+            //             Role: {data.role}
+            //             <br/>
+            //             Year: {data.year}
+            //         </Typography>
+            //     </CardContent>
+            // </Card>
         )
     }
 
@@ -145,7 +167,7 @@ function About(props) {
         }
         return (
             <div id={isMobile ? 'about-team-mobile' : 'about-teams'}>
-                <Grid container spacing={4} direction="row" justify="center"  alignItems="center" marginTop={5}>
+                <Grid container spacing={3} direction="row" justify="center"  alignItems="center" marginTop={5}>
                 { people.map((obj) => renderPerson(obj)) }
                 </Grid>
             </div>

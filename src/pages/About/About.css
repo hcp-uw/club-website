@@ -16,6 +16,11 @@
     margin: 0px 10px 20px 10px;
 }
 
+.flex-container {
+    align-items: center;
+    margin-right: 30;
+    flex-direction: row;
+}
 
 #about-body {
     background-color: #1A1A40;
@@ -92,6 +97,7 @@
     flex-direction: row;
     align-self: center;
 }
+
 
 
 

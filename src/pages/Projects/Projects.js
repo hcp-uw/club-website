@@ -57,7 +57,7 @@ function Projects(props) {
 
     const renderProjectCard = (data) => {
         return (
-            <Grid>
+            <Grid item xs md={4} >
             <Card key={data.name} className="project-card" elevation={12} sx={{ width: 300, height: 400 }}>
                 <CardMedia
                     component="img"
