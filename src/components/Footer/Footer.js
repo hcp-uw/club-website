@@ -3,6 +3,7 @@ import { Typography, IconButton } from '@mui/material';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
+import FacebookIcon from '@mui/icons-material/Facebook';
 import Logo from '../../assets/HCPLogoText-Crop.png'
 
 
@@ -31,6 +32,7 @@ function Footer() {
                 <div id="socials">
                     {generateIcon(<InstagramIcon sx={{ fontSize: 40 }}/>, "https://instagram.com/huskycodingproject?igshid=YmMyMTA2M2Y=")}
                     {generateIcon(<LinkedInIcon sx={{ fontSize: 40 }}/>, "https://www.linkedin.com/company/husky-coding-project/")}
+                    {generateIcon(<FacebookIcon sx={{ fontSize: 40 }}/>, "https://www.facebook.com/profile.php?id=100087380841446")}
                     {generateIcon(<MailOutlineIcon sx={{ fontSize: 40 }}/>, "mailto:hcpuw@uw.edu")}
                 </div>
                 <br />

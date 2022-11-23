@@ -16,6 +16,14 @@
     margin: 0px 10px 20px 10px;
 }
 
+#flex-container {
+    align-items: center;
+    margin-right: 30;
+    flex-direction: column;
+    width: 180px;
+    height: 270px;
+    display: flex;
+}
 
 #about-body {
     background-color: #1A1A40;
@@ -92,6 +100,14 @@
     flex-direction: row;
     align-self: center;
 }
+
+#leads-grid {
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
 
 
 
