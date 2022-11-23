@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Typography, CircularProgress, Card, CardMedia, CardContent, Grid, Avatar } from '@mui/material';
+import { Typography, CircularProgress, Avatar } from '@mui/material';
 import { getPeople } from '../../api/api';
 import './About.css';
 import Logo2 from '../../assets/HCPLogo.jpg'

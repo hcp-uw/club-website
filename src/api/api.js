@@ -1,12 +1,10 @@
 // import axios from 'axios';
-import { people } from './data';
-import { projects } from './data';
 import * as api from '../back_end/api/end_points.js';
 
 // For dummy endpoints
-const delay = ms => new Promise(
-    resolve => setTimeout(resolve, ms)
-  );
+// const delay = ms => new Promise(
+//     resolve => setTimeout(resolve, ms)
+//   );
 
 const isValidHttpUrl = (string) => {
     if (!string) {

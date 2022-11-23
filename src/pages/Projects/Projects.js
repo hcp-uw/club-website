@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { Typography, Button, CircularProgress, Card, CardActions, CardMedia, CardContent, } from '@mui/material';
-import { useNavigate } from "react-router-dom";
 import { getProjects } from '../../api/api';
 import './Projects.css';
 import Logo2 from '../../assets/HCPLogo.jpg'
@@ -14,7 +13,6 @@ function Projects(props) {
     const [projects, setProjects] = useState([]);
     const [pastProjects, setPastProjects] = useState([]);
     const [loading, setLoading] = useState(true);
-    const navigate = useNavigate();
     const isMobile = width <= 800;
     const isMobile2 = width <= 1000 && width > 800;
 
