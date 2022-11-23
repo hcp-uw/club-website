@@ -106,7 +106,7 @@ function Projects(props) {
             </div>
         );
     }
-
+    
     const displayPastProjects = () => {
         if (loading) {
             return <CircularProgress color='secondary' style={{alignSelf: "center"}}/>;
@@ -126,7 +126,6 @@ function Projects(props) {
             </div>
         );
     }
-
     return (
         <div className='projects-container'>
                 { renderActiveProjects() }

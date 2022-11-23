@@ -108,7 +108,6 @@ export const getPeople = async (callback) => {
     }
 }
 
-
 export const getProjects = async (callback, active) => {
     var data = await api.getActiveProjects(active);
     if (data) {
