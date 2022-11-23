@@ -99,20 +99,20 @@ const parsePeople = (data) => {
         return res;
     });
     return ret;
-    }
+}
 
-    export const getPeople = async (callback) => {
-        var data = await api.getActiveLeads();
+export const getPeople = async (callback) => {
+    var data = await api.getActiveLeads();
     if (data) {
         callback(parsePeople(data));
     } else {
         callback([]);
     }
-    }
+}
 
 
-export const getProjects = async (callback) => {
-    var data = await api.getProjects();
+export const getProjects = async (callback, active) => {
+    var data = await api.getActiveProjects(active);
     if (data) {
         callback(parseProjects(data));
     } else {

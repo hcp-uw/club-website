@@ -12,6 +12,7 @@ function Projects(props) {
 
     const [width, setWidth] = useState(window.innerWidth);
     const [projects, setProjects] = useState([]);
+    const [pastProjects, setPastProjects] = useState([]);
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
     const isMobile = width <= 800;
@@ -28,9 +29,13 @@ function Projects(props) {
     }, []);
 
     useEffect(() => {
+        const getData1 = async (data) => {
+            setPastProjects(data);
+            setLoading(false);
+        }
         const getData = async (data) => {
             setProjects(data);
-            setLoading(false);
+            getProjects(getData1, false);
         }
         getProjects(getData, true);
     }, []);
@@ -39,6 +44,7 @@ function Projects(props) {
         return(
         <div id={isMobile ? 'projects-body-mobile' : 'projects-body'}>
         <Typography className="projects-title" component="h4" variant="h4" color="primary"> Active Projects </Typography>
+        <br/>
         <br/>
         { displayActiveProjects() }
         </div>
@@ -50,7 +56,8 @@ function Projects(props) {
         <div id={isMobile ? 'projects-body-mobile' : 'projects-body'}>
         <Typography className="projects-title" component="h4" variant="h4" color="primary"> Past Projects </Typography>
         <br/>
-        { displayActiveProjects() }
+        <br/>
+        { displayPastProjects() }
         </div>
         )
     }
@@ -98,6 +105,26 @@ function Projects(props) {
         return (
             <div id='project-grid'>
                 { projects.map((obj) => renderProjectCard(obj)) }
+            </div>
+        );
+    }
+
+    const displayPastProjects = () => {
+        if (loading) {
+            return <CircularProgress color='secondary' style={{alignSelf: "center"}}/>;
+        }
+        if (isMobile2 && projects.length === 3) {
+            return (
+                <div id='about-teams'>
+                    { renderProjectCard(pastProjects[0]) }
+                    { renderProjectCard(pastProjects[1]) }
+                    { renderProjectCard(pastProjects[2]) }
+                </div>
+            );
+        }
+        return (
+            <div id='project-grid'>
+                { pastProjects.map((obj) => renderProjectCard(obj)) }
             </div>
         );
     }
