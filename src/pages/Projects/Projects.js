@@ -82,7 +82,7 @@ function Projects(props) {
                     </CardContent>
                     <div className="flex-grow" />
                     <CardActions id="home-event-learn-more">
-                        <Button size="small" color='primary' onClick={() => navigate('/events')}>Learn More</Button>
+                        <Button size="small" color='primary' onClick={() => window.open(data.gitLink)}>Learn More</Button>
                     </CardActions>
                 </Card>
             </div>

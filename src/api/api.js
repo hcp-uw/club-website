@@ -55,7 +55,7 @@ const parseProjects = (data) => {
             completed: obj.Completed,
             category: obj.Description,
             pm: obj.PM,
-            gitLink: obj.Git_Link,
+            gitLink: isValidHttpUrl(obj.Git_Link) ? obj.Git_Link : null,
             description: obj.Description,
             members: obj.Members,
             image: isValidHttpUrl(obj.Image) ? obj.Image : null,
