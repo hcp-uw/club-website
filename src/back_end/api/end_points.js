@@ -1,36 +1,36 @@
-import { ref, query, get, orderByChild, startAt, endAt, limitToFirst, limitToLast, equalTo} from "firebase/database";
+import { ref, query, get, orderByChild, startAt, endAt, limitToFirst, limitToLast, equalTo } from "firebase/database";
 import { database } from "../utils/index.js";
 import { errObj, getData } from "../utils/utils.js";
 
 /* -------------------- Leads Endpoints --------------------- */
 // Returns all club leads from database
 export async function getLeads(test = "Club_Leads") {
-  let data = await getData(test);
-  return Array.from(Object.values(data));
+    let data = await getData(test);
+    return Array.from(Object.values(data));
 }
 
 /*
  * Returns all Active Club_Leads
  */
 export async function getActiveLeads(test = "Club_Leads") {
-  let qRes;
-  let data;
-  try {
-    let q = query(ref(database, test), orderByChild('Active'), equalTo(true));
-    qRes = await get(q);
-    data = qRes.val();
-  } catch (err) {
-    console.error(err);
-    return errObj;
-  }
-  return Array.from(Object.values(data));
+    let qRes;
+    let data;
+    try {
+        let q = query(ref(database, test), orderByChild("Active"), equalTo(true));
+        qRes = await get(q);
+        data = qRes.val();
+    } catch (err) {
+        console.error(err);
+        return errObj;
+    }
+    return Array.from(Object.values(data));
 }
 
 /* -------------------- Events Endpoints -------------------- */
 // Returns all events from database
 export async function getAllEvents(test = "Events") {
-  let data = await getData(test);
-  return Array.from(Object.values(data));
+    let data = await getData(test);
+    return Array.from(Object.values(data));
 }
 
 /*
@@ -41,61 +41,61 @@ export async function getAllEvents(test = "Events") {
  * @return List of events, sorted in descending order
  */
 export async function getEventsBasedOnTime(upcoming, limit = 4, test = "Events") {
-  let missingParamErrMsg = "missing parameters, please define two booleans";
-  let typeErrMsg = "incorrect parameter type, expected boolean, got ";
+    let missingParamErrMsg = "missing parameters, please define two booleans";
+    let typeErrMsg = "incorrect parameter type, expected boolean, got ";
 
-  // Param checks
-  if (upcoming === undefined) {
-    console.error(missingParamErrMsg);
-    return errObj;
-  }
-  // Type checks
-  if (typeof(upcoming) != "boolean") {
-    console.error(typeErrMsg + typeof(upcoming));
-    return errObj;
-  }
+    // Param checks
+    if (upcoming === undefined) {
+        console.error(missingParamErrMsg);
+        return errObj;
+    }
+    // Type checks
+    if (typeof(upcoming) != "boolean") {
+        console.error(typeErrMsg + typeof(upcoming));
+        return errObj;
+    }
 
-  // Getting date
-  let todayStr = new Date().toISOString();   // YYYY-MM-DDTHH:MM:SS.sssz
-  let today = todayStr.substring(0, todayStr.length - 5); // YYYY-MM-DDTHH:MM:SS
+    // Getting date
+    let todayStr = new Date().toISOString(); // YYYY-MM-DDTHH:MM:SS.sssz
+    let today = todayStr.substring(0, todayStr.length - 5); // YYYY-MM-DDTHH:MM:SS
 
-  // Creating query
-  let qRes;
-  let data;
-  try {
-    let q;
-    if (upcoming) {
+    // Creating query
+    let qRes;
+    let data;
+    try {
+        let q;
+        if (upcoming) {
         // Upcoming events
-        q = query(ref(database, test), orderByChild('Date'), startAt(today), limitToFirst(limit))
-    } else {
+            q = query(ref(database, test), orderByChild("Date"), startAt(today), limitToFirst(limit));
+        } else {
         // Old events
-        q = query(ref(database, test), orderByChild('Date'), endAt(today), limitToLast(limit))
+            q = query(ref(database, test), orderByChild("Date"), endAt(today), limitToLast(limit));
+        }
+        qRes = await get(q);
+        data = qRes.val();
+        if (data === null) {
+            return [];
+        }
+    } catch (err) {
+        console.error(err);
+        return errObj;
     }
-    qRes = await get(q);
-    data = qRes.val();
-    if (data === null) {
-      return [];
-    }
-  } catch (err) {
-    console.error(err);
-    return errObj;
-  }
 
-  // Sorting and outputting the results
-  let values = Array.from(Object.values(data));
-  if (values.length > 1) {
-    values.sort(function(a, b) {
-      return new Date(a.Date) - new Date(b.Date);
-    });
-  };
-  return values;
+    // Sorting and outputting the results
+    let values = Array.from(Object.values(data));
+    if (values.length > 1) {
+        values.sort(function(a, b) {
+            return new Date(a.Date) - new Date(b.Date);
+        });
+    };
+    return values;
 }
 
 /* ------------------- Projects Endpoints ------------------- */
 // Returns all projects from database
 export async function getProjects(test = "Projects") {
-  let data = await getData(test);
-  return Array.from(Object.values(data));
+    let data = await getData(test);
+    return Array.from(Object.values(data));
 }
 
 /*
@@ -103,26 +103,26 @@ export async function getProjects(test = "Projects") {
  * @returns a list of projects with only name, description, and project logo
  */
 export async function getShortenedProject(test = "Projects") {
-  let qRes;
-  let data;
-  try {
-    let q = query(ref(database, test));
-    qRes = await get(q);
-    data = qRes.val();
-  } catch (err) {
-    console.error(err);
-    return errObj;
-  }
-  let values = Array.from(Object.values(data))
-  let returnVals = [];
-  values.forEach((val) => {
-    returnVals.push(
-      {"Name": val['Name'],
-      "Description": val['Description'],
-      "Image": val['Image']
-      })
-  })
-  return returnVals;
+    let qRes;
+    let data;
+    try {
+        let q = query(ref(database, test));
+        qRes = await get(q);
+        data = qRes.val();
+    } catch (err) {
+        console.error(err);
+        return errObj;
+    }
+    let values = Array.from(Object.values(data));
+    let returnVals = [];
+    values.forEach((val) => {
+        returnVals.push(
+            { "Name": val["Name"],
+                "Description": val["Description"],
+                "Image": val["Image"],
+            });
+    });
+    return returnVals;
 }
 
 /**
@@ -131,23 +131,23 @@ export async function getShortenedProject(test = "Projects") {
  * @returns a list of projects with all details
  */
 export async function getActiveProjects(active = true, test = "Projects") {
-  let data;
-  try {
-    if (active) {
-      // Querys based on the End_Date being empty
-      let q = query(ref(database, test), orderByChild("End_Date"), equalTo(""));
-      let qRes = await get(q);
-      data = qRes.val();
-    } else {
-      let q = query(ref(database, test), orderByChild("End_Date"), startAt("!"));
-      let qRes = await get(q);
-      data = qRes.val();
+    let data;
+    try {
+        if (active) {
+            // Querys based on the End_Date being empty
+            let q = query(ref(database, test), orderByChild("End_Date"), equalTo(""));
+            let qRes = await get(q);
+            data = qRes.val();
+        } else {
+            let q = query(ref(database, test), orderByChild("End_Date"), startAt("!"));
+            let qRes = await get(q);
+            data = qRes.val();
+        }
+    } catch (err) {
+        console.error(err);
+        return errObj;
     }
-  } catch (err) {
-    console.error(err);
-    return errObj;
-  }
-  return data === null ? [] : Array.from(Object.values(data));
+    return data === null ? [] : Array.from(Object.values(data));
 }
 
 /**
@@ -155,22 +155,22 @@ export async function getActiveProjects(active = true, test = "Projects") {
  * @returns a singular project with all details
  */
 export async function getProjectByName(name, test = "Projects") {
-  if (name === undefined) {
-    console.error("Missing 'name' parameter input");
-    return errObj;
-  }
-  if (typeof(name) != "string") {
-    console.error("'Name' parameter input expected to be a string");
-    return errObj;
-  }
-  let data;
-  try {
-    let q = query(ref(database, test), orderByChild("Name"), equalTo(name));
-    let qRes = await get(q);
-    data = qRes.val();
-  } catch (err) {
-    console.error(err);
-    return errObj;
-  }
-  return data === null ? [] : Array.from(Object.values(data));
+    if (name === undefined) {
+        console.error("Missing 'name' parameter input");
+        return errObj;
+    }
+    if (typeof(name) != "string") {
+        console.error("'Name' parameter input expected to be a string");
+        return errObj;
+    }
+    let data;
+    try {
+        let q = query(ref(database, test), orderByChild("Name"), equalTo(name));
+        let qRes = await get(q);
+        data = qRes.val();
+    } catch (err) {
+        console.error(err);
+        return errObj;
+    }
+    return data === null ? [] : Array.from(Object.values(data));
 }
