@@ -1,11 +1,14 @@
 import { useState, useEffect } from 'react';
-import { Typography } from '@mui/material';
+import { Typography, TextField } from '@mui/material';
 import './Join.css';
 import Button from '@mui/material/Button';
+import { sendEmail } from '../../api/api';
+import SendIcon from '@mui/icons-material/Send';
 
 function Join(props) {
     const [width, setWidth] = useState(window.innerWidth);
-
+    const[name, setName] = useState("");
+    const[content, setContent] = useState("");
     useEffect(() => {
         const handleWindowSizeChange = () => {
             setWidth(window.innerWidth);
@@ -32,6 +35,37 @@ function Join(props) {
             </div>
         );
     };
+    
+    const displayEmailForm = () => {
+
+        const handleClick = () => {
+            //console.log(name)
+            //console.log(content)
+            sendEmail(name, content);
+        };
+        const handleNameChange = (event) => {
+            setName(event.target.value);
+        };
+        const handleContentChange = (event) => {
+            setContent(event.target.value);
+        };
+        return (
+            <div id="emailform">
+                <form>
+                <label>
+                    <TextField color="primary" focused id="filled-basic" label="Name" variant="filled" value={name} InputLabelProps={{style: { color: '#ffff' },}} onChange={handleNameChange}/>
+                    {/* <input type="text" name="name" value={name} onChange={handleNameChange}/> */}
+                </label><br></br>
+                <label>
+                    <TextField color="primary" focused id="filled-basic" label="Content" variant="filled" value={content} onChange={handleContentChange}/>
+                </label>
+                <br></br>
+                <br></br>
+                <Button variant="contained" color="secondary" onClick={handleClick} endIcon={<SendIcon />}>Submit</Button>
+                </form>
+            </div>
+        );
+    }
 
     const displayJoinPageMobile = () => {
         return (
@@ -49,6 +83,7 @@ function Join(props) {
                 </Typography>
                 <br />
                 {isMobile ? displayJoinPageMobile() : displayJoinPage()}
+                {displayEmailForm()}
             </div>
         );
     }
