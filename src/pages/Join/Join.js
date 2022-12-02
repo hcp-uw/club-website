@@ -51,6 +51,13 @@ function Join(props) {
         };
         return (
             <div id="emailform">
+                <br/>
+                <br/>
+                <Typography className="about-title" component="h4" variant="h4" color="primary">
+                Send us an Email!
+                <br/>
+                <br/>
+                </Typography>
                 <form>
                 <label>
                     <TextField color="primary" focused id="filled-basic" label="Name" variant="filled" value={name} InputLabelProps={{style: { color: '#ffff' },}} onChange={handleNameChange}/>
@@ -61,7 +68,7 @@ function Join(props) {
                 </label>
                 <br></br>
                 <br></br>
-                <Button variant="contained" color="secondary" onClick={handleClick} endIcon={<SendIcon />}>Submit</Button>
+                <Button variant="contained" color="secondary" onClic1k={handleClick} endIcon={<SendIcon />}>Submit</Button>
                 </form>
             </div>
         );
