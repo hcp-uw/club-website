@@ -1,6 +1,6 @@
 // import axios from 'axios';
 import * as api from "../back_end/api/end_points.js";
-import emailjs from '@emailjs/browser';
+import emailjs from "@emailjs/browser";
 
 // For dummy endpoints
 // const delay = ms => new Promise(
@@ -118,37 +118,20 @@ export const getProjects = async (callback, active) => {
     }
 };
 
-export const sendEmail = async (name, notes) => {
+export const sendEmail = async (name, email, notes) => {
     const templateParams = {
         to_name: "HCP Team",
         from_name: name,
         message: notes,
-        reply_to: name,
+        reply_to: email,
     };
-    console.log(name)
+    console.log(name);
 
-    emailjs.send('service_wetv0mh','template_cpwd3s8', templateParams, 'N-gkjHJLoKESLpaki')
+    emailjs.send("service_wetv0mh","template_cpwd3s8", templateParams, "N-gkjHJLoKESLpaki")
         .then((response) => {
-           console.log('SUCCESS!', response.status, response.text);
+            console.log("SUCCESS!", response.status, response.text);
         }, (err) => {
-           console.log('FAILED...', err);
-    });    
+            console.log("FAILED...", err);
+        });    
 };
-
-export const sendEmail = async (name, notes) => {
-    const templateParams = {
-        to_name: "HCP Team",
-        from_name: name,
-        message: notes,
-        reply_to: name,
-    };
-    console.log(name)
-
-    emailjs.send('service_wetv0mh','template_cpwd3s8', templateParams, 'N-gkjHJLoKESLpaki')
-        .then((response) => {
-           console.log('SUCCESS!', response.status, response.text);
-        }, (err) => {
-           console.log('FAILED...', err);
-    });    
-}
 
