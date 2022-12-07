@@ -2,8 +2,8 @@ import { useNavigate, useLocation } from "react-router-dom";
 import {
     Typography,
     Button,
-} from '@mui/material';
-import './Sidebar.css';
+} from "@mui/material";
+import "./Sidebar.css";
 
 function Sidebar(props) {
     const {
@@ -16,8 +16,8 @@ function Sidebar(props) {
     const location = useLocation();
 
     let currPage = pages.find(
-        page => location.pathname === page.path
-      );
+        page => location.pathname === page.path,
+    );
 
     const renderTabs = () => {
         if (currPage === undefined) {
@@ -27,23 +27,23 @@ function Sidebar(props) {
             <Button key={obj.name} color="inherit" className="sidebar-button" onClick={() => navigate(obj.path)}>
                 {
                     obj.name === currPage.name ?
-                        <Typography variant='h5' color="primary"> { "<" + obj.name + "/>" } </Typography>
-                    :
-                        <Typography variant='h5' color="primary"> { obj.name } </Typography>
+                        <Typography variant="h5" color="primary"> { "<" + obj.name + "/>" } </Typography>
+                        :
+                        <Typography variant="h5" color="primary"> { obj.name } </Typography>
                 }
-            </Button>
-        )
+            </Button>,
+        );
     };
 
     return (
         <>
-            <nav className={show ? 'sidebar active' : 'sidebar'}>
-                <ul className='sidebar-items' onClick={handleShow}>
+            <nav className={show ? "sidebar active" : "sidebar"}>
+                <ul className="sidebar-items" onClick={handleShow}>
                     { renderTabs() }
                 </ul>
             </nav>
         </>
-    )
+    );
 }
 
 export default Sidebar;

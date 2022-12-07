@@ -1,13 +1,11 @@
 // import axios from 'axios';
-import { people } from './data';
-import { projects } from './data';
-import * as api from '../back_end/api/end_points.js';
+import * as api from "../back_end/api/end_points.js";
 import emailjs from '@emailjs/browser';
 
 // For dummy endpoints
-const delay = ms => new Promise(
-    resolve => setTimeout(resolve, ms)
-  );
+// const delay = ms => new Promise(
+//     resolve => setTimeout(resolve, ms)
+//   );
 
 const isValidHttpUrl = (string) => {
     if (!string) {
@@ -15,12 +13,12 @@ const isValidHttpUrl = (string) => {
     }
     let url;
     try {
-      url = new URL(string);
+        url = new URL(string);
     } catch (_) {
-      return false;
+        return false;
     }
     return url.protocol === "http:" || url.protocol === "https:";
-  }
+};
 
 const parseEvents = (data) => {
     var ret = data.map((obj) => {
@@ -30,11 +28,11 @@ const parseEvents = (data) => {
             location: obj.Location,
             description: obj.Description,
             image: isValidHttpUrl(obj.Image) ? obj.Image : null,
-        }
+        };
         return res;
     });
     return ret;
-}
+};
 
 //             name: 'Project Name',
 //             startDate: new Date('Wed, 27 July 2019 13:30:00'),
@@ -50,21 +48,21 @@ const parseEvents = (data) => {
 const parseProjects = (data) => {
     var ret = data.map((obj) => {
         var res = {
-            name: obj.name,
+            name: obj.Name,
             startDate: new Date(obj.Start_Date),
             endDate: new Date(obj.End_Date),
             completed: obj.Completed,
             category: obj.Description,
             pm: obj.PM,
-            gitLink: obj.Git_Link,
+            gitLink: isValidHttpUrl(obj.Git_Link) ? obj.Git_Link : null,
             description: obj.Description,
             members: obj.Members,
             image: isValidHttpUrl(obj.Image) ? obj.Image : null,
-        }
+        };
         return res;
     });
     return ret;
-}
+};
 
 export const getFeaturedEvents = async (callback) => {
     var data = await api.getEventsBasedOnTime(true);
@@ -73,7 +71,7 @@ export const getFeaturedEvents = async (callback) => {
     } else {
         callback([]);
     }
-}
+};
 
 export const getAllEvents = async (callback, upcoming) => {
     var data = await api.getEventsBasedOnTime(upcoming);
@@ -82,21 +80,60 @@ export const getAllEvents = async (callback, upcoming) => {
     } else {
         callback([]);
     }
-}
+};
+
+const parsePeople = (data) => {
+    var ret = data.map((obj) => {
+        var res = {
+            active: obj.active,
+            year: obj.Class_Standing,
+            dateJoined: new Date(obj.Date_Joined),
+            dateLeft: new Date(obj.Date_Left),
+            email: obj.Email,
+            image: isValidHttpUrl(obj.Image) ? obj.Image : null,
+            name: obj.Name,
+            role: obj.Role,
+            team: obj.Team,
+        };
+        return res;
+    });
+    return ret;
+};
 
 export const getPeople = async (callback) => {
-    await delay(3000);
-    callback(people.data)
-}
+    var data = await api.getActiveLeads();
+    if (data) {
+        callback(parsePeople(data));
+    } else {
+        callback([]);
+    }
+};
 
-export const getProjects = async (callback) => {
-    var data = await api.getProjects();
+export const getProjects = async (callback, active) => {
+    var data = await api.getActiveProjects(active);
     if (data) {
         callback(parseProjects(data));
     } else {
         callback([]);
     }
-}
+};
+
+export const sendEmail = async (name, notes) => {
+    const templateParams = {
+        to_name: "HCP Team",
+        from_name: name,
+        message: notes,
+        reply_to: name,
+    };
+    console.log(name)
+
+    emailjs.send('service_wetv0mh','template_cpwd3s8', templateParams, 'N-gkjHJLoKESLpaki')
+        .then((response) => {
+           console.log('SUCCESS!', response.status, response.text);
+        }, (err) => {
+           console.log('FAILED...', err);
+    });    
+};
 
 export const sendEmail = async (name, notes) => {
     const templateParams = {

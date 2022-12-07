@@ -35,6 +35,7 @@ Gets projects based on if they are active (i.e. currently working).
 
 * **Function Call:** getShortenedProject(active)
 
+
 * **Params:**
 
     | Name     | Type    | Description                                     | Default    |
@@ -74,10 +75,6 @@ Sample response shows output format, followed by sample data.
     ...
   ]
   ```
-
-* **Error Response:**
-  Errors will be outputted into console
-
 
 ## <span style="color:deepskyblue"> getProjectByName
 Get detailed project information based on the project name
@@ -123,6 +120,9 @@ Sample response shows output format, followed by sample data. (for name = "Proje
     ...
   ]
   ```
+
+* **Error Response:**
+  Errors will be outputted into console
 
 * **Error Response:**
   Errors will be outputted into console

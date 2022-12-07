@@ -12,20 +12,20 @@ function Join(props) {
     useEffect(() => {
         const handleWindowSizeChange = () => {
             setWidth(window.innerWidth);
-        }
-        window.addEventListener('resize', handleWindowSizeChange);
+        };
+        window.addEventListener("resize", handleWindowSizeChange);
         return () => {
-            window.removeEventListener('resize', handleWindowSizeChange);
-        }
+            window.removeEventListener("resize", handleWindowSizeChange);
+        };
     }, []);
 
     const isMobile = width <= 800;
 
     const displayJoinPage = () => {
         return (
-            <div className='google-form-embed'>
+            <div className="google-form-embed">
                 <iframe
-                    className='iframe'
+                    className="iframe"
                     title="club sign up google form"
                     frameBorder={0}
                     src="https://docs.google.com/forms/d/e/1FAIpQLSc5wyLuacKqZpezaffwB8jZZVz9yBo83tvA-U_vsRMiPbGslA/viewform?embedded=true"
@@ -78,13 +78,13 @@ function Join(props) {
 
     const displayJoinPageMobile = () => {
         return (
-            <Button color="secondary" variant="contained" href={"https://forms.gle/JpJaoznG4FBvS1paA"} target="_blank"> Link to Form </Button>
+            <Button color="secondary" variant="contained" href="https://forms.gle/JpJaoznG4FBvS1paA" target="_blank"> Link to Form </Button>
         );
     };
 
     const renderJoinPage = () => {
         return (
-            <div id={isMobile ? 'join-container-mobile' : 'join-container'}>
+            <div id={isMobile ? "join-container-mobile" : "join-container"}>
                 <Typography variant="h4" color="primary" paddingBottom={2}> Join Us </Typography>
                 <br />
                 <Typography id="objective" variant="subtitle1" color="primary">
@@ -95,10 +95,10 @@ function Join(props) {
                 {displayEmailForm()}
             </div>
         );
-    }
+    };
 
     return (
-        <div id={isMobile ? 'join-background-mobile' : 'join-background'}>
+        <div id={isMobile ? "join-background-mobile" : "join-background"}>
             {renderJoinPage()}
         </div>
     );

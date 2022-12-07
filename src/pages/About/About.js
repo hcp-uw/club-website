@@ -1,14 +1,14 @@
-import { useEffect, useState } from 'react';
-import { Typography, CircularProgress, Card, CardMedia, CardContent, Grid, Avatar } from '@mui/material';
-import { getPeople } from '../../api/api';
-import './About.css';
-import Logo2 from '../../assets/HCPLogo.jpg'
+import { useEffect, useState } from "react";
+import { Typography, CircularProgress, Avatar } from "@mui/material";
+import { getPeople } from "../../api/api";
+import "./About.css";
+import Logo2 from "../../assets/HCPLogo.jpg";
 
 
 function About(props) {
     useEffect(() => {
-        window.scrollTo(0, 0)
-    }, [])
+        window.scrollTo(0, 0);
+    }, []);
 
 
     const [width, setWidth] = useState(window.innerWidth);
@@ -21,80 +21,80 @@ function About(props) {
     useEffect(() => {
         const handleWindowSizeChange = () => {
             setWidth(window.innerWidth);
-        }
-        window.addEventListener('resize', handleWindowSizeChange);
+        };
+        window.addEventListener("resize", handleWindowSizeChange);
         return () => {
-            window.removeEventListener('resize', handleWindowSizeChange);
-        }
+            window.removeEventListener("resize", handleWindowSizeChange);
+        };
     }, []);
 
     useEffect(() => {
         const getData = async (data) => {
             setPeople(data);
             setLoading(false);
-        }
-        getPeople(getData);
-    })
+        };
+        getPeople(getData, true);
+    }, []);
 
     const renderProblemStatement = () => {
         return(
-        <div id={isMobile ? 'about-body-mobile' : 'about-body'}>
-            <Typography className="about-title" component="h4" variant="h4" color="primary"> 
+            <div id={isMobile ? "about-body-mobile" : "about-body"}>
+                <Typography className="about-title" component="h4" variant="h4" color="primary" textAlign="left"> 
             What is the Problem?
                 </Typography>
                 <br/>
-                <Typography id="objective" variant="subtitle1" color="primary">
+                <Typography id="objective" variant="subtitle1" color="primary" textAlign="left">
             The majority of projects offered by CS coursework are solo or in pairs, 
             so future programmers miss out on the invaluable experience of working in larger teams. 
             The leading motivation to do CS class projects are for grades, rather than for the learning experience.
-            </Typography>
-            <br/>
-            <Typography id="objective" variant="subtitle1" color="primary">
+                </Typography>
+                <br/>
+                <Typography id="objective" variant="subtitle1" color="primary" textAlign="left">
             Getting internships is the best ways to gain real world experience on the job. 
             However, it is also quite difficult to obtain without having some prior experience.
-            </Typography>
-            <br/>
-            <Typography id="objective" variant="subtitle1" color="primary">
+                </Typography>
+                <br/>
+                <Typography id="objective" variant="subtitle1" color="primary" textAlign="left">
             This circular logic plagues every generation of programmers.
-            </Typography>
-        </div>
-        )
-    }
+                </Typography>
+            </div>
+        );
+    };
 
     const renderMissionStatement = () => {
         return(
-        <div id={isMobile ? 'about-body-mobile' : 'about-body'}>
-            <Typography className="about-title" component="h4" variant="h4" color="primary"> 
+            <div id={isMobile ? "about-body-mobile" : "about-body"}>
+                <Typography className="about-title" component="h4" variant="h4" color="primary" textAlign="left"> 
             Our Mission
                 </Typography>
                 <br/>
-                <Typography id="objective" variant="subtitle1" color="primary">
+                <Typography id="objective" variant="subtitle1" color="primary" textAlign="left">
                 To create a tech internship-like environment that promotes the growth and development of our club members. 
                 We provide team-based programming project experience and encouraging
-                <Typography component="span" color="accent.main" variant="subtitle1">
+                    <Typography component="span" color="accent.main" variant="subtitle1">
                     &nbsp;peer-to-peer learning.&nbsp;
                     </Typography>
                 </Typography>
                 <br/>
-                <Typography id="objective" variant="subtitle1" color="primary">
+                <Typography id="objective" variant="subtitle1" color="primary" textAlign="left">
                 To provide the next generation of programmers & designers with the tools and experience to 
-                <Typography component="span" color="accent.main" variant="subtitle1">
+                    <Typography component="span" color="accent.main" variant="subtitle1" textAlign="left">
                     &nbsp;succeed in future tech careers.&nbsp;
                     </Typography>
                 </Typography>
-        </div>
-        )
-    }
+            </div>
+        );
+    };
 
     const renderClubValues = () => {
         return(
-        <div id={isMobile ? 'about-body-mobile' : 'about-body'}>
-            <Typography className="about-title" component="h4" variant="h4" color="primary">
+            <div id={isMobile ? "about-body-mobile" : "about-body"}>
+                <Typography className="about-title" component="h4" variant="h4" color="primary">
                 Club Values
+                    <br/>
+                    <br/>
+                </Typography>
                 <br/>
-                <br/>
-            </Typography>
-            <br/>
                 <Typography id="objective" variant="subtitle1" color="primary">Listen Loudly</Typography>
                 <br/>
                 <Typography id="objective" variant="subtitle1" color="primary">Freedom to Fail</Typography>
@@ -102,31 +102,29 @@ function About(props) {
                 <Typography id="objective" variant="subtitle1" color="primary">Turn Talk to Action</Typography>
                 <br/>
                 <Typography id="objective" variant="subtitle1" color="primary">Respect for all Folx</Typography>
-        </div>
-        )
-    }
+            </div>
+        );
+    };
 
     const renderPerson = (data) => {
         return (
-            <Grid item>
-            <div id="flex-container">
-            <Avatar
-            sx={{ width: 150, height: 150}}
-            alt= "person image"
-            src={ data.image !== null ? data.image : Logo2 }/>
-             <Typography gutterBottom variant="subtitle3" component="div" color="primary">
-                 <br/>
-                {data.name}
-            </Typography>
-            <Typography variant="subtitle2" component="div" color="primary">
-                Role: {data.role}
-                <br/>
-                Year: {data.year}
-                <br/>
-                <br/>
-            </Typography>
-        </div>
-        </Grid>
+            <div id="flex-container" key={data.name}>
+                <Avatar
+                    sx={{ width: 150, height: 150 }}
+                    alt= "person image"
+                    src={ data.image !== null ? data.image : Logo2 }
+                />
+                <Typography gutterBottom variant="subtitle3" component="div" color="primary">
+                    <br/>
+                    {data.name}
+                </Typography>
+                <Typography variant="subtitle2" component="div" color="primary">
+                    {data.role}
+                    {/* {data.year} */}
+                    <br/>
+                    <br/>
+                </Typography>
+            </div>
             // CHANGE GRID container spacing TO 4 IF YOU USE CARD
             // <Card key={data.id} className="about-team" elevation={12} sx={{ width: 200, height: 270 }}>
             //     <CardMedia 
@@ -147,50 +145,48 @@ function About(props) {
             //         </Typography>
             //     </CardContent>
             // </Card>
-        )
-    }
+        );
+    };
 
     const displayTeam = () => {
         if (loading) {
-            return <CircularProgress color='secondary' style={{alignSelf: "center"}}/>;
+            return <CircularProgress color="secondary" style={{ alignSelf: "center" }}/>;
         }
         if (isMobile2 && people.length === 3) {
             return (
                 <>
-                <div id='about-teams'>
-                    { renderPerson(people[0]) }
-                    { renderPerson(people[1]) }
-                    { renderPerson(people[2]) }
-                </div>
+                    <div id="about-teams">
+                        { renderPerson(people[0]) }
+                        { renderPerson(people[1]) }
+                        { renderPerson(people[2]) }
+                    </div>
                 </>
             );
         }
         return (
-            <div id={isMobile ? 'about-team-mobile' : 'about-teams'}>
-                {/* <Grid container spacing={4} direction="row" justifyContent={'center'}  alignItems="center" marginTop={5} marginLeft={0}> */}
+            <div id="about-teams">
                 { people.map((obj) => renderPerson(obj)) }
-                {/* </Grid> */}
             </div>
         );
-    }
+    };
 
     const renderTeam = () => {
         return(
-        <div id={isMobile ? 'about-body-mobile' : 'about-body'}>
-            <Typography className="about-title" component="h5" variant="h4" color="primary">
+            <div id={isMobile ? "about-body-mobile" : "about-body"}>
+                <Typography className="about-title" component="h5" variant="h4" color="primary">
                 Our Team
-            </Typography>
-            <br/>
-            <br/>
-            <br/>
-            { displayTeam() }
-        </div>
-        )
-    }
+                </Typography>
+                <br/>
+                <br/>
+                <br/>
+                { displayTeam() }
+            </div>
+        );
+    };
 
 
     return (
-        <div className='about-container'>
+        <div className="about-container">
             { renderProblemStatement() }
             { renderMissionStatement() }
             { renderClubValues() }
