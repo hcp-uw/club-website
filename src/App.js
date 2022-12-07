@@ -12,6 +12,7 @@ import Join from './pages/Join/Join';
 
 import './App.css';
 
+// Theming for each of the MUI components
 let theme = createTheme({
     palette: {
         primary: {
@@ -114,8 +115,11 @@ theme.typography.subtitle3 = {
     fontWeight: 'bold',
     fontSize: '1.0rem',
 }
-
+/**
+ * Main Application
+ */
 function App() {
+    // Pages for the application
     const pages = [
         {
             name: 'Home',

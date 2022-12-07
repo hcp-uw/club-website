@@ -6,6 +6,7 @@ import * as api from '../back_end/api/end_points.js';
 //     resolve => setTimeout(resolve, ms)
 //   );
 
+// Checks if a URL is valid
 const isValidHttpUrl = (string) => {
     if (!string) {
         return false;

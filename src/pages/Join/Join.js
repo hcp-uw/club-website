@@ -4,8 +4,15 @@ import './Join.css';
 import Button from '@mui/material/Button';
 
 function Join(props) {
+
+    // Scroll to top of page
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
+
     const [width, setWidth] = useState(window.innerWidth);
 
+    // Handle window size
     useEffect(() => {
         const handleWindowSizeChange = () => {
             setWidth(window.innerWidth);
@@ -18,6 +25,7 @@ function Join(props) {
 
     const isMobile = width <= 800;
 
+    // Display embedded google form
     const displayJoinPage = () => {
         return (
             <div className='google-form-embed'>
@@ -33,12 +41,14 @@ function Join(props) {
         );
     };
 
+    // Button link to google form 
     const displayJoinPageMobile = () => {
         return (
             <Button color="secondary" variant="contained" href={"https://forms.gle/JpJaoznG4FBvS1paA"} target="_blank"> Link to Form </Button>
         );
     };
 
+    // Join Page information
     const renderJoinPage = () => {
         return (
             <div id={isMobile ? 'join-container-mobile' : 'join-container'}>

@@ -4,20 +4,25 @@ import { getPeople } from '../../api/api';
 import './About.css';
 import Logo2 from '../../assets/HCPLogo.jpg'
 
-
+/**
+ * Main Application
+ */
 function About(props) {
+
+    // Scroll to top of page
     useEffect(() => {
         window.scrollTo(0, 0)
     }, [])
 
 
+    // Sizes of page
     const [width, setWidth] = useState(window.innerWidth);
     const [people, setPeople] = useState([]);
     const [loading, setLoading] = useState(true);
     const isMobile = width <= 800;
     const isMobile2 = width <= 1000 && width > 800;
 
-
+     // Determines the width of the page
     useEffect(() => {
         const handleWindowSizeChange = () => {
             setWidth(window.innerWidth);
@@ -28,6 +33,7 @@ function About(props) {
         }
     }, []);
 
+    // Uses the getPeople API
     useEffect(() => {
         const getData = async (data) => {
             setPeople(data);
@@ -36,31 +42,33 @@ function About(props) {
         getPeople(getData, true);
     }, []);
 
+    // Renders club problem statement
     const renderProblemStatement = () => {
         return(
         <div id={isMobile ? 'about-body-mobile' : 'about-body'}>
-            <Typography className="about-title" component="h4" variant="h4" color="primary" textAlign="left"> 
+            <Typography className="about-title" component="h4" variant="h4" color="primary" textAlign="center"> 
             What is the Problem?
                 </Typography>
                 <br/>
-                <Typography id="objective" variant="subtitle1" color="primary" textAlign="left">
+                <Typography id="objective" variant="subtitle1" color="primary" textAlign="center">
             The majority of projects offered by CS coursework are solo or in pairs, 
             so future programmers miss out on the invaluable experience of working in larger teams. 
             The leading motivation to do CS class projects are for grades, rather than for the learning experience.
             </Typography>
             <br/>
-            <Typography id="objective" variant="subtitle1" color="primary" textAlign="left">
+            <Typography id="objective" variant="subtitle1" color="primary" textAlign="center">
             Getting internships is the best ways to gain real world experience on the job. 
             However, it is also quite difficult to obtain without having some prior experience.
             </Typography>
             <br/>
-            <Typography id="objective" variant="subtitle1" color="primary" textAlign="left">
+            <Typography id="objective" variant="subtitle1" color="primary" textAlign="center">
             This circular logic plagues every generation of programmers.
             </Typography>
         </div>
         )
     }
 
+    // Render mission statement
     const renderMissionStatement = () => {
         return(
         <div id={isMobile ? 'about-body-mobile' : 'about-body'}>
@@ -86,6 +94,7 @@ function About(props) {
         )
     }
 
+    // Render club values
     const renderClubValues = () => {
         return(
         <div id={isMobile ? 'about-body-mobile' : 'about-body'}>
@@ -106,6 +115,7 @@ function About(props) {
         )
     }
 
+    // Renders profile for each person, data on name and role
     const renderPerson = (data) => {
         return (
             <div id="flex-container" key={data.name}>
@@ -148,6 +158,7 @@ function About(props) {
         )
     }
 
+    // Maps each club lead from API call 
     const displayTeam = () => {
         if (loading) {
             return <CircularProgress color='secondary' style={{alignSelf: "center"}}/>;
@@ -170,6 +181,7 @@ function About(props) {
         );
     }
 
+    // Displays the team block 
     const renderTeam = () => {
         return(
         <div id={isMobile ? 'about-body-mobile' : 'about-body'}>
