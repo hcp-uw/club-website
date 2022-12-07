@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
-import { Typography } from "@mui/material";
+import { Typography, TextField } from "@mui/material";
 import "./Join.css";
 import Button from "@mui/material/Button";
+import { sendEmail } from "../../api/api";
+import SendIcon from "@mui/icons-material/Send";
 
 function Join(props) {
 
@@ -11,8 +13,9 @@ function Join(props) {
     }, []);
 
     const [width, setWidth] = useState(window.innerWidth);
-
-    // Handle window size
+    const[name, setName] = useState("");
+    const[email, setEmail] = useState("");
+    const[content, setContent] = useState("");
     useEffect(() => {
         const handleWindowSizeChange = () => {
             setWidth(window.innerWidth);
@@ -24,8 +27,55 @@ function Join(props) {
     }, []);
 
     const isMobile = width <= 800;
+    
+    const displayEmailForm = () => {
 
-    // Display embedded google form
+        const handleClick = () => {
+            setName("");
+            setEmail("");
+            setContent("");
+            sendEmail(name, email, content);
+        };
+        const handleNameChange = (event) => {
+            setName(event.target.value);
+        };
+        const handleEmailChange = (event) => {
+            setEmail(event.target.value);
+        };
+        const handleContentChange = (event) => {
+            setContent(event.target.value);
+        };
+        return (
+            <div id="emailform">
+                <br/>
+                <br/>
+                <Typography className="about-title" component="h4" variant="h4" color="primary">
+                Send us an Email!
+                    <br/>
+                    <br/>
+                </Typography>
+                <form>
+                    <label>
+                        <TextField color="primary" required sx={{ input: { color: "white" } }} fullWidth focused id="filled-basic" label="Name" variant="filled" value={name} onChange={handleNameChange}/>
+                        {/* <input type="text" name="name" value={name} onChange={handleNameChange}/> */}
+                    </label>
+                    <label>
+                        <TextField color="primary" required sx={{ input: { color: "white" } }} fullWidth focused id="filled-basic" label="Email" variant="filled" value={email} onChange={handleEmailChange}/>
+                    </label>
+                    <label>
+                        <TextField color="primary" inputProps={{ style: { color: "white" } }} required focused id="filled-basic" label="Message" variant="filled" multiline
+                            rows={6} fullWidth value={content} onChange={handleContentChange}
+                        />
+
+                    </label>
+                    <br></br> 
+                    <br></br>
+                    <Button variant="contained" color="secondary" onClick={handleClick} endIcon={<SendIcon />}>Submit</Button>
+                </form>
+            </div>
+        );
+    };
+
     const displayJoinPage = () => {
         return (
             <div className="google-form-embed">
@@ -37,6 +87,7 @@ function Join(props) {
                 >
                     Loading…
                 </iframe>
+                {displayEmailForm()}
             </div>
         );
     };
@@ -44,7 +95,9 @@ function Join(props) {
     // Button link to google form 
     const displayJoinPageMobile = () => {
         return (
-            <Button color="secondary" variant="contained" href="https://forms.gle/JpJaoznG4FBvS1paA" target="_blank"> Link to Form </Button>
+            <div>
+                <Button color="secondary" variant="contained" href="https://forms.gle/JpJaoznG4FBvS1paA" target="_blank"> Link to Form </Button>
+            </div>
         );
     };
 
