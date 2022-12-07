@@ -112,8 +112,8 @@ theme.typography.subtitle2 = {
 };
 
 theme.typography.subtitle3 = {
-    fontWeight: 'bold',
-    fontSize: '1.0rem',
+    fontWeight: "bold",
+    fontSize: "1.0rem",
 };
 
 /**

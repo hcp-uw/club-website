@@ -7,8 +7,8 @@ function Join(props) {
 
     // Scroll to top of page
     useEffect(() => {
-        window.scrollTo(0, 0)
-    }, [])
+        window.scrollTo(0, 0);
+    }, []);
 
     const [width, setWidth] = useState(window.innerWidth);
 

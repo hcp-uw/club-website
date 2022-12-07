@@ -22,7 +22,7 @@ function About(props) {
     const isMobile = width <= 800;
     const isMobile2 = width <= 1000 && width > 800;
 
-     // Determines the width of the page
+    // Determines the width of the page
     useEffect(() => {
         const handleWindowSizeChange = () => {
             setWidth(window.innerWidth);
