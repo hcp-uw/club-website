@@ -39,8 +39,8 @@ function Join(props) {
     const displayEmailForm = () => {
 
         const handleClick = () => {
-            //console.log(name)
-            //console.log(content)
+            setName("")
+            setContent("")
             sendEmail(name, content);
         };
         const handleNameChange = (event) => {
@@ -60,15 +60,17 @@ function Join(props) {
                 </Typography>
                 <form>
                 <label>
-                    <TextField color="primary" focused id="filled-basic" label="Name" variant="filled" value={name} InputLabelProps={{style: { color: '#ffff' },}} onChange={handleNameChange}/>
+                    <TextField color="primary" required={true} sx={{ input: { color: 'white' } }} fullWidth focused id="filled-basic" label="Name" variant="filled" value={name} onChange={handleNameChange}/>
                     {/* <input type="text" name="name" value={name} onChange={handleNameChange}/> */}
                 </label><br></br>
                 <label>
-                    <TextField color="primary" focused id="filled-basic" label="Content" variant="filled" value={content} onChange={handleContentChange}/>
+                    <TextField color="primary" inputProps={{ style: { color: "white" } }} required={true} focused id="filled-basic" label="Content" variant="filled" multiline
+          rows={6} fullWidth value={content} onChange={handleContentChange}/>
+
                 </label>
+                <br></br> 
                 <br></br>
-                <br></br>
-                <Button variant="contained" color="secondary" onClic1k={handleClick} endIcon={<SendIcon />}>Submit</Button>
+                <Button variant="contained" color="secondary" onClick={handleClick} endIcon={<SendIcon />}>Submit</Button>
                 </form>
             </div>
         );
