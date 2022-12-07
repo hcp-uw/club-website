@@ -7,6 +7,7 @@ import emailjs from "@emailjs/browser";
 //     resolve => setTimeout(resolve, ms)
 //   );
 
+// Checks if a URL is valid
 const isValidHttpUrl = (string) => {
     if (!string) {
         return false;

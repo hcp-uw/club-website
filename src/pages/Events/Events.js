@@ -7,11 +7,15 @@ import { getAllEvents } from "../../api/api";
 import Logo2 from "../../assets/HCPLogo.jpg";
 import "./Events.css";
 
+/**
+ * Event page
+ */
 function Events(props) {
     const [width, setWidth] = useState(window.innerWidth);
     const [events, setEvents] = useState([]);
     const [loading, setLoading] = useState(true);
 
+    // Handle window size
     useEffect(() => {
         const handleWindowSizeChange = () => {
             setWidth(window.innerWidth);
@@ -22,6 +26,7 @@ function Events(props) {
         };
     }, []);
 
+    // Uses getAllEvents API
     useEffect(() => {
         const getData = async (data) => {
             setEvents(data);
@@ -30,8 +35,10 @@ function Events(props) {
         getAllEvents(getData, true);
     }, []);
 
+    // Mobile view
     const isMobile = width <= 800;
 
+    // Renders a single event
     const renderEvent = (data) => {
         return (
             <div key={data.name} className={isMobile ? "events-container-mobile" : "events-container"}>
@@ -72,6 +79,7 @@ function Events(props) {
         );
     };
 
+    // Renders all of the events
     const displayEvents = () => {
         if (loading) {
             return <CircularProgress color="secondary" style={{ alignSelf: "center" }}/>;
@@ -86,6 +94,7 @@ function Events(props) {
         );
     };
 
+    // Renders Event section
     const renderEvents = () => {
         return (
             <div id={isMobile ? "events-body-mobile" : "events-body"}>

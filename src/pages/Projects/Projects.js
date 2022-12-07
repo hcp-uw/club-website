@@ -4,7 +4,11 @@ import { getProjects } from "../../api/api";
 import "./Projects.css";
 import Logo2 from "../../assets/HCPLogo.jpg";
 
+/**
+ * Projects Page
+ */
 function Projects(props) {
+    // Scrolls up
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
@@ -15,7 +19,7 @@ function Projects(props) {
     const [loading, setLoading] = useState(true);
     const isMobile = width <= 800;
     const isMobile2 = width <= 1000 && width > 800;
-
+    // handles screen size being changed
     useEffect(() => {
         const handleWindowSizeChange = () => {
             setWidth(window.innerWidth);
@@ -26,6 +30,7 @@ function Projects(props) {
         };
     }, []);
 
+    // uses the getProjects API
     useEffect(() => {
         const getData1 = async (data) => {
             setPastProjects(data);
@@ -38,6 +43,7 @@ function Projects(props) {
         getProjects(getData, true);
     }, []);
 
+    // Calls Display Active Projects
     const renderActiveProjects = () => {
         return(
             <div id={isMobile ? "projects-body-mobile" : "projects-body"}>
@@ -49,6 +55,7 @@ function Projects(props) {
         );
     };
 
+    // Calls Display Past Project
     const renderPastProjects = () => {
         return(
             <div id={isMobile ? "projects-body-mobile" : "projects-body"}>
@@ -60,6 +67,7 @@ function Projects(props) {
         );
     };
 
+    // Layout of a single Project Card
     const renderProjectCard = (data) => {
         return (
             <div key={data.name}>
@@ -87,6 +95,7 @@ function Projects(props) {
         );
     };
 
+    // Displays all the active project cards
     const displayActiveProjects = () => {
         if (loading) {
             return <CircularProgress color="secondary" style={{ alignSelf: "center" }}/>;
@@ -107,6 +116,7 @@ function Projects(props) {
         );
     };
     
+    // Displays all the past project cards
     const displayPastProjects = () => {
         if (loading) {
             return <CircularProgress color="secondary" style={{ alignSelf: "center" }}/>;

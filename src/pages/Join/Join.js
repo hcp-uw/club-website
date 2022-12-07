@@ -6,6 +6,12 @@ import { sendEmail } from "../../api/api";
 import SendIcon from "@mui/icons-material/Send";
 
 function Join(props) {
+
+    // Scroll to top of page
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
     const [width, setWidth] = useState(window.innerWidth);
     const[name, setName] = useState("");
     const[email, setEmail] = useState("");
@@ -86,6 +92,7 @@ function Join(props) {
         );
     };
 
+    // Button link to google form 
     const displayJoinPageMobile = () => {
         return (
             <div>
@@ -94,6 +101,7 @@ function Join(props) {
         );
     };
 
+    // Join Page information
     const renderJoinPage = () => {
         return (
             <div id={isMobile ? "join-container-mobile" : "join-container"}>

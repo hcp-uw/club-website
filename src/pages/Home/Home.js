@@ -17,9 +17,12 @@ import { getFeaturedEvents } from "../../api/api";
 import { useNavigate } from "react-router-dom";
 import "./Home.css";
 
-
+/**
+ * Main Application
+ */
 function Home(props) {
 
+    // Scroll to top of page
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
@@ -28,6 +31,7 @@ function Home(props) {
     const [events, setEvents] = useState([]);
     const [loading, setLoading] = useState(true);
 
+    // Determines the width of the page
     useEffect(() => {
         const handleWindowSizeChange = () => {
             setWidth(window.innerWidth);
@@ -38,6 +42,7 @@ function Home(props) {
         };
     }, []);
 
+    // Uses the getFeaturedEvents API
     useEffect(() => {
         const getData = async (data) => {
             setEvents(data);
@@ -46,10 +51,13 @@ function Home(props) {
         getFeaturedEvents(getData);
     });
 
+    // Sizes of page
     const isMobile = width <= 800;
     const isMobile2 = width <= 1000 && width > 800;
+    // Allows navigation per page
     const navigate = useNavigate();
 
+    // Renders the club motto
     const renderMotto = () => {
         return (
             <div className={isMobile ? "home-body-mobile" : "home-body"}>
@@ -65,10 +73,11 @@ function Home(props) {
         );
     };
 
+    // Renders the logo
     const renderLogo = () => {
         return (
             <div id="home-logo-container">
-                <img src={Logo} alt="logo" id="home-logo"/>
+                <img src={Logo} alt="logo" id="home-logo" />
                 <Typography id="motto" component="h2" variant="h4" color="primary">
                     Let's Git Good!
                 </Typography>
@@ -84,6 +93,7 @@ function Home(props) {
         );
     };
 
+    // Renders the club meeting location and time
     const renderMeetingDetails = () => {
         return (
             <div className={isMobile ? "home-body-mobile" : "home-body"}>
@@ -125,6 +135,7 @@ function Home(props) {
         );
     };
 
+    // Renders a single event
     const renderEvent = (data) => {
         return (
             <Card key={data.name} className="home-event" elevation={12} sx={{ width: 300, height: 400 }}>
@@ -150,6 +161,7 @@ function Home(props) {
         );
     };
 
+    // Renders multiple events
     const displayEvents = () => {
         if (loading) {
             return <CircularProgress color="secondary" style={{ alignSelf: "center" }}/>;
@@ -179,6 +191,7 @@ function Home(props) {
         );
     };
 
+    // Renders the "Featured Events" section
     const renderFeaturedEvents = () => {
         return (
             <div className={isMobile ? "home-body-mobile" : "home-body"}>
@@ -186,7 +199,7 @@ function Home(props) {
                     Featured Events
                 </Typography>
                 <br />
-                { displayEvents() }
+                {displayEvents()}
             </div>
         );
     };
