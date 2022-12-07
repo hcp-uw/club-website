@@ -1,16 +1,16 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 import {
     AppBar,
     Toolbar,
     Typography,
     Button,
     IconButton,
-} from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
+} from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
 import { useLocation, useNavigate } from "react-router-dom";
-import Sidebar from '../Sidebar/Sidebar';
-import './Header.css';
-import Logo from '../../assets/HCPLogoText-Crop.png'
+import Sidebar from "../Sidebar/Sidebar";
+import "./Header.css";
+import Logo from "../../assets/HCPLogoText-Crop.png";
 
 function Header(props) {
     const {
@@ -23,11 +23,11 @@ function Header(props) {
     useEffect(() => {
         const handleWindowSizeChange = () => {
             setWidth(window.innerWidth);
-        }
-        window.addEventListener('resize', handleWindowSizeChange);
+        };
+        window.addEventListener("resize", handleWindowSizeChange);
         return () => {
-            window.removeEventListener('resize', handleWindowSizeChange);
-        }
+            window.removeEventListener("resize", handleWindowSizeChange);
+        };
     }, []);
 
     const navigate = useNavigate();
@@ -36,8 +36,8 @@ function Header(props) {
     const location = useLocation();
 
     let currPage = pages.find(
-        page => location.pathname === page.path
-      );
+        page => location.pathname === page.path,
+    );
 
     const renderTabs = () => {
         if (currPage === undefined) {
@@ -47,12 +47,12 @@ function Header(props) {
             <Button key={obj.name} color="inherit" className="header-page-button" onClick={() => navigate(obj.path)}>
                 {
                     obj.name === currPage.name ?
-                        <Typography variant='h5' color="#FFFFFF" fontSize="1.0rem"> { "<" + obj.name + "/>" } </Typography>
-                    :
-                        <Typography variant='h5' color="#FFFFFF"> { obj.name } </Typography>
+                        <Typography variant="h5" color="#FFFFFF" fontSize="1.0rem"> { "<" + obj.name + "/>" } </Typography>
+                        :
+                        <Typography variant="h5" color="#FFFFFF"> { obj.name } </Typography>
                 }
-            </Button>
-        )
+            </Button>,
+        );
     };
 
     const showSideBar = () => {
@@ -69,7 +69,7 @@ function Header(props) {
                         handleShow={showSideBar}
                     />
             }
-            <AppBar position='fixed' className="header-appbar" elevation={4} color="secondary">
+            <AppBar position="fixed" className="header-appbar" elevation={4} color="secondary">
                 <Toolbar className="toolbar">
                     {
                         isMobile &&
@@ -79,24 +79,24 @@ function Header(props) {
                                 className="header-menu"
                                 onClick={showSideBar}
                             >
-                                <MenuIcon  sx={{ fontSize: 40 }}/>
+                                <MenuIcon sx={{ fontSize: 40 }}/>
                             </IconButton>
                     }
                     <img
                         onClick={() => navigate(pages[0].path)}
                         src={Logo}
                         alt="logo"
-                        className={isMobile ? 'header-logo centered' : 'header-logo'}
+                        className={isMobile ? "header-logo centered" : "header-logo"}
                     />
                     {
                         !isMobile &&
-                            <div className='header-page'>
+                            <div className="header-page">
                                 { renderTabs() }
                             </div>
                     }
                     {
                         isMobile &&
-                            <div className='header-icon-place-holder' />
+                            <div className="header-icon-place-holder" />
                     }
                 </Toolbar>
             </AppBar>
