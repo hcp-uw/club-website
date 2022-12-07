@@ -1,23 +1,24 @@
 // import axios from 'axios';
-import * as api from '../back_end/api/end_points.js';
+import * as api from "../back_end/api/end_points.js";
 
 // For dummy endpoints
 // const delay = ms => new Promise(
 //     resolve => setTimeout(resolve, ms)
 //   );
 
+// Checks if a URL is valid
 const isValidHttpUrl = (string) => {
     if (!string) {
         return false;
     }
     let url;
     try {
-      url = new URL(string);
+        url = new URL(string);
     } catch (_) {
-      return false;
+        return false;
     }
     return url.protocol === "http:" || url.protocol === "https:";
-  }
+};
 
 const parseEvents = (data) => {
     var ret = data.map((obj) => {
@@ -27,11 +28,11 @@ const parseEvents = (data) => {
             location: obj.Location,
             description: obj.Description,
             image: isValidHttpUrl(obj.Image) ? obj.Image : null,
-        }
+        };
         return res;
     });
     return ret;
-}
+};
 
 //             name: 'Project Name',
 //             startDate: new Date('Wed, 27 July 2019 13:30:00'),
@@ -57,11 +58,11 @@ const parseProjects = (data) => {
             description: obj.Description,
             members: obj.Members,
             image: isValidHttpUrl(obj.Image) ? obj.Image : null,
-        }
+        };
         return res;
     });
     return ret;
-}
+};
 
 export const getFeaturedEvents = async (callback) => {
     var data = await api.getEventsBasedOnTime(true);
@@ -70,7 +71,7 @@ export const getFeaturedEvents = async (callback) => {
     } else {
         callback([]);
     }
-}
+};
 
 export const getAllEvents = async (callback, upcoming) => {
     var data = await api.getEventsBasedOnTime(upcoming);
@@ -79,7 +80,7 @@ export const getAllEvents = async (callback, upcoming) => {
     } else {
         callback([]);
     }
-}
+};
 
 const parsePeople = (data) => {
     var ret = data.map((obj) => {
@@ -92,12 +93,12 @@ const parsePeople = (data) => {
             image: isValidHttpUrl(obj.Image) ? obj.Image : null,
             name: obj.Name,
             role: obj.Role,
-            team: obj.Team
-        }
+            team: obj.Team,
+        };
         return res;
     });
     return ret;
-}
+};
 
 export const getPeople = async (callback) => {
     var data = await api.getActiveLeads();
@@ -106,7 +107,7 @@ export const getPeople = async (callback) => {
     } else {
         callback([]);
     }
-}
+};
 
 export const getProjects = async (callback, active) => {
     var data = await api.getActiveProjects(active);
@@ -115,5 +116,5 @@ export const getProjects = async (callback, active) => {
     } else {
         callback([]);
     }
-}
+};
 
