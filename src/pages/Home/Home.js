@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 import {
     Typography,
     IconButton,
@@ -9,13 +9,13 @@ import {
     CardContent,
     CardMedia,
     Button,
-} from '@mui/material';
-import Logo from '../../assets/HCPLogo-highres.png'
-import Logo2 from '../../assets/HCPLogo.jpg'
-import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown';
-import { getFeaturedEvents } from '../../api/api';
+} from "@mui/material";
+import Logo from "../../assets/HCPLogo-highres.png";
+import Logo2 from "../../assets/HCPLogo.jpg";
+import ArrowCircleDownIcon from "@mui/icons-material/ArrowCircleDown";
+import { getFeaturedEvents } from "../../api/api";
 import { useNavigate } from "react-router-dom";
-import './Home.css';
+import "./Home.css";
 
 /**
  * Main Application
@@ -24,8 +24,8 @@ function Home(props) {
 
     // Scroll to top of page
     useEffect(() => {
-        window.scrollTo(0, 0)
-    }, [])
+        window.scrollTo(0, 0);
+    }, []);
 
     const [width, setWidth] = useState(window.innerWidth);
     const [events, setEvents] = useState([]);
@@ -35,11 +35,11 @@ function Home(props) {
     useEffect(() => {
         const handleWindowSizeChange = () => {
             setWidth(window.innerWidth);
-        }
-        window.addEventListener('resize', handleWindowSizeChange);
+        };
+        window.addEventListener("resize", handleWindowSizeChange);
         return () => {
-            window.removeEventListener('resize', handleWindowSizeChange);
-        }
+            window.removeEventListener("resize", handleWindowSizeChange);
+        };
     }, []);
 
     // Uses the getFeaturedEvents API
@@ -47,9 +47,9 @@ function Home(props) {
         const getData = async (data) => {
             setEvents(data);
             setLoading(false);
-        }
+        };
         getFeaturedEvents(getData);
-    })
+    });
 
     // Sizes of page
     const isMobile = width <= 800;
@@ -60,7 +60,7 @@ function Home(props) {
     // Renders the club motto
     const renderMotto = () => {
         return (
-            <div className={isMobile ? 'home-body-mobile' : 'home-body'}>
+            <div className={isMobile ? "home-body-mobile" : "home-body"}>
                 <Typography id="objective" variant="subtitle1" color="primary">
                     Husky Coding Project’s objective is to break the circular reasoning of
                     <Typography component="span" color="accent.main" variant="subtitle1">
@@ -71,7 +71,7 @@ function Home(props) {
                 </Typography>
             </div>
         );
-    }
+    };
 
     // Renders the logo
     const renderLogo = () => {
@@ -91,12 +91,12 @@ function Home(props) {
                 </div>
             </div>
         );
-    }
+    };
 
     // Renders the club meeting location and time
     const renderMeetingDetails = () => {
         return (
-            <div className={isMobile ? 'home-body-mobile' : 'home-body'}>
+            <div className={isMobile ? "home-body-mobile" : "home-body"}>
                 <Typography className="home-title" component="h4" variant="h4" color="primary">
                     General Meetings
                 </Typography>
@@ -121,8 +121,8 @@ function Home(props) {
                         <iframe
                             title="OUG141"
                             id="home-vr"
-                            style={{ border: '0px' }}
-                            allowFullScreen={true}
+                            style={{ border: "0px" }}
+                            allowFullScreen
                             scrolling="no"
                             src="https://www.washington.edu/classroom/vrview/index.html?image=https://features.classrooms.uw.edu/room-images/panoramas/OUG_141_panorama.jpg&amp;"
                         />
@@ -133,7 +133,7 @@ function Home(props) {
                 </Paper>
             </div>
         );
-    }
+    };
 
     // Renders a single event
     const renderEvent = (data) => {
@@ -142,20 +142,20 @@ function Home(props) {
                 <CardMedia
                     component="img"
                     style={{ height: 150 }}
-                    image={data.image !== null ? data.image : Logo2}
+                    image={ data.image !== null ? data.image : Logo2 }
                     alt="event image"
                 />
                 <CardContent>
                     <Typography gutterBottom variant="subtitle1" fontWeight={500} component="div" color="primary">
                         {data.name}
                     </Typography>
-                    <Typography align="left" variant="subtitle2" color="primary" sx={{ wordWrap: 'break-word', marginBottom: '-10px' }}>
-                        {data.description.length > 220 ? data.description.slice(0, 220) + '...' : data.description}
+                    <Typography align="left" variant="subtitle2" color="primary" sx={{ wordWrap: "break-word", marginBottom:"-10px" }}>
+                        {data.description.length > 220 ? data.description.slice(0, 220) + "..." : data.description}
                     </Typography>
                 </CardContent>
                 <div className="flex-grow" />
                 <CardActions id="home-event-learn-more">
-                    <Button size="small" color='primary' onClick={() => navigate('/events')}>Learn More</Button>
+                    <Button size="small" color="primary" onClick={() => navigate("/events")}>Learn More</Button>
                 </CardActions>
             </Card>
         );
@@ -164,29 +164,29 @@ function Home(props) {
     // Renders multiple events
     const displayEvents = () => {
         if (loading) {
-            return <CircularProgress color='secondary' style={{ alignSelf: "center" }} />;
+            return <CircularProgress color="secondary" style={{ alignSelf: "center" }}/>;
         }
         if (events.length === 0) {
             return <Typography component="h2" variant="subtitle1" color="primary">
-                Sadly there are no featured events at this time, check again later!
+            Sadly there are no featured events at this time, check again later!
             </Typography>;
         }
         if (isMobile2 && events.length === 3) {
             return (
                 <>
-                    <div id='home-events'>
-                        {renderEvent(events[0])}
-                        {renderEvent(events[1])}
+                    <div id="home-events">
+                        { renderEvent(events[0]) }
+                        { renderEvent(events[1]) }
                     </div>
-                    <div id='home-events'>
-                        {renderEvent(events[2])}
+                    <div id="home-events">
+                        { renderEvent(events[2]) }
                     </div>
                 </>
             );
         }
         return (
-            <div id={isMobile ? 'home-events-mobile' : 'home-events'}>
-                {events.map((obj) => renderEvent(obj))}
+            <div id={isMobile ? "home-events-mobile" : "home-events"}>
+                { events.map((obj) => renderEvent(obj)) }
             </div>
         );
     };
@@ -194,7 +194,7 @@ function Home(props) {
     // Renders the "Featured Events" section
     const renderFeaturedEvents = () => {
         return (
-            <div className={isMobile ? 'home-body-mobile' : 'home-body'}>
+            <div className={isMobile ? "home-body-mobile" : "home-body"}>
                 <Typography gutterBottom className="home-title" component="h4" variant="h4" color="primary">
                     Featured Events
                 </Typography>
@@ -202,14 +202,14 @@ function Home(props) {
                 {displayEvents()}
             </div>
         );
-    }
+    };
 
     return (
-        <div className='home-container'>
-            {renderLogo()}
-            {renderMotto()}
-            {renderMeetingDetails()}
-            {renderFeaturedEvents()}
+        <div className="home-container">
+            { renderLogo() }
+            { renderMotto() }
+            { renderMeetingDetails() }
+            { renderFeaturedEvents() }
         </div>
     );
 }

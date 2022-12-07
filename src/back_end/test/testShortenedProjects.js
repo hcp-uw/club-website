@@ -1,14 +1,14 @@
 import { getShortenedProject } from "../api/end_points.js";
-import {assert} from 'chai';
+import { assert } from "chai";
 
 describe("Testing Get Shortened Project Functions.", () => {
-    it('Shortened Project',async () => {
-      let rsp = await getShortenedProject("Test/Projects");
-      let expected =
+    it("Shortened Project",async () => {
+        let rsp = await getShortenedProject("Test/Projects");
+        let expected =
       [
-        { Name: 'Project1', Description: 'testdesc', Image: 'Image' },
-        { Name: 'Project2', Description: 'TestDesc', Image: 'Image' }
-      ]
-      assert.deepEqual(rsp, expected);
-    })
-})
+          { Name: "Project1", Description: "testdesc", Image: "Image" },
+          { Name: "Project2", Description: "TestDesc", Image: "Image" },
+      ];
+        assert.deepEqual(rsp, expected);
+    });
+});
