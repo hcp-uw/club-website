@@ -46,7 +46,7 @@ function About(props) {
     const renderProblemStatement = () => {
         return(
             <div id={isMobile ? "about-body-mobile" : "about-body"}>
-                <Typography className="about-title" component="h4" variant="h4" color="primary" textAlign="left"> 
+                <Typography className="about-title" component="h4" variant="h4" color="primary" textAlign="center"> 
             What is the Problem?
                 </Typography>
                 <br/>
@@ -56,12 +56,12 @@ function About(props) {
             The leading motivation to do CS class projects are for grades, rather than for the learning experience.
                 </Typography>
                 <br/>
-                <Typography id="objective" variant="subtitle1" color="primary" textAlign="left">
+                <Typography id="objective" variant="subtitle1" color="primary" textAlign="center">
             Getting internships is the best ways to gain real world experience on the job. 
             However, it is also quite difficult to obtain without having some prior experience.
                 </Typography>
                 <br/>
-                <Typography id="objective" variant="subtitle1" color="primary" textAlign="left">
+                <Typography id="objective" variant="subtitle1" color="primary" textAlign="center">
             This circular logic plagues every generation of programmers.
                 </Typography>
             </div>
@@ -72,11 +72,11 @@ function About(props) {
     const renderMissionStatement = () => {
         return(
             <div id={isMobile ? "about-body-mobile" : "about-body"}>
-                <Typography className="about-title" component="h4" variant="h4" color="primary" textAlign="left"> 
+                <Typography className="about-title" component="h4" variant="h4" color="primary" textAlign="center"> 
             Our Mission
                 </Typography>
                 <br/>
-                <Typography id="objective" variant="subtitle1" color="primary" textAlign="left">
+                <Typography id="objective" variant="subtitle1" color="primary" textAlign="center">
                 To create a tech internship-like environment that promotes the growth and development of our club members. 
                 We provide team-based programming project experience and encouraging
                     <Typography component="span" color="accent.main" variant="subtitle1">
@@ -84,9 +84,9 @@ function About(props) {
                     </Typography>
                 </Typography>
                 <br/>
-                <Typography id="objective" variant="subtitle1" color="primary" textAlign="left">
+                <Typography id="objective" variant="subtitle1" color="primary" textAlign="center">
                 To provide the next generation of programmers & designers with the tools and experience to 
-                    <Typography component="span" color="accent.main" variant="subtitle1" textAlign="left">
+                    <Typography component="span" color="accent.main" variant="subtitle1" textAlign="center">
                     &nbsp;succeed in future tech careers.&nbsp;
                     </Typography>
                 </Typography>
