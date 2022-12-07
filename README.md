@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="[/Users/minyoungcho/club-website/src/images/logo.png](https://firebasestorage.googleapis.com/v0/b/husky-coding-project.appspot.com/o/Logos%2Fclubwebsite.jpg?alt=media&token=0ce34ec7-03da-49d2-827c-0b1a112ad21a)" width="200">
+  <img src="https://firebasestorage.googleapis.com/v0/b/husky-coding-project.appspot.com/o/Logos%2Fclubwebsite.jpg?alt=media&token=0ce34ec7-03da-49d2-827c-0b1a112ad21a" width="200">
   <br/>
   <br/>
 </div>
