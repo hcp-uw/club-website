@@ -1,4 +1,4 @@
-import { getShortenedProject } from "../api/end_points.js";
+import { getShortenedProject } from "../api/projects.js";
 import { assert } from "chai";
 
 describe("Testing Get Shortened Project Functions.", () => {

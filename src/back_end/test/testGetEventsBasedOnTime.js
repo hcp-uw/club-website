@@ -1,4 +1,4 @@
-import { getEventsBasedOnTime } from "../api/end_points.js";
+import { getEventsBasedOnTime } from "../api/events.js";
 import { assert } from "chai";
 
 describe( "Testing event endpoints", () => {

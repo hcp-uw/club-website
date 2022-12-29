@@ -1,5 +1,7 @@
 // import axios from 'axios';
-import * as api from "../back_end/api/end_points.js";
+import * as leads from "../back_end/api/leads.js";
+import * as events from "../back_end/api/events.js";
+import * as projects from "../back_end/api/projects.js";
 import emailjs from "@emailjs/browser";
 
 // For dummy endpoints
@@ -66,7 +68,7 @@ const parseProjects = (data) => {
 };
 
 export const getFeaturedEvents = async (callback) => {
-    var data = await api.getEventsBasedOnTime(true);
+    var data = await events.getEventsBasedOnTime(true);
     if (data) {
         callback(parseEvents(data).slice(0, 3));
     } else {
@@ -75,7 +77,7 @@ export const getFeaturedEvents = async (callback) => {
 };
 
 export const getAllEvents = async (callback, upcoming) => {
-    var data = await api.getEventsBasedOnTime(upcoming);
+    var data = await events.getEventsBasedOnTime(upcoming);
     if (data) {
         callback(parseEvents(data));
     } else {
@@ -102,7 +104,7 @@ const parsePeople = (data) => {
 };
 
 export const getPeople = async (callback) => {
-    var data = await api.getActiveLeads();
+    var data = await leads.getActiveLeads();
     if (data) {
         callback(parsePeople(data));
     } else {
@@ -111,7 +113,7 @@ export const getPeople = async (callback) => {
 };
 
 export const getProjects = async (callback, active) => {
-    var data = await api.getActiveProjects(active);
+    var data = await projects.getActiveProjects(active);
     if (data) {
         callback(parseProjects(data));
     } else {
