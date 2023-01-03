@@ -1,4 +1,4 @@
-import { getActiveLeads } from "../api/end_points.js";
+import { getActiveLeads } from "../api/leads.js";
 import { assert } from "chai";
 
 describe("Testing Get Active Leads Functions.", () => {

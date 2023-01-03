@@ -1,4 +1,4 @@
-import { getProjectByName } from "../api/end_points.js";
+import { getProjectByName } from "../api/projects.js";
 import { assert } from "chai";
 import { errObj } from "../utils/utils.js";
 
