@@ -49,28 +49,32 @@ function Join(props) {
             <div id="emailform">
                 <br/>
                 <br/>
-                <Typography className="about-title" component="h4" variant="h4" color="primary">
-                Send us an Email!
+                <Typography id="objective" variant="subtitle1" color="primary">
+                    ...or send us a message :)
                     <br/>
                     <br/>
                 </Typography>
                 <form>
                     <label>
-                        <TextField color="primary" required sx={{ input: { color: "white" } }} fullWidth focused id="filled-basic" label="Name" variant="filled" value={name} onChange={handleNameChange}/>
+                        <TextField color="primary" required sx={{ input: { color: "white" } }} fullWidth focused id="filled-basic" label="Name" variant="outlined" value={name} onChange={handleNameChange}/>
                         {/* <input type="text" name="name" value={name} onChange={handleNameChange}/> */}
                     </label>
+                    <br/>
+                    <br/>
                     <label>
-                        <TextField color="primary" required sx={{ input: { color: "white" } }} fullWidth focused id="filled-basic" label="Email" variant="filled" value={email} onChange={handleEmailChange}/>
+                        <TextField color="primary" required sx={{ input: { color: "white" } }} fullWidth focused id="filled-basic" label="Email" variant="outlined" value={email} onChange={handleEmailChange}/>
                     </label>
+                    <br/>
+                    <br/>
                     <label>
-                        <TextField color="primary" inputProps={{ style: { color: "white" } }} required focused id="filled-basic" label="Message" variant="filled" multiline
+                        <TextField color="primary" inputProps={{ style: { color: "white" } }} required focused id="filled-basic" label="Message" variant="outlined" multiline
                             rows={6} fullWidth value={content} onChange={handleContentChange}
                         />
 
                     </label>
-                    <br></br> 
                     <br></br>
-                    <Button variant="contained" color="secondary" onClick={handleClick} endIcon={<SendIcon />}>Submit</Button>
+                    <br></br>
+                    <Button variant="contained" color="secondary" onClick={handleClick} endIcon={<SendIcon />} disabled={name === "" || email === "" || content === ""}>Submit</Button>
                 </form>
             </div>
         );
@@ -78,21 +82,26 @@ function Join(props) {
 
     const displayJoinPage = () => {
         return (
-            <div className="google-form-embed">
-                <iframe
-                    className="iframe"
-                    title="club sign up google form"
-                    frameBorder={0}
-                    src="https://docs.google.com/forms/d/e/1FAIpQLSc5wyLuacKqZpezaffwB8jZZVz9yBo83tvA-U_vsRMiPbGslA/viewform?embedded=true"
-                >
-                    Loading…
-                </iframe>
-                {displayEmailForm()}
+            // <div className="google-form-embed">
+            //     <iframe
+            //         className="iframe"
+            //         title="club sign up google form"
+            //         frameBorder={0}
+            //         src="https://docs.google.com/forms/d/e/1FAIpQLSc5wyLuacKqZpezaffwB8jZZVz9yBo83tvA-U_vsRMiPbGslA/viewform?embedded=true"
+            //     >
+            //         Loading…
+            //     </iframe>
+            //     {displayEmailForm()}
+            // </div>
+            <div style={{ width: "70%" }}>
+                <Button color="secondary" variant="contained" href="https://forms.gle/JpJaoznG4FBvS1paA" target="_blank"> Link to Form </Button>
+                <br/>
+                { displayEmailForm() }
             </div>
         );
     };
 
-    // Button link to google form 
+    // Button link to google form
     const displayJoinPageMobile = () => {
         return (
             <div>
