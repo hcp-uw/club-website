@@ -18,7 +18,7 @@ import { useNavigate } from "react-router-dom";
 import "./Home.css";
 
 /**
- * Main Application
+ * Main Application page
  */
 function Home(props) {
 
