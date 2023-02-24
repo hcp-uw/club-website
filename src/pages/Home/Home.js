@@ -18,7 +18,7 @@ import { useNavigate } from "react-router-dom";
 import "./Home.css";
 
 /**
- * Main Application
+ * Main Application page
  */
 function Home(props) {
 
@@ -104,7 +104,7 @@ function Home(props) {
                 <Typography component="h2" variant="subtitle1" color="primary">
                     Join us every
                     <Typography component="span" color="accent.main" variant="subtitle1">
-                        &nbsp;Thursday&nbsp;
+                        &nbsp;Tuesday&nbsp;
                     </Typography>
                     from
                     <Typography component="span" color="accent.main" variant="subtitle1">
@@ -112,7 +112,7 @@ function Home(props) {
                     </Typography>
                     at
                     <Typography component="span" color="accent.main" variant="subtitle1">
-                        &nbsp;OUG 141
+                        &nbsp;MEB 238
                     </Typography>
                     !
                 </Typography>
@@ -124,11 +124,11 @@ function Home(props) {
                             style={{ border: "0px" }}
                             allowFullScreen
                             scrolling="no"
-                            src="https://www.washington.edu/classroom/vrview/index.html?image=https://features.classrooms.uw.edu/room-images/panoramas/OUG_141_panorama.jpg&amp;"
+                            src="https://www.washington.edu/classroom/vrview/index.html?image=https://features.classrooms.uw.edu/room-images/panoramas/MEB_238_panorama.jpg&amp;"
                         />
                     </div>
                     <Typography component="h2" variant="caption" color="primary">
-                        Odegaard Undergraduate Library 141, University of Washington
+                        Mechanical Engineering Building 238, University of Washington
                     </Typography>
                 </Paper>
             </div>

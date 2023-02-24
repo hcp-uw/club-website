@@ -33,6 +33,9 @@ let theme = createTheme({
             dark: "#FA58B6",
             contrastText: "#FA58B6",
         },
+        action: {
+            disabledBackground: "#FFFFFF",
+        },
     },
     typography: {
         fontFamily: [

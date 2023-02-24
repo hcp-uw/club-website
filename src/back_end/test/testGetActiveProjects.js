@@ -1,4 +1,4 @@
-import { getActiveProjects } from "../api/end_points.js";
+import { getActiveProjects } from "../api/projects.js";
 import { assert } from "chai";
 
 describe("Testing Get Active Projects.", () => {

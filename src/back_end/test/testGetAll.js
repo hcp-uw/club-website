@@ -1,4 +1,6 @@
-import { getLeads, getAllEvents, getProjects } from "../api/end_points.js";
+import { getLeads } from "../api/leads.js";
+import { getAllEvents } from "../api/events.js";
+import { getProjects } from "../api/projects.js";
 import { assert } from "chai";
 
 describe("Testing Get all Functions.", () => {
