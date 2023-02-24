@@ -94,6 +94,8 @@ function About(props) {
         );
     };
 
+    
+
     // Render club values
     const renderClubValues = () => {
         return(
