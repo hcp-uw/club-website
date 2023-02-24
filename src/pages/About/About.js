@@ -83,19 +83,29 @@ function About(props) {
                     &nbsp;peer-to-peer learning.&nbsp;
                     </Typography>
                 </Typography>
+            </div>
+        );
+    };
+
+    const renderVisionStatement = () => {
+        return(
+            <div id={isMobile ? "about-body-mobile" : "about-body"}>
+                <Typography className="about-title" component="h4" variant="h4" color="primary" textAlign="center"> 
+            Our Vision
+                </Typography>
                 <br/>
                 <Typography id="objective" variant="subtitle1" color="primary" textAlign="center">
-                To provide the next generation of programmers & designers with the tools and experience to 
+                To provide the next generation of programmers & designers 
+                    <Typography/>
+                    with the tools and experience to 
                     <Typography component="span" color="accent.main" variant="subtitle1" textAlign="center">
                     &nbsp;succeed in future tech careers.&nbsp;
                     </Typography>
                 </Typography>
             </div>
+
         );
     };
-
-    
-
     // Render club values
     const renderClubValues = () => {
         return(
@@ -203,6 +213,7 @@ function About(props) {
         <div className="about-container">
             { renderProblemStatement() }
             { renderMissionStatement() }
+            { renderVisionStatement() }
             { renderClubValues() }
             { renderTeam() }
         </div>
