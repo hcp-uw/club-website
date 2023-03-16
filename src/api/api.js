@@ -130,11 +130,19 @@ export const sendEmail = async (name, email, notes) => {
     };
     console.log(name);
 
-    emailjs.send("service_wetv0mh","template_cpwd3s8", templateParams, "N-gkjHJLoKESLpaki")
-        .then((response) => {
-            console.log("SUCCESS!", response.status, response.text);
-        }, (err) => {
-            console.log("FAILED...", err);
-        });    
+    emailjs
+        .send(
+            "service_wetv0mh",
+            "template_cpwd3s8",
+            templateParams,
+            "N-gkjHJLoKESLpaki",
+        )
+        .then(
+            (response) => {
+                console.log("SUCCESS!", response.status, response.text);
+            },
+            (err) => {
+                console.log("FAILED...", err);
+            },
+        );
 };
-

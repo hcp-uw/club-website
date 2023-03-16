@@ -1,4 +1,11 @@
-import { ref, query, get, orderByChild, startAt, equalTo } from "firebase/database";
+import {
+    ref,
+    query,
+    get,
+    orderByChild,
+    startAt,
+    equalTo,
+} from "firebase/database";
 import { database } from "../utils/index.js";
 import { errObj, getData } from "../utils/utils.js";
 
@@ -27,11 +34,11 @@ export async function getShortenedProject(test = "Projects") {
     let values = Array.from(Object.values(data));
     let returnVals = [];
     values.forEach((val) => {
-        returnVals.push(
-            { "Name": val["Name"],
-                "Description": val["Description"],
-                "Image": val["Image"],
-            });
+        returnVals.push({
+            Name: val["Name"],
+            Description: val["Description"],
+            Image: val["Image"],
+        });
     });
     return returnVals;
 }
@@ -46,11 +53,19 @@ export async function getActiveProjects(active = true, test = "Projects") {
     try {
         if (active) {
             // Querys based on the End_Date being empty
-            let q = query(ref(database, test), orderByChild("End_Date"), equalTo(""));
+            let q = query(
+                ref(database, test),
+                orderByChild("End_Date"),
+                equalTo(""),
+            );
             let qRes = await get(q);
             data = qRes.val();
         } else {
-            let q = query(ref(database, test), orderByChild("End_Date"), startAt("!"));
+            let q = query(
+                ref(database, test),
+                orderByChild("End_Date"),
+                startAt("!"),
+            );
             let qRes = await get(q);
             data = qRes.val();
         }
@@ -70,7 +85,7 @@ export async function getProjectByName(name, test = "Projects") {
         console.error("Missing 'name' parameter input");
         return errObj;
     }
-    if (typeof(name) != "string") {
+    if (typeof name !== "string") {
         console.error("'Name' parameter input expected to be a string");
         return errObj;
     }

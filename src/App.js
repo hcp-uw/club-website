@@ -41,14 +41,14 @@ let theme = createTheme({
         fontFamily: [
             "-apple-system",
             "BlinkMacSystemFont",
-            "\"Segoe UI\"",
+            '"Segoe UI"',
             "Roboto",
-            "\"Helvetica Neue\"",
+            '"Helvetica Neue"',
             "Arial",
             "sans-serif",
-            "\"Apple Color Emoji\"",
-            "\"Segoe UI Emoji\"",
-            "\"Segoe UI Symbol\"",
+            '"Apple Color Emoji"',
+            '"Segoe UI Emoji"',
+            '"Segoe UI Symbol"',
         ].join(","),
     },
     components: {
@@ -158,16 +158,15 @@ function App() {
                 <div className="App">
                     <Header pages={pages} />
                     <Routes>
-                        {
-                            pages.map((route) => {
-                                return (
-                                    <Route
-                                        key={route.name}
-                                        path={route.path}
-                                        element={route.component()}
-                                    />);
-                            })
-                        }
+                        {pages.map((route) => {
+                            return (
+                                <Route
+                                    key={route.name}
+                                    path={route.path}
+                                    element={route.component()}
+                                />
+                            );
+                        })}
                         <Route path="*" element={pages[0].component()} />
                     </Routes>
                     <Footer />

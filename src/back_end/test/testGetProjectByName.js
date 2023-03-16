@@ -41,20 +41,23 @@ describe("Testing Get Active Projects.", () => {
         assert.deepEqual(rsp, expected);
     });
 
-    it("Test Undefined Input", async() => {
-    // Something should print to console error here
+    it("Test Undefined Input", async () => {
+        // Something should print to console error here
         let rsp = await getProjectByName(undefined, "Test/Projects");
         assert.deepEqual(rsp, errObj);
     });
 
-    it("Test Bad Input Type", async() => {
-    // Something should print to console error here
+    it("Test Bad Input Type", async () => {
+        // Something should print to console error here
         let rsp = await getProjectByName(false, "Test/Projects");
         assert.deepEqual(rsp, errObj);
     });
 
-    it("Test Project Not Exist", async() => {
-        let rsp = await getProjectByName("somebody_once_told_me_wu_smells", "Test/Projects");
+    it("Test Project Not Exist", async () => {
+        let rsp = await getProjectByName(
+            "somebody_once_told_me_wu_smells",
+            "Test/Projects",
+        );
         assert.deepEqual(rsp, []);
     });
 });

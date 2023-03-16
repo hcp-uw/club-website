@@ -1,11 +1,5 @@
 import { useEffect, useState } from "react";
-import {
-    AppBar,
-    Toolbar,
-    Typography,
-    Button,
-    IconButton,
-} from "@mui/material";
+import { AppBar, Toolbar, Typography, Button, IconButton } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useLocation, useNavigate } from "react-router-dom";
 import Sidebar from "../Sidebar/Sidebar";
@@ -13,9 +7,7 @@ import "./Header.css";
 import Logo from "../../assets/HCPLogoText-Crop.png";
 
 function Header(props) {
-    const {
-        pages,
-    } = props;
+    const { pages } = props;
 
     const [width, setWidth] = useState(window.innerWidth);
     const [showSide, setShowSide] = useState(false);
@@ -35,24 +27,32 @@ function Header(props) {
 
     const location = useLocation();
 
-    let currPage = pages.find(
-        page => location.pathname === page.path,
-    );
+    let currPage = pages.find((page) => location.pathname === page.path);
 
     const renderTabs = () => {
         if (currPage === undefined) {
             currPage = pages[0];
         }
-        return pages.map((obj) =>
-            <Button key={obj.name} color="inherit" className="header-page-button" onClick={() => navigate(obj.path)}>
-                {
-                    obj.name === currPage.name ?
-                        <Typography variant="h5" color="#FFFFFF" fontSize="1.0rem"> { "<" + obj.name + "/>" } </Typography>
-                        :
-                        <Typography variant="h5" color="#FFFFFF"> { obj.name } </Typography>
-                }
-            </Button>,
-        );
+        return pages.map((obj) => (
+            <Button
+                key={obj.name}
+                color="inherit"
+                className="header-page-button"
+                onClick={() => navigate(obj.path)}
+            >
+                {obj.name === currPage.name ? (
+                    <Typography variant="h5" color="#FFFFFF" fontSize="1.0rem">
+                        {" "}
+                        {`<${obj.name}/>`}{" "}
+                    </Typography>
+                ) : (
+                    <Typography variant="h5" color="#FFFFFF">
+                        {" "}
+                        {obj.name}{" "}
+                    </Typography>
+                )}
+            </Button>
+        ));
     };
 
     const showSideBar = () => {
@@ -61,47 +61,47 @@ function Header(props) {
 
     return (
         <div>
-            {
-                isMobile &&
-                    <Sidebar
-                        pages={pages}
-                        show={showSide}
-                        handleShow={showSideBar}
-                    />
-            }
-            <AppBar position="fixed" className="header-appbar" elevation={4} color="secondary">
+            {isMobile && (
+                <Sidebar
+                    pages={pages}
+                    show={showSide}
+                    handleShow={showSideBar}
+                />
+            )}
+            <AppBar
+                position="fixed"
+                className="header-appbar"
+                elevation={4}
+                color="secondary"
+            >
                 <Toolbar className="toolbar">
-                    {
-                        isMobile &&
-                            <IconButton
-                                color="primary"
-                                aria-label="menu"
-                                className="header-menu"
-                                onClick={showSideBar}
-                            >
-                                <MenuIcon sx={{ fontSize: 40 }}/>
-                            </IconButton>
-                    }
+                    {isMobile && (
+                        <IconButton
+                            color="primary"
+                            aria-label="menu"
+                            className="header-menu"
+                            onClick={showSideBar}
+                        >
+                            <MenuIcon sx={{ fontSize: 40 }} />
+                        </IconButton>
+                    )}
+                    {/* rome-ignore lint/a11y/useKeyWithClickEvents: TODO */}
                     <img
                         onClick={() => navigate(pages[0].path)}
                         src={Logo}
                         alt="logo"
-                        className={isMobile ? "header-logo centered" : "header-logo"}
+                        className={
+                            isMobile ? "header-logo centered" : "header-logo"
+                        }
                     />
-                    {
-                        !isMobile &&
-                            <div className="header-page">
-                                { renderTabs() }
-                            </div>
-                    }
-                    {
-                        isMobile &&
-                            <div className="header-icon-place-holder" />
-                    }
+                    {!isMobile && (
+                        <div className="header-page">{renderTabs()}</div>
+                    )}
+                    {isMobile && <div className="header-icon-place-holder" />}
                 </Toolbar>
             </AppBar>
         </div>
     );
-};
+}
 
 export default Header;

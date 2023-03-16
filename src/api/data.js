@@ -7,7 +7,8 @@ export const events = {
             location: "UW CSE2 271",
             sponsor: null,
             attendees: 100,
-            description: "text text and a lot more text. Actually this might be too much random text. Imma go now. Ha im back. Imma go for real now. Got you again rofl. Ok im bored now, signing off. ** Mic drop ** ^-^",
+            description:
+                "text text and a lot more text. Actually this might be too much random text. Imma go now. Ha im back. Imma go for real now. Got you again rofl. Ok im bored now, signing off. ** Mic drop ** ^-^",
             image: "https://picsum.photos/200/300",
         },
         {
@@ -16,7 +17,8 @@ export const events = {
             location: "UW CSE2 271",
             sponsor: "DubHacks",
             attendees: 100,
-            description: "This event is MEMBERS ONLY. Actually though, should we add another column in the table for these types of events? But here is much more text than last time and should overflow some stuff! text text and a lot more text. Actually this might be too much random text. Imma go now. Ha im back. Imma go for real now. Got you again rofl. Ok im bored now, signing off. ** Mic drop ** ^-^",
+            description:
+                "This event is MEMBERS ONLY. Actually though, should we add another column in the table for these types of events? But here is much more text than last time and should overflow some stuff! text text and a lot more text. Actually this might be too much random text. Imma go now. Ha im back. Imma go for real now. Got you again rofl. Ok im bored now, signing off. ** Mic drop ** ^-^",
             image: "Image",
         },
         {
@@ -34,7 +36,8 @@ export const events = {
             location: "UW CSE2 271",
             sponsor: null,
             attendees: 100,
-            description: "text text and a lot more text. Actually this might be too much random text. Imma go now. Ha im back. Imma go for real now. Got you again rofl. Ok im bored now, signing off. ** Mic drop ** ^-^",
+            description:
+                "text text and a lot more text. Actually this might be too much random text. Imma go now. Ha im back. Imma go for real now. Got you again rofl. Ok im bored now, signing off. ** Mic drop ** ^-^",
             image: "https://picsum.photos/200/300",
         },
         {
@@ -43,7 +46,8 @@ export const events = {
             location: "UW CSE2 271",
             sponsor: "DubHacks",
             attendees: 100,
-            description: "This event is MEMBERS ONLY. Actually though, should we add another column in the table for these types of events? But here is much more text than last time and should overflow some stuff! text text and a lot more text. Actually this might be too much random text. Imma go now. Ha im back. Imma go for real now. Got you again rofl. Ok im bored now, signing off. ** Mic drop ** ^-^",
+            description:
+                "This event is MEMBERS ONLY. Actually though, should we add another column in the table for these types of events? But here is much more text than last time and should overflow some stuff! text text and a lot more text. Actually this might be too much random text. Imma go now. Ha im back. Imma go for real now. Got you again rofl. Ok im bored now, signing off. ** Mic drop ** ^-^",
             image: null,
         },
         {
@@ -207,7 +211,7 @@ export const people = {
         },
     ],
 };
- 
+
 export const projects = {
     status: 200,
     data: [
@@ -219,7 +223,8 @@ export const projects = {
             category: "Website",
             pm: "student",
             gitLink: "github.com",
-            description: "a new project that we started a while back ago. The goal of this project is to make a new sample of. We hope to gain stronger skills in frontend through increased web development skills.",
+            description:
+                "a new project that we started a while back ago. The goal of this project is to make a new sample of. We hope to gain stronger skills in frontend through increased web development skills.",
             members: "person 1, person 2",
             image: "https://picsum.photos/200/300",
         },
@@ -231,7 +236,8 @@ export const projects = {
             category: "Website",
             pm: "student",
             gitLink: "github.com",
-            description: "a new project that we started a while back ago. The goal of this project is to make a new sample of. We hope to gain stronger skills in frontend through increased web development skills.",
+            description:
+                "a new project that we started a while back ago. The goal of this project is to make a new sample of. We hope to gain stronger skills in frontend through increased web development skills.",
             members: "person 1, person 2",
             image: "https://picsum.photos/200/300",
         },
@@ -243,7 +249,8 @@ export const projects = {
             category: "Website",
             pm: "student",
             gitLink: "github.com",
-            description: "a new project that we started a while back ago. The goal of this project is to make a new sample of. We hope to gain stronger skills in frontend through increased web development skills.",
+            description:
+                "a new project that we started a while back ago. The goal of this project is to make a new sample of. We hope to gain stronger skills in frontend through increased web development skills.",
             members: "person 1, person 2",
             image: "https://picsum.photos/200/300",
         },
@@ -255,7 +262,8 @@ export const projects = {
             category: "Website",
             pm: "student",
             gitLink: "github.com",
-            description: "a new project that we started a while back ago. The goal of this project is to make a new sample of. We hope to gain stronger skills in frontend through increased web development skills.",
+            description:
+                "a new project that we started a while back ago. The goal of this project is to make a new sample of. We hope to gain stronger skills in frontend through increased web development skills.",
             members: "person 1, person 2",
             image: "https://picsum.photos/200/300",
         },
@@ -267,7 +275,8 @@ export const projects = {
             category: "Website",
             pm: "student",
             gitLink: "github.com",
-            description: "a new project that we started a while back ago. The goal of this project is to make a new sample of. We hope to gain stronger skills in frontend through increased web development skills.",
+            description:
+                "a new project that we started a while back ago. The goal of this project is to make a new sample of. We hope to gain stronger skills in frontend through increased web development skills.",
             members: "person 1, person 2",
             image: "https://picsum.photos/200/300",
         },
@@ -279,7 +288,8 @@ export const projects = {
             category: "Website",
             pm: "student",
             gitLink: "github.com",
-            description: "a new project that we started a while back ago. The goal of this project is to make a new sample of. We hope to gain stronger skills in frontend through increased web development skills.",
+            description:
+                "a new project that we started a while back ago. The goal of this project is to make a new sample of. We hope to gain stronger skills in frontend through increased web development skills.",
             members: "person 1, person 2",
             image: "https://picsum.photos/200/300",
         },

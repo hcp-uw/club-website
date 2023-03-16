@@ -12,5 +12,5 @@ export async function getData(queryString) {
 
 // Error object for the API
 export const errObj = {
-    "error": "Error occured, please check console!",
+    error: "Error occured, please check console!",
 };

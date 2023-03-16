@@ -83,17 +83,39 @@ It correctly bundles React in production mode and optimizes the build for the be
 The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
+### Linter
+
 ```sh
 yarn lint
+or
+npm run lint
 ```
 
-Run eslint.
+To apply fixes:
+
+```shell
+yarn lint --apply
+or
+npm run lint -- --apply
+```
+
+To apply suggested fixes:
+
+```shell
+yarn lint --apply-suggested
+or
+npm run lint -- --apply-suggested
+```
+
+### Formatter
 
 ```sh
 yarn fmt
+or
+npm run fmt
 ```
 
-Run eslint with auto-fix.
+For more information about Linter and Formatter, please visit https://docs.rome.tools/.
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 <br/>

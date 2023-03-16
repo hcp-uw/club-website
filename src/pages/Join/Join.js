@@ -6,16 +6,15 @@ import { sendEmail } from "../../api/api";
 import SendIcon from "@mui/icons-material/Send";
 
 function Join(props) {
-
     // Scroll to top of page
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
 
     const [width, setWidth] = useState(window.innerWidth);
-    const[name, setName] = useState("");
-    const[email, setEmail] = useState("");
-    const[content, setContent] = useState("");
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [content, setContent] = useState("");
     useEffect(() => {
         const handleWindowSizeChange = () => {
             setWidth(window.innerWidth);
@@ -27,9 +26,8 @@ function Join(props) {
     }, []);
 
     const isMobile = width <= 800;
-    
-    const displayEmailForm = () => {
 
+    const displayEmailForm = () => {
         const handleClick = () => {
             setName("");
             setEmail("");
@@ -47,34 +45,74 @@ function Join(props) {
         };
         return (
             <div id="emailform">
-                <br/>
-                <br/>
+                <br />
+                <br />
                 <Typography id="objective" variant="subtitle1" color="primary">
                     ...or send us a message :)
-                    <br/>
-                    <br/>
+                    <br />
+                    <br />
                 </Typography>
                 <form>
                     <label>
-                        <TextField color="primary" required sx={{ input: { color: "white" } }} fullWidth focused id="filled-basic" label="Name" variant="outlined" value={name} onChange={handleNameChange}/>
+                        <TextField
+                            color="primary"
+                            required
+                            sx={{ input: { color: "white" } }}
+                            fullWidth
+                            focused
+                            id="filled-basic"
+                            label="Name"
+                            variant="outlined"
+                            value={name}
+                            onChange={handleNameChange}
+                        />
                         {/* <input type="text" name="name" value={name} onChange={handleNameChange}/> */}
                     </label>
-                    <br/>
-                    <br/>
+                    <br />
+                    <br />
                     <label>
-                        <TextField color="primary" required sx={{ input: { color: "white" } }} fullWidth focused id="filled-basic" label="Email" variant="outlined" value={email} onChange={handleEmailChange}/>
-                    </label>
-                    <br/>
-                    <br/>
-                    <label>
-                        <TextField color="primary" inputProps={{ style: { color: "white" } }} required focused id="filled-basic" label="Message" variant="outlined" multiline
-                            rows={6} fullWidth value={content} onChange={handleContentChange}
+                        <TextField
+                            color="primary"
+                            required
+                            sx={{ input: { color: "white" } }}
+                            fullWidth
+                            focused
+                            id="filled-basic"
+                            label="Email"
+                            variant="outlined"
+                            value={email}
+                            onChange={handleEmailChange}
                         />
-
                     </label>
-                    <br></br>
-                    <br></br>
-                    <Button variant="contained" color="secondary" onClick={handleClick} endIcon={<SendIcon />} disabled={name === "" || email === "" || content === ""}>Submit</Button>
+                    <br />
+                    <br />
+                    <label>
+                        <TextField
+                            color="primary"
+                            inputProps={{ style: { color: "white" } }}
+                            required
+                            focused
+                            id="filled-basic"
+                            label="Message"
+                            variant="outlined"
+                            multiline
+                            rows={6}
+                            fullWidth
+                            value={content}
+                            onChange={handleContentChange}
+                        />
+                    </label>
+                    <br />
+                    <br />
+                    <Button
+                        variant="contained"
+                        color="secondary"
+                        onClick={handleClick}
+                        endIcon={<SendIcon />}
+                        disabled={name === "" || email === "" || content === ""}
+                    >
+                        Submit
+                    </Button>
                 </form>
             </div>
         );
@@ -94,9 +132,17 @@ function Join(props) {
             //     {displayEmailForm()}
             // </div>
             <div style={{ width: "70%" }}>
-                <Button color="secondary" variant="contained" href="https://forms.gle/JpJaoznG4FBvS1paA" target="_blank"> Link to Form </Button>
-                <br/>
-                { displayEmailForm() }
+                <Button
+                    color="secondary"
+                    variant="contained"
+                    href="https://forms.gle/JpJaoznG4FBvS1paA"
+                    target="_blank"
+                >
+                    {" "}
+                    Link to Form{" "}
+                </Button>
+                <br />
+                {displayEmailForm()}
             </div>
         );
     };
@@ -105,7 +151,15 @@ function Join(props) {
     const displayJoinPageMobile = () => {
         return (
             <div>
-                <Button color="secondary" variant="contained" href="https://forms.gle/JpJaoznG4FBvS1paA" target="_blank"> Link to Form </Button>
+                <Button
+                    color="secondary"
+                    variant="contained"
+                    href="https://forms.gle/JpJaoznG4FBvS1paA"
+                    target="_blank"
+                >
+                    {" "}
+                    Link to Form{" "}
+                </Button>
             </div>
         );
     };
@@ -114,7 +168,10 @@ function Join(props) {
     const renderJoinPage = () => {
         return (
             <div id={isMobile ? "join-container-mobile" : "join-container"}>
-                <Typography variant="h4" color="primary" paddingBottom={2}> Join Us </Typography>
+                <Typography variant="h4" color="primary" paddingBottom={2}>
+                    {" "}
+                    Join Us{" "}
+                </Typography>
                 <br />
                 <Typography id="objective" variant="subtitle1" color="primary">
                     Fill out the form below to join HCP!
@@ -130,6 +187,6 @@ function Join(props) {
             {renderJoinPage()}
         </div>
     );
-};
+}
 
 export default Join;

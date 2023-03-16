@@ -1,8 +1,8 @@
 import { getEventsBasedOnTime } from "../api/events.js";
 import { assert } from "chai";
 
-describe( "Testing event endpoints", () => {
-    it("Get upcoming events", async() => {
+describe("Testing event endpoints", () => {
+    it("Get upcoming events", async () => {
         let get = await getEventsBasedOnTime(true, 4, "Test/Events");
         let expected = [
             {
@@ -18,7 +18,7 @@ describe( "Testing event endpoints", () => {
         assert.deepEqual(get, expected);
     });
 
-    it("Get old events", async() => {
+    it("Get old events", async () => {
         let get = await getEventsBasedOnTime(false, 2, "Test/Events");
         let expected = [
             {
@@ -43,7 +43,7 @@ describe( "Testing event endpoints", () => {
         assert.deepEqual(get, expected);
     });
 
-    it("Get old events with limit", async() => {
+    it("Get old events with limit", async () => {
         let get = await getEventsBasedOnTime(false, 1, "Test/Events");
         let expected = [
             {

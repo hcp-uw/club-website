@@ -16,7 +16,11 @@ export async function getActiveLeads(test = "Club_Leads") {
     let qRes;
     let data;
     try {
-        let q = query(ref(database, test), orderByChild("Active"), equalTo(true));
+        let q = query(
+            ref(database, test),
+            orderByChild("Active"),
+            equalTo(true),
+        );
         qRes = await get(q);
         data = qRes.val();
     } catch (err) {

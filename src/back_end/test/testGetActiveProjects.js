@@ -2,7 +2,7 @@ import { getActiveProjects } from "../api/projects.js";
 import { assert } from "chai";
 
 describe("Testing Get Active Projects.", () => {
-    it("Active",async () => {
+    it("Active", async () => {
         let rsp = await getActiveProjects(true, "Test/Projects");
         let expected = [
             {
@@ -21,7 +21,7 @@ describe("Testing Get Active Projects.", () => {
         assert.deepEqual(rsp, expected);
     });
 
-    it("Inactive",async () => {
+    it("Inactive", async () => {
         let rsp = await getActiveProjects(false, "Test/Projects");
         let expected = [
             {

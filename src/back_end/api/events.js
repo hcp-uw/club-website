@@ -1,4 +1,13 @@
-import { ref, query, get, orderByChild, startAt, endAt, limitToFirst, limitToLast } from "firebase/database";
+import {
+    ref,
+    query,
+    get,
+    orderByChild,
+    startAt,
+    endAt,
+    limitToFirst,
+    limitToLast,
+} from "firebase/database";
 import { database } from "../utils/index.js";
 import { errObj, getData } from "../utils/utils.js";
 
@@ -16,7 +25,11 @@ export async function getAllEvents(test = "Events") {
  *    Optional param: Default value 4
  * @return List of events, sorted in descending order
  */
-export async function getEventsBasedOnTime(upcoming, limit = 4, test = "Events") {
+export async function getEventsBasedOnTime(
+    upcoming,
+    limit = 4,
+    test = "Events",
+) {
     let missingParamErrMsg = "missing parameters, please define two booleans";
     let typeErrMsg = "incorrect parameter type, expected boolean, got ";
 
@@ -26,8 +39,8 @@ export async function getEventsBasedOnTime(upcoming, limit = 4, test = "Events")
         return errObj;
     }
     // Type checks
-    if (typeof(upcoming) != "boolean") {
-        console.error(typeErrMsg + typeof(upcoming));
+    if (typeof upcoming !== "boolean") {
+        console.error(typeErrMsg + typeof upcoming);
         return errObj;
     }
 
@@ -41,11 +54,21 @@ export async function getEventsBasedOnTime(upcoming, limit = 4, test = "Events")
     try {
         let q;
         if (upcoming) {
-        // Upcoming events
-            q = query(ref(database, test), orderByChild("Date"), startAt(today), limitToFirst(limit));
+            // Upcoming events
+            q = query(
+                ref(database, test),
+                orderByChild("Date"),
+                startAt(today),
+                limitToFirst(limit),
+            );
         } else {
-        // Old events
-            q = query(ref(database, test), orderByChild("Date"), endAt(today), limitToLast(limit));
+            // Old events
+            q = query(
+                ref(database, test),
+                orderByChild("Date"),
+                endAt(today),
+                limitToLast(limit),
+            );
         }
         qRes = await get(q);
         data = qRes.val();
@@ -60,9 +83,9 @@ export async function getEventsBasedOnTime(upcoming, limit = 4, test = "Events")
     // Sorting and outputting the results
     let values = Array.from(Object.values(data));
     if (values.length > 1) {
-        values.sort(function(a, b) {
+        values.sort(function (a, b) {
             return new Date(a.Date) - new Date(b.Date);
         });
-    };
+    }
     return values;
 }
