@@ -87,7 +87,7 @@ Your app is ready to be deployed!
 
 ```sh
 yarn lint
-or
+# or
 npm run lint
 ```
 
@@ -95,7 +95,7 @@ To apply fixes:
 
 ```shell
 yarn lint --apply
-or
+# or
 npm run lint -- --apply
 ```
 
@@ -103,7 +103,7 @@ To apply suggested fixes:
 
 ```shell
 yarn lint --apply-suggested
-or
+# or
 npm run lint -- --apply-suggested
 ```
 
@@ -111,7 +111,7 @@ npm run lint -- --apply-suggested
 
 ```sh
 yarn fmt
-or
+# or
 npm run fmt
 ```
 
