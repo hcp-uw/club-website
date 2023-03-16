@@ -2,7 +2,6 @@ import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "@next/font/google";
 import styles from "@/styles/Home.module.css";
-import logo from "../assets/output-onlinegiftools.gif";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -127,7 +126,7 @@ export default function Home() {
                         </p>
                     </a>
                 </div>
-                <Image src={logo} alt="13" priority />
+                <Image src="/output-onlinegiftools.gif" width={100} height={100} alt="13" priority />
             </main>
         </>
     );
