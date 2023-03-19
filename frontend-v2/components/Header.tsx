@@ -3,34 +3,38 @@ import {
     Spacer,
     Image,
     LinkBox,
-    Link,
     Button,
+    ButtonGroup,
     LinkOverlay,
+    Center
 } from "@chakra-ui/react";
+
+import {
+    HeaderButton,
+    SpecialHeaderButton
+ } from "./Parts";
 
 export default function Header() {
     return (
-        <Flex>
+        <Flex h="150px">
             <Spacer />
-            <LinkBox>
-                <LinkOverlay href="/">
-                    <Image width="80px" src="/HCPLogoText.png" alt="HCP Logo" />
-                </LinkOverlay>
-            </LinkBox>
+            <Center>
+                <LinkBox>
+                    <LinkOverlay href="/">
+                        <Image width="150px" src="/HCPLogoText-Crop.png" alt="HCP Logo" />
+                    </LinkOverlay>
+                </LinkBox>
+            </Center>
             <Spacer />
-            <Link margin={5} href="/home">
-                Home
-            </Link>
-            <Link margin={5} href="/aboutus">
-                About Us
-            </Link>
-            <Link margin={5} href="/projects">
-                Projects
-            </Link>
-            <Link margin={5} href="/events">
-                Events
-            </Link>
-            <Button>Join Us</Button>
+            <Center>
+                <ButtonGroup variant='ghost' spacing='5'>
+                    <HeaderButton path='/' text='Home'/>
+                    <HeaderButton path='/about' text='About Us'/>
+                    <HeaderButton path='/projects' text='Projects'/>
+                    <HeaderButton path='/events' text='Events'/>
+                    <SpecialHeaderButton path='/join' text='Join Us'/>
+                </ButtonGroup>
+            </Center>
             <Spacer />
         </Flex>
     );

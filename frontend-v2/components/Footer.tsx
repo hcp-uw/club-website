@@ -1,41 +1,49 @@
 import {
     Center,
     Image,
-    LinkBox,
+    Link,
     Text,
     LinkOverlay,
     VStack,
     HStack,
+    Spacer
 } from "@chakra-ui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import {
     faInstagram,
-    faFacebook,
-    faLinkedin,
+    faFacebookSquare,
+    faLinkedin
 } from "@fortawesome/free-brands-svg-icons";
 
 export default function Footer() {
     return (
-        <Center>
+        <Center height='300px'>
             <VStack>
-                <LinkBox>
-                    <LinkOverlay href="/">
+                    <Link href="/">
                         <Image
                             width="200px"
-                            src="/HCPLogoText.png"
+                            src="/HCPLogoText-Crop.png"
                             alt="HCP Logo"
                         />
-                    </LinkOverlay>
-                </LinkBox>
-
-                <HStack>
-                    <FontAwesomeIcon icon={faInstagram} />
-                    <FontAwesomeIcon icon={faLinkedin} />
-                    <FontAwesomeIcon icon={faFacebook} />
-                    <FontAwesomeIcon icon={faEnvelope} />
+                    </Link>
+                <Spacer/><Spacer/>
+                <HStack spacing={4}>
+                    <Link href="https://instagram.com/huskycodingproject?igshid=YmMyMTA2M2Y=">
+                        <FontAwesomeIcon height='40px' color='white' icon={faInstagram} />
+                    </Link>
+                    <Link href="https://www.linkedin.com/company/husky-coding-project/">
+                        <FontAwesomeIcon height='40px' color='white' icon={faLinkedin} />
+                    </Link>
+                    <Link href="https://www.facebook.com/profile.php?id=100087380841446">
+                        <FontAwesomeIcon height='40px' color='white' icon={faFacebookSquare} />
+                    </Link>
+                    <Link href="mailto:hcpuw@uw.edu">
+                        <FontAwesomeIcon height='40px' color='white' icon={faEnvelope} />
+                    </Link>
                 </HStack>
-                <Text>
+                <Spacer/><Spacer/><Spacer/>
+                <Text fontSize='xs' color='white'>
                     Copyright © 2022 Husky Coding Project. All Rights Reserved
                 </Text>
             </VStack>
