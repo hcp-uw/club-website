@@ -24,7 +24,7 @@ export default function Layout({ children }: { children: ReactElement }) {
                 <Box position='fixed' width='100vw' backdropFilter='blur(10px)' backdropBlur='10px'>
                     <Header />
                 </Box>
-                <Box marginTop='100px' width='100vw'>
+                <Box marginTop='150px' width='100vw'>
                     {children}
                 </Box>
                 <Footer />

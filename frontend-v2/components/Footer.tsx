@@ -44,7 +44,7 @@ export default function Footer() {
                 </HStack>
                 <Spacer/><Spacer/><Spacer/>
                 <Text fontSize='xs' color='white'>
-                    Copyright © 2022 Husky Coding Project. All Rights Reserved
+                    Copyright © 2023 Husky Coding Project. All Rights Reserved
                 </Text>
             </VStack>
         </Center>
