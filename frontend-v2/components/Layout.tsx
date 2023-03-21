@@ -21,7 +21,7 @@ export default function Layout({ children }: { children: ReactElement }) {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <Flex flexDirection='column' minH='100vh' bgGradient='linear(to-b, brand.blue, brand.dark_blue)'>
-                <Box position='fixed' width='100vw' backdropFilter='blur(10px)' backdropBlur='10px'>
+                <Box position='fixed' width='100vw' backdropFilter='blur(10px)' backdropBlur='10px' zIndex='100'>
                     <Header />
                 </Box>
                 <Box marginTop='150px' width='100vw'>
