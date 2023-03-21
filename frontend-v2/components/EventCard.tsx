@@ -20,17 +20,17 @@ export default function EventCard(props: {name: string, date: Date, location: st
                     <Image src={props.image} alt={props.name} borderRadius='15px' width='100%' height='150px' objectFit='cover'/>
                 </Skeleton>
                 <VStack paddingTop='10px' direction='column' spacing='2'>
-                    <Skeleton isLoaded={!props.loading}>
+                    <Skeleton isLoaded={!props.loading} width='100%'>
                         <Box justifyContent='flex-start' width='100%'>
                             <Text fontSize='2xl' fontWeight='bold'>{props.name}</Text>
                         </Box>
                     </Skeleton>
-                    <Skeleton isLoaded={!props.loading}>
+                    <Skeleton isLoaded={!props.loading} width='100%'>
                         <Flex justifyContent='flex-start' width='100%'>
                             <Text fontSize='lg'>{props.date.toLocaleDateString()} • {props.date.toLocaleTimeString()}</Text>
                         </Flex>
                     </Skeleton>
-                    <Skeleton isLoaded={!props.loading}>
+                    <Skeleton isLoaded={!props.loading} width='100%'>
                         <Flex justifyContent='flex-start' width='100%'>
                             <Text fontSize='lg'>Location: {props.location}</Text>
                         </Flex>
