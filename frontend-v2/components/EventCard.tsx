@@ -14,7 +14,7 @@ import { SpecialArrowButton } from "./Parts";
 
 export default function EventCard(props: {name: string, date: Date, location: string, image: string, loading: boolean}) {
     return (
-        <Card variant='elevated' size='sm' key={props.name} width='300px' height='375px' bg='white' borderRadius='15px' marginX='25px' background='white'>
+        <Card variant='elevated' size='sm' key={props.name} width='300px' height='375px' borderRadius='15px' marginX='25px' background='white'>
             <CardBody alignContent='flex-start'>
                 <Skeleton isLoaded={!props.loading}>
                     <Image src={props.image} alt={props.name} borderRadius='15px' width='100%' height='150px' objectFit='cover'/>

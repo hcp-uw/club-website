@@ -9,7 +9,13 @@ import {
     IconButton,
 } from "@chakra-ui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
+import {
+    faArrowDown,
+    faEarListen,
+    faPersonFallingBurst,
+    faComments,
+    faUsers
+} from "@fortawesome/free-solid-svg-icons";
 import { getFeaturedEvents } from "./api/api";
 
 import styles from "@/styles/Home.module.css";
@@ -20,9 +26,9 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
     // Scroll to top of page
-    useEffect(() => {
-        window.scrollTo(0, 0);
-    }, []);
+    // useEffect(() => {
+    //     window.scrollTo(0, 0);
+    // }, []);
 
     const [events, setEvents] = useState([
         {
@@ -30,28 +36,28 @@ export default function Home() {
             name: "Default Event",
             location: "Default Location",
             description: "Default Description",
-            image: null
+            image: ""
         },
         {
             date: new Date('3/21/2023'),
             name: "Default Event",
             location: "Default Location",
             description: "Default Description",
-            image: null
+            image: ""
         },
         {
             date: new Date('3/21/2023'),
             name: "Default Event",
             location: "Default Location",
             description: "Default Description",
-            image: null
+            image: ""
         }
     ]);
     const [loading, setLoading] = useState(true);
 
     // Uses the getFeaturedEvents API
     useEffect(() => {
-        const getData = async (data : any) => {
+        const getData = async (data : Array<{date: Date, name: string, location: string, description: string, image: string}>) => {
             setEvents(data);
             setLoading(false);
         };
@@ -114,7 +120,7 @@ export default function Home() {
                             date={event.date}
                             location={event.location}
                             loading={loading}
-                            image={event.image !== null ? event.image : "/HCPLogo.jpg"}
+                            image={event.image !== "" ? event.image : "/HCPLogo.jpg"}
                         />
                     )
                 }
@@ -139,18 +145,80 @@ export default function Home() {
         );
     }
 
+    const renderMeetingInfo = () => {
+        return (
+            <Flex
+                id='meeting-info'
+                height='700px'
+                direction='column'
+                width='80vw'
+                bgGradient='linear(to-t, brand.mid_purple, brand.hot_pink)'
+                borderRadius='30px'
+                alignItems='center'
+            >
+                <Text as='h2' color='white' fontSize='6xl' fontWeight='semibold' marginTop='8'>
+                    General Meetings
+                </Text>
+                <Text  width='70%' marginTop='30px' marginBottom='50px' fontSize='2xl' color='brand.light_brown' textAlign="center">
+                    Join us every Thursday from 6:00pm to 7:30pm PST at MEB (Mechanical Engineering Building) 248!
+                </Text>
+                <Box borderRadius='15px' overflow='hidden'>
+                    <iframe
+                        title="OUG141"
+                        id="home-vr"
+                        allowFullScreen
+                        width='740px'
+                        height='370px'
+                        src="https://www.washington.edu/classroom/vrview/index.html?image=https://features.classrooms.uw.edu/room-images/panoramas/MEB_238_panorama.jpg&"
+                    />
+                </Box>
+                <Text width='70%' marginTop='5px' fontSize='md' color='brand.light_brown' textAlign="center">
+                    Mechanical Engineering Building Room 248 @ University of Washington
+                </Text>
+            </Flex>
+        )
+    }
+
+    const renderValues = () => {
+        var icons = [
+            {name: "Listen Loudly", icon: faEarListen},
+            {name: "Freedom to Fail", icon: faPersonFallingBurst},
+            {name: "Turn Talk into Action", icon: faComments},
+            {name: "Respect for all Folks", icon: faUsers}
+        ];
+        return (
+            <Flex
+                id='club-values'
+                height='600px'
+                direction='column'
+                width='80vw'
+                alignItems='center'
+            >
+                <Text as='h2' color='white' fontSize='6xl' fontWeight='semibold' marginTop='8'>
+                    Club Values
+                </Text>
+                <Flex direction='row' width='100%' justifyContent='center'>
+                    {
+                        icons.map((icon) =>
+                        <Flex direction='column' width='200px' marginX='40px' alignItems='center' paddingTop='80px'>
+                            <FontAwesomeIcon width='125px' height='125px' color='white' icon={icon.icon}  />
+                            <Text marginTop='25px'fontSize='2xl' color='white' textAlign="center">
+                                {icon.name}
+                            </Text>
+                        </Flex>
+                        )
+                    }
+                </Flex>
+            </Flex>
+        )
+    }
+
     return (
-        <VStack>
+        <VStack spacing='150px'>
             { renderTitle() }
             { renderFeaturedEvents() }
-            <Center>
-                <Image
-                    src="/output-onlinegiftools.gif"
-                    width={300}
-                    height={300}
-                    alt="13"
-                />
-            </Center>
+            { renderMeetingInfo() }
+            { renderValues() }
         </VStack>
     );
 }

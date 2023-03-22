@@ -14,6 +14,7 @@ const colors = {
         pink: '#FD72F8',
         blue: '#152B85',
         dark_blue: '#0E073B',
+        light_brown: '#E2C6C6',
     },
 };
 const theme = extendTheme({ colors });

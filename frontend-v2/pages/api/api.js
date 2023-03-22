@@ -30,7 +30,7 @@ const parseEvents = (data) => {
             name: obj.Name,
             location: obj.Location,
             description: obj.Description,
-            image: isValidHttpUrl(obj.Image) ? obj.Image : null,
+            image: isValidHttpUrl(obj.Image) ? obj.Image : "",
         };
         return res;
     });
