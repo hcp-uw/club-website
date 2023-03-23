@@ -26,9 +26,9 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
     // Scroll to top of page
-    // useEffect(() => {
-    //     window.scrollTo(0, 0);
-    // }, []);
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
     const [events, setEvents] = useState([
         {
@@ -66,7 +66,7 @@ export default function Home() {
 
     const renderTitle = () => {
         return (
-            <Flex height='calc(100vh - 150px)' direction='column'>
+            <Flex height='calc(100vh - 150px)' maxW='1500px' direction='column'>
                 <Center height='80vh'>
                     <Box width='35vw'>
                         <Text display='inline' fontSize="3xl" color="white">
@@ -130,7 +130,7 @@ export default function Home() {
 
     const renderFeaturedEvents = () => {
         return (
-            <Flex id='featured-events' height='550px' direction='column' width='80vw' scrollMarginTop='150px'>
+            <Flex id='featured-events' height='550px' direction='column' width='80vw' maxW='1500px' scrollMarginTop='100px'>
                 <Box bgGradient='linear(to-b, brand.mid_purple, brand.hot_pink)' borderRadius='30px' height='450px' width='100%'>
                     <Center>
                         <Text as='h2' color='white' fontSize='6xl' fontWeight='semibold' marginTop='8'>
@@ -152,6 +152,7 @@ export default function Home() {
                 height='700px'
                 direction='column'
                 width='80vw'
+                maxW='1500px'
                 bgGradient='linear(to-t, brand.mid_purple, brand.hot_pink)'
                 borderRadius='30px'
                 alignItems='center'
