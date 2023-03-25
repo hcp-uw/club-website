@@ -58,7 +58,7 @@ export default function Home() {
     // Uses the getFeaturedEvents API
     useEffect(() => {
         const getData = async (data : Array<{date: Date, name: string, location: string, description: string, image: string}>) => {
-            setEvents(data);
+            //setEvents(data);
             setLoading(false);
         };
         getFeaturedEvents(getData);

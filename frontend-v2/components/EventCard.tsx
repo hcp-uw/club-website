@@ -26,14 +26,14 @@ export default function EventCard(props: {name: string, date: Date, location: st
                         </Box>
                     </Skeleton>
                     <Skeleton isLoaded={!props.loading} width='100%'>
-                        <Flex justifyContent='flex-start' width='100%'>
+                        <Box justifyContent='flex-start' width='100%'>
                             <Text fontSize='lg'>{props.date.toLocaleDateString()} • {props.date.toLocaleTimeString()}</Text>
-                        </Flex>
+                        </Box>
                     </Skeleton>
                     <Skeleton isLoaded={!props.loading} width='100%'>
-                        <Flex justifyContent='flex-start' width='100%'>
+                        <Box justifyContent='flex-start' width='100%'>
                             <Text fontSize='lg'>Location: {props.location}</Text>
-                        </Flex>
+                        </Box>
                     </Skeleton>
                 </VStack>
             </CardBody>

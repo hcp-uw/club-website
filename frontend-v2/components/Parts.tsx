@@ -10,7 +10,7 @@ import NextLink from 'next/link';
 export const HeaderButton = (props: {path: string, text: string}) => {
     return (
         <NextLink href={props.path}>
-            <Button rounded="xl" height='50px' border='3px solid transparent' _hover={{border: '3px solid white', cursor: 'pointer'}}>
+            <Button variant='ghost' rounded="xl" height='50px' border='3px solid transparent' _hover={{border: '3px solid white', cursor: 'pointer'}}>
                 <Text color='white' fontSize='xl' fontWeight='normal'>
                     {props.text}
                 </Text>
@@ -33,6 +33,26 @@ export const SpecialHeaderButton = (props: {path: string, text: string}) => {
                 _hover={{border: '3px solid white', cursor: 'pointer', marginLeft: '0px', marginRight: '0px'}}
                 >
                 <Text color='white' fontSize='xl' fontWeight='normal' padding={5}>
+                    {props.text}
+                </Text>
+            </Button>
+        </NextLink>
+    );
+}
+
+export const HeaderButton1 = (props: {path: string, text: string, handleShow: () => void}) => {
+    return (
+        <NextLink href={props.path}>
+            <Button
+                variant='ghost'
+                width='100%'
+                rounded="xl"
+                height='50px'
+                border='3px solid transparent'
+                _hover={{border: '3px solid white', cursor: 'pointer'}}
+                onClick={props.handleShow}
+            >
+                <Text color='white' fontSize='xl' fontWeight='normal'>
                     {props.text}
                 </Text>
             </Button>

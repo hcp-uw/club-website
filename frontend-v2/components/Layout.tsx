@@ -1,12 +1,15 @@
 import Head from "next/head";
-import { Box, Flex} from "@chakra-ui/react";
+import { Box, Flex, useMediaQuery} from "@chakra-ui/react";
 import { ReactElement, useEffect, useState } from "react";
 
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import Sidebar from "./Sidebar";
 
 export default function Layout({ children }: { children: ReactElement }) {
     const [scrollDirection, setScrollDirection] = useState("up");
+    const [isLargerThan1200] = useMediaQuery('(min-width: 1200px)');
+    const [showSide, setShowSide] = useState(false);
 
     useEffect(() => {
         let lastScrollY = window.pageYOffset;
@@ -24,6 +27,10 @@ export default function Layout({ children }: { children: ReactElement }) {
             window.removeEventListener("scroll", updateScrollDirection); // clean up
         }
     }, [scrollDirection]);
+
+    const showSidebar = () => {
+        setShowSide(!showSide);
+    };
 
     return (
         <>
@@ -48,9 +55,16 @@ export default function Layout({ children }: { children: ReactElement }) {
                     transitionDuration='500ms'
                     width='100vw'
                     backdropFilter='blur(10px)'
-                    zIndex='100'>
-                    <Header />
+                    zIndex='98'>
+                    <Header showSidebar={showSidebar}/>
                 </Box>
+                {
+                    !isLargerThan1200 &&
+                    <Sidebar
+                        show={showSide}
+                        handleShow={showSidebar}
+                    />
+                }
                 <Box marginTop='150px' width='100vw'>
                     {children}
                 </Box>
