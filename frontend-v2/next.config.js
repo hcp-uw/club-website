@@ -5,6 +5,7 @@ const isProd = process.env.NODE_ENV === "production";
 
 const nextConfig = {
     // for GitHub Pages
+    basePath: isProd ? '/club-website' : '',
     assetPrefix: isProd ? '/club-website/' : '',
     images: {
         unoptimized: true,
