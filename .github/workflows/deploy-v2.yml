@@ -1,4 +1,4 @@
-name: Deploy Next.js site to Pages
+name: Deploy to Pages
 
 on:
   # Runs on pushes targeting the default branch
@@ -52,7 +52,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: ./out
+          path: ./frontend-v2/out
 
   # Deployment job
   deploy:
