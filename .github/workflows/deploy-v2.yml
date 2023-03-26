@@ -11,9 +11,7 @@ on:
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 
 # Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
 # However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
@@ -22,38 +20,30 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  # Build job
-  build:
-    defaults:
-      run:
-        working-directory: frontend-v2
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
           node-version: "16"
+
       - name: Install dependencies
         run: yarn install
-      - name: Build with Next.js
-        run: yarn next build
-      - name: Static HTML export with Next.js
-        run: yarn next export
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
-        with:
-          path: ./frontend-v2/out
+        working-directory: frontend-v2
 
-  # Deployment job
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v1
+      - name: Build with Next.js
+        run: yarn build
+        working-directory: frontend-v2
+
+      - name: Static HTML export with Next.js
+        run: yarn export
+        working-directory: frontend-v2
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          publish_dir: ./frontend-v2/out
