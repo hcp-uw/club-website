@@ -16,7 +16,8 @@ import {
     faComments,
     faUsers
 } from "@fortawesome/free-solid-svg-icons";
-import { getFeaturedEvents } from "./api/api";
+// @ts-ignore
+import { getFeaturedEvents } from "@/utils/api";
 
 import styles from "@/styles/Home.module.css";
 import { useEffect, useState } from "react";
