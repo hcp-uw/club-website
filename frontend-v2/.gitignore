@@ -1,13 +1,10 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-/node_modules
+node_modules
+package-lock.json
 /.pnp
 .pnp.js
-back_end/node_modules
-back_end/package-lock.json
-/pages/back_end/node_modules
-/pages/back_end/package-lock.json
 
 # testing
 /coverage
