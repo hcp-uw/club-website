@@ -4,6 +4,8 @@
 /node_modules
 /.pnp
 .pnp.js
+back_end/node_modules
+back_end/package-lock.json
 /pages/back_end/node_modules
 /pages/back_end/package-lock.json
 
