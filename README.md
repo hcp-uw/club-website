@@ -12,7 +12,7 @@
 <p align="center">
 </br>
 <p align="center">
-  <a href="https://github.com/Husky-Coding-Project/club-website"><img alt="Latest Release" src="https://img.shields.io/badge/latest-v1.0.0-brightgreen"></a>&nbsp
+  <a href="https://github.com/hcp-uw/club-website"><img alt="Latest Release" src="https://img.shields.io/badge/latest-v1.0.0-brightgreen"></a>&nbsp
   &nbsp<a href="https://husky-coding-project.web.app/home"><img alt="Successful Production" src="https://img.shields.io/badge/production-success-brightgreen"></a>  
 </p>
 <p align="center">
@@ -27,7 +27,7 @@ npm install --global yarn
 ```
 2) Clone the website locally into `${HOME}`
 ```sh
-git clone https://github.com/Husky-Coding-Project/club-website.git
+git clone https://github.com/hcp-uw/club-website.git
 ```
 3) Go to `${HOME}/club-website/.`
 ```sh
@@ -125,8 +125,8 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 ## This project exists thanks to all our contributors ❤️
 <br/>
 
-<a href="https://github.com/Husky-Coding-Project/club-website/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=Husky-Coding-Project/club-website" />
+<a href="https://github.com/hcp-uw/club-website/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=hcp-uw/club-website" />
 </a>
 <br/>
 <br/>

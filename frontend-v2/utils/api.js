@@ -1,7 +1,7 @@
 // import axios from 'axios';
-import * as leads from "../back_end/api/leads.js";
-import * as events from "../back_end/api/events.js";
-import * as projects from "../back_end/api/projects.js";
+import * as leads from "@/back_end/api/leads.js";
+import * as events from "@/back_end/api/events.js";
+import * as projects from "@/back_end/api/projects.js";
 import emailjs from "@emailjs/browser";
 
 // For dummy endpoints
