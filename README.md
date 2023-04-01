@@ -131,6 +131,20 @@ $ git tag v2.0.0
 $ git push origin v2.0.0
 ```
 
+### If you fail to deploy the site
+
+Run the following commands after you fix the cause of failure:
+
+```console
+# delete tag
+$ git tag -d v2.0.0
+$ git push origin :v2.0.0
+
+# create a new tag
+$ git tag v2.0.0
+$ git push origin v2.0.0
+```
+
 ## This project exists thanks to all our contributors ❤️
 <br/>
 
