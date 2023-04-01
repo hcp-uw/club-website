@@ -122,6 +122,15 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 <br/>
 <br/>
 
+## How to publish site
+
+https://github.com/hcp-uw/club-website/blob/main/.github/workflows/publish.yml
+
+```console
+$ git tag v2.0.0
+$ git push origin v2.0.0
+```
+
 ## This project exists thanks to all our contributors ❤️
 <br/>
 
