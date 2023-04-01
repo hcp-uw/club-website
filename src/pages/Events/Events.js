@@ -51,7 +51,7 @@ function Events(props) {
                 >
                     <img
                         src={data.image !== null ? data.image : Logo2}
-                        alt={`${data.name} image`}
+                        alt={`${data.name}`}
                     />
                 </div>
                 <div
