@@ -12,14 +12,14 @@ import { getDatabase } from "firebase/database";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-    apiKey: "AIzaSyDg_d3B6Yplw_M2qMoZQ6Jtymd_dW5k79Q",
-    authDomain: "husky-coding-project.firebaseapp.com",
-    databaseURL: "https://husky-coding-project-default-rtdb.firebaseio.com",
-    projectId: "husky-coding-project",
-    storageBucket: "husky-coding-project.appspot.com",
-    messagingSenderId: "123708771040",
-    appId: "1:123708771040:web:2e76f3762cef2eba669e85",
-    measurementId: "G-NDX314ZCVW",
+    apiKey: "AIzaSyDFvOVD36DfTacwfUEyrxuyVJ9_tf9bex0",
+    authDomain: "hcp-uw.firebaseapp.com",
+    databaseURL: "https://hcp-uw-default-rtdb.firebaseio.com",
+    projectId: "hcp-uw",
+    storageBucket: "hcp-uw.appspot.com",
+    messagingSenderId: "1012987895192",
+    appId: "1:1012987895192:web:6284c3d1c6ac5b2cba1fed",
+    measurementId: "G-CQH2DNFB1T"
 };
 
 // Initialize Firebase

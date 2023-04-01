@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://firebasestorage.googleapis.com/v0/b/husky-coding-project.appspot.com/o/Logos%2Fclubwebsite.jpg?alt=media&token=0ce34ec7-03da-49d2-827c-0b1a112ad21a" width="200">
+  <img src="https://firebasestorage.googleapis.com/v0/b/hcp-uw.appspot.com/o/Logos%2Fclubwebsite.jpg?alt=media&token=c99bd945-8ba0-440f-bbd1-d02ba98b82a4" width="200">
   <br/>
   <br/>
 </div>
@@ -7,13 +7,13 @@
   Husky Coding Project Official Website
 </h1>
 <p align="center">
-  The first iteration of <a href="https://husky-coding-project.web.app/home" target="_blank">the Husky Coding Project Official Website</a> built with <a href="https://reactjs.org/" target="_blank">React </a>leveraging<a href="https://mui.com/" target="_blank"> Material UI as our components library.</a> Hosted with <a href="https://firebase.google.com/" target="_blank">Firebase</a>.
+  The first iteration of <a href="https://hcp-uw.web.app/home" target="_blank">the Husky Coding Project Official Website</a> built with <a href="https://reactjs.org/" target="_blank">React </a>leveraging<a href="https://mui.com/" target="_blank"> Material UI as our components library.</a> Hosted with <a href="https://firebase.google.com/" target="_blank">Firebase</a>.
 </p>
 <p align="center">
 </br>
 <p align="center">
   <a href="https://github.com/hcp-uw/club-website"><img alt="Latest Release" src="https://img.shields.io/badge/latest-v1.0.0-brightgreen"></a>&nbsp
-  &nbsp<a href="https://husky-coding-project.web.app/home"><img alt="Successful Production" src="https://img.shields.io/badge/production-success-brightgreen"></a>  
+  &nbsp<a href="https://hcp-uw.web.app/home"><img alt="Successful Production" src="https://img.shields.io/badge/production-success-brightgreen"></a>  
 </p>
 <p align="center">
 </p>
