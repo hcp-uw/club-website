@@ -1,25 +1,17 @@
 <div align="center">
-  <img src="https://firebasestorage.googleapis.com/v0/b/hcp-uw.appspot.com/o/Logos%2Fclubwebsite.jpg?alt=media&token=c99bd945-8ba0-440f-bbd1-d02ba98b82a4" width="200">
-  <br/>
-  <br/>
+
+<img src="https://firebasestorage.googleapis.com/v0/b/hcp-uw.appspot.com/o/Logos%2Fclubwebsite.jpg?alt=media&token=c99bd945-8ba0-440f-bbd1-d02ba98b82a4" width="200">
+
+# Husky Coding Project Official Website
+
+The first iteration of [the Husky Coding Project Official Website](https://hcp-uw.web.app/home) built with [React](https://reactjs.org/) leveraging [Material UI as our components library](https://mui.com/). Hosted with [Firebase](https://firebase.google.com/).
+
+<a href="https://github.com/hcp-uw/club-website"><img alt="Latest Release" src="https://img.shields.io/badge/latest-v1.0.0-brightgreen"></a>
+<a href="https://hcp-uw.web.app/home"><img alt="Successful Production" src="https://img.shields.io/badge/production-success-brightgreen"></a>
+
 </div>
-<h1 align="center">
-  Husky Coding Project Official Website
-</h1>
-<p align="center">
-  The first iteration of <a href="https://hcp-uw.web.app/home" target="_blank">the Husky Coding Project Official Website</a> built with <a href="https://reactjs.org/" target="_blank">React </a>leveraging<a href="https://mui.com/" target="_blank"> Material UI as our components library.</a> Hosted with <a href="https://firebase.google.com/" target="_blank">Firebase</a>.
-</p>
-<p align="center">
-</br>
-<p align="center">
-  <a href="https://github.com/hcp-uw/club-website"><img alt="Latest Release" src="https://img.shields.io/badge/latest-v1.0.0-brightgreen"></a>&nbsp
-  &nbsp<a href="https://hcp-uw.web.app/home"><img alt="Successful Production" src="https://img.shields.io/badge/production-success-brightgreen"></a>  
-</p>
-<p align="center">
-</p>
 
 ## 🛠 Installation & Set Up 
-<br/>
 
 1) Install Yarn
 ```sh
@@ -49,12 +41,8 @@ cd club-website/src/back-end/
 ```sh
 npm install
 ```
-<br/>
-<br/>
 
 ## Running the App Locally 
-
-<br/>
 
 ```sh
 yarn start
@@ -118,9 +106,6 @@ npm run fmt
 For more information about Linter and Formatter, please visit https://docs.rome.tools/.
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-<br/>
-<br/>
-<br/>
 
 ## How to publish site
 
@@ -146,12 +131,9 @@ $ git push origin v2.0.0
 ```
 
 ## This project exists thanks to all our contributors ❤️
-<br/>
 
 <a href="https://github.com/hcp-uw/club-website/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=hcp-uw/club-website" />
 </a>
-<br/>
-<br/>
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
