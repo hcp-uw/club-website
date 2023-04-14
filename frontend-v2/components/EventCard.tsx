@@ -5,7 +5,6 @@ import {
     Card,
     CardBody,
     CardFooter,
-    Flex,
     Box,
     Skeleton
 } from "@chakra-ui/react";
