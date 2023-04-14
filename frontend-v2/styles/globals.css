@@ -105,3 +105,13 @@ a {
     color-scheme: dark;
   }
 }
+
+@font-face {
+  font-family: 'pressStart';
+  src: url(../public/fonts/PressStart2P-Regular.ttf) format("truetype")
+}
+
+@font-face {
+  font-family: 'Segoe';
+  src: url(../public/fonts/Segoe-UI-Variable-Static-Text-Bold.ttf) format("truetype")
+}

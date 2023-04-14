@@ -84,7 +84,7 @@ export default function Home() {
                         </Center>
                         <Box height='30px'/>
                         <Center>
-                            <Text as="kbd" fontSize="4xl" color="white">
+                            <Text fontFamily={'pressStart'} fontSize="2xl" color="white">
                                 Let's Git Good!
                             </Text>
                         </Center>
@@ -131,7 +131,7 @@ export default function Home() {
             <Flex id='featured-events' height='550px' direction='column' width='80vw' maxW='1500px' scrollMarginTop='100px'>
                 <Box bgGradient='linear(to-b, brand.mid_purple, brand.hot_pink)' borderRadius='30px' height='450px' width='100%'>
                     <Center>
-                        <Text as='h2' color='white' fontSize='6xl' fontWeight='semibold' marginTop='8'>
+                        <Text fontFamily={'Segoe'} color='white' fontSize='6xl' fontWeight='semibold' marginTop='8'>
                             Featured Events
                         </Text>
                     </Center>
@@ -155,7 +155,7 @@ export default function Home() {
                 borderRadius='30px'
                 alignItems='center'
             >
-                <Text as='h2' color='white' fontSize='6xl' fontWeight='semibold' marginTop='8'>
+                <Text fontFamily={'Segoe'} as='h2' color='white' fontSize='6xl' fontWeight='semibold' marginTop='8'>
                     General Meetings
                 </Text>
                 <Text  width='70%' marginTop='30px' marginBottom='50px' fontSize='2xl' color='brand.light_brown' textAlign="center">
@@ -193,7 +193,7 @@ export default function Home() {
                 width='80vw'
                 alignItems='center'
             >
-                <Text as='h2' color='white' fontSize='6xl' fontWeight='semibold' marginTop='8'>
+                <Text fontFamily={'Segoe'} color='white' fontSize='6xl' fontWeight='semibold' marginTop='8'>
                     Club Values
                 </Text>
                 <Flex direction='row' width='100%' justifyContent='center'>
