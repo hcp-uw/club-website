@@ -10,11 +10,7 @@ import {
 } from "@chakra-ui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-    faArrowDown,
-    faEarListen,
-    faPersonFallingBurst,
-    faComments,
-    faUsers
+    faArrowDown
 } from "@fortawesome/free-solid-svg-icons";
 // @ts-ignore
 import { getFeaturedEvents } from "@/utils/api";
@@ -41,14 +37,14 @@ export default function Home() {
         },
         {
             date: new Date('3/21/2023'),
-            name: "Default Event",
+            name: "Default Event1",
             location: "Default Location",
             description: "Default Description",
             image: ""
         },
         {
             date: new Date('3/21/2023'),
-            name: "Default Event",
+            name: "Default Event2",
             location: "Default Location",
             description: "Default Description",
             image: ""
@@ -88,7 +84,7 @@ export default function Home() {
                         </Center>
                         <Box height='30px'/>
                         <Center>
-                            <Text as="kbd" fontSize="4xl" color="white">
+                            <Text fontFamily={'pressStart'} fontSize="2xl" color="white">
                                 Let's Git Good!
                             </Text>
                         </Center>
@@ -117,6 +113,7 @@ export default function Home() {
                 {
                    events.map((event) =>
                         <EventCard
+                            key={event.name}
                             name={event.name}
                             date={event.date}
                             location={event.location}
@@ -134,7 +131,7 @@ export default function Home() {
             <Flex id='featured-events' height='550px' direction='column' width='80vw' maxW='1500px' scrollMarginTop='100px'>
                 <Box bgGradient='linear(to-b, brand.mid_purple, brand.hot_pink)' borderRadius='30px' height='450px' width='100%'>
                     <Center>
-                        <Text as='h2' color='white' fontSize='6xl' fontWeight='semibold' marginTop='8'>
+                        <Text fontFamily={'Segoe'} color='white' fontSize='6xl' fontWeight='semibold' marginTop='8'>
                             Featured Events
                         </Text>
                     </Center>
@@ -158,7 +155,7 @@ export default function Home() {
                 borderRadius='30px'
                 alignItems='center'
             >
-                <Text as='h2' color='white' fontSize='6xl' fontWeight='semibold' marginTop='8'>
+                <Text fontFamily={'Segoe'} as='h2' color='white' fontSize='6xl' fontWeight='semibold' marginTop='8'>
                     General Meetings
                 </Text>
                 <Text  width='70%' marginTop='30px' marginBottom='50px' fontSize='2xl' color='brand.light_brown' textAlign="center">
@@ -183,10 +180,10 @@ export default function Home() {
 
     const renderValues = () => {
         var icons = [
-            {name: "Listen Loudly", icon: faEarListen},
-            {name: "Freedom to Fail", icon: faPersonFallingBurst},
-            {name: "Turn Talk into Action", icon: faComments},
-            {name: "Respect for all Folks", icon: faUsers}
+            {name: "Listen Loudly", icon: "/listen.png"},
+            {name: "Freedom to Fail", icon: "/ok_fail.png"},
+            {name: "Turn Talk into Action", icon: "/action.png"},
+            {name: "Respect for all Folks", icon: "/respect.png"}
         ];
         return (
             <Flex
@@ -196,14 +193,14 @@ export default function Home() {
                 width='80vw'
                 alignItems='center'
             >
-                <Text as='h2' color='white' fontSize='6xl' fontWeight='semibold' marginTop='8'>
+                <Text fontFamily={'Segoe'} color='white' fontSize='6xl' fontWeight='semibold' marginTop='8'>
                     Club Values
                 </Text>
                 <Flex direction='row' width='100%' justifyContent='center'>
                     {
                         icons.map((icon) =>
-                        <Flex direction='column' width='200px' marginX='40px' alignItems='center' paddingTop='80px'>
-                            <FontAwesomeIcon width='125px' height='125px' color='white' icon={icon.icon}  />
+                        <Flex direction='column' width='200px' marginX='40px' alignItems='center' paddingTop='80px' key={icon.name}>
+                            <Image width='125px' height='125px' objectFit='contain' src={icon.icon} alt={icon.name}/>
                             <Text marginTop='25px'fontSize='2xl' color='white' textAlign="center">
                                 {icon.name}
                             </Text>
