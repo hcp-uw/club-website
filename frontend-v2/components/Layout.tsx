@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { Box, Flex, useMediaQuery} from "@chakra-ui/react";
+import { Box, Flex, useMediaQuery } from "@chakra-ui/react";
 import { ReactElement, useEffect, useState } from "react";
 
 import Header from "../components/Header";
@@ -8,7 +8,7 @@ import Sidebar from "./Sidebar";
 
 export default function Layout({ children }: { children: ReactElement }) {
     const [scrollDirection, setScrollDirection] = useState("up");
-    const [isLargerThan1200] = useMediaQuery('(min-width: 1200px)');
+    const [isLargerThan1200] = useMediaQuery("(min-width: 1200px)");
     const [showSide, setShowSide] = useState(false);
 
     useEffect(() => {
@@ -17,7 +17,10 @@ export default function Layout({ children }: { children: ReactElement }) {
         const updateScrollDirection = () => {
             const scrollY = window.pageYOffset;
             const direction = scrollY > lastScrollY ? "down" : "up";
-            if (direction !== scrollDirection && (scrollY - lastScrollY > 10 || scrollY - lastScrollY < -10)) {
+            if (
+                direction !== scrollDirection &&
+                (scrollY - lastScrollY > 10 || scrollY - lastScrollY < -10)
+            ) {
                 setScrollDirection(direction);
             }
             lastScrollY = scrollY > 0 ? scrollY : 0;
@@ -25,7 +28,7 @@ export default function Layout({ children }: { children: ReactElement }) {
         window.addEventListener("scroll", updateScrollDirection); // add event listener
         return () => {
             window.removeEventListener("scroll", updateScrollDirection); // clean up
-        }
+        };
     }, [scrollDirection]);
 
     const showSidebar = () => {
@@ -46,7 +49,11 @@ export default function Layout({ children }: { children: ReactElement }) {
                 />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <Flex flexDirection='column' minH='100vh' bgGradient='linear(to-b, brand.blue, brand.dark_blue)'>
+            <Flex
+                flexDirection='column'
+                minH='100vh'
+                bgGradient='linear(to-b, brand.blue, brand.dark_blue)'
+            >
                 <Box
                     position='fixed'
                     top={scrollDirection === "up" ? "0px" : "-150px"}
@@ -55,16 +62,13 @@ export default function Layout({ children }: { children: ReactElement }) {
                     transitionDuration='500ms'
                     width='100vw'
                     backdropFilter='blur(10px)'
-                    zIndex='98'>
-                    <Header showSidebar={showSidebar}/>
+                    zIndex='98'
+                >
+                    <Header showSidebar={showSidebar} />
                 </Box>
-                {
-                    !isLargerThan1200 &&
-                    <Sidebar
-                        show={showSide}
-                        handleShow={showSidebar}
-                    />
-                }
+                {!isLargerThan1200 && (
+                    <Sidebar show={showSide} handleShow={showSidebar} />
+                )}
                 <Box marginTop='150px' width='100vw'>
                     {children}
                 </Box>

@@ -1,25 +1,28 @@
-import {
-    Button,
-    Text
-} from "@chakra-ui/react";
+import { Button, Text } from "@chakra-ui/react";
 
-import { ReactElement } from 'react';
+import { ReactElement } from "react";
 
-import NextLink from 'next/link';
+import NextLink from "next/link";
 
-export const HeaderButton = (props: {path: string, text: string}) => {
+export const HeaderButton = (props: { path: string; text: string }) => {
     return (
         <NextLink href={props.path}>
-            <Button variant='ghost' rounded="xl" height='50px' border='3px solid transparent' _hover={{border: '3px solid white', cursor: 'pointer'}}>
+            <Button
+                variant='ghost'
+                rounded="xl"
+                height='50px'
+                border='3px solid transparent'
+                _hover={{ border: "3px solid white", cursor: "pointer" }}
+            >
                 <Text color='white' fontSize='xl' fontWeight='normal'>
                     {props.text}
                 </Text>
             </Button>
         </NextLink>
     );
-}
+};
 
-export const SpecialHeaderButton = (props: {path: string, text: string}) => {
+export const SpecialHeaderButton = (props: { path: string; text: string }) => {
     return (
         <NextLink href={props.path}>
             <Button
@@ -30,17 +33,31 @@ export const SpecialHeaderButton = (props: {path: string, text: string}) => {
                 height='50px'
                 marginLeft='2.225px'
                 marginRight='2.225px'
-                _hover={{border: '3px solid white', cursor: 'pointer', marginLeft: '0px', marginRight: '0px'}}
+                _hover={{
+                    border: "3px solid white",
+                    cursor: "pointer",
+                    marginLeft: "0px",
+                    marginRight: "0px",
+                }}
+            >
+                <Text
+                    color='white'
+                    fontSize='xl'
+                    fontWeight='normal'
+                    padding={5}
                 >
-                <Text color='white' fontSize='xl' fontWeight='normal' padding={5}>
                     {props.text}
                 </Text>
             </Button>
         </NextLink>
     );
-}
+};
 
-export const HeaderButton1 = (props: {path: string, text: string, handleShow: () => void}) => {
+export const HeaderButton1 = (props: {
+    path: string;
+    text: string;
+    handleShow: () => void;
+}) => {
     return (
         <NextLink href={props.path}>
             <Button
@@ -49,7 +66,7 @@ export const HeaderButton1 = (props: {path: string, text: string, handleShow: ()
                 rounded="xl"
                 height='50px'
                 border='3px solid transparent'
-                _hover={{border: '3px solid white', cursor: 'pointer'}}
+                _hover={{ border: "3px solid white", cursor: "pointer" }}
                 onClick={props.handleShow}
             >
                 <Text color='white' fontSize='xl' fontWeight='normal'>
@@ -58,21 +75,34 @@ export const HeaderButton1 = (props: {path: string, text: string, handleShow: ()
             </Button>
         </NextLink>
     );
-}
+};
 
-export const NormalButton = (props: {path: string, text: string, textColor: string}) => {
+export const NormalButton = (props: {
+    path: string;
+    text: string;
+    textColor: string;
+}) => {
     return (
         <NextLink href={props.path}>
-            <Button variant='ghost' rounded="lg" height='40px' border='3px solid transparent' _hover={{border: `3px solid ${props.textColor}`, cursor: 'pointer'}}>
+            <Button
+                variant='ghost'
+                rounded="lg"
+                height='40px'
+                border='3px solid transparent'
+                _hover={{
+                    border: `3px solid ${props.textColor}`,
+                    cursor: "pointer",
+                }}
+            >
                 <Text color={props.textColor} fontSize='lg' fontWeight='normal'>
                     {props.text}
                 </Text>
             </Button>
         </NextLink>
     );
-}
+};
 
-export const SpecialArrowButton = (props: {path: string, text: string}) => {
+export const SpecialArrowButton = (props: { path: string; text: string }) => {
     return (
         <NextLink href={props.path}>
             <Button
@@ -81,17 +111,25 @@ export const SpecialArrowButton = (props: {path: string, text: string}) => {
                 color="white"
                 shadow='lg'
                 height='40px'
-                _hover={{cursor: 'pointer'}}
+                _hover={{ cursor: "pointer" }}
+            >
+                <Text
+                    color='white'
+                    fontSize='xl'
+                    fontWeight='normal'
+                    padding={5}
                 >
-                <Text color='white' fontSize='xl' fontWeight='normal' padding={5}>
                     {props.text}
                 </Text>
             </Button>
         </NextLink>
     );
-}
+};
 
-
-export const ConditionalWrapper = (props: { condition: boolean, wrapper: Function, children: ReactElement }) => {
-    return (props.condition ? props.wrapper(props.children) : props.children);
+export const ConditionalWrapper = (props: {
+    condition: boolean;
+    wrapper: Function;
+    children: ReactElement;
+}) => {
+    return props.condition ? props.wrapper(props.children) : props.children;
 };

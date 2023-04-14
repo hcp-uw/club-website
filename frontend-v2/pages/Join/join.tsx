@@ -1,15 +1,15 @@
 import { useState, useEffect } from "react";
 import { Inter } from "@next/font/google";
 import {
-  Center,
-  VStack,
-  Flex,
-  Box,
-  Text,
-  Image,
-  IconButton,
+    Center,
+    VStack,
+    Flex,
+    Box,
+    Text,
+    Image,
+    IconButton,
 } from "@chakra-ui/react";
-import "./Join.css"; 
+import "./Join.css";
 import type { ChangeEvent, KeyboardEvent } from "react";
 // @ts-ignore
 import { sendEmail } from "@/utils/api";
@@ -46,13 +46,15 @@ export default function Join() {
             setContent("");
             sendEmail(name, email, content);
         };
-        const handleNameChange = async (event : ChangeEvent<HTMLInputElement>) => {
+        const handleNameChange = async (
+            event: ChangeEvent<HTMLInputElement>,
+        ) => {
             setName(event.target.value);
         };
-        const handleEmailChange = (event : ChangeEvent<HTMLInputElement>) => {
+        const handleEmailChange = (event: ChangeEvent<HTMLInputElement>) => {
             setEmail(event.target.value);
         };
-        const handleContentChange = (event : ChangeEvent<HTMLInputElement>) => {
+        const handleContentChange = (event: ChangeEvent<HTMLInputElement>) => {
             setContent(event.target.value);
         };
         return (
