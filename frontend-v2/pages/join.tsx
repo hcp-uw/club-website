@@ -9,7 +9,7 @@ import {
     Image,
     IconButton,
 } from "@chakra-ui/react";
-import "./Join.css";
+import styles from "@/styles/Join.module.css";
 import type { ChangeEvent, KeyboardEvent } from "react";
 // @ts-ignore
 import { sendEmail } from "@/utils/api";
@@ -23,7 +23,7 @@ export default function Join() {
         window.scrollTo(0, 0);
     }, []);
 
-    const [width, setWidth] = useState(window.innerWidth);
+    const [width, setWidth] = useState<number | null>(null);
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [content, setContent] = useState("");
@@ -37,7 +37,7 @@ export default function Join() {
         };
     }, []);
 
-    const isMobile = width <= 800;
+    const isMobile = width === null ? false : width <= 800;
 
     const displayEmailForm = () => {
         const handleClick = () => {
@@ -70,14 +70,14 @@ export default function Join() {
                     <label>
                         <Text
                             color="primary"
-                            required
+                            // required
                             sx={{ input: { color: "white" } }}
-                            fullWidth
-                            focused
+                            // fullWidth
+                            // focused
                             id="filled-basic"
-                            label="Name"
+                            // label="Name"
                             variant="outlined"
-                            value={name}
+                            // value={name}
                             onChange={handleNameChange}
                         />
                         {/* <input type="text" name="name" value={name} onChange={handleNameChange}/> */}
@@ -87,14 +87,14 @@ export default function Join() {
                     <label>
                         <Text
                             color="primary"
-                            required
+                            // required
                             sx={{ input: { color: "white" } }}
-                            fullWidth
-                            focused
+                            // fullWidth
+                            // focused
                             id="filled-basic"
-                            label="Email"
+                            // label="Email"
                             variant="outlined"
-                            value={email}
+                            // value={email}
                             onChange={handleEmailChange}
                         />
                     </label>
@@ -103,30 +103,29 @@ export default function Join() {
                     <label>
                         <Text
                             color="primary"
-                            inputProps={{ style: { color: "white" } }}
-                            required
-                            focused
+                            // required
+                            // focused
                             id="filled-basic"
-                            label="Message"
+                            // label="Message"
                             variant="outlined"
-                            multiline
-                            rows={6}
-                            fullWidth
-                            value={content}
+                            // multiline
+                            // rows={6}
+                            // fullWidth
+                            // value={content}
                             onChange={handleContentChange}
                         />
                     </label>
                     <br />
                     <br />
-                    <IconButton
-                        variant="contained"
-                        color="secondary"
-                        onClick={handleClick}
-                        endIcon={<SendIcon />}
-                        disabled={name === "" || email === "" || content === ""}
-                    >
-                        Submit
-                    </IconButton>
+                    {/*<IconButton*/}
+                    {/*    variant="contained"*/}
+                    {/*    color="secondary"*/}
+                    {/*    onClick={handleClick}*/}
+                    {/*    endIcon={<SendIcon />}*/}
+                    {/*    disabled={name === "" || email === "" || content === ""}*/}
+                    {/*>*/}
+                    {/*    Submit*/}
+                    {/*</IconButton>*/}
                 </form>
             </div>
         );
@@ -146,15 +145,15 @@ export default function Join() {
             //     {displayEmailForm()}
             // </div>
             <div style={{ width: "70%" }}>
-                <IconButton
-                    color="secondary"
-                    variant="contained"
-                    href="https://forms.gle/JpJaoznG4FBvS1paA"
-                    target="_blank"
-                >
-                    {" "}
-                    Link to Form{" "}
-                </IconButton>
+                {/*<IconButton*/}
+                {/*    color="secondary"*/}
+                {/*    variant="contained"*/}
+                {/*    href="https://forms.gle/JpJaoznG4FBvS1paA"*/}
+                {/*    target="_blank"*/}
+                {/*>*/}
+                {/*    {" "}*/}
+                {/*    Link to Form{" "}*/}
+                {/*</IconButton>*/}
                 <br />
                 {displayEmailForm()}
             </div>
@@ -165,15 +164,15 @@ export default function Join() {
     const displayJoinPageMobile = () => {
         return (
             <div>
-                <IconButton
-                    color="secondary"
-                    variant="contained"
-                    href="https://forms.gle/JpJaoznG4FBvS1paA"
-                    target="_blank"
-                >
-                    {" "}
-                    Link to Form{" "}
-                </IconButton>
+                {/*<IconButton*/}
+                {/*    color="secondary"*/}
+                {/*    variant="contained"*/}
+                {/*    href="https://forms.gle/JpJaoznG4FBvS1paA"*/}
+                {/*    target="_blank"*/}
+                {/*>*/}
+                {/*    {" "}*/}
+                {/*    Link to Form{" "}*/}
+                {/*</IconButton>*/}
             </div>
         );
     };
