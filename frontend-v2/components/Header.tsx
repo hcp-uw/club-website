@@ -30,7 +30,7 @@ export default function Header(props: { showSidebar: () => void }) {
                             <LinkOverlay href="/">
                                 <Image
                                     width="150px"
-                                    src="/HCPLogoText-Crop.png"
+                                    src="/HCPLogoText-Crop.webp"
                                     alt="HCP Logo"
                                 />
                             </LinkOverlay>
@@ -84,7 +84,7 @@ export default function Header(props: { showSidebar: () => void }) {
                             <LinkOverlay href="/">
                                 <Image
                                     width="150px"
-                                    src="/HCPLogoText-Crop.png"
+                                    src="/HCPLogoText-Crop.webp"
                                     alt="HCP Logo"
                                 />
                             </LinkOverlay>

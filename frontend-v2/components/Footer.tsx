@@ -23,7 +23,7 @@ export default function Footer() {
                 <Link href="/">
                     <Image
                         width="200px"
-                        src="/HCPLogoText-Crop.png"
+                        src="/HCPLogoText-Crop.webp"
                         alt="HCP Logo"
                     />
                 </Link>

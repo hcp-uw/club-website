@@ -42,7 +42,7 @@ function Title() {
                     <Center>
                         <Image
                             width='30vw'
-                            src="/HCPLogoText-Crop.png"
+                            src="/HCPLogoText-Crop.webp"
                             alt="HCP Logo"
                         />
                     </Center>
