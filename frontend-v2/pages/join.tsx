@@ -13,7 +13,6 @@ import styles from "@/styles/Join.module.css";
 import type { ChangeEvent, KeyboardEvent } from "react";
 // @ts-ignore
 import { sendEmail } from "@/utils/api";
-import SendIcon from "@mui/icons-material/Send";
 
 const inter = Inter({ subsets: ["latin"] });
 
