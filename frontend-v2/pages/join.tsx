@@ -4,17 +4,56 @@ import {
     Center,
     VStack,
     Flex,
+    Link,
     Box,
     Text,
+    Button,
     Image,
     IconButton,
 } from "@chakra-ui/react";
 import styles from "@/styles/Join.module.css";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+
 import type { ChangeEvent, KeyboardEvent } from "react";
 // @ts-ignore
 import { sendEmail } from "@/utils/api";
+import { renderToHTML } from "next/dist/server/render";
 
 const inter = Inter({ subsets: ["latin"] });
+
+function renderJoinPage() {
+    return (
+        <Flex
+        //  id={isMobile ? "join-container-mobile" : "join-container"}
+            height='700px'
+            direction='column'
+            width='100vw'
+            maxW='1500px'
+            borderRadius='30px'
+            alignItems='center'
+        >
+            <Text 
+                fontFamily={'Segoe'}
+                fontSize='5xl'
+                color="white"
+                marginTop='4'
+            >
+                Join Us
+            </Text>
+            <Text 
+                display='inline' 
+                fontSize="2xl" 
+                color="white" 
+                marginTop='8'
+            >
+                Fill out the form below to join Husky Coding Project!
+            </Text>
+        {/* {isMobile ? displayJoinPageMobile() : displayJoinPage()} */}
+        </Flex>
+    )
+}
 
 export default function Join() {
     // Scroll to top of page
@@ -38,6 +77,18 @@ export default function Join() {
 
     const isMobile = width === null ? false : width <= 800;
 
+    const renderLink = () => {
+        <div>
+            Hahaha
+            <FontAwesomeIcon
+                height='40px'
+                color='white'
+                icon={faEnvelope}
+            />
+        </div>
+
+    }
+
     const displayEmailForm = () => {
         const handleClick = () => {
             setName("");
@@ -60,7 +111,7 @@ export default function Join() {
             <div id="emailform">
                 <br />
                 <br />
-                <Text id="objective" variant="subtitle1" color="primary">
+                <Text id="objective" variant="subtitle1" color="white">
                     ...or send us a message :)
                     <br />
                     <br />
@@ -176,27 +227,47 @@ export default function Join() {
         );
     };
 
-    // Join Page information
-    const renderJoinPage = () => {
-        return (
-            <div id={isMobile ? "join-container-mobile" : "join-container"}>
-                <Text variant="h4" color="primary" paddingBottom={2}>
-                    {" "}
-                    Join Us{" "}
-                </Text>
-                <br />
-                <Text id="objective" variant="subtitle1" color="primary">
-                    Fill out the form below to join HCP!
-                </Text>
-                <br />
-                {isMobile ? displayJoinPageMobile() : displayJoinPage()}
-            </div>
-        );
-    };
 
     return (
         <div id={isMobile ? "join-background-mobile" : "join-background"}>
-            {renderJoinPage()}
+            <Flex
+            //  id={isMobile ? "join-container-mobile" : "join-container"}
+                height='700px'
+                direction='column'
+                width='100vw'
+                maxW='1500px'
+                borderRadius='30px'
+                alignItems='center'
+            >
+                <Text 
+                    fontFamily={'Segoe'}
+                    fontSize='5xl'
+                    color="white"
+                    marginTop='4'
+                >
+                    Join Us
+                </Text>
+                <Text 
+                    display='inline' 
+                    fontSize="2xl" 
+                    color="white" 
+                    marginTop='8'
+                >
+                    Fill out the form below to join Husky Coding Project!
+                </Text>
+
+                <Link href="https://forms.gle/JpJaoznG4FBvS1paA"></Link>
+                <Button colorScheme='purple' size='s'>
+                    Link to Form 
+                </Button>
+                {/* <FontAwesomeIcon
+                    height='40px'
+                    color='white'
+                    icon={faEnvelope}
+                /> */}
+            </Flex>
+            
+
         </div>
     );
 }
