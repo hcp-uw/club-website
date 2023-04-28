@@ -256,10 +256,17 @@ export default function Join() {
                     Fill out the form below to join Husky Coding Project!
                 </Text>
 
-                <Link href="https://forms.gle/JpJaoznG4FBvS1paA"></Link>
-                <Button colorScheme='purple' size='s'>
-                    Link to Form 
-                </Button>
+                <Link href="https://forms.gle/JpJaoznG4FBvS1paA">
+                    <Button 
+                        rightIcon={                        <FontAwesomeIcon
+                            // height='40px'
+                            // color='white'
+                            icon={faEnvelope}
+                        />}
+                        colorScheme='purple' size='s' variant='solid'>
+                        Link to Form 
+                    </Button>
+                </Link>
                 {/* <FontAwesomeIcon
                     height='40px'
                     color='white'
