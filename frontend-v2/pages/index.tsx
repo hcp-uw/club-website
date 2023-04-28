@@ -48,7 +48,7 @@ function Title() {
                     </Center>
                     <Box height='30px' />
                     <Center>
-                        <Text as="kbd" fontSize="4xl" color="white">
+                        <Text fontFamily={'pressStart'} fontSize="2xl" color="white">
                             Let's Git Good!
                         </Text>
                     </Center>
@@ -161,7 +161,7 @@ function FeaturedEvents() {
             >
                 <Center>
                     <Text
-                        as='h2'
+                        fontFamily={'Segoe'}
                         color='white'
                         fontSize='6xl'
                         fontWeight='semibold'
@@ -191,7 +191,7 @@ function MeetingInfo() {
             alignItems='center'
         >
             <Text
-                as='h2'
+                fontFamily={'Segoe'}
                 color='white'
                 fontSize='6xl'
                 fontWeight='semibold'
@@ -243,7 +243,7 @@ function Values() {
             alignItems='center'
         >
             <Text
-                as='h2'
+                fontFamily={'Segoe'}
                 color='white'
                 fontSize='6xl'
                 fontWeight='semibold'

@@ -12,7 +12,7 @@ const colors = {
         dark_purple: "#1C188D",
         hot_pink: "#861EAB",
         pink: "#FD72F8",
-        mid_blue: "#2A0696",
+        mid_white: "#DCD5E4",
         blue: "#152B85",
         dark_blue: "#0E073B",
         light_brown: "#E2C6C6",

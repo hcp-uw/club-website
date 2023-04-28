@@ -27,8 +27,8 @@ export default function EventCard(props: {
             height='375px'
             borderRadius='15px'
             marginX='25px'
-            background='brand.mid_blue'
-            color="white"
+            background='brand.mid_white'
+            color="black"
         >
             <CardBody alignContent='flex-start'>
                 <Skeleton isLoaded={!props.loading}>
