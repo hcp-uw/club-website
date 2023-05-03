@@ -2,10 +2,6 @@
 const path = require("path");
 
 const nextConfig = {
-    images: {
-        unoptimized: true,
-    },
-
     reactStrictMode: true,
     webpack: (config) => {
         config.resolve.alias["@"] = path.resolve(__dirname);
