@@ -24,18 +24,24 @@ jobs:
   publish:
     needs: auto-release
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
+
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 16
+
       - name: Install FE Dependencies
         run: yarn install --frozen-lockfile
+
       - name: Install BE Dependencies
         run: npm install --prefix ./src/back_end
+
       - name: Build
         run: yarn build
+
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
