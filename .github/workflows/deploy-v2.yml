@@ -1,54 +1,29 @@
-name: GitHub Pages
+name: Frontend V2
 
 on:
-  # Runs on pushes targeting the default branch
   push:
     branches: [ main ]
 
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
-permissions:
-  contents: write
-
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
-
 jobs:
   deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-
-    runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-      - name: Setup Node
+      - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: "16"
+          node-version: 18
 
-      - name: Install dependencies
+      - name: Install Dependencies
         run: yarn install
         working-directory: frontend-v2
 
-      - name: Build with Next.js
-        run: yarn build
-        working-directory: frontend-v2
-
-      - name: Static HTML export with Next.js
-        run: yarn export
-        working-directory: frontend-v2
-
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+      - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./frontend-v2/out
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_HCP_UW }}'
+          channelId: v2
+          projectId: hcp-uw
+          entryPoint: frontend-v2
+        env:
+          FIREBASE_CLI_EXPERIMENTS: webframeworks
