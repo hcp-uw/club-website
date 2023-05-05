@@ -28,4 +28,4 @@ jobs:
           projectId: hcp-uw
           entryPoint: frontend-v2
         env:
-          FIREBASE_CLI_EXPERIMENTS: webframeworks
+          FIREBASE_CLI_EXPERIMENTS: webframeworks,pintags
