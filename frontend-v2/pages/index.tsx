@@ -5,13 +5,13 @@ import {
     Flex,
     Box,
     Text,
-    Image,
     IconButton,
 } from "@chakra-ui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
 // @ts-ignore
 import { getFeaturedEvents } from "@/utils/api";
+import Image from 'next/image';
 
 import styles from "@/styles/Home.module.css";
 import { lazy, useEffect, useState } from "react";
@@ -41,7 +41,9 @@ function Title() {
                 <Box width='35vw'>
                     <Center>
                         <Image
-                            width='30vw'
+                            width={200}
+                            height={200}
+                            style={{ width: '30vw' }}
                             src="/HCPLogoText-Crop.webp"
                             alt="HCP Logo"
                         />
@@ -235,7 +237,7 @@ function Values() {
         { name: "Respect for all Folks", icon: "/respect.webp" },
     ];
     return (
-        <Flex
+        <VStack
             id='club-values'
             height='600px'
             direction='column'
@@ -253,7 +255,7 @@ function Values() {
             </Text>
             <Flex direction='row' width='100%' justifyContent='center'>
                 {icons.map((icon) => (
-                    <Flex
+                    <VStack
                         direction='column'
                         width='200px'
                         marginX='40px'
@@ -262,9 +264,9 @@ function Values() {
                         key={icon.name}
                     >
                         <Image
-                            width='125px'
-                            height='125px'
-                            objectFit='contain'
+                            width={125}
+                            height={125}
+                            style={{ width: '125px', height: '125px' }}
                             src={icon.icon}
                             alt={icon.name}
                         />
@@ -276,10 +278,10 @@ function Values() {
                         >
                             {icon.name}
                         </Text>
-                    </Flex>
+                    </VStack>
                 ))}
             </Flex>
-        </Flex>
+        </VStack>
     );
 }
 
