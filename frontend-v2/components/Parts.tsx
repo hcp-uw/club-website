@@ -1,12 +1,23 @@
 import { Button, Text } from "@chakra-ui/react";
-
 import { ReactElement } from "react";
-
 import NextLink from "next/link";
 
-export const HeaderButton = (props: { path: string; text: string }) => {
+
+interface IButton {
+    path: string;
+    text: string;
+    textColor?: string;
+    handleShow?: () => void;
+}
+
+/**
+ * Header Button (transparent with white border on hover)
+ */
+export const HeaderButton = (props: IButton) => {
+    const { path, text } = props;
+
     return (
-        <NextLink href={props.path}>
+        <NextLink href={path}>
             <Button
                 variant='ghost'
                 rounded="xl"
@@ -15,24 +26,29 @@ export const HeaderButton = (props: { path: string; text: string }) => {
                 _hover={{ border: "3px solid white", cursor: "pointer" }}
             >
                 <Text color='white' fontSize='xl' fontWeight='normal'>
-                    {props.text}
+                    {text}
                 </Text>
             </Button>
         </NextLink>
     );
 };
 
-export const SpecialHeaderButton = (props: { path: string; text: string }) => {
+/**
+ * Special Header Button (purple gradient with white border on hover)
+ */
+export const SpecialHeaderButton = (props: IButton) => {
+    const { path, text } = props;
+
     return (
-        <NextLink href={props.path}>
+        <NextLink href={path}>
             <Button
                 rounded="xl"
                 bgGradient="linear(to-b, brand.purple, brand.dark_purple)"
                 color="white"
                 shadow='xl'
                 height='50px'
-                marginLeft='2.225px'
-                marginRight='2.225px'
+                marginLeft='3px'
+                marginRight='3px'
                 _hover={{
                     border: "3px solid white",
                     cursor: "pointer",
@@ -46,20 +62,21 @@ export const SpecialHeaderButton = (props: { path: string; text: string }) => {
                     fontWeight='normal'
                     padding={5}
                 >
-                    {props.text}
+                    {text}
                 </Text>
             </Button>
         </NextLink>
     );
 };
 
-export const HeaderButton1 = (props: {
-    path: string;
-    text: string;
-    handleShow: () => void;
-}) => {
+/**
+ * Sidebar Button (transparent with white border on hover)
+ */
+export const SidebarButton = (props: IButton) => {
+    const { path, text, handleShow } = props;
+
     return (
-        <NextLink href={props.path}>
+        <NextLink href={path}>
             <Button
                 variant='ghost'
                 width='100%'
@@ -67,44 +84,50 @@ export const HeaderButton1 = (props: {
                 height='50px'
                 border='3px solid transparent'
                 _hover={{ border: "3px solid white", cursor: "pointer" }}
-                onClick={props.handleShow}
+                onClick={handleShow}
             >
                 <Text color='white' fontSize='xl' fontWeight='normal'>
-                    {props.text}
+                    {text}
                 </Text>
             </Button>
         </NextLink>
     );
 };
 
-export const NormalButton = (props: {
-    path: string;
-    text: string;
-    textColor: string;
-}) => {
+/**
+ * Normal Button (transparent with a border on hover)
+ */
+export const NormalButton = (props: IButton) => {
+    const { path, text, textColor } = props;
+
     return (
-        <NextLink href={props.path}>
+        <NextLink href={path}>
             <Button
                 variant='ghost'
                 rounded="lg"
                 height='40px'
                 border='3px solid transparent'
                 _hover={{
-                    border: `3px solid ${props.textColor}`,
+                    border: `3px solid ${textColor}`,
                     cursor: "pointer",
                 }}
             >
-                <Text color={props.textColor} fontSize='lg' fontWeight='normal'>
-                    {props.text}
+                <Text color={textColor ?? 'white'} fontSize='lg' fontWeight='normal'>
+                    {text}
                 </Text>
             </Button>
         </NextLink>
     );
 };
 
-export const SpecialArrowButton = (props: { path: string; text: string }) => {
+/**
+ * Arrow Button (down arrow on home page)
+ */
+export const SpecialArrowButton = (props: IButton) => {
+    const { path, text } = props;
+
     return (
-        <NextLink href={props.path}>
+        <NextLink href={path}>
             <Button
                 rounded="lg"
                 bgGradient="linear(to-b, brand.purple, brand.dark_purple)"
@@ -119,17 +142,23 @@ export const SpecialArrowButton = (props: { path: string; text: string }) => {
                     fontWeight='normal'
                     padding={5}
                 >
-                    {props.text}
+                    {text}
                 </Text>
             </Button>
         </NextLink>
     );
 };
 
-export const ConditionalWrapper = (props: {
+/**
+ * Wraps a component based on a condition (used for Skeletons)
+ */
+interface IConditionalWrapper {
     condition: boolean;
     wrapper: Function;
     children: ReactElement;
-}) => {
-    return props.condition ? props.wrapper(props.children) : props.children;
+}
+
+export const ConditionalWrapper = (props: IConditionalWrapper) => {
+    const { condition, wrapper, children } = props;
+    return condition ? wrapper(children) : children;
 };

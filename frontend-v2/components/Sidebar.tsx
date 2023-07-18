@@ -1,17 +1,43 @@
 import { Flex, IconButton } from "@chakra-ui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowDown, faXmark } from "@fortawesome/free-solid-svg-icons";
-import {
-    faInstagram,
-    faFacebookSquare,
-    faLinkedin,
-} from "@fortawesome/free-brands-svg-icons";
-import { HeaderButton1 } from "./Parts";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { SidebarButton } from "./Parts";
 
-export default function Sidebar(props: {
+interface ISideBar {
     show: boolean;
     handleShow: () => void;
-}) {
+}
+
+interface ISidebarButton {
+    path: string;
+    text: string;
+}
+
+export default function Sidebar(props: ISideBar) {
+    const { show, handleShow } = props;
+    const buttons: ISidebarButton[] = [
+        {
+            path: '/',
+            text: 'Home',
+        },
+        {
+            path: '/about',
+            text: 'About Us',
+        },
+        {
+            path: '/projects',
+            text: 'Projects',
+        },
+        {
+            path: '/events',
+            text: 'Events',
+        },
+        {
+            path: '/join',
+            text: 'Join Us',
+        },
+    ];
+
     return (
         <Flex
             flexDirection='column'
@@ -21,8 +47,8 @@ export default function Sidebar(props: {
             height='100vh'
             position='fixed'
             top='0'
-            left={`${props.show ? "0" : "-100%"}`}
-            transition={`${props.show ? "350ms" : "850ms"}`}
+            left={`${show ? "0" : "-100%"}`}
+            transition={`${show ? "350ms" : "850ms"}`}
             zIndex='99'
             gap='4'
         >
@@ -34,7 +60,7 @@ export default function Sidebar(props: {
                 zIndex='1'
                 marginRight='5px'
                 border='3px solid transparent'
-                onClick={props.handleShow}
+                onClick={handleShow}
                 _hover={{ border: "3px solid white", cursor: "pointer" }}
                 icon={
                     <FontAwesomeIcon
@@ -44,27 +70,11 @@ export default function Sidebar(props: {
                     />
                 }
             />
-            <HeaderButton1 path='/' text='Home' handleShow={props.handleShow} />
-            <HeaderButton1
-                path='/about'
-                text='About Us'
-                handleShow={props.handleShow}
-            />
-            <HeaderButton1
-                path='/projects'
-                text='Projects'
-                handleShow={props.handleShow}
-            />
-            <HeaderButton1
-                path='/events'
-                text='Events'
-                handleShow={props.handleShow}
-            />
-            <HeaderButton1
-                path='/join'
-                text='Join Us'
-                handleShow={props.handleShow}
-            />
+            {
+                buttons.map(button =>
+                    <SidebarButton path={button.path} text={button.text} handleShow={handleShow} />
+                )
+            }
         </Flex>
     );
 }

@@ -1,7 +1,6 @@
 import Head from "next/head";
 import { Box, Flex, useMediaQuery } from "@chakra-ui/react";
 import { ReactElement, useEffect, useState } from "react";
-
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Sidebar from "./Sidebar";
@@ -11,6 +10,7 @@ export default function Layout({ children }: { children: ReactElement }) {
     const [isLargerThan1200] = useMediaQuery("(min-width: 1200px)");
     const [showSide, setShowSide] = useState(false);
 
+    // This effect hides/shows the header on scroll
     useEffect(() => {
         let lastScrollY = window.pageYOffset;
 
@@ -25,9 +25,9 @@ export default function Layout({ children }: { children: ReactElement }) {
             }
             lastScrollY = scrollY > 0 ? scrollY : 0;
         };
-        window.addEventListener("scroll", updateScrollDirection); // add event listener
+        window.addEventListener("scroll", updateScrollDirection);
         return () => {
-            window.removeEventListener("scroll", updateScrollDirection); // clean up
+            window.removeEventListener("scroll", updateScrollDirection);
         };
     }, [scrollDirection]);
 

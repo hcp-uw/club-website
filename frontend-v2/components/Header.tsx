@@ -3,18 +3,15 @@ import {
     Spacer,
     Image,
     LinkBox,
-    Button,
     ButtonGroup,
     LinkOverlay,
     Center,
     Box,
     IconButton,
 } from "@chakra-ui/react";
-
 import { useMediaQuery } from "@chakra-ui/react";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 import { HeaderButton, SpecialHeaderButton } from "./Parts";
 
 export default function Header(props: { showSidebar: () => void }) {

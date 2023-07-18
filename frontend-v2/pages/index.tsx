@@ -12,8 +12,6 @@ import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
 // @ts-ignore
 import { getFeaturedEvents } from "@/utils/api";
 import Image from 'next/image';
-
-import styles from "@/styles/Home.module.css";
 import { lazy, useEffect, useState } from "react";
 import EventCard from "components/EventCard";
 
@@ -86,7 +84,7 @@ function Title() {
     );
 }
 
-interface EventType {
+interface IEventType {
     date: Date;
     name: string;
     location: string;
@@ -95,7 +93,7 @@ interface EventType {
 }
 
 function Events() {
-    const [events, setEvents] = useState<EventType[]>([
+    const [events, setEvents] = useState<IEventType[]>([
         {
             date: new Date("3/21/2023"),
             name: "Default Event",
@@ -118,11 +116,11 @@ function Events() {
             image: "",
         },
     ]);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState<boolean>(true);
 
     // Uses the getFeaturedEvents API
     useEffect(() => {
-        const getData = async (data: EventType[]) => {
+        const getData = async (data: IEventType[]) => {
             setEvents(data);
             setLoading(false);
         };
@@ -229,8 +227,13 @@ function MeetingInfo() {
     );
 }
 
+interface ISlogan {
+    name: string;
+    icon: string;
+}
+
 function Values() {
-    const icons = [
+    const slogans: ISlogan[] = [
         { name: "Listen Loudly", icon: "/listen.webp" },
         { name: "Freedom to Fail", icon: "/ok_fail.webp" },
         { name: "Turn Talk into Action", icon: "/action.webp" },
@@ -254,21 +257,21 @@ function Values() {
                 Club Values
             </Text>
             <Flex direction='row' width='100%' justifyContent='center'>
-                {icons.map((icon) => (
+                {slogans.map((slogan) => (
                     <VStack
                         direction='column'
                         width='200px'
                         marginX='40px'
                         alignItems='center'
                         paddingTop='80px'
-                        key={icon.name}
+                        key={slogan.name}
                     >
                         <Image
                             width={125}
                             height={125}
-                            style={{ width: '125px', height: '125px' }}
-                            src={icon.icon}
-                            alt={icon.name}
+                            style={{ width: 'auto', height: '125px' }}
+                            src={slogan.icon}
+                            alt={slogan.name}
                         />
                         <Text
                             marginTop='25px'
@@ -276,7 +279,7 @@ function Values() {
                             color='white'
                             textAlign="center"
                         >
-                            {icon.name}
+                            {slogan.name}
                         </Text>
                     </VStack>
                 ))}
