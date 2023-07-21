@@ -69,4 +69,32 @@ Creates a new event and saves it to our DB. Returns a Boolean value based that c
   ```
 
 * **Error Response:**
+
+  ```
+  false
+  ```
   Errors will be outputted into console
+
+
+## <span style="color:deepskyblue"> deleteEvent
+Deletes an event from the database based on its event name. Returns a Boolean value indicating the success of the deletion.
+
+* **Function Call:** deleteEvent(eventName)
+
+* **Params: (eventName: String)**
+
+    | Name        | Type   | Description                                  | Default                 |
+    | ----------- | ------ | -------------------------------------------- | ----------------------- |
+    | `eventName` | String | The name of the event to be deleted. | NONE (Required Param) |
+
+* **Returned Data Format:** Boolean
+
+* **Success Response:**
+```
+true
+```
+
+* **Error Response:**
+```
+false
+```
