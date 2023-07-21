@@ -32,7 +32,7 @@ export async function getAllEvents(test = "Events") {
  * @param {string} event.sponser - Name of the event's sponsor. (Required)
  * @returns {boolean} Returns true if the event creation is successful, otherwise false.
  */
-export async function createNewEvent(event) {
+export async function createNewEvent(event, test = "Event") {
     try {
       // check if all required parameters provided
       const requiredParams = ["attendees", "date", "description", "imageURL", "location", "name", "sponser"];
@@ -80,10 +80,49 @@ export async function createNewEvent(event) {
       }
   
       // save event to the database
-      const eventRef = ref(database, "Events");
-      await set(ref(database, "Events/" + event.name, event));
+      await set(ref(database, test + "/" + event.name, event));
   
       // event created
+      return true;
+    } catch (err) {
+      console.error(err);
+      return false;
+    }
+  }
+
+
+/**
+ * Deletes an event from the database based on its event name.
+ * @param {string} eventName - The name of the event to be deleted.
+ * @returns {boolean} Returns true if the event deletion is successful, otherwise false.
+ */
+  async function deleteEvent(eventName, test = "Event") {
+    try {
+  
+      // check if eventName is provided
+      if (!eventName) {
+        console.error("Missing required parameter: eventName");
+        return false;
+      }
+
+      // type check 
+      if (typeof eventName !== "string") {
+        console.error("Parameter 'eventName' must be of type 'string'");
+        return false;
+      }
+  
+      // get ref to event in database
+      const eventRef = ref(database, test + "/" + eventName);
+  
+      // check if event exists
+      const snapshot = await eventRef.get();
+      if (!snapshot.exists()) {
+        console.error(`Event with name '${eventName}' not found in the database.`);
+        return false;
+      }
+  
+      // delete event from the database
+      await remove(eventRef);
       return true;
     } catch (err) {
       console.error(err);
