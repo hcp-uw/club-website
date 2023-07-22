@@ -138,3 +138,36 @@ export async function createNewProject(project, test = "Projects") {
       return false;
     }
   }
+
+
+  /**
+ * Deletes a project from the database based on its name.
+ * @param {string} projectName - The name of the project to be deleted.
+ * @returns {boolean} Returns true if the project deletion is successful, otherwise false.
+ */
+export async function deleteProject(projectName, test = "Projects") {
+    try {
+      // check if projectName is provided
+      if (!projectName) {
+        console.error("Missing required parameter: projectName");
+        return false;
+      }
+  
+      // get ref to project in database
+      const projectRef = ref(database, `${test}/${projectName}`);
+  
+      // check if project exists
+      const snapshot = await projectRef.get();
+      if (!snapshot.exists()) {
+        console.error(`Project with name '${projectName}' not found in the database.`);
+        return false;
+      }
+  
+      // delete project from database
+      await remove(projectRef);
+      return true;
+    } catch (err) {
+      console.error(err);
+      return false;
+    }
+  }
