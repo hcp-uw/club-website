@@ -66,37 +66,67 @@ Creates a new club lead and saves their information to the database. Returns a B
 * __Returned Data Format:__ Boolean
 
 * __Success Response:__
+
 ```
 true
 ```
 
-* **Error Response:**
+* __Error Response:__
+
 ```
 false
 ```
-
 
 ## <span style="color:deepskyblue"> deleteClubLead
+
 Deletes a club lead from the database based on their name. Returns a Boolean value indicating the success of the lead deletion.
 
-* **Function Call:** deleteClubLead(leadName)
+* __Function Call:__ deleteClubLead(leadName)
 
-* **Params: (leadName: String)**
+* __Params: (leadName: String)__
 
-    | Name        | Type   | Description                                       | Default                 |
-    | ----------- | ------ | ------------------------------------------------- | ----------------------- |
-    | `leadName`  | String | The name of the club lead to be deleted. | NONE (Required Param)   |
+  | Name       | Type   | Description                              | Default               |
+  | ---------- | ------ | ---------------------------------------- | --------------------- |
+  | `leadName` | String | The name of the club lead to be deleted. | NONE (Required Param) |
 
-* **Returned Data Format:** Boolean
+* __Returned Data Format:__ Boolean
 
-* **Success Response:**
+* __Success Response:__
+
 ```
 true
 ```
 
+* __Error Response:__
 
-* **Error Response:**
 ```
 false
 ```
 
+## <span style="color:deepskyblue"> updateClubLead
+
+Updates a club lead's information in the database based on their name, key name, and new value. Returns a Boolean value indicating the success of the update.
+
+* __Function Call:__ updateClubLead(leadName, key, value)
+
+* __Params:__
+
+  | Name       | Type   | Description                                         | Default               |
+  | ---------- | ------ | --------------------------------------------------- | --------------------- |
+  | `leadName` | String | The name of the club lead to be updated. (Required) | NONE (Required Param) |
+  | `key`      | String | The key name of the field to be updated. (Required) | NONE (Required Param) |
+  | `value`    | Any    | The new value to update the field with. (Required)  | NONE (Required Param) |
+
+* __Returned Data Format:__ Boolean
+
+* __Success Response:__
+
+```
+true
+```
+
+* __Error Response:__
+
+```
+false
+```
