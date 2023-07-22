@@ -1,15 +1,17 @@
 ## <span style="color:deepskyblue">Leads Data Endpoints</span>
+
 Documentation for all callable back-end functions related to Leads data
 
 ## <span style="color:deepskyblue"> getActiveLeads
+
 Returns all club leads (and information associated) that are currently active.
 
-* **Function Call:** getActiveLeads()
+* __Function Call:__ getActiveLeads()
 
-* **Returned Data Format:** List
+* __Returned Data Format:__ List
 
-* **Success Response: ()** <br>
-Sample response shows output format, followed by sample data.
+* __Success Response: ()__ <br>
+  Sample response shows output format, followed by sample data.
   ```
   [
     {
@@ -38,6 +40,37 @@ Sample response shows output format, followed by sample data.
   ]
   ```
 
-* **Error Response:**
+* __Error Response:__
   Errors will be outputted into console
 
+## <span style="color:deepskyblue"> createNewLead
+
+Creates a new club lead and saves their information to the database. Returns a Boolean value based on the success of the lead creation.
+
+* __Function Call:__ createNewLead(lead)
+
+* __Params: (lead: {...})__
+
+  | Name             | Type       | Description                                              | Default               |
+  | ---------------- | ---------- | -------------------------------------------------------- | --------------------- |
+  | `Active`         | Boolean    | Indicates if the club lead is currently active.          | NONE (Required Param) |
+  | `Class_Standing` | String     | Indicates their year (freshman/sophomore/junior/senior). | NONE (Required Param) |
+  | `Date_Joined`    | DateString | Indicates the date they joined the leads team.           | NONE (Required Param) |
+  | `Date_Left`      | DateString | Indicates the date they left the leads team.             | NONE (Required Param) |
+  | `Email`          | String     | Their UW email.                                          | NONE (Required Param) |
+  | `Image`          | Blob       | Their picture.                                           | NONE (Required Param) |
+  | `Name`           | String     | Their name (also the key).                               | NONE (Required Param) |
+  | `Role`           | String     | Their position/role, i.e. which lead team they were on.  | NONE (Required Param) |
+  | `Team`           | String     | Comma-separated Array. The project teams they were in.   | NONE (Required Param) |
+
+* __Returned Data Format:__ Boolean
+
+* __Success Response:__
+```
+true
+```
+
+* **Error Response:**
+```
+false
+```
