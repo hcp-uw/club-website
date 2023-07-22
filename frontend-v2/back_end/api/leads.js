@@ -74,35 +74,34 @@ async function createNewLead(lead, test = "Club_Leads") {
   }
 }
 
-
 /**
  * Deletes a club lead from the database based on their name.
  * @param {string} leadName - The name of the club lead to be deleted.
  * @returns {boolean} Returns true if the lead deletion is successful, otherwise false.
  */
 async function deleteClubLead(leadName, test = "Club_Leads") {
-    try {
-      // check if leadName is provided
-      if (!leadName) {
-        console.error("Missing required parameter: leadName");
-        return false;
-      }
-  
-      // get ref to lead in database
-      const leadRef = ref(database, `${test}/${leadName}`);
-  
-      // check if lead exists
-      const snapshot = await leadRef.get();
-      if (!snapshot.exists()) {
-        console.error(`Lead with name '${leadName}' not found in the database.`);
-        return false;
-      }
-  
-      // delete lead from database
-      await remove(leadRef);
-      return true;
-    } catch (err) {
-      console.error(err);
+  try {
+    // check if leadName is provided
+    if (!leadName) {
+      console.error("Missing required parameter: leadName");
       return false;
     }
+
+    // get ref to lead in database
+    const leadRef = ref(database, `${test}/${leadName}`);
+
+    // check if lead exists
+    const snapshot = await leadRef.get();
+    if (!snapshot.exists()) {
+      console.error(`Lead with name '${leadName}' not found in the database.`);
+      return false;
+    }
+
+    // delete lead from database
+    await remove(leadRef);
+    return true;
+  } catch (err) {
+    console.error(err);
+    return false;
   }
+}
