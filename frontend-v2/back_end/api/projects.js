@@ -171,3 +171,65 @@ export async function deleteProject(projectName, test = "Projects") {
       return false;
     }
   }
+
+  /**
+ * Updates a project's information in the database based on its name, key name, and new value.
+ * @param {string} projectName - The name of the project to be updated.
+ * @param {string} key - The key name of the field to be updated.
+ * @param {*} value - The new value to update the field with.
+ * @returns {boolean} Returns true if the update is successful, otherwise false.
+ */
+export async function updateProject(projectName, key, value, test = "Projects") {
+    try {
+      // check all required params provided
+      if (!projectName || !key || value === undefined) {
+        console.error("Missing required parameters: projectName, key, or value");
+        return false;
+      }
+  
+      // get ref to project in database
+      const projectRef = ref(database, `${test}/${projectName}`);
+  
+      // check if project exists
+      const snapshot = await projectRef.get();
+      if (!snapshot.exists()) {
+        console.error(`Project with name '${projectName}' not found in the database.`);
+        return false;
+      }
+  
+      // check if provided key is valid
+      const validKeys = ["Category", "Completed", "Description", "End_Date", "Git_Link", "Image", "Members", "Name", "PM", "Start_Date"];
+      if (!validKeys.includes(key)) {
+        console.error(`Invalid key '${key}' provided. The valid keys are: ${validKeys.join(", ")}`);
+        return false;
+      }
+  
+      // type check for value
+      const valueTypes = {
+        Category: "string",
+        Completed: "boolean",
+        Description: "string",
+        End_Date: "string",
+        Git_Link: "string",
+        Image: "string",
+        Members: "string",
+        Name: "string",
+        PM: "string",
+        Start_Date: "string",
+      };
+
+      if (typeof value !== valueTypes[key]) {
+        console.error(`Invalid value type provided for key '${key}'. Expected type: '${valueTypes[key]}'.`);
+        return false;
+      }
+  
+      // update project in database
+      const projectData = { [key]: value };
+      await update(projectRef, projectData);
+  
+      return true;
+    } catch (err) {
+      console.error(err);
+      return false;
+    }
+  }

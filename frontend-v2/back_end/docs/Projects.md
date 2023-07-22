@@ -1,15 +1,17 @@
 ## <span style="color:deepskyblue">Projects Data Endpoints</span>
+
 Documentation for all callable back-end functions related to Projects data
 
 ## <span style="color:deepskyblue"> getShortenedProject
+
 Returns all projects in shortened form (Name, Description, Image).
 
-* **Function Call:** getShortenedProject()
+* __Function Call:__ getShortenedProject()
 
-* **Returned Data Format:** List
+* __Returned Data Format:__ List
 
-* **Success Response:** <br>
-Sample response shows output format, followed by sample data.
+* __Success Response:__ <br>
+  Sample response shows output format, followed by sample data.
   ```
   [
     {
@@ -26,26 +28,25 @@ Sample response shows output format, followed by sample data.
   ]
   ```
 
-* **Error Response:**
+* __Error Response:__
   Errors will be outputted into console
 
-
 ## <span style="color:deepskyblue"> getActiveProjects
+
 Gets projects based on if they are active (i.e. currently working).
 
-* **Function Call:** getShortenedProject(active)
+* __Function Call:__ getShortenedProject(active)
 
+* __Params:__
 
-* **Params:**
+  | Name     | Type    | Description                                  | Default |
+  | -------- | ------- | -------------------------------------------- | ------- |
+  | `active` | boolean | True for active projects, false for inactive | true    |
 
-    | Name     | Type    | Description                                     | Default    |
-    | -------- | ------- | ----------------------------------------------- | ---------- |
-    | `active` | boolean | True for active projects, false for inactive    | true       |
+* __Returned Data Format:__ List
 
-* **Returned Data Format:** List
-
-* **Success Response:** <br>
-Sample response shows output format, followed by sample data.
+* __Success Response:__ <br>
+  Sample response shows output format, followed by sample data.
   ```
   [
     {
@@ -77,20 +78,21 @@ Sample response shows output format, followed by sample data.
   ```
 
 ## <span style="color:deepskyblue"> getProjectByName
+
 Get detailed project information based on the project name
 
-* **Function Call:** getProjectByName(name)
+* __Function Call:__ getProjectByName(name)
 
-* **Params:**
+* __Params:__
 
-    | Name   | Type    | Description                                     | Default                 |
-    | ------ | ------- | ----------------------------------------------- | ----------------------- |
-    | `name` | String  | The name of the project that is being requested | NONE (Required Param)   |
+  | Name   | Type   | Description                                     | Default               |
+  | ------ | ------ | ----------------------------------------------- | --------------------- |
+  | `name` | String | The name of the project that is being requested | NONE (Required Param) |
 
-* **Returned Data Format:** List
+* __Returned Data Format:__ List
 
-* **Success Response:** <br>
-Sample response shows output format, followed by sample data. (for name = "Project2")
+* __Success Response:__ <br>
+  Sample response shows output format, followed by sample data. (for name = "Project2")
   ```
   [
     {
@@ -121,69 +123,97 @@ Sample response shows output format, followed by sample data. (for name = "Proje
   ]
   ```
 
-* **Error Response:**
+* __Error Response:__
   Errors will be outputted into console
 
-* **Error Response:**
+* __Error Response:__
   Errors will be outputted into console
-
 
 ## <span style="color:deepskyblue"> createNewProject
+
 Creates a new project and saves its information to the database. Returns a Boolean value based on the success of the project creation.
 
-* **Function Call:** createNewProject(project)
+* __Function Call:__ createNewProject(project)
 
-* **Params: (project: {...})**
+* __Params: (project: {...})__
 
-    | Name         | Type    | Description                                             | Default                 |
-    | ------------ | ------- | ------------------------------------------------------- | ----------------------- |
-    | `Category`   | String  | Project Category/Type.                       | NONE (Required Param)   |
-    | `Completed`  | Boolean | If the project was successfully completed.   | NONE (Required Param)   |
-    | `Description`| String  | Description of the project.                  | NONE (Required Param)   |
-    | `End_Date`   | DateString | The project termination date.               | NONE (Required Param)   |
-    | `Git_Link`   | String  | Github link to the project's repo.           | NONE (Required Param)   |
-    | `Image`      | Blob    | Project Logo.                                | NONE (Required Param)   |
-    | `Members`    | String  | Comma-separated array. Members that were part of the project.  | NONE (Required Param)   |
-    | `Name`       | String  | Project Name (also the key).                 | NONE (Required Param)   |
-    | `PM`         | String  | Name of the project manager.                 | NONE (Required Param)   |
-    | `Start_Date` | DateString | The date when the project started.          | NONE (Required Param)   |
+  | Name          | Type       | Description                                                   | Default               |
+  | ------------- | ---------- | ------------------------------------------------------------- | --------------------- |
+  | `Category`    | String     | Project Category/Type.                                        | NONE (Required Param) |
+  | `Completed`   | Boolean    | If the project was successfully completed.                    | NONE (Required Param) |
+  | `Description` | String     | Description of the project.                                   | NONE (Required Param) |
+  | `End_Date`    | DateString | The project termination date.                                 | NONE (Required Param) |
+  | `Git_Link`    | String     | Github link to the project's repo.                            | NONE (Required Param) |
+  | `Image`       | Blob       | Project Logo.                                                 | NONE (Required Param) |
+  | `Members`     | String     | Comma-separated array. Members that were part of the project. | NONE (Required Param) |
+  | `Name`        | String     | Project Name (also the key).                                  | NONE (Required Param) |
+  | `PM`          | String     | Name of the project manager.                                  | NONE (Required Param) |
+  | `Start_Date`  | DateString | The date when the project started.                            | NONE (Required Param) |
 
-* **Returned Data Format:** Boolean
+* __Returned Data Format:__ Boolean
 
-* **Success Response:**
+* __Success Response:__
+
 ```
 true
 ```
 
+* __Error Response:__
 
-* **Error Response:**
 ```
 false
 ```
 
 ## <span style="color:deepskyblue"> deleteProject
+
 Deletes a project from the database based on its name. Returns a Boolean value indicating the success of the project deletion.
 
-* **Function Call:** deleteProject(projectName)
+* __Function Call:__ deleteProject(projectName)
 
-* **Params: (projectName: String)**
+* __Params: (projectName: String)__
 
-    | Name         | Type   | Description                                           | Default                 |
-    | ------------ | ------ | ----------------------------------------------------- | ----------------------- |
-    | `projectName`| String | The name of the project to be deleted. (Required)    | NONE (Required Param)   |
+  | Name          | Type   | Description                            | Default               |
+  | ------------- | ------ | -------------------------------------- | --------------------- |
+  | `projectName` | String | The name of the project to be deleted. | NONE (Required Param) |
 
-* **Returned Data Format:** Boolean
+* __Returned Data Format:__ Boolean
 
-* **Success Response:**
+* __Success Response:__
 
-
-
-* **Success Response:**
 ```
 true
 ```
 
+* __Error Response:__
 
-* **Error Response:**
 ```
 false
+```
+
+## <span style="color:deepskyblue"> updateProject
+
+Updates a project's information in the database based on its name, key name, and new value. Returns a Boolean value indicating the success of the update.
+
+* __Function Call:__ updateProject(projectName, key, value)
+
+* __Params:__
+
+  | Name          | Type   | Description                                         | Default               |
+  | ------------- | ------ | --------------------------------------------------- | --------------------- |
+  | `projectName` | String | The name of the project to be updated. (Required)   | NONE (Required Param) |
+  | `key`         | String | The key name of the field to be updated. (Required) | NONE (Required Param) |
+  | `value`       | Any    | The new value to update the field with. (Required)  | NONE (Required Param) |
+
+* __Returned Data Format:__ Boolean
+
+* __Success Response:__
+
+```
+true
+```
+
+* __Error Response:__
+
+```
+false
+```
