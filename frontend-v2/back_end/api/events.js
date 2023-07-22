@@ -31,7 +31,7 @@ export async function getAllEvents(test = "Events") {
  * @param {string} event.sponser - Name of the event's sponsor. (Required)
  * @returns {boolean} Returns true if the event creation is successful, otherwise false.
  */
-export async function createNewEvent(event, test = "Event") {
+export async function createNewEvent(event, test = "Events") {
   try {
     // check if all required parameters provided
     const requiredParams = [
@@ -102,7 +102,7 @@ export async function createNewEvent(event, test = "Event") {
  * @param {string} eventName - The name of the event to be deleted.
  * @returns {boolean} Returns true if the event deletion is successful, otherwise false.
  */
-async function deleteEvent(eventName, test = "Event") {
+async function deleteEvent(eventName, test = "Events") {
   try {
     // check if eventName is provided
     if (!eventName) {
@@ -144,7 +144,7 @@ async function deleteEvent(eventName, test = "Event") {
  * @param {*} value - The new value to update the field with.
  * @returns {boolean} Returns true if the event update is successful, otherwise false.
  */
-async function updateEvent(eventName, key, value) {
+async function updateEvent(eventName, key, value, test = "Events") {
   try {
     // check if required parameters are provided
     if (!eventName || !key || value === undefined) {
@@ -153,7 +153,7 @@ async function updateEvent(eventName, key, value) {
     }
 
     // get reference to event in the database
-    const eventRef = ref(database, `Events/${eventName}`);
+    const eventRef = ref(database, `${test}/${eventName}`);
 
     // check if event exists
     const snapshot = await eventRef.get();

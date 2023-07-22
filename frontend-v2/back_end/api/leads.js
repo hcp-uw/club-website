@@ -113,7 +113,7 @@ export async function deleteClubLead(leadName, test = "Club_Leads") {
  * @param {*} value - The new value to update the field with.
  * @returns {boolean} Returns true if the update is successful, otherwise false.
  */
-export async function updateClubLead(leadName, key, value) {
+export async function updateClubLead(leadName, key, value, test = "Club_Leads") {
   try {
     // check required parameters are provided
     if (!leadName || !key || value === undefined) {
@@ -122,7 +122,7 @@ export async function updateClubLead(leadName, key, value) {
     }
 
     // get reference to lead in database
-    const leadRef = ref(database, `Club_Leads/${leadName}`);
+    const leadRef = ref(database, `${test}/${leadName}`);
 
     // check if lead exists
     const snapshot = await leadRef.get();
