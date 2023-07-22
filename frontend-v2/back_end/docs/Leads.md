@@ -74,3 +74,29 @@ true
 ```
 false
 ```
+
+
+## <span style="color:deepskyblue"> deleteClubLead
+Deletes a club lead from the database based on their name. Returns a Boolean value indicating the success of the lead deletion.
+
+* **Function Call:** deleteClubLead(leadName)
+
+* **Params: (leadName: String)**
+
+    | Name        | Type   | Description                                       | Default                 |
+    | ----------- | ------ | ------------------------------------------------- | ----------------------- |
+    | `leadName`  | String | The name of the club lead to be deleted. | NONE (Required Param)   |
+
+* **Returned Data Format:** Boolean
+
+* **Success Response:**
+```
+true
+```
+
+
+* **Error Response:**
+```
+false
+```
+
