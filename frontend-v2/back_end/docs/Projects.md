@@ -161,3 +161,29 @@ true
 false
 ```
 
+## <span style="color:deepskyblue"> deleteProject
+Deletes a project from the database based on its name. Returns a Boolean value indicating the success of the project deletion.
+
+* **Function Call:** deleteProject(projectName)
+
+* **Params: (projectName: String)**
+
+    | Name         | Type   | Description                                           | Default                 |
+    | ------------ | ------ | ----------------------------------------------------- | ----------------------- |
+    | `projectName`| String | The name of the project to be deleted. (Required)    | NONE (Required Param)   |
+
+* **Returned Data Format:** Boolean
+
+* **Success Response:**
+
+
+
+* **Success Response:**
+```
+true
+```
+
+
+* **Error Response:**
+```
+false
