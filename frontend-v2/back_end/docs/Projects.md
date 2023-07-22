@@ -126,3 +126,38 @@ Sample response shows output format, followed by sample data. (for name = "Proje
 
 * **Error Response:**
   Errors will be outputted into console
+
+
+## <span style="color:deepskyblue"> createNewProject
+Creates a new project and saves its information to the database. Returns a Boolean value based on the success of the project creation.
+
+* **Function Call:** createNewProject(project)
+
+* **Params: (project: {...})**
+
+    | Name         | Type    | Description                                             | Default                 |
+    | ------------ | ------- | ------------------------------------------------------- | ----------------------- |
+    | `Category`   | String  | Project Category/Type.                       | NONE (Required Param)   |
+    | `Completed`  | Boolean | If the project was successfully completed.   | NONE (Required Param)   |
+    | `Description`| String  | Description of the project.                  | NONE (Required Param)   |
+    | `End_Date`   | DateString | The project termination date.               | NONE (Required Param)   |
+    | `Git_Link`   | String  | Github link to the project's repo.           | NONE (Required Param)   |
+    | `Image`      | Blob    | Project Logo.                                | NONE (Required Param)   |
+    | `Members`    | String  | Comma-separated array. Members that were part of the project.  | NONE (Required Param)   |
+    | `Name`       | String  | Project Name (also the key).                 | NONE (Required Param)   |
+    | `PM`         | String  | Name of the project manager.                 | NONE (Required Param)   |
+    | `Start_Date` | DateString | The date when the project started.          | NONE (Required Param)   |
+
+* **Returned Data Format:** Boolean
+
+* **Success Response:**
+```
+true
+```
+
+
+* **Error Response:**
+```
+false
+```
+
