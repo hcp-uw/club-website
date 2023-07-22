@@ -73,7 +73,6 @@ Creates a new event and saves it to our DB. Returns a Boolean value based that c
   ```
   false
   ```
-  Errors will be outputted into console
 
 
 ## <span style="color:deepskyblue"> deleteEvent
@@ -98,3 +97,30 @@ true
 ```
 false
 ```
+
+## <span style="color:deepskyblue"> updateEvent
+Updates an event in the database based on the provided event name, key name, and value.
+
+* **Function Call:** updateEvent(eventName, key, value)
+
+* **Params:**
+
+    | Name        | Type   | Description                                    | Default                 |
+    | ----------- | ------ | ---------------------------------------------- | ----------------------- |
+    | `eventName` | String | The name of the event to be updated. (Required) | NONE (Required Param)   |
+    | `key`       | String | The key name of the field to be updated. (Required) | NONE (Required Param)   |
+    | `value`     | Any    | The new value to update the field with. (Required) | NONE (Required Param)   |
+
+* **Returned Data Format:** Boolean
+
+* **Success Response:**
+```
+true
+```
+
+* **Error Response:**
+```
+false
+```
+
+
