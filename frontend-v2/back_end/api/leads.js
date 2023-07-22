@@ -80,7 +80,7 @@ async function createNewLead(lead, test = "Club_Leads") {
  * @param {string} leadName - The name of the club lead to be deleted.
  * @returns {boolean} Returns true if the lead deletion is successful, otherwise false.
  */
-async function deleteClubLead(leadName) {
+async function deleteClubLead(leadName, test = "Club_Leads") {
     try {
       // check if leadName is provided
       if (!leadName) {
@@ -89,7 +89,7 @@ async function deleteClubLead(leadName) {
       }
   
       // get ref to lead in database
-      const leadRef = ref(database, `Club_Leads/${leadName}`);
+      const leadRef = ref(database, `${test}/${leadName}`);
   
       // check if lead exists
       const snapshot = await leadRef.get();
