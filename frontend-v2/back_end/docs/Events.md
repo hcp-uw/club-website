@@ -107,9 +107,9 @@ Updates an event in the database based on the provided event name, key name, and
 
     | Name        | Type   | Description                                    | Default                 |
     | ----------- | ------ | ---------------------------------------------- | ----------------------- |
-    | `eventName` | String | The name of the event to be updated. (Required) | NONE (Required Param)   |
-    | `key`       | String | The key name of the field to be updated. (Required) | NONE (Required Param)   |
-    | `value`     | Any    | The new value to update the field with. (Required) | NONE (Required Param)   |
+    | `eventName` | String | The name of the event to be updated. | NONE (Required Param)   |
+    | `key`       | String | The key name of the field to be updated. | NONE (Required Param)   |
+    | `value`     | Any    | The new value to update the field with. | NONE (Required Param)   |
 
 * **Returned Data Format:** Boolean
 
