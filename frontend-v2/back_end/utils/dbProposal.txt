@@ -1,0 +1,46 @@
+DESCRIBES THE FIELDS IN THE DATABASE AND WHAT EACH FIELD MEANS
+NEW DB STRUCTURE PROPOSAL
+Last Updated: July 23st, 2023
+---
+
+{
+  "Members": {
+    "<Name>": {
+      "Name": String,                     Their name
+      "Class_Standing": string,           Indicates their year (freshman/sophomore/junior/senior)
+      "Email": String,                    Their UW email <Key>
+      "Image": Blob,                      Their picture
+      "Team": Comma-separated Array       The project teams they were in
+      "Club_Lead": boolean                A flag indicating if a member is a club lead
+      "Active": boolean,                  Indicates if the club lead is currently active
+      "Role": String,                     Their position/role, i.e. which lead team they were on
+      "Date_Joined": DateString,          Indicates the date they joined the leads team
+      "Date_Left": DateString,            Indicates the date they left the leads team
+    }
+  },
+  "Events": {
+    "<Name>": {
+      "Attendees": int,                   Number of attendees, approximately
+      "Date": DateString,                 Date of which event occurs
+      "Description": String,              Short Description of Event
+      "Image": Blob,                      Event Picture/Logo
+      "Location": String,                 Where the event is held
+      "Name": String,                     Event name (also the key)
+      "Sponsor": String                   Sponsors of the event
+    }
+  },
+  "Projects": {
+    "<Name>": {
+      "Category": String,                 Project Category/Type
+      "Completed": boolean,               If the project was successfully completed (i.e. Working MVP or more)
+      "Description": String,              Description of the project
+      "End_Date": DateString,             The project termination date
+      "Git_Link": String:Link,            Github link to the project's repo
+      "Image": Blob,                      Project Logo
+      "Members": Comma-separated array,   Members that were part of the project
+      "Name": String,                     Project Name (also the key)
+      "PM": String,                       Name of the project manager
+      "Start_Date": DateString            The date when the project started
+    }
+  }
+}
