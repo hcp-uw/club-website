@@ -136,7 +136,7 @@ function Events() {
                     date={event.date}
                     location={event.location}
                     loading={loading}
-                    image={event.image !== "" ? event.image : "/HCPLogo.webp"}
+                    image={event.image != null ? event.image : "/HCPLogo.webp"}
                 />
             ))}
         </Flex>
