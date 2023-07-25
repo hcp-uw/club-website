@@ -60,7 +60,6 @@ function SearchBar(props: ISearchBar) {
                 </InputLeftElement>
                 <Input
                     placeholder='Search for projects...'
-                    variant='filled'
                     textColor='white'
                     width='80vw'
                     borderRadius='2xl'
@@ -84,18 +83,39 @@ function DisplayProjects(props: IDisplayProps) {
     const { searchTerm, projects } = props;
 
     // Compute search
-    const filterProjects = (searchTerm: string, projects: IProjectInfo[]) => {
-        return projects.filter((obj: IProjectInfo) => 
-            Object.values(obj).some(val => val.toString().toLowerCase().includes(searchTerm)));
-    }
+    const searchField = (field: keyof IProjectInfo): IProjectInfo[] => {
+        if (field == null || projects == null) {
+            return [];
+        }
+        return projects.filter((obj: IProjectInfo) =>
+            obj[field]?.toString().toLowerCase().includes(searchTerm.toLowerCase()));
+    };
+
+    const filterDuplicates = (curr: IProjectInfo[], add: IProjectInfo[]): IProjectInfo[] => {
+        return add.filter((obj: IProjectInfo, idx: number) => curr.indexOf(obj) == -1);
+    };
+
+    const filterProjects = (): IProjectInfo[] => {
+        if (searchTerm === "") {
+            return projects ?? [];
+        }
+        const cards: IProjectInfo[] = [];
+        cards.push(...filterDuplicates(cards, searchField("name")));
+        cards.push(...filterDuplicates(cards, searchField("category")));
+        cards.push(...filterDuplicates(cards, searchField("description")));
+        cards.push(...filterDuplicates(cards, searchField("pm")));
+        cards.push(...filterDuplicates(cards, searchField("members")));
+        return cards;
+    };
+    console.log(projects);
     let filteredProjects: IProjectInfo[] = [];
     if (projects != null) {
-        filteredProjects = filterProjects(searchTerm.toLowerCase(), projects);
+        filteredProjects = filterProjects();
     }
     console.log(filteredProjects);
     return (
         <></>
-    )
+    );
 }
 
 export default function Projects() {
