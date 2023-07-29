@@ -10,16 +10,34 @@ import {
 } from "@chakra-ui/react";
 import { SpecialArrowButton } from "./Parts";
 
-interface IEventCard {
+interface IProjectCard {
     name: string;
-    date: Date;
-    location: string;
+    startDate: Date;
+    endDate: Date;
+    completed: boolean;
+    category: string;
+    pm: string;
+    gitLink: string | null;
+    description: string;
+    members: string;
     image: string;
     loading: boolean;
 }
 
-export default function EventCard(props: IEventCard) {
-    const {name, date, location, image, loading} = props;
+export default function ProjectCard(props: IProjectCard) {
+    const {
+        name,
+        startDate,
+        endDate,
+        completed,
+        category,
+        pm,
+        gitLink,
+        description,
+        members,
+        image,
+        loading
+    } = props;
 
     return (
         <Card
@@ -32,6 +50,8 @@ export default function EventCard(props: IEventCard) {
             marginX='25px'
             background='brand.mid_white'
             color="black"
+            borderWidth='5px'
+            borderColor={completed ? "black" : "green.500"}
         >
             <CardBody alignContent='flex-start'>
                 <Skeleton isLoaded={!loading}>
@@ -47,23 +67,23 @@ export default function EventCard(props: IEventCard) {
                 <VStack paddingTop='10px' direction='column' spacing='2'>
                     <Skeleton isLoaded={!loading} width='100%'>
                         <Box justifyContent='flex-start' width='100%'>
-                            <Text fontSize='2xl' fontWeight='bold'>
+                            <Text fontSize='lg' fontWeight='bold'>
                                 {name}
                             </Text>
                         </Box>
                     </Skeleton>
                     <Skeleton isLoaded={!loading} width='100%'>
                         <Box justifyContent='flex-start' width='100%'>
-                            <Text fontSize='lg'>
-                                {date.toLocaleDateString()} •{" "}
-                                {date.toLocaleTimeString()}
+                            <Text fontSize='sm'>
+                                {startDate.toLocaleDateString()} •{" "}
+                                {completed ? endDate.toLocaleTimeString() : "Present"}
                             </Text>
                         </Box>
                     </Skeleton>
                     <Skeleton isLoaded={!loading} width='100%'>
                         <Box justifyContent='flex-start' width='100%'>
-                            <Text fontSize='lg'>
-                                Location: {location}
+                            <Text fontSize='xs'>
+                                {description}
                             </Text>
                         </Box>
                     </Skeleton>
@@ -71,7 +91,7 @@ export default function EventCard(props: IEventCard) {
             </CardBody>
             <CardFooter paddingTop='0px' justifyContent='flex-start'>
                 <Skeleton isLoaded={!loading}>
-                    <SpecialArrowButton path='/events' text='Details' />
+                    <SpecialArrowButton path={gitLink ?? ""} text='Details' />
                 </Skeleton>
             </CardFooter>
         </Card>

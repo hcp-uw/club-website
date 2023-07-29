@@ -2,22 +2,19 @@ import { Inter } from "@next/font/google";
 import {
     Center,
     VStack,
-    Flex,
-    Box,
     Text,
     Input,
     InputGroup,
-    InputLeftAddon,
     InputLeftElement,
+    SimpleGrid,
 } from "@chakra-ui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 // @ts-ignore
 import { getProjects } from "@/utils/api";
-import Image from 'next/image';
-import { ChangeEvent, lazy, memo, useEffect, useState } from "react";
-import EventCard from "components/EventCard";
+import { ChangeEvent, lazy, useEffect, useState } from "react";
 import { IProjectInfo } from "utils/parsers";
+import ProjectCard from "components/ProjectCard";
 
 const Room = lazy(() => import("components/Room"));
 const inter = Inter({ subsets: ["latin"] });
@@ -76,13 +73,14 @@ function SearchBar(props: ISearchBar) {
 
 interface IDisplayProps {
     searchTerm: string;
-    projects: IProjectInfo[] | null;
+    projects: IProjectInfo[];
+    loading: boolean;
 }
 
 function DisplayProjects(props: IDisplayProps) {
-    const { searchTerm, projects } = props;
+    const { searchTerm, projects, loading } = props;
 
-    // Compute search
+    // Helper functions for search
     const searchField = (field: keyof IProjectInfo): IProjectInfo[] => {
         if (field == null || projects == null) {
             return [];
@@ -100,21 +98,39 @@ function DisplayProjects(props: IDisplayProps) {
             return projects ?? [];
         }
         const cards: IProjectInfo[] = [];
-        cards.push(...filterDuplicates(cards, searchField("name")));
-        cards.push(...filterDuplicates(cards, searchField("category")));
-        cards.push(...filterDuplicates(cards, searchField("description")));
-        cards.push(...filterDuplicates(cards, searchField("pm")));
-        cards.push(...filterDuplicates(cards, searchField("members")));
+        const filterOrder: (keyof IProjectInfo)[] = 
+            ["name", "category", "description", "pm", "members"];
+        filterOrder.forEach((key: keyof IProjectInfo) => 
+            cards.push(...filterDuplicates(cards, searchField(key))));
         return cards;
     };
-    console.log(projects);
+    
+    // Display cards
     let filteredProjects: IProjectInfo[] = [];
-    if (projects != null) {
+    if (loading) {
+        filteredProjects = projects;
+    } else {
         filteredProjects = filterProjects();
     }
-    console.log(filteredProjects);
     return (
-        <></>
+        <SimpleGrid columns={[1, 1, 2, 2, 3]} spacing='40px'>
+            {filteredProjects.map((project: IProjectInfo) =>
+                <ProjectCard
+                    key={project.name}
+                    name={project.name}
+                    startDate={project.startDate}
+                    endDate={project.endDate}
+                    completed={project.completed}
+                    category={project.category}
+                    pm={project.pm}
+                    gitLink={project.gitLink ?? ""}
+                    description={project.description}
+                    members={project.members}
+                    image={project.image ?? "/HCPLogo.webp"}
+                    loading={loading}
+                />              
+            )}
+        </SimpleGrid>
     );
 }
 
@@ -125,17 +141,59 @@ export default function Projects() {
     }, []);
 
     const [searchTerm, setSearchTerm] = useState<string>("");
-    const [projects, setProjects] = useState<IProjectInfo[] | null>(null);
+    const [projects, setProjects] = useState<IProjectInfo[]>([
+        {
+            name: "Project 1",
+            startDate: new Date("3/21/2023"),
+            endDate: new Date("3/21/2023"),
+            completed: true,
+            category: "",
+            pm: "",
+            gitLink: "",
+            description: "Default description that is very long and should wrap around to the next few lines.",
+            members: "",
+            image: "",
+        },
+        {
+            name: "Project 2",
+            startDate: new Date("3/21/2023"),
+            endDate: new Date("3/21/2023"),
+            completed: true,
+            category: "",
+            pm: "",
+            gitLink: "",
+            description: "Default description that is very long and should wrap around to the next few lines.",
+            members: "",
+            image: "",
+        },
+        {
+            name: "Project 3",
+            startDate: new Date("3/21/2023"),
+            endDate: new Date("3/21/2023"),
+            completed: true,
+            category: "",
+            pm: "",
+            gitLink: "",
+            description: "Default description that is very long and should wrap around to the next few lines.",
+            members: "",
+            image: "",
+        },
+    ]);
+    const [loading, setLoading] = useState<boolean>(true);
 
     useEffect(() => {
-        getProjects(setProjects);
+        const getData = (data: IProjectInfo[]) => {
+            setProjects(data);
+            setLoading(false);
+        }
+        getProjects(getData);
     }, []);
 
     return (
         <VStack spacing='40px'>
             <Title />
             <SearchBar setSearchTerm={setSearchTerm}/>
-            <DisplayProjects searchTerm={searchTerm} projects={projects}/>
+            <DisplayProjects searchTerm={searchTerm} projects={projects} loading={loading}/>
         </VStack>
     );
 }

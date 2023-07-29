@@ -16,7 +16,7 @@ export interface IProjectInfo {
     name: string;
     startDate: Date;
     endDate: Date;
-    completed: Boolean;
+    completed: boolean;
     category: string;
     pm: string;
     gitLink: string | null;

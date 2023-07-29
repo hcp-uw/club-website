@@ -14,6 +14,7 @@ import { getFeaturedEvents } from "@/utils/api";
 import Image from 'next/image';
 import { lazy, useEffect, useState } from "react";
 import EventCard from "components/EventCard";
+import { IEventInfo } from "utils/parsers";
 
 const Room = lazy(() => import("components/Room"));
 const inter = Inter({ subsets: ["latin"] });
@@ -84,16 +85,8 @@ function Title() {
     );
 }
 
-interface IEventType {
-    date: Date;
-    name: string;
-    location: string;
-    description: string;
-    image: string;
-}
-
 function Events() {
-    const [events, setEvents] = useState<IEventType[]>([
+    const [events, setEvents] = useState<IEventInfo[]>([
         {
             date: new Date("3/21/2023"),
             name: "Default Event",
@@ -120,7 +113,7 @@ function Events() {
 
     // Uses the getFeaturedEvents API
     useEffect(() => {
-        const getData = async (data: IEventType[]) => {
+        const getData = (data: IEventInfo[]) => {
             setEvents(data);
             setLoading(false);
         };
@@ -136,7 +129,7 @@ function Events() {
                     date={event.date}
                     location={event.location}
                     loading={loading}
-                    image={event.image != null ? event.image : "/HCPLogo.webp"}
+                    image={event.image ?? "/HCPLogo.webp"}
                 />
             ))}
         </Flex>
