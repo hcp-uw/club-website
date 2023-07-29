@@ -25,8 +25,9 @@ export interface IProjectInfo {
     image: string | null;
 }
 
-export const parseProjects = (data: any[]) => {
-    const ret = data.map((obj: any) => {
+// rome-ignore lint/suspicious/noExplicitAny: The backend does not have types
+export    const parseProjects = (data: any[]) => {
+    const ret = data.map(obj => {
         const res: IProjectInfo = {
             name: obj.Name,
             startDate: new Date(obj.Start_Date),
@@ -52,8 +53,9 @@ export interface IEventInfo {
     image: string | null;
 }
 
-export const parseEvents = (data: any) => {
-    const ret = data.map((obj: any) => {
+// rome-ignore lint/suspicious/noExplicitAny: The backend does not have types
+export const parseEvents = (data: any[]) => {
+    const ret = data.map(obj => {
         const res: IEventInfo = {
             date: new Date(obj.Date),
             name: obj.Name,
@@ -78,8 +80,9 @@ export interface IPeopleInfo {
     team: string,
 }
 
-export const parsePeople = (data: any) => {
-    const ret = data.map((obj: any) => {
+// rome-ignore lint/suspicious/noExplicitAny: The backend does not have types
+export const parsePeople = (data: any[]) => {
+    const ret = data.map(obj => {
         const res: IPeopleInfo = {
             active: obj.active,
             year: obj.Class_Standing,

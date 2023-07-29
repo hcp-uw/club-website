@@ -90,7 +90,7 @@ function DisplayProjects(props: IDisplayProps) {
     };
 
     const filterDuplicates = (curr: IProjectInfo[], add: IProjectInfo[]): IProjectInfo[] => {
-        return add.filter((obj: IProjectInfo, idx: number) => curr.indexOf(obj) == -1);
+        return add.filter((obj: IProjectInfo, idx: number) => curr.indexOf(obj) === -1);
     };
 
     const filterProjects = (): IProjectInfo[] => {
