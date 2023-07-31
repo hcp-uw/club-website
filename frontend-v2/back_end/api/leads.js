@@ -56,7 +56,7 @@ export async function createNewLead(lead, test = "Club_Leads") {
     const leadRef = ref(database, `${test}/${lead.Name}`);
 
     // check if lead already exists
-    const snapshot = await leadRef.get();
+    const snapshot = await get(leadRef);
     if (snapshot.exists()) {
       console.error(
         `Lead with name '${lead.Name}' already exists in the database.`
@@ -79,7 +79,7 @@ export async function createNewLead(lead, test = "Club_Leads") {
  * @param {string} leadName - The name of the club lead to be deleted.
  * @returns {boolean} Returns true if the lead deletion is successful, otherwise false.
  */
-export async function deleteClubLead(leadName, test = "Club_Leads") {
+export async function deleteLead(leadName, test = "Club_Leads") {
   try {
     // check if leadName is provided
     if (!leadName) {
@@ -91,7 +91,7 @@ export async function deleteClubLead(leadName, test = "Club_Leads") {
     const leadRef = ref(database, `${test}/${leadName}`);
 
     // check if lead exists
-    const snapshot = await leadRef.get();
+    const snapshot = await get(leadRef);
     if (!snapshot.exists()) {
       console.error(`Lead with name '${leadName}' not found in the database.`);
       return false;
@@ -125,7 +125,7 @@ export async function updateClubLead(leadName, key, value, test = "Club_Leads") 
     const leadRef = ref(database, `${test}/${leadName}`);
 
     // check if lead exists
-    const snapshot = await leadRef.get();
+    const snapshot = await get(leadRef);
     if (!snapshot.exists()) {
       console.error(`Lead with name '${leadName}' not found in the database.`);
       return false;
