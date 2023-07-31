@@ -190,7 +190,7 @@ export async function updateLead(leadName, key, value, test = "Club_Leads") {
  * @param {string} test - The name of the database root node (optional).
  * @returns {Object|null} Returns the club lead object if found, otherwise returns null.
  */
-async function getLeadByName(leadName, test = "Club_Leads") {
+export async function getLeadByName(leadName, test = "Club_Leads") {
   try {
     // check if leadName is provided
     if (!leadName) {
@@ -205,11 +205,10 @@ async function getLeadByName(leadName, test = "Club_Leads") {
     }
 
     // get ref to lead in database
-    const database = getDatabase();
     const leadRef = ref(database, `${test}/${leadName}`);
 
     // get lead data
-    const snapshot = await get(child(leadRef, "data"));
+    const snapshot = await get(leadRef);
     if (snapshot.exists()) {
       return snapshot.val();
     } else {

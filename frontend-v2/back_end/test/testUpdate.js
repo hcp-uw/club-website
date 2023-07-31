@@ -1,5 +1,5 @@
 import { updateEvent, createNewEvent, deleteEvent, getEventByName } from "../api/events.js";
-import { updateLead, createNewLead, deleteLead } from "../api/leads.js";
+import { updateLead, createNewLead, deleteLead, getLeadByName } from "../api/leads.js";
 import { updateProject, createNewProject, deleteProject } from "../api/projects.js";
 import { assert } from "chai";
 
@@ -97,11 +97,6 @@ describe("Testing updateEvent", () => {
 });
 
 
-
-
-import { updateLead } from "../api/leads.js";
-import { assert } from "chai";
-
 describe("Testing updateLead", () => {
   beforeEach(async () => {
 
@@ -189,7 +184,7 @@ describe("Testing updateLead", () => {
   it("should return false when invalid value type is provided", async () => {
     const leadName = "Test Lead";
     const key = "Active";
-    const value = "Invalid Value Type"; // Should be a boolean
+    const value = "Invalid Value Type"; // should be a boolean
 
     const result = await updateLead(leadName, key, value, "Test/Club_Leads");
     assert.isFalse(result, "Expected updateLead to return false");
