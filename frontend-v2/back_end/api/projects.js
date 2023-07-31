@@ -4,6 +4,7 @@ import {
     get,
     orderByChild,
     startAt,
+    update,
     equalTo,
     set, 
     remove

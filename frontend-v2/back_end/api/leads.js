@@ -1,4 +1,4 @@
-import { ref, query, get, orderByChild, equalTo, set, remove } from "firebase/database";
+import { ref, query, get, orderByChild, equalTo, set, remove, update } from "firebase/database";
 import { database } from "../utils/index.js";
 import { errObj, getData } from "../utils/utils.js";
 
@@ -113,7 +113,7 @@ export async function deleteLead(leadName, test = "Club_Leads") {
  * @param {*} value - The new value to update the field with.
  * @returns {boolean} Returns true if the update is successful, otherwise false.
  */
-export async function updateClubLead(leadName, key, value, test = "Club_Leads") {
+export async function updateLead(leadName, key, value, test = "Club_Leads") {
   try {
     // check required parameters are provided
     if (!leadName || !key || value === undefined) {
