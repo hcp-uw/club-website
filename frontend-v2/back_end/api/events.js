@@ -7,6 +7,7 @@ import {
   orderByChild,
   startAt,
   endAt,
+  update,
   limitToFirst,
   limitToLast,
 } from "firebase/database";
@@ -19,6 +20,44 @@ export async function getAllEvents(test = "Events") {
   let data = await getData(test);
   return Array.from(Object.values(data));
 }
+
+/**
+ * Fetches an event from the database based on its name.
+ * @param {string} eventName - The name of the event to be fetched.
+ * @param {string} test - The name of the database root node (optional).
+ * @returns {Object|null} Returns the event object if found, otherwise returns null.
+ */
+export async function getEventByName(eventName, test = "Events") {
+  try {
+    // Check if eventName is provided
+    if (!eventName) {
+      console.error("Missing required parameter: eventName");
+      return null;
+    }
+
+    // Type check
+    if (typeof eventName !== "string") {
+      console.error("Parameter 'eventName' must be of type 'string'");
+      return null;
+    }
+
+    // Get ref to event in database
+    const eventRef = ref(database, test + "/" + eventName);
+
+    // Get the event data
+    const snapshot = await get(eventRef);
+    if (snapshot.exists()) {
+      return snapshot.val();
+    } else {
+      console.error(`Event with name '${eventName}' not found in the database.`);
+      return null;
+    }
+  } catch (err) {
+    console.error(err);
+    return null;
+  }
+}
+
 
 /**
  * Creates a new event and saves it to the database.
@@ -155,7 +194,7 @@ export async function deleteEvent(eventName, test = "Events") {
  * @param {*} value - The new value to update the field with.
  * @returns {boolean} Returns true if the event update is successful, otherwise false.
  */
-async function updateEvent(eventName, key, value, test = "Events") {
+export async function updateEvent(eventName, key, value, test = "Events") {
   try {
     // check if required parameters are provided
     if (!eventName || !key || value === undefined) {
@@ -167,7 +206,7 @@ async function updateEvent(eventName, key, value, test = "Events") {
     const eventRef = ref(database, `${test}/${eventName}`);
 
     // check if event exists
-    const snapshot = await eventRef.get();
+    const snapshot = await get(eventRef);
     if (!snapshot.exists()) {
       console.error(
         `Event with name '${eventName}' not found in the database.`
