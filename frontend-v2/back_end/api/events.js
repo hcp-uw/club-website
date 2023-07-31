@@ -87,10 +87,18 @@ export async function createNewEvent(event, test = "Events") {
       return false;
     }
 
-    console.log(JSON.parse(JSON.stringify(event)))
+    // get ref and snapshot of current event record (shouldn't exist)
+    const eventRef = ref(database, test + "/" + event.Name);
+    const snapshot = await get(eventRef);
+    
+    // check if snapshot exists
+    if (snapshot.exists()) {
+      console.error(`Event with name '${event.Name}' already exists in the database.`);
+      return false;
+    }
 
     // save event to the database
-    await set(ref(database, test + "/" + event.Name), event);
+    await set(eventRef, event);
 
     // event created
     return true;

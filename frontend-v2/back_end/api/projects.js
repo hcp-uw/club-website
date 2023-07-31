@@ -113,7 +113,7 @@ export async function createNewProject(project, test = "Projects") {
       // check if required params provided
       const requiredFields = ["Category", "Completed", "Description", "End_Date", "Git_Link", "Image", "Members", "Name", "PM", "Start_Date"];
       for (const field of requiredFields) {
-        if (!project[field]) {
+        if (project[field] === undefined) {
           console.error(`Missing required parameter: ${field}`);
           return false;
         }
@@ -123,7 +123,7 @@ export async function createNewProject(project, test = "Projects") {
       const projectRef = ref(database, `${test}/${project.Name}`);
   
       // check if project already exists
-      const snapshot = await projectRef.get();
+      const snapshot = await get(projectRef);
       if (snapshot.exists()) {
         console.error(`Project with name '${project.Name}' already exists in the database.`);
         return false;
@@ -157,7 +157,7 @@ export async function deleteProject(projectName, test = "Projects") {
       const projectRef = ref(database, `${test}/${projectName}`);
   
       // check if project exists
-      const snapshot = await projectRef.get();
+      const snapshot = await get(projectRef);
       if (!snapshot.exists()) {
         console.error(`Project with name '${projectName}' not found in the database.`);
         return false;
@@ -191,7 +191,7 @@ export async function updateProject(projectName, key, value, test = "Projects") 
       const projectRef = ref(database, `${test}/${projectName}`);
   
       // check if project exists
-      const snapshot = await projectRef.get();
+      const snapshot = await get(projectRef);
       if (!snapshot.exists()) {
         console.error(`Project with name '${projectName}' not found in the database.`);
         return false;
