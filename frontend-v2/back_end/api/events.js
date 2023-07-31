@@ -3,6 +3,7 @@ import {
   query,
   get,
   set,
+  remove,
   orderByChild,
   startAt,
   endAt,
@@ -22,26 +23,26 @@ export async function getAllEvents(test = "Events") {
 /**
  * Creates a new event and saves it to the database.
  * @param {Object} event - The event object to be saved.
- * @param {number} event.attendees - Number of planned attendees. (Required)
- * @param {string} event.date - Date of the event in DateString format. (Required)
+ * @param {number} event.Attendees - Number of planned attendees. (Required)
+ * @param {string} event.Date - Date of the event in DateString format. (Required)
  * @param {string} event.description - Description of the event. (Required)
  * @param {string} event.imageURL - Hosted URL of the event's image. (Required)
  * @param {string} event.location - Location of the event. (Required)
  * @param {string} event.name - Name of the event, also serving as the "unique identifier". (Required)
- * @param {string} event.sponser - Name of the event's sponsor. (Required)
+ * @param {string} event.Sponsor - Name of the event's sponsor. (Required)
  * @returns {boolean} Returns true if the event creation is successful, otherwise false.
  */
 export async function createNewEvent(event, test = "Events") {
   try {
     // check if all required parameters provided
     const requiredParams = [
-      "attendees",
-      "date",
-      "description",
-      "imageURL",
-      "location",
-      "name",
-      "sponser",
+      "Attendees",
+      "Date",
+      "Description",
+      "Image",
+      "Location",
+      "Name",
+      "Sponsor",
     ];
     for (const param of requiredParams) {
       if (!event.hasOwnProperty(param)) {
@@ -51,43 +52,45 @@ export async function createNewEvent(event, test = "Events") {
     }
 
     // type checks
-    if (typeof event.attendees !== "number") {
-      console.error("Parameter 'attendees' must be of type 'number'");
+    if (typeof event.Attendees !== "number") {
+      console.error("Parameter 'Attendees' must be of type 'number'");
       return false;
     }
 
-    if (typeof event.date !== "string") {
-      console.error("Parameter 'date' must be of type 'string'");
+    if (typeof event.Date !== "string") {
+      console.error("Parameter 'Date' must be of type 'string'");
       return false;
     }
 
-    if (typeof event.description !== "string") {
-      console.error("Parameter 'description' must be of type 'string'");
+    if (typeof event.Description !== "string") {
+      console.error("Parameter 'Description' must be of type 'string'");
       return false;
     }
 
-    if (typeof event.imageURL !== "string") {
-      console.error("Parameter 'imageURL' must be of type 'string'");
+    // if (typeof event.Image !== "string") {
+    //   console.error("Parameter 'ImageURL' must be of type 'string'");
+    //   return false;
+    // }
+
+    if (typeof event.Location !== "string") {
+      console.error("Parameter 'Location' must be of type 'string'");
       return false;
     }
 
-    if (typeof event.location !== "string") {
-      console.error("Parameter 'location' must be of type 'string'");
+    if (typeof event.Name !== "string") {
+      console.error("Parameter 'Name' must be of type 'string'");
       return false;
     }
 
-    if (typeof event.name !== "string") {
-      console.error("Parameter 'name' must be of type 'string'");
+    if (typeof event.Sponsor !== "string") {
+      console.error("Parameter 'Sponsor' must be of type 'string'");
       return false;
     }
 
-    if (typeof event.sponser !== "string") {
-      console.error("Parameter 'sponser' must be of type 'string'");
-      return false;
-    }
+    console.log(JSON.parse(JSON.stringify(event)))
 
     // save event to the database
-    await set(ref(database, test + "/" + event.name, event));
+    await set(ref(database, test + "/" + event.Name), event);
 
     // event created
     return true;
@@ -102,7 +105,7 @@ export async function createNewEvent(event, test = "Events") {
  * @param {string} eventName - The name of the event to be deleted.
  * @returns {boolean} Returns true if the event deletion is successful, otherwise false.
  */
-async function deleteEvent(eventName, test = "Events") {
+export async function deleteEvent(eventName, test = "Events") {
   try {
     // check if eventName is provided
     if (!eventName) {
@@ -120,7 +123,7 @@ async function deleteEvent(eventName, test = "Events") {
     const eventRef = ref(database, test + "/" + eventName);
 
     // check if event exists
-    const snapshot = await eventRef.get();
+    const snapshot = await get(eventRef);
     if (!snapshot.exists()) {
       console.error(
         `Event with name '${eventName}' not found in the database.`
@@ -213,7 +216,7 @@ async function updateEvent(eventName, key, value, test = "Events") {
 /**
  * Returns upcoming events, or old events
  * @Param upcoming (boolean): Indicates getting upcoming events (true) or old events
- * @Param limit (integer): How many events to return, will return events closest to today's date
+ * @Param limit (integer): How many events to return, will return events closest to today's Date
  *    Optional param: Default value 4
  * @return List of events, sorted in descending order
  */
@@ -236,7 +239,7 @@ export async function getEventsBasedOnTime(
     return errObj;
   }
 
-  // Getting date
+  // Getting Date
   let todayStr = new Date().toISOString(); // YYYY-MM-DDTHH:MM:SS.sssz
   let today = todayStr.substring(0, todayStr.length - 5); // YYYY-MM-DDTHH:MM:SS
 
