@@ -72,7 +72,7 @@ export default function Sidebar(props: ISideBar) {
             />
             {
                 buttons.map(button =>
-                    <SidebarButton path={button.path} text={button.text} handleShow={handleShow} />
+                    <SidebarButton key={button.text} path={button.path} text={button.text} handleShow={handleShow} />
                 )
             }
         </Flex>

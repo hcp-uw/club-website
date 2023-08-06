@@ -1,25 +1,18 @@
 import { useState, useEffect } from "react";
 import { Inter } from "@next/font/google";
 import {
-    Center,
-    VStack,
     Flex,
     Link,
-    Box,
     Text,
     Button,
-    Image,
-    IconButton,
 } from "@chakra-ui/react";
-import styles from "@/styles/Join.module.css";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 
-import type { ChangeEvent, KeyboardEvent } from "react";
+import type { ChangeEvent } from "react";
 // @ts-ignore
 import { sendEmail } from "@/utils/api";
-import { renderToHTML } from "next/dist/server/render";
 
 const inter = Inter({ subsets: ["latin"] });
 
