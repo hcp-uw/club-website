@@ -13,10 +13,11 @@ import { useMediaQuery } from "@chakra-ui/react";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { HeaderButton, SpecialHeaderButton } from "./Parts";
+import { useAuth } from "Context/AuthContext";
 
 export default function Header(props: { showSidebar: () => void }) {
     const [isLargerThan1200] = useMediaQuery("(min-width: 1200px)");
-
+    const { currentUser } = useAuth()
     return (
         <>
             {isLargerThan1200 ? (
@@ -40,6 +41,13 @@ export default function Header(props: { showSidebar: () => void }) {
                             <HeaderButton path='/about' text='About Us' />
                             <HeaderButton path='/projects' text='Projects' />
                             <HeaderButton path='/events' text='Events' />
+                            {currentUser ? (
+                                <HeaderButton path='/account' text="Account" />
+                            ) : (
+                                <div>
+
+                                </div>
+                            )}
                             <SpecialHeaderButton path='/join' text='Join Us' />
                         </ButtonGroup>
                     </Center>

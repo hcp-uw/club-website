@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react"
-import { onAuthStateChanged, signOut } from "firebase/auth"
+import { GithubAuthProvider, onAuthStateChanged, signInWithPopup, signOut } from "firebase/auth"
 import { auth } from "back_end/utils"
 
 const AuthContext = createContext<any>({})
@@ -7,35 +7,37 @@ const AuthContext = createContext<any>({})
 export const useAuth = () => useContext(AuthContext)
 export const AuthContextProvider = ({children}: {children:React.ReactNode}) => {
 
-  const [user, setUser] = useState<any>(null)
+  const provider = new GithubAuthProvider();
+
+  const [currentUser, setCurrentUser] = useState<any>(null)
   const [loading, setLoading] = useState(true)
 
+  const login = async () => {
+    const result = await signInWithPopup(auth, provider);
+    return result;
+  }
+
+  const getUser = () => {
+    return auth.currentUser;
+  }
+
+  const signOut  = async () => {
+    return auth.signOut();
+  }
+
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setUser({
-          user: user
-        })
-      } else {
-        setUser(null);
-      }
-      setLoading(false);
+    const unsubscribe = auth.onAuthStateChanged(user => {
+      setCurrentUser(user)
+      setLoading(false)
     })
 
-    return () => unsubscribe()
+    return unsubscribe
   }, [])
 
-  const login = async () => {
-    return
-  }
 
-  const logout  = async () => {
-    setUser(null);
-    await signOut(auth);
-  }
 
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={{ currentUser, login, signOut }}>
       {loading ? null : children}
     </AuthContext.Provider>
   )

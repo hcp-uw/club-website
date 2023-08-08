@@ -18,8 +18,10 @@ import type { ChangeEvent } from "react";
 // @ts-ignore
 import { sendEmail } from "@/utils/api";
 import GithubLoginComponent from "components/GithubButton";
+import GoogleLoginComponent from "components/GoogleButton";
 import { UserCredential, User, signOut} from "firebase/auth";
 import { auth } from "../back_end/utils/index.js"
+import { useAuth } from "Context/AuthContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -69,6 +71,7 @@ export default function Join() {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [content, setContent] = useState("");
+    const { currentUser } = useAuth()
 
     // Firebase authentication
     const [user, setUser] = useState<User | null>(null);
@@ -237,7 +240,8 @@ export default function Join() {
     const handleGoogleLoginSuccess = (result: UserCredential) => {
         setUser(result.user);
         const user = result.user;
-        console.log(user);
+        // const user = result.user;
+        //const user = result.user;
     }
 
     const handleGithubLoginSuccess = (result: UserCredential) => {
@@ -258,7 +262,7 @@ export default function Join() {
     return (
         <div id={isMobile ? "join-background-mobile" : "join-background"}>
             <>
-        {user ? (
+        {currentUser ? (
 
             <div>
                 <Center>
@@ -270,11 +274,11 @@ export default function Join() {
                         <CardBody alignContent="flex-start">
                             <Image
                                 boxSize="50px"
-                                src={user.photoURL ?? ""}
+                                src={currentUser.photoURL ?? ""}
 
                             />
                             <Text>
-                                {user.displayName}
+                                {currentUser.displayName}
                             </Text>
                         </CardBody>
                     </Card>
@@ -295,7 +299,8 @@ export default function Join() {
             </div>
         ) : (
             <div>
-                <GithubLoginComponent onLoginSuccess={handleGithubLoginSuccess} />
+
+                <GoogleLoginComponent onLoginSuccess={handleGoogleLoginSuccess} />
             </div>
 
         )}
