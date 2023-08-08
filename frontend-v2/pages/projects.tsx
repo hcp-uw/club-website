@@ -15,12 +15,12 @@ import { getProjects } from "@/utils/api";
 import { ChangeEvent, lazy, useEffect, useState } from "react";
 import { IProjectInfo } from "utils/parsers";
 import ProjectCard from "components/ProjectCard";
-
 const Room = lazy(() => import("components/Room"));
 const inter = Inter({ subsets: ["latin"] });
 
 function Title() {
     return (
+
         <Center>
             <Text
                 as='h2'
@@ -98,13 +98,13 @@ function DisplayProjects(props: IDisplayProps) {
             return projects ?? [];
         }
         const cards: IProjectInfo[] = [];
-        const filterOrder: (keyof IProjectInfo)[] = 
+        const filterOrder: (keyof IProjectInfo)[] =
             ["name", "category", "description", "pm", "members"];
-        filterOrder.forEach((key: keyof IProjectInfo) => 
+        filterOrder.forEach((key: keyof IProjectInfo) =>
             cards.push(...filterDuplicates(cards, searchField(key))));
         return cards;
     };
-    
+
     // Display cards
     let filteredProjects: IProjectInfo[] = [];
     if (loading) {
@@ -128,7 +128,7 @@ function DisplayProjects(props: IDisplayProps) {
                     members={project.members}
                     image={project.image ?? "/HCPLogo.webp"}
                     loading={loading}
-                />              
+                />
             )}
         </SimpleGrid>
     );
