@@ -17,7 +17,7 @@ import { useAuth } from "Context/AuthContext";
 
 export default function Header(props: { showSidebar: () => void }) {
     const [isLargerThan1200] = useMediaQuery("(min-width: 1200px)");
-    const { currentUser } = useAuth()
+    const { currentUser, lead } = useAuth()
     return (
         <>
             {isLargerThan1200 ? (
@@ -36,6 +36,7 @@ export default function Header(props: { showSidebar: () => void }) {
                     </Center>
                     <Spacer />
                     <Center>
+<<<<<<< HEAD
                         <ButtonGroup variant='ghost' spacing='5'>
                             <HeaderButton path='/' text='Home' />
                             <HeaderButton path='/about' text='About Us' />
@@ -46,11 +47,32 @@ export default function Header(props: { showSidebar: () => void }) {
                                 <HeaderButton path='/account' text="Account" />
                             ) : (
                                 <div>
+=======
+                        {!currentUser ? (
+                            <ButtonGroup variant='ghost' spacing='5'>
+                                <HeaderButton path='/' text='Home' />
+                                <HeaderButton path='/about' text='About Us' />
+                                <HeaderButton path='/projects' text='Projects' />
+                                <HeaderButton path='/events' text='Events' />
+                                <SpecialHeaderButton path='/join' text='Join Us' />
+                            </ButtonGroup>
+                        ) : (
+                            <ButtonGroup variant='ghost' spacing='5'>
+                                <HeaderButton path='/' text='Home' />
+>>>>>>> 4050a88db382779c0852c9676a74f2396ad8de15
 
-                                </div>
-                            )}
-                            <SpecialHeaderButton path='/join' text='Join Us' />
-                        </ButtonGroup>
+                                {lead ? (
+                                    <HeaderButton path='/admin' text='Admin' />
+                                ) : (
+                                    null
+                                ) }
+                                <HeaderButton path='/resources' text='Resources' />
+                                <HeaderButton path='/dashboard' text='Dashboard' />
+                                <HeaderButton path='/profile' text='Profile Maintenance' />
+                                <HeaderButton path='/private_project' text='Project Maintenance' />
+                                <SpecialHeaderButton path='/join' text='Join Us' />
+                            </ButtonGroup>
+                        )}
                     </Center>
                     <Spacer />
                 </Flex>

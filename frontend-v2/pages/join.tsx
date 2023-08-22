@@ -18,11 +18,12 @@ import type { ChangeEvent } from "react";
 // @ts-ignore
 import { sendEmail } from "@/utils/api";
 import GithubLoginComponent from "components/GithubButton";
-import GoogleLoginComponent from "components/GoogleButton";
-import { UserCredential, User, signOut} from "firebase/auth";
+import { UserCredential, User, signOut, OAuthCredential} from "firebase/auth";
 import { auth } from "../back_end/utils/index.js"
 import { useAuth } from "Context/AuthContext";
 
+// @ts-ignore
+import { checkLead } from "@/utils/api";
 const inter = Inter({ subsets: ["latin"] });
 
 function renderJoinPage() {
@@ -71,7 +72,7 @@ export default function Join() {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [content, setContent] = useState("");
-    const { currentUser } = useAuth()
+    const { currentUser, lead } = useAuth()
 
     // Firebase authentication
     const [user, setUser] = useState<User | null>(null);
@@ -237,17 +238,12 @@ export default function Join() {
         );
     };
 
-    const handleGoogleLoginSuccess = (result: UserCredential) => {
-        setUser(result.user);
-        const user = result.user;
-        // const user = result.user;
-        //const user = result.user;
-    }
-
-    const handleGithubLoginSuccess = (result: UserCredential) => {
+    const handleGithubLoginSuccess = async (result: UserCredential) => {
         setUser(result.user);
         const user = result.user;
         console.log(user);
+
+        console.log(lead)
     }
 
     const handleLogout = async () => {
@@ -300,7 +296,7 @@ export default function Join() {
         ) : (
             <div>
 
-                <GoogleLoginComponent onLoginSuccess={handleGoogleLoginSuccess} />
+                <GithubLoginComponent onLoginSuccess={handleGithubLoginSuccess} />
             </div>
 
         )}

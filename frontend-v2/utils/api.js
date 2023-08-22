@@ -2,6 +2,7 @@
 import * as leads from "@/back_end/api/leads.js";
 import * as events from "@/back_end/api/events.js";
 import * as projects from "@/back_end/api/projects.js";
+import * as auth from "@/back_end/api/auth.js";
 import emailjs from "@emailjs/browser";
 import { parseEvents, parsePeople, parseProjects } from './parsers';
 
@@ -91,3 +92,33 @@ export const sendEmail = async (name, email, notes) => {
             },
         );
 };
+
+export const exchangeAuth = async (user) => {
+    var github_access_token = await auth.exchangeAuth(user);
+    if (github_access_token) {
+        return github_access_token;
+    } else {
+        return "";
+    }
+}
+
+export const getGithubUser = async (token) => {
+    var username = await auth.getGithubUser(token);
+    console.log(username)
+    if (username) {
+        return username;
+    } else {
+        return "";
+    }
+};
+
+export const checkMembership = async (username) => {
+    var member = await auth.checkMembership(username);
+    return member;
+};
+
+export const checkLead = async (authObject) => {
+    var isLead = await auth.checkLead(authObject);
+    return isLead;
+}
+

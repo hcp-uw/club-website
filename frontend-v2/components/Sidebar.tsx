@@ -2,6 +2,7 @@ import { Flex, IconButton } from "@chakra-ui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { SidebarButton } from "./Parts";
+import { useAuth } from "Context/AuthContext";
 
 interface ISideBar {
     show: boolean;
@@ -15,6 +16,7 @@ interface ISidebarButton {
 
 export default function Sidebar(props: ISideBar) {
     const { show, handleShow } = props;
+<<<<<<< HEAD
     const buttons: ISidebarButton[] = [
         {
             path: '/',
@@ -41,6 +43,95 @@ export default function Sidebar(props: ISideBar) {
             text: 'Admin'
         }
     ];
+=======
+    const { currentUser, lead } = useAuth()
+    let buttons : ISidebarButton[] = []
+    {!currentUser ? (
+        buttons = [
+            {
+                path: '/',
+                text: 'Home',
+            },
+            {
+                path: '/about',
+                text: 'About Us',
+            },
+            {
+                path: '/projects',
+                text: 'Projects',
+            },
+            {
+                path: '/events',
+                text: 'Events',
+            },
+            {
+                path: '/join',
+                text: 'Join Us',
+            }
+        ]
+    ) : (
+        lead ? (
+            buttons = [
+                {
+                    path: '/',
+                    text: 'Home',
+                },
+                {
+                    path: '/admin',
+                    text: 'Admin',
+                },
+                {
+                    path: '/resources',
+                    text: 'Resources',
+                },
+                {
+                    path: '/dashboard',
+                    text: 'Dashboard',
+                },
+                {
+                    path: '/profile',
+                    text: 'Profile Maintenance',
+                },
+                {
+                    path: '/private_project',
+                    text: 'Project Maintenance',
+                },
+                {
+                    path: '/join',
+                    text: 'Join Us',
+                }
+            ]
+        ) : (
+            buttons = [
+                {
+                    path: '/',
+                    text: 'Home',
+                },
+                {
+                    path: '/resources',
+                    text: 'Resources',
+                },
+                {
+                    path: '/dashboard',
+                    text: 'Dashboard',
+                },
+                {
+                    path: '/profile',
+                    text: 'Profile Maintenance',
+                },
+                {
+                    path: '/private_project',
+                    text: 'Project Maintenance',
+                },
+                {
+                    path: '/join',
+                    text: 'Join Us',
+                }
+            ]
+        )
+
+    )}
+>>>>>>> 4050a88db382779c0852c9676a74f2396ad8de15
 
     return (
         <Flex
