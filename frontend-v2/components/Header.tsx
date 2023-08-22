@@ -36,18 +36,6 @@ export default function Header(props: { showSidebar: () => void }) {
                     </Center>
                     <Spacer />
                     <Center>
-<<<<<<< HEAD
-                        <ButtonGroup variant='ghost' spacing='5'>
-                            <HeaderButton path='/' text='Home' />
-                            <HeaderButton path='/about' text='About Us' />
-                            <HeaderButton path='/projects' text='Projects' />
-                            <HeaderButton path='/events' text='Events' />
-                            <HeaderButton path='/admin' text='Admin' />
-                            {currentUser ? (
-                                <HeaderButton path='/account' text="Account" />
-                            ) : (
-                                <div>
-=======
                         {!currentUser ? (
                             <ButtonGroup variant='ghost' spacing='5'>
                                 <HeaderButton path='/' text='Home' />
@@ -59,7 +47,6 @@ export default function Header(props: { showSidebar: () => void }) {
                         ) : (
                             <ButtonGroup variant='ghost' spacing='5'>
                                 <HeaderButton path='/' text='Home' />
->>>>>>> 4050a88db382779c0852c9676a74f2396ad8de15
 
                                 {lead ? (
                                     <HeaderButton path='/admin' text='Admin' />

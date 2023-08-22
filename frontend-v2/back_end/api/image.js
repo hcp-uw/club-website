@@ -6,21 +6,9 @@ export const getURL = (namespace, fileName) => {
     const storageRef = ref(storage, `${namespace}/${fileName}`)
     return getDownloadURL(storageRef)
         .then((url) => {
-            // `url` is the download URL for 'images/stars.jpg'
-
-            // // This can be downloaded directly:
-            // const xhr = new XMLHttpRequest();
-            // xhr.responseType = 'blob';
-            // xhr.onload = (event) => {
-            // const blob = xhr.response;
-            // };
-            // xhr.open('GET', url);
-            // xhr.send();
-
             // console.log(url)
             return url
-        })
-        .catch((error) => {
+        }).catch((error) => {
             console.log(error)
             return error
         });

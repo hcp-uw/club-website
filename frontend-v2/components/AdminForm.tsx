@@ -78,7 +78,8 @@ const getInput = (key: any, val: any, index: any, handleInputChange: any) => {
             />
         );
 
-    if (key === "Image") return (
+    if (key === "Image") return (<>
+        <img src="../public/HCPLogo.jpg"/>
         <Input
             type={"file"}
             id={key}
@@ -90,6 +91,7 @@ const getInput = (key: any, val: any, index: any, handleInputChange: any) => {
             // }
             style={{ borderRadius: '4px', padding: '8px', border: '1px solid #ccc' }}
         />
+        </>
     );
 
     if (typeof val === "number") return (
