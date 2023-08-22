@@ -15,9 +15,8 @@ import Image from 'next/image';
 import { lazy, useEffect, useState } from "react";
 import EventCard from "components/EventCard";
 import { IEventInfo } from "utils/parsers";
-import AdminForm from "components/AdminFrom";
-import { events, people, projects } from '../utils/data';
-console.log(events, people, projects)
+
+
 
 const Room = lazy(() => import("components/Room"));
 const inter = Inter({ subsets: ["latin"] });

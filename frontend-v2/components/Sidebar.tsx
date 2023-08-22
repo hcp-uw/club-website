@@ -36,6 +36,10 @@ export default function Sidebar(props: ISideBar) {
             path: '/join',
             text: 'Join Us',
         },
+        {
+            path: '/admin',
+            text: 'Admin'
+        }
     ];
 
     return (

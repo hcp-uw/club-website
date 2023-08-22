@@ -41,6 +41,7 @@ export default function Header(props: { showSidebar: () => void }) {
                             <HeaderButton path='/about' text='About Us' />
                             <HeaderButton path='/projects' text='Projects' />
                             <HeaderButton path='/events' text='Events' />
+                            <HeaderButton path='/admin' text='Admin' />
                             {currentUser ? (
                                 <HeaderButton path='/account' text="Account" />
                             ) : (
