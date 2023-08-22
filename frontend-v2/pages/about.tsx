@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import styles from '@/styles/About.module.css'
 import {
   Center,
@@ -9,12 +9,41 @@ import {
   IconButton,
   Spacer,
 } from "@chakra-ui/react";
+import { getPeople } from "utils/api";
+import { IPeopleInfo } from "utils/parsers";
 
 export default function About() {
   // Scroll to top of page
   useEffect(() => {
-      window.scrollTo(0, 0);
+    window.scrollTo(0, 0);
   }, []);
+
+  const [people, setPeople] = useState<IPeopleInfo[]>([]);
+
+  useEffect(() => {
+    const getData = (data: IPeopleInfo[]) => {
+      setPeople(data)
+    }
+    getPeople(getData);
+  }, []);
+
+  const generateAvatars = () => {
+    return (
+      <>
+        <Text textAlign='center' color='white' fontSize='5xl' marginBottom='50px'>Our Team</Text>
+        <Flex justifyContent='center' flexWrap='wrap' width='80%' margin='auto'>
+          {people.map((i) => {
+            return(
+              <Flex flexDirection='column' alignItems='center' margin='20px' width='15%'>
+                <Box width='150px' height='150px' background='white' borderRadius='50%' marginBottom='30px'></Box>
+                <Text fontSize='2xl' color='white' overflowWrap='anywhere' textAlign='center'>{i.name}</Text>
+              </Flex>
+            )
+          })}
+        </Flex>
+      </>
+    )
+  }
 
   return (
     <>
@@ -35,7 +64,7 @@ export default function About() {
         </Flex>
         <img src="" alt="some cool design" height='100px' width='30%'></img>
       </Flex>
-      <Spacer height='200px'></Spacer>
+      <Spacer height='150px'></Spacer>
 
       <Flex justify="center" margin='auto' width='calc(100vw - 50px)' marginTop='80px'>
         <Flex direction="column" color='white' maxW='600px' width='70%'>
@@ -52,6 +81,10 @@ export default function About() {
         </Flex>
         <img src="@/public/output-onlinegiftools.gif" alt="some cool design" height='100px' width='30%'></img>
       </Flex>
+      <Spacer height='150px'></Spacer>
+
+      {generateAvatars()}
+      <Spacer height='150px'></Spacer>
     </>
   );
 }
