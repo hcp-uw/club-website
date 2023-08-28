@@ -6,17 +6,21 @@ import { useAuth } from "../Context/AuthContext"
 import { Button, Center, Text } from '@chakra-ui/react'
 import { VscGithub } from "react-icons/vsc"
 
-interface GithubLoginProps {
-  onLoginSuccess: (result: UserCredential) => void;
+import { checkMembership, getGithubUser } from "utils/api"
+interface SignInProps {
+  onSignInSuccess: (result: UserCredential) => void;
 }
 
-function GithubLoginComponent({ onLoginSuccess } : GithubLoginProps) {
+function SignInComponent({ onSignInSuccess } : SignInProps) {
 
-  const { login } = useAuth()
-  const handleLogin = async () => {
+  const { signIn } = useAuth()
+  const handleSignIn = async () => {
     try {
-      const result = await login()
-      onLoginSuccess(result)
+      // let sam = await getGithubUser(process.env.NEXT_PUBLIC_MY_ACCESS_TOKEN);
+      // let out = await checkMembership(sam);
+      // console.log(out);
+      const result = await signIn()
+      onSignInSuccess(result)
     } catch (err) {
       console.error(err);
     }
@@ -24,7 +28,7 @@ function GithubLoginComponent({ onLoginSuccess } : GithubLoginProps) {
 
   return (
     <Center p={8}>
-      <Button onClick={handleLogin}
+      <Button onClick={handleSignIn}
               bg='gray'
               w={'full'}
               maxW={'md'}
@@ -38,4 +42,4 @@ function GithubLoginComponent({ onLoginSuccess } : GithubLoginProps) {
   );
 }
 
-export default GithubLoginComponent;
+export default SignInComponent;

@@ -16,7 +16,7 @@ interface ISidebarButton {
 
 export default function Sidebar(props: ISideBar) {
     const { show, handleShow } = props;
-    const { currentUser, lead } = useAuth()
+    const { currentUser, isAdmin } = useAuth()
     let buttons : ISidebarButton[] = []
     {!currentUser ? (
         buttons = [
@@ -42,7 +42,7 @@ export default function Sidebar(props: ISideBar) {
             }
         ]
     ) : (
-        lead ? (
+        isAdmin ? (
             buttons = [
                 {
                     path: '/',
