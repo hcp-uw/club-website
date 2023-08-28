@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 import { useEffect, useState } from "react";
 import AdminForm from "../components/AdminForm";
 import { getAllEvents } from "back_end/api/events";
@@ -57,7 +57,7 @@ export default function Admin() {
 
     getLeads().then((res) => {
       setCurrentPeople(res);
-     });
+    });
 
     getProjects().then((res) => {
       setCurrentProjects(res);
@@ -67,11 +67,11 @@ export default function Admin() {
 
 
   return (
-    <div style={{color: "white"}}>
+    <div style={{ color: "white" }}>
       <h1>Admin</h1>
-      <AdminForm 
-        currentEvents={currentEvents} 
-        currentPeople={currentPeople} 
+      <AdminForm
+        currentEvents={currentEvents}
+        currentPeople={currentPeople}
         currentProjects={currentProjects}
         setCurrentEvents={setCurrentEvents}
         setCurrentPeople={setCurrentPeople}
@@ -80,37 +80,5 @@ export default function Admin() {
       />
     </div>
   );
-=======
-import { useAuth } from "Context/AuthContext";
-import { useEffect } from "react";
-import Router from "next/router";
-import { Center, Text } from "@chakra-ui/react";
 
-export default function private_project() {
-  const { currentUser, lead } = useAuth();
-
-  useEffect(() => {
-    if (currentUser == null) {
-      Router.push("/");
-    }
-
-    if (!lead) {
-      Router.push("/");
-    }
-  });
-
-  if (!currentUser || !lead) {
-    return null;
-  }
-
-  return (
-    <div>
-      <Center>
-        <Text color='orange' fontSize='xl' fontWeight='normal'>
-          Admin Page
-        </Text>
-      </Center>
-    </div>
-  )
->>>>>>> 4050a88db382779c0852c9676a74f2396ad8de15
 }

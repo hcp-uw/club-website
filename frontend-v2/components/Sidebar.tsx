@@ -16,34 +16,6 @@ interface ISidebarButton {
 
 export default function Sidebar(props: ISideBar) {
     const { show, handleShow } = props;
-<<<<<<< HEAD
-    const buttons: ISidebarButton[] = [
-        {
-            path: '/',
-            text: 'Home',
-        },
-        {
-            path: '/about',
-            text: 'About Us',
-        },
-        {
-            path: '/projects',
-            text: 'Projects',
-        },
-        {
-            path: '/events',
-            text: 'Events',
-        },
-        {
-            path: '/join',
-            text: 'Join Us',
-        },
-        {
-            path: '/admin',
-            text: 'Admin'
-        }
-    ];
-=======
     const { currentUser, lead } = useAuth()
     let buttons : ISidebarButton[] = []
     {!currentUser ? (
@@ -131,7 +103,6 @@ export default function Sidebar(props: ISideBar) {
         )
 
     )}
->>>>>>> 4050a88db382779c0852c9676a74f2396ad8de15
 
     return (
         <Flex

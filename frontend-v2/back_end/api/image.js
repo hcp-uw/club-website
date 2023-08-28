@@ -1,8 +1,8 @@
-import { ref, getDownloadURL } from "firebase/storage"
+import { ref, getDownloadURL, uploadBytes } from "firebase/storage"
 import { storage } from "../utils/index.js"
-import { test } from "node:test"
 
-export const getURL = (namespace, fileName) => {
+
+export async function getURL(namespace, fileName) {
     const storageRef = ref(storage, `${namespace}/${fileName}`)
     return getDownloadURL(storageRef)
         .then((url) => {
@@ -14,34 +14,35 @@ export const getURL = (namespace, fileName) => {
         });
 }
 
-export const getEventImgURL = async (fileName) => {
+export async function getEventImgURL(fileName) {
     return await getURL("Event_Photos", fileName)
 }
 
-export const getLeadsImgURL = async (fileName) => {
+export async function getLeadsImgURL(fileName) {
     return await getURL("Leads_Photos", fileName)
 }
 
-export const getLogoImgURL = async (fileName) => {
+export async function getLogoImgURL (fileName) {
     return await getURL("Logos", fileName)
 }
 
 
-const uploadImage = async (namespace, filename, file) => { 
+async function uploadImage(namespace, filename, file) { 
+    console.log(`uploading ${filename} to ${namespace}`)
     const storageRef = ref(storage, `${namespace}/${filename}`)
     await uploadBytes(storageRef, file)
     return await getURL(namespace, filename)
 }
 
-export const uploadEventImg = async (filename, file) => {
+export async function uploadEventImg(filename, file) {
     return await uploadImage("Event_Photos", filename, file)
 }
 
-export const uploadLeadsImg = async (filename, file) => {
+export async function uploadLeadsImg(filename, file) {
     return await uploadImage("Leads_Photos", filename, file)
 }
 
-export const uploadLogoImg = async (filename, file) => {
+export async function uploadLogoImg(filename, file) {
     return await uploadImage("Logos", filename, file)
 }
 
