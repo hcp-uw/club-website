@@ -114,7 +114,7 @@ export async function createNewProject(project, test = "Projects") {
       // check if required params provided
       const requiredFields = ["Category", "Completed", "Description", "End_Date", "Git_Link", "Image", "Members", "Name", "PM", "Start_Date"];
       for (const field of requiredFields) {
-        if (project[field] === undefined) {
+        if (!project.hasOwnProperty(field)) {
           console.error(`Missing required parameter: ${field}`);
           return false;
         }
@@ -210,13 +210,13 @@ export async function updateProject(projectName, key, value, test = "Projects") 
         Category: "string",
         Completed: "boolean",
         Description: "string",
-        End_Date: "string",
+        End_Date: "number",
         Git_Link: "string",
         Image: "string",
         Members: "string",
         Name: "string",
         PM: "string",
-        Start_Date: "string",
+        Start_Date: "number",
       };
 
       if (typeof value !== valueTypes[key]) {

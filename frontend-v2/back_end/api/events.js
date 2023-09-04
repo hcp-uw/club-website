@@ -62,13 +62,6 @@ export async function getEventByName(eventName, test = "Events") {
 /**
  * Creates a new event and saves it to the database.
  * @param {Object} event - The event object to be saved.
- * @param {number} event.Attendees - Number of planned attendees. (Required)
- * @param {string} event.Date - Date of the event in DateString format. (Required)
- * @param {string} event.description - Description of the event. (Required)
- * @param {string} event.imageURL - Hosted URL of the event's image. (Required)
- * @param {string} event.location - Location of the event. (Required)
- * @param {string} event.name - Name of the event, also serving as the "unique identifier". (Required)
- * @param {string} event.Sponsor - Name of the event's sponsor. (Required)
  * @returns {boolean} Returns true if the event creation is successful, otherwise false.
  */
 export async function createNewEvent(event, test = "Events") {
@@ -235,7 +228,7 @@ export async function updateEvent(eventName, key, value, test = "Events") {
     // type check for value
     const valueTypes = {
       Attendees: "number",
-      Date: "string",
+      Date: "number",
       Description: "string",
       Image: "string",
       Location: "string",

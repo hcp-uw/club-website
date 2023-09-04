@@ -46,7 +46,7 @@ export async function createNewLead(lead, test = "Club_Leads") {
       "Team",
     ];
     for (const field of requiredFields) {
-      if (!lead[field]) {
+      if (!lead.hasOwnProperty(field)) {
         console.error(`Missing required parameter: ${field}`);
         return false;
       }
@@ -157,8 +157,8 @@ export async function updateLead(leadName, key, value, test = "Club_Leads") {
     const valueTypes = {
       Active: "boolean",
       Class_Standing: "string",
-      Date_Joined: "string",
-      Date_Left: "string",
+      Date_Joined: "number",
+      Date_Left: "number",
       Email: "string",
       Image: "string",
       Name: "string",
