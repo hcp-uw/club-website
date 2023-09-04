@@ -498,51 +498,53 @@ const AdminForm: React.FC<AdminFormProps> = (props: AdminFormProps) => {
         handleUndo();
       };
 
-    const getSaveFunc = (T: "Event" | "Person" | "Project") => {
+      const getSaveFunc = (T: "Event" | "Person" | "Project") => {
         switch (T) {
-            case "Event":
-                return (name: string, k: string, v: Value) =>
-                    EventService.updateEvent(name, k, v)
-            case "Person":
-                return (name: string, k: string, v: Value) =>
-                    LeadService.updateLead(name, k, v)
-            case "Project":
-                return (name: string, k: string, v: Value) =>
-                    ProjectService.updateProject(name, k, v)
+          case "Event":
+            return (name: string, k: string, v: Value) =>
+              updatePageAfter(EventService.updateEvent(name, k, v));
+          case "Person":
+            return (name: string, k: string, v: Value) =>
+              updatePageAfter(LeadService.updateLead(name, k, v));
+          case "Project":
+            return (name: string, k: string, v: Value) =>
+              updatePageAfter(ProjectService.updateProject(name, k, v));
         }
-    }
-
-    const getCreateFunc = (T: "Event" | "Person" | "Project") => {
-
+      };
+      
+      const getCreateFunc = (T: "Event" | "Person" | "Project") => {
         switch (T) {
-            case "Event":
-                return (item: any) =>
-                    EventService.createNewEvent(item)
-            case "Person":
-                return (item: any) =>
-                    LeadService.createNewLead(item)
-            case "Project":
-                return (item: any) =>
-                    ProjectService.createNewProject(item)
+          case "Event":
+            return (item: any) =>
+              updatePageAfter(EventService.createNewEvent(item));
+          case "Person":
+            return (item: any) =>
+              updatePageAfter(LeadService.createNewLead(item));
+          case "Project":
+            return (item: any) =>
+              updatePageAfter(ProjectService.createNewProject(item));
         }
-    }
-
-    const getDeleteFunc = (T: "Event" | "Person" | "Project") => {
+      };
+      
+      const getDeleteFunc = (T: "Event" | "Person" | "Project") => {
         let fn;
         switch (T) {
-            case "Event":
-                fn = (name: string) =>
-                    EventService.deleteEvent(name)
-            case "Person":
-                fn = (name: string) =>
-                    LeadService.deleteLead(name)
-            case "Project":
-                fn = (name: string) =>
-                    ProjectService.deleteProject(name)
+          case "Event":
+            fn = (name: string) =>
+              updatePageAfter(EventService.deleteEvent(name));
+            break; // Add a break statement here
+          case "Person":
+            fn = (name: string) =>
+              updatePageAfter(LeadService.deleteLead(name));
+            break; // Add a break statement here
+          case "Project":
+            fn = (name: string) =>
+              updatePageAfter(ProjectService.deleteProject(name));
+            break; // Add a break statement here
         }
-        return updatePageAfter(fn);
-    }
-
+        return fn;
+      };
+      
     const headerStyle = { fontWeight: 'bold', fontSize: '30px' }
 
     const boxStyle = { /* border: '1px solid white', borderRadius: '20px',*/ padding: '15px', margin: '10px' }
