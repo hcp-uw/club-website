@@ -117,7 +117,7 @@ export async function updateLead(leadName, key, value, test = "Club_Leads") {
     console.log(leadName, key, value)
   try {
     // check required parameters are provided
-    if (!leadName || !key || value === undefined) {
+    if (leadName === undefined || key === undefined || value === undefined) {
       console.error("Missing required parameters: leadName, key, or value");
       return false;
     }
@@ -166,6 +166,7 @@ export async function updateLead(leadName, key, value, test = "Club_Leads") {
       Team: "string",
     };
 
+    // rome-ignore lint: stupid linter thinks this is bad
     if (typeof value !== valueTypes[key]) {
       console.error(
         `Invalid value type provided for key '${key}'. Expected type: '${valueTypes[key]}'.`

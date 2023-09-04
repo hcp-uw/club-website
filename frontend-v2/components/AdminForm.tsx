@@ -30,22 +30,28 @@ import * as ProjectService from "../back_end/api/projects.js"
 
 import { connectStorageEmulator } from "firebase/storage";
 
-interface ItemProps {
-    item: any;
-    index: number;
-    handleInputChange: (index: number, key: string, value: any) => void;
-}
 
-const getInput = (key: any, val: any, index: any, handleInputChange: any, T: string) => {
-    if (key.indexOf("Date") !== -1)
+type Value = Date | string | number | boolean
+
+const getInput = (
+        key: string, 
+        val: Value, 
+        index: number, 
+        handleInputChange: { (index: number, key: string, value: Value): void; }, 
+        T: string
+    ) => 
+    {
+    
+    if (key.indexOf("Date") !== -1 && (typeof val === "number" || val === ""))
         return (
             <Input
                 type={"datetime-local"}
                 id={key}
                 name={key}
-                value={val !== -1 && val !== null && val !== undefined
+                value={val !== -1 && typeof val === "number" && !isNaN(val)
                     ? new Date(val * 1000).toISOString().slice(0, 16)
-                    : ""}
+                    : ""
+                }
                 onChange={(event) =>
                     handleInputChange(index, key, event.target.value)
                 }
@@ -83,7 +89,7 @@ const getInput = (key: any, val: any, index: any, handleInputChange: any, T: str
 
         return (
             <div>
-                {<img src={val} alt="Uploaded" />}
+                {<img src={typeof val === 'string' ? val : ""} alt="Uploaded" />}
                 <Input
                     type="file"
                     id="Image"
@@ -110,7 +116,7 @@ const getInput = (key: any, val: any, index: any, handleInputChange: any, T: str
         />
     );
 
-    return val !== null && val.length > 30
+    return val !== null && typeof val === 'string' && val.length > 30
         ? (
             <Textarea
                 id={key}
@@ -135,20 +141,28 @@ const getInput = (key: any, val: any, index: any, handleInputChange: any, T: str
         )
 };
 
+interface ItemProps {
+    // @rome-ignore
+    item: any;
+    index: number;
+    handleInputChange: (index: number, key: string, value: Value) => void;
+    handleSave: (name: string, k: string, v: Value) => boolean;
+    handleDelete: (name: string) => boolean;
+    T: "Person" | "Event" | "Project";
+}
 
-
-const Item: React.FC<any> = (ItemProps) => {
-    const { item, index, handleInputChange, handleSave, handleDelete, T } = ItemProps;
+const Item: React.FC<ItemProps> = (props: ItemProps) => {
+    const { item, index, handleInputChange, handleSave, handleDelete, T } = props;
 
     const [show, setShow] = useState(false);
 
-    const parseValue = (key: string, value: any) => {
+    const parseValue = (key: string, value: Value): Value => {
         if (key.indexOf("Date") !== -1) {
             console.log("parsing date", key, value)
             if (typeof value === "number" && !isNaN(value))
                 return value
 
-            else
+            else if (typeof value === "string" && value !== "")
                 try {
                     value = new Date(value).getTime() / 1000;
                 } catch (error) {
@@ -156,8 +170,9 @@ const Item: React.FC<any> = (ItemProps) => {
                     value = -1
                 }
 
-            if (isNaN(value))
+            if (typeof value !== 'number' || isNaN(value))
                 value = -1
+
             return value
         } else
             return value;
@@ -165,7 +180,10 @@ const Item: React.FC<any> = (ItemProps) => {
 
     return show ? (
         <Box key={index} mb={4}>
-            {Object.entries(item).map(([key, value], i) => ([key, parseValue(key, value)])).map(([key, value], i) => (
+            {Object
+                .entries(item)
+                .map(([key, value], i) => ({key: String(key), value: parseValue(key as string, value as Value)}))
+                .map(({ key, value }, i) => (
                 <div key={i}>
                     <FormLabel htmlFor={key} style={{ fontWeight: 'bold' }}>
                         {key}
@@ -236,10 +254,9 @@ const Item: React.FC<any> = (ItemProps) => {
 
 interface FormProps<T> {
     data: T[];
-    onDataUpdate: any;
-    handleSave: (name: string, k: string, v: any) => boolean;
+    handleSave: (name: string, k: string, v: Value) => boolean;
     handleDelete: (name: string) => boolean;
-    T: string
+    T: "Person" | "Event" | "Project";
 }
 
 type FormField = {
@@ -248,7 +265,7 @@ type FormField = {
     type: "text" | "textarea" | "datetime-local";
 };
 
-const Form: React.FC<FormProps<_Person | _Project | _Event>> = ({ data, onDataUpdate: any, handleSave, handleDelete, T }) => {
+const Form: React.FC<FormProps<_Person | _Project | _Event>> = ({ data, handleSave, handleDelete, T }) => {
     const [currentData, setCurrentData] = useState<any[]>(data);
     const [page, setPage] = useState(0);
     const pageSize = 5;
@@ -267,10 +284,6 @@ const Form: React.FC<FormProps<_Person | _Project | _Event>> = ({ data, onDataUp
         });
     };
 
-    const handleSubmit = () => {
-        // onDataUpdate(currentData)
-        console.log(currentData)
-    };
 
     return (
         <div>
@@ -449,34 +462,52 @@ const NewItem: React.FC<any> = (ItemProps) => {
     );
 }
 
-
+type Setter<T> = React.Dispatch<React.SetStateAction<T>>;
 
 interface AdminFormProps {
     currentEvents: _Event[];
     currentPeople: _Person[];
     currentProjects: _Project[];
-    setCurrentEvents: any;
-    setCurrentPeople: any;
-    setCurrentProjects: any;
-    setReset: any;
+    setCurrentEvents: Setter<_Event[]>;
+    setCurrentPeople: Setter<_Person[]>;
+    setCurrentProjects: Setter<_Project[]>;
+    setReset: Setter<boolean>;
 }
 
-const AdminForm: React.FC<AdminFormProps> = ({ currentEvents, currentPeople, currentProjects, setCurrentEvents, setCurrentPeople, setCurrentProjects, setReset }) => {
+const chain = (...fns: any[]) => (x: any) => fns.reduce((v, f) => f(v), x);
+
+
+const AdminForm: React.FC<AdminFormProps> = (props: AdminFormProps) => {
+
+    const { 
+        currentEvents, 
+        currentPeople, 
+        currentProjects, 
+        setCurrentEvents, 
+        setCurrentPeople, 
+        setCurrentProjects, 
+        setReset 
+    } = props;
 
     const handleUndo = () => {
         setReset((prev: boolean) => !prev);
-    };
+      };
+      
+      const updatePageAfter = (fn: (a: any) => void) => (...args: any[]) => {
+        fn(...args);
+        handleUndo();
+      };
 
     const getSaveFunc = (T: "Event" | "Person" | "Project") => {
         switch (T) {
             case "Event":
-                return (name: string, k: string, v: any) =>
+                return (name: string, k: string, v: Value) =>
                     EventService.updateEvent(name, k, v)
             case "Person":
-                return (name: string, k: string, v: any) =>
+                return (name: string, k: string, v: Value) =>
                     LeadService.updateLead(name, k, v)
             case "Project":
-                return (name: string, k: string, v: any) =>
+                return (name: string, k: string, v: Value) =>
                     ProjectService.updateProject(name, k, v)
         }
     }
@@ -497,17 +528,19 @@ const AdminForm: React.FC<AdminFormProps> = ({ currentEvents, currentPeople, cur
     }
 
     const getDeleteFunc = (T: "Event" | "Person" | "Project") => {
+        let fn;
         switch (T) {
             case "Event":
-                return (name: string) =>
+                fn = (name: string) =>
                     EventService.deleteEvent(name)
             case "Person":
-                return (name: string) =>
+                fn = (name: string) =>
                     LeadService.deleteLead(name)
             case "Project":
-                return (name: string) =>
+                fn = (name: string) =>
                     ProjectService.deleteProject(name)
         }
+        return updatePageAfter(fn);
     }
 
     const headerStyle = { fontWeight: 'bold', fontSize: '30px' }
@@ -526,7 +559,6 @@ const AdminForm: React.FC<AdminFormProps> = ({ currentEvents, currentPeople, cur
                     />
                     <Form 
                         data={currentEvents} 
-                        onDataUpdate={setCurrentEvents} 
                         handleSave={getSaveFunc("Event")} 
                         T={"Event"} 
                         handleDelete={getDeleteFunc("Event")}
@@ -542,7 +574,6 @@ const AdminForm: React.FC<AdminFormProps> = ({ currentEvents, currentPeople, cur
                     />
                     <Form 
                         data={currentPeople} 
-                        onDataUpdate={setCurrentPeople} 
                         handleSave={getSaveFunc("Person")} 
                         T={"Person"} 
                         handleDelete={getDeleteFunc("Person")}
@@ -557,7 +588,6 @@ const AdminForm: React.FC<AdminFormProps> = ({ currentEvents, currentPeople, cur
                     />
                     <Form 
                         data={currentProjects} 
-                        onDataUpdate={setCurrentProjects} 
                         handleSave={getSaveFunc("Project")} 
                         T={"Project"} 
                         handleDelete={getDeleteFunc("Project")}
