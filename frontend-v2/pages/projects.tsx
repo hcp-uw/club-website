@@ -112,6 +112,20 @@ function DisplayProjects(props: IDisplayProps) {
     } else {
         filteredProjects = filterProjects();
     }
+    if (filteredProjects.length === 0) {
+        return (
+            <VStack paddingBottom={100}>
+                <Text
+                    as='h6'
+                    color='white'
+                    fontSize='2xl'
+                    fontWeight='semibold'
+                >
+                    No projects found :(
+                </Text>
+            </VStack>
+        );
+    }
     return (
         <SimpleGrid columns={[1, 1, 2, 2, 3]} spacing='40px'>
             {filteredProjects.map((project: IProjectInfo) =>

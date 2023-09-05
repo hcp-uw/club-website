@@ -56,7 +56,7 @@ export default function Header(props: { showSidebar: () => void }) {
                                 size='lg'
                                 icon={
                                     <FontAwesomeIcon
-                                        height='40px'
+                                        height='30px'
                                         color='white'
                                         icon={faBars}
                                     />

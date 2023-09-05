@@ -6,6 +6,8 @@ import {
     Box,
     Text,
     IconButton,
+    Wrap,
+    WrapItem,
 } from "@chakra-ui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
@@ -156,9 +158,11 @@ function FeaturedEvents() {
                     <Text
                         as='h2'
                         color='white'
-                        fontSize='6xl'
+                        fontSize={[ "4xl", "4xl", "6xl" ]}
                         fontWeight='semibold'
                         marginTop='8'
+                        align='center'
+                        width='70%'
                     >
                         Featured Events
                     </Text>
@@ -182,13 +186,16 @@ function MeetingInfo() {
             bgGradient='linear(to-t, brand.mid_purple, brand.hot_pink)'
             borderRadius='30px'
             alignItems='center'
+            paddingBottom='10px'
         >
             <Text
                 as='h2'
                 color='white'
-                fontSize='6xl'
+                fontSize={[ "4xl", "4xl", "6xl" ]}
                 fontWeight='semibold'
                 marginTop='8'
+                align='center'
+                width='70%'
             >
                 General Meetings
             </Text>
@@ -198,12 +205,12 @@ function MeetingInfo() {
                 marginBottom='50px'
                 fontSize='2xl'
                 color='brand.light_brown'
-                textAlign="center"
+                align='center'
             >
                 Join us every Thursday from 6:00pm to 7:30pm PST at MEB
                 (Mechanical Engineering Building) 248!
             </Text>
-            <Box borderRadius='15px' overflow='hidden'>
+            <Box borderRadius='15px' overflow='hidden' width='70%' height='370px'>
                 <Room />
             </Box>
             <Text
@@ -211,7 +218,7 @@ function MeetingInfo() {
                 marginTop='5px'
                 fontSize='md'
                 color='brand.light_brown'
-                textAlign="center"
+                align='center'
             >
                 Mechanical Engineering Building Room 248 @ University of
                 Washington
@@ -235,48 +242,51 @@ function Values() {
     return (
         <VStack
             id='club-values'
-            height='600px'
+            minHeight='400px'
+            height='fit-content'
             direction='column'
             width='80vw'
             alignItems='center'
+            marginBottom='150px'
         >
             <Text
                 as='h2'
                 color='white'
-                fontSize='6xl'
+                fontSize={[ "4xl", "4xl", "6xl" ]}
                 fontWeight='semibold'
                 marginTop='8'
+                align='center'
             >
                 Club Values
             </Text>
-            <Flex direction='row' width='100%' justifyContent='center'>
+            <Wrap spacing='20' justify='center' paddingTop='80px'>
                 {slogans.map((slogan) => (
-                    <VStack
-                        direction='column'
-                        width='200px'
-                        marginX='40px'
-                        alignItems='center'
-                        paddingTop='80px'
-                        key={slogan.name}
-                    >
-                        <Image
-                            width={125}
-                            height={125}
-                            style={{ width: 'auto', height: '125px' }}
-                            src={slogan.icon}
-                            alt={slogan.name}
-                        />
-                        <Text
-                            marginTop='25px'
-                            fontSize='2xl'
-                            color='white'
-                            textAlign="center"
+                    <WrapItem>
+                        <VStack
+                            direction='column'
+                            width='200px'
+                            alignItems='center'
+                            key={slogan.name}
                         >
-                            {slogan.name}
-                        </Text>
-                    </VStack>
+                            <Image
+                                width={125}
+                                height={125}
+                                style={{ width: 'auto', height: '125px' }}
+                                src={slogan.icon}
+                                alt={slogan.name}
+                            />
+                            <Text
+                                marginTop='25px'
+                                fontSize='2xl'
+                                color='white'
+                                align='center'
+                            >
+                                {slogan.name}
+                            </Text>
+                        </VStack>
+                    </WrapItem>
                 ))}
-            </Flex>
+            </Wrap>
         </VStack>
     );
 }
