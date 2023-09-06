@@ -4,6 +4,7 @@ import { ChakraProvider } from "@chakra-ui/react";
 import { extendTheme, theme as baseTheme } from "@chakra-ui/react";
 
 import Layout from "../components/Layout";
+import { AuthContextProvider } from "Context/AuthContext";
 
 const colors = {
     brand: {
@@ -22,10 +23,12 @@ const theme = extendTheme({ colors });
 
 export default function App({ Component, pageProps }: AppProps) {
     return (
-        <ChakraProvider theme={theme}>
-            <Layout>
-                <Component {...pageProps} />
-            </Layout>
-        </ChakraProvider>
+        <AuthContextProvider>
+            <ChakraProvider theme={theme}>
+                <Layout>
+                    <Component {...pageProps} />
+                </Layout>
+            </ChakraProvider>
+        </AuthContextProvider>
     );
 }

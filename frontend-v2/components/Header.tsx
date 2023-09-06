@@ -13,10 +13,11 @@ import { useMediaQuery } from "@chakra-ui/react";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { HeaderButton, SpecialHeaderButton } from "./Parts";
+import { useAuth } from "Context/AuthContext";
 
 export default function Header(props: { showSidebar: () => void }) {
     const [isLargerThan1200] = useMediaQuery("(min-width: 1200px)");
-
+    const { currentUser, isAdmin } = useAuth()
     return (
         <>
             {isLargerThan1200 ? (
@@ -35,13 +36,30 @@ export default function Header(props: { showSidebar: () => void }) {
                     </Center>
                     <Spacer />
                     <Center>
-                        <ButtonGroup variant='ghost' spacing='5'>
-                            <HeaderButton path='/' text='Home' />
-                            <HeaderButton path='/about' text='About Us' />
-                            <HeaderButton path='/projects' text='Projects' />
-                            <HeaderButton path='/events' text='Events' />
-                            <SpecialHeaderButton path='/join' text='Join Us' />
-                        </ButtonGroup>
+                        {!currentUser ? (
+                            <ButtonGroup variant='ghost' spacing='5'>
+                                <HeaderButton path='/' text='Home' />
+                                <HeaderButton path='/about' text='About Us' />
+                                <HeaderButton path='/projects' text='Projects' />
+                                <HeaderButton path='/events' text='Events' />
+                                <SpecialHeaderButton path='/join' text='Join Us' />
+                            </ButtonGroup>
+                        ) : (
+                            <ButtonGroup variant='ghost' spacing='5'>
+                                <HeaderButton path='/' text='Home' />
+
+                                {isAdmin ? (
+                                    <HeaderButton path='/admin' text='Admin' />
+                                ) : (
+                                    null
+                                ) }
+                                <HeaderButton path='/resources' text='Resources' />
+                                <HeaderButton path='/dashboard' text='Dashboard' />
+                                <HeaderButton path='/profile' text='Profile Maintenance' />
+                                <HeaderButton path='/private_project' text='Project Maintenance' />
+                                <SpecialHeaderButton path='/join' text='Join Us' />
+                            </ButtonGroup>
+                        )}
                     </Center>
                     <Spacer />
                 </Flex>

@@ -18,6 +18,8 @@ import { lazy, useEffect, useState } from "react";
 import EventCard from "components/EventCard";
 import { IEventInfo } from "utils/parsers";
 
+
+
 const Room = lazy(() => import("components/Room"));
 const inter = Inter({ subsets: ["latin"] });
 

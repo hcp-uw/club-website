@@ -5,6 +5,10 @@ import {
     Link,
     Text,
     Button,
+    Center,
+    Card,
+    CardBody,
+    Image
 } from "@chakra-ui/react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -13,12 +17,19 @@ import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import type { ChangeEvent } from "react";
 // @ts-ignore
 import { sendEmail } from "@/utils/api";
+import SignInComponent from "components/SignInButton";
+import { UserCredential, User, signOut, OAuthCredential} from "firebase/auth";
+import { auth } from "../back_end/utils/index.js"
+import { useAuth } from "Context/AuthContext";
+import { exchangeAuth } from "utils/api.js";
 
 const inter = Inter({ subsets: ["latin"] });
 
 function renderJoinPage() {
     return (
+
         <Flex
+
         //  id={isMobile ? "join-container-mobile" : "join-container"}
             height='700px'
             direction='column'
@@ -27,7 +38,7 @@ function renderJoinPage() {
             borderRadius='30px'
             alignItems='center'
         >
-            <Text 
+            <Text
                 fontFamily={'Segoe'}
                 fontSize='5xl'
                 color="white"
@@ -35,10 +46,10 @@ function renderJoinPage() {
             >
                 Join Us
             </Text>
-            <Text 
-                display='inline' 
-                fontSize="2xl" 
-                color="white" 
+            <Text
+                display='inline'
+                fontSize="2xl"
+                color="white"
                 marginTop='8'
             >
                 Fill out the form below to join Husky Coding Project!
@@ -49,6 +60,8 @@ function renderJoinPage() {
 }
 
 export default function Join() {
+
+
     // Scroll to top of page
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -58,6 +71,8 @@ export default function Join() {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [content, setContent] = useState("");
+    const { currentUser, isAdmin, getUser } = useAuth()
+
     useEffect(() => {
         const handleWindowSizeChange = () => {
             setWidth(window.innerWidth);
@@ -220,9 +235,68 @@ export default function Join() {
         );
     };
 
+    const handleSignInSuccess = async (result: UserCredential) => {
+        console.log(isAdmin);
+        console.log(getUser());
+        let user = auth.currentUser
+        console.log(await user?.getIdToken());
+        console.log(await exchangeAuth(user?.getIdToken()))
+    }
+
+    const handleSignOut = async () => {
+        try {
+            await signOut(auth);
+        } catch (err) {
+            console.error(err);
+        }
+    };
 
     return (
         <div id={isMobile ? "join-background-mobile" : "join-background"}>
+            <>
+        {currentUser ? (
+
+            <div>
+                <Center>
+                    <Card
+                        background="brand.mid_white"
+                        width='400px'
+                        height='100px'
+                    >
+                        <CardBody alignContent="flex-start">
+                            <Image
+                                boxSize="50px"
+                                src={currentUser.photoURL ?? ""}
+
+                            />
+                            <Text>
+                                {currentUser.displayName}
+                            </Text>
+                        </CardBody>
+                    </Card>
+                </Center>
+
+                <Center p={8}>
+                <Button onClick={handleSignOut}
+                        bg='gray'
+                        w={'full'}
+                        maxW={'md'}
+                        variant={'outline'}
+                >
+                    <Center>
+                    <Text>Sign Out</Text>
+                    </Center>
+                </Button>
+                </Center>
+            </div>
+        ) : (
+            <div>
+
+                <SignInComponent onSignInSuccess={handleSignInSuccess} />
+            </div>
+
+        )}
+        </>
             <Flex
             //  id={isMobile ? "join-container-mobile" : "join-container"}
                 height='700px'
@@ -232,7 +306,8 @@ export default function Join() {
                 borderRadius='30px'
                 alignItems='center'
             >
-                <Text 
+
+                <Text
                     fontFamily={'Segoe'}
                     fontSize='5xl'
                     color="white"
@@ -240,24 +315,24 @@ export default function Join() {
                 >
                     Join Us
                 </Text>
-                <Text 
-                    display='inline' 
-                    fontSize="2xl" 
-                    color="white" 
+                <Text
+                    display='inline'
+                    fontSize="2xl"
+                    color="white"
                     marginTop='8'
                 >
                     Fill out the form below to join Husky Coding Project!
                 </Text>
 
                 <Link href="https://forms.gle/JpJaoznG4FBvS1paA">
-                    <Button 
+                    <Button
                         rightIcon={                        <FontAwesomeIcon
                             // height='40px'
                             // color='white'
                             icon={faEnvelope}
                         />}
                         colorScheme='purple' size='s' variant='solid'>
-                        Link to Form 
+                        Link to Form
                     </Button>
                 </Link>
                 {/* <FontAwesomeIcon
@@ -266,8 +341,9 @@ export default function Join() {
                     icon={faEnvelope}
                 /> */}
             </Flex>
-            
+
 
         </div>
     );
 }
+

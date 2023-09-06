@@ -25,7 +25,7 @@ Sample response shows output format, followed by sample data.
       Description: <String>,
       Image: <URL>,
       Location: <String>,
-      Name: <String>m
+      Name: <String>,
       Sponsor: <String>
     },
     {
@@ -42,3 +42,85 @@ Sample response shows output format, followed by sample data.
 
 * **Error Response:**
   Errors will be outputted into console
+
+
+## <span style="color:deepskyblue"> createNewEvent
+Creates a new event and saves it to our DB. Returns a Boolean value based that corresponds to the success of the event creation
+
+* **Function Call:** createNewEvent(event)
+
+* **Params: (event: {...})**
+
+    | Name       | Type    | Description                                               | Default                 |
+    | ---------- | ------- | --------------------------------------------------------- | ----------------------- |
+    | `attendees` | Integer | Number of planned attendees | NONE (Required Param) |
+    | `date`    | DateString | Date of the event | NONE (Required Param) |
+    | `description` | String | Description of the event | NONE (Required Param) |
+    | `imageURL`  | URL | Hosted URL of the image | NONE (Required Param) |
+    | `location`| String | Location of the event | NONE (Required Param) |
+    | `name` | String | Name of the event, also serving as the "unique identifier" | NONE (Required Param) |
+    | `sponser` | String | Name of the event's sponser | NONE (Required Param) |
+
+* **Returned Data Format:** Boolean
+
+* **Success Response:** <br>
+  ```
+  true
+  ```
+
+* **Error Response:**
+
+  ```
+  false
+  ```
+
+
+## <span style="color:deepskyblue"> deleteEvent
+Deletes an event from the database based on its event name. Returns a Boolean value indicating the success of the deletion.
+
+* **Function Call:** deleteEvent(eventName)
+
+* **Params: (eventName: String)**
+
+    | Name        | Type   | Description                                  | Default                 |
+    | ----------- | ------ | -------------------------------------------- | ----------------------- |
+    | `eventName` | String | The name of the event to be deleted. | NONE (Required Param) |
+
+* **Returned Data Format:** Boolean
+
+* **Success Response:**
+```
+true
+```
+
+* **Error Response:**
+```
+false
+```
+
+## <span style="color:deepskyblue"> updateEvent
+Updates an event in the database based on the provided event name, key name, and value.
+
+* **Function Call:** updateEvent(eventName, key, value)
+
+* **Params:**
+
+    | Name        | Type   | Description                                    | Default                 |
+    | ----------- | ------ | ---------------------------------------------- | ----------------------- |
+    | `eventName` | String | The name of the event to be updated. | NONE (Required Param)   |
+    | `key`       | String | The key name of the field to be updated. | NONE (Required Param)   |
+    | `value`     | Any    | The new value to update the field with. | NONE (Required Param)   |
+
+* **Returned Data Format:** Boolean
+
+* **Success Response:**
+```
+true
+```
+
+* **Error Response:**
+```
+false
+```
+
+
