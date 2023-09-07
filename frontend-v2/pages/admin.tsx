@@ -54,7 +54,7 @@ export interface _Project extends Record<string, Value> {
   Image: string;
 }
 
-export const personTemplate: _Person = { 
+export const personTemplate: _Person = {
   Name: "",
   id: -1,
   // epoch time
@@ -129,3 +129,5 @@ export default function Admin() {
       />
     </div>
   );
+
+}
