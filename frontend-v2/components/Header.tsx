@@ -17,7 +17,8 @@ import { useAuth } from "Context/AuthContext";
 
 export default function Header(props: { showSidebar: () => void }) {
     const [isLargerThan1200] = useMediaQuery("(min-width: 1200px)");
-    const { currentUser, lead } = useAuth()
+    const { currentUser, isAdmin } = useAuth()
+
     return (
         <>
             {isLargerThan1200 ? (
@@ -48,7 +49,7 @@ export default function Header(props: { showSidebar: () => void }) {
                             <ButtonGroup variant='ghost' spacing='5'>
                                 <HeaderButton path='/' text='Home' />
 
-                                {lead ? (
+                                {isAdmin ? (
                                     <HeaderButton path='/admin' text='Admin' />
                                 ) : (
                                     null
@@ -74,7 +75,7 @@ export default function Header(props: { showSidebar: () => void }) {
                                 size='lg'
                                 icon={
                                     <FontAwesomeIcon
-                                        height='40px'
+                                        height='30px'
                                         color='white'
                                         icon={faBars}
                                     />

@@ -17,10 +17,12 @@ import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import type { ChangeEvent } from "react";
 // @ts-ignore
 import { sendEmail } from "@/utils/api";
-import GithubLoginComponent from "components/GithubButton";
+
+import SignInComponent from "components/SignInButton";
 import { UserCredential, User, signOut, OAuthCredential} from "firebase/auth";
 import { auth } from "../back_end/utils/index.js"
 import { useAuth } from "Context/AuthContext";
+import { exchangeAuth } from "utils/api.js";
 
 // @ts-ignore
 import { checkLead } from "@/utils/api";
@@ -72,10 +74,8 @@ export default function Join() {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [content, setContent] = useState("");
-    const { currentUser, lead } = useAuth()
+    const { currentUser, isAdmin, getUser } = useAuth()
 
-    // Firebase authentication
-    const [user, setUser] = useState<User | null>(null);
     useEffect(() => {
         const handleWindowSizeChange = () => {
             setWidth(window.innerWidth);
@@ -238,18 +238,18 @@ export default function Join() {
         );
     };
 
-    const handleGithubLoginSuccess = async (result: UserCredential) => {
-        setUser(result.user);
-        const user = result.user;
-        console.log(user);
 
-        console.log(lead)
+    const handleSignInSuccess = async (result: UserCredential) => {
+        console.log(isAdmin);
+        console.log(getUser());
+        let user = auth.currentUser
+        console.log(await user?.getIdToken());
+        console.log(await exchangeAuth(user?.getIdToken()))
     }
 
-    const handleLogout = async () => {
+    const handleSignOut = async () => {
         try {
             await signOut(auth);
-            setUser(null);
         } catch (err) {
             console.error(err);
         }
@@ -281,7 +281,8 @@ export default function Join() {
                 </Center>
 
                 <Center p={8}>
-                <Button onClick={handleLogout}
+
+                <Button onClick={handleSignOut}
                         bg='gray'
                         w={'full'}
                         maxW={'md'}
@@ -295,8 +296,7 @@ export default function Join() {
             </div>
         ) : (
             <div>
-
-                <GithubLoginComponent onLoginSuccess={handleGithubLoginSuccess} />
+                <SignInComponent onSignInSuccess={handleSignInSuccess} />
             </div>
 
         )}
@@ -350,3 +350,4 @@ export default function Join() {
         </div>
     );
 }
+

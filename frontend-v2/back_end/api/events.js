@@ -121,6 +121,7 @@ export async function createNewEvent(event, test = "Events") {
       return false;
     }
 
+
     const keyName = event.Name.split(" ").join("_");
 
     // get ref and snapshot of current event record (shouldn't exist)
@@ -166,6 +167,7 @@ export async function deleteEvent(eventName, test = "Events") {
     }
 
     // get ref to event in database
+
     const eventRef = ref(database, `${test}/${eventName}`);
 
     // check if event exists
@@ -226,9 +228,11 @@ export async function updateEvent(eventName, key, value, test = "Events") {
 
     if (!validKeys.includes(key)) {
       console.error(
+
         `Invalid key '${key}' provided. The valid keys are: ${validKeys.join(
           ", "
         )}`
+
       );
       return false;
     }
@@ -243,8 +247,10 @@ export async function updateEvent(eventName, key, value, test = "Events") {
       Name: "string",
       Sponsor: "string",
     };
+
     // rome-ignore lint/suspicious/useValidTypeof: js be like:
 if  (typeof value !== valueTypes[key]) {
+
       console.error(
         `Invalid value type provided for key '${key}'. Expected type: '${valueTypes[key]}'.`
       );
@@ -274,6 +280,7 @@ export async function getEventsBasedOnTime(
   limit = 4,
   test = "Events"
 ) {
+
   const missingParamErrMsg = "missing parameters, please define two booleans";
   const typeErrMsg = "incorrect parameter type, expected boolean, got ";
 
@@ -289,6 +296,7 @@ export async function getEventsBasedOnTime(
   }
 
   // Getting Date
+
   const todayStr = new Date().toISOString(); // YYYY-MM-DDTHH:MM:SS.sssz
   const today = todayStr.substring(0, todayStr.length - 5); // YYYY-MM-DDTHH:MM:SS
 
@@ -325,6 +333,7 @@ export async function getEventsBasedOnTime(
   }
 
   // Sorting and outputting the results
+
   const values = Array.from(Object.values(data));
   if (values.length > 1) {
     values.sort(function (a, b) {

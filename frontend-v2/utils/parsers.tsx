@@ -26,7 +26,7 @@ export interface IProjectInfo {
 }
 
 // rome-ignore lint/suspicious/noExplicitAny: The backend does not have types
-export    const parseProjects = (data: any[]) => {
+export const parseProjects = (data: any[]) => {
     const ret = data.map(obj => {
         const res: IProjectInfo = {
             name: obj.Name,

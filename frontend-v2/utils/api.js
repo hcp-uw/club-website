@@ -104,7 +104,7 @@ export const exchangeAuth = async (user) => {
 
 export const getGithubUser = async (token) => {
     var username = await auth.getGithubUser(token);
-    console.log(username)
+
     if (username) {
         return username;
     } else {
@@ -117,8 +117,8 @@ export const checkMembership = async (username) => {
     return member;
 };
 
-export const checkLead = async (authObject) => {
-    var isLead = await auth.checkLead(authObject);
-    return isLead;
+export const checkAdmin = async (authObject) => {
+    var isAdmin = await auth.checkAdmin(authObject);
+    return isAdmin;
 }
 

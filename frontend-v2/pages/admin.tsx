@@ -1,4 +1,5 @@
 
+
 import { useEffect, useState } from "react";
 import AdminForm from "../components/AdminForm";
 import { getAllEvents } from "back_end/api/events";
@@ -128,5 +129,3 @@ export default function Admin() {
       />
     </div>
   );
-
-}

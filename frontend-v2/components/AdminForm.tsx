@@ -31,11 +31,13 @@ import * as ProjectService from "../back_end/api/projects.js"
 
 import { connectStorageEmulator } from "firebase/storage";
 
+
 type _Item = _Person | _Project | _Event;
 
 
 const getInput = (key: string, val: Value, index: number, handleInputChange: Function, T: string) => {
     if (key.indexOf("Date") !== -1 && typeof val === "number")
+
         return (
             <Input
                 type={"datetime-local"}
@@ -108,7 +110,9 @@ const getInput = (key: string, val: Value, index: number, handleInputChange: Fun
         />
     );
 
+
     return typeof val === 'string' && val.length > 30
+
         ? (
             <Textarea
                 id={key}
@@ -132,6 +136,7 @@ const getInput = (key: string, val: Value, index: number, handleInputChange: Fun
             />
         )
 };
+
 
 
 const parseValue = (key: string, value: Value) => {
@@ -225,6 +230,7 @@ const Item: React.FC<ItemProps> = (props: ItemProps) => {
             </Button>
             <Button
                 type="button"
+
                 onClick={() => setShow(false)}
                 style={{
                     backgroundColor: '#007bff',
@@ -250,6 +256,7 @@ const Item: React.FC<ItemProps> = (props: ItemProps) => {
 }
 
 
+
 interface FormProps<_Item> {
     data: _Item[];
     handleSave: (name: string, k: string, v: Value) => Promise<boolean>;
@@ -263,6 +270,7 @@ type FormField = {
     type: "text" | "textarea" | "datetime-local";
 };
 
+
 const Form: React.FC<FormProps<_Person | _Project | _Event>> = ({ data, handleSave, handleDelete, T }) => {
     const [currentData, setCurrentData] = useState<_Item[]>(data);
     const [page, setPage] = useState(0);
@@ -272,8 +280,6 @@ const Form: React.FC<FormProps<_Person | _Project | _Event>> = ({ data, handleSa
         setCurrentData(data);
     }, [data]);
 
-
-
     const handleInputChange = (index: number, key: string, value: Value) => {
         setCurrentData((prevData) => {
             const newData: _Item[] = [...prevData];
@@ -281,12 +287,12 @@ const Form: React.FC<FormProps<_Person | _Project | _Event>> = ({ data, handleSa
             return newData;
         });
     };
-
-
+  
     return (
         <div>
             {[...Array(Math.ceil(currentData.length / pageSize))].map((_, i) => (
                 <Button
+
                     // rome-ignore lint/suspicious/noArrayIndexKey: itll just rerender anyways...
                     key={i}
                     type="button"
@@ -314,6 +320,7 @@ const Form: React.FC<FormProps<_Person | _Project | _Event>> = ({ data, handleSa
         </div>
     );
 };
+
 
 
 interface NewItemProps {
@@ -455,10 +462,12 @@ const NewItem: React.FC<NewItemProps> = (props: NewItemProps) => {
 
 
 type Setter<T> = React.Dispatch<React.SetStateAction<T>>;
+
 interface AdminFormProps {
     currentEvents: _Event[];
     currentPeople: _Person[];
     currentProjects: _Project[];
+
     setCurrentEvents: Setter<_Event[]>;
     setCurrentPeople: Setter<_Person[]>;
     setCurrentProjects: Setter<_Project[]>;
@@ -466,12 +475,12 @@ interface AdminFormProps {
 }
 
 
-
 const AdminForm: React.FC<AdminFormProps> = ({ currentEvents, currentPeople, currentProjects, setCurrentEvents, setCurrentPeople, setCurrentProjects, setReset }) => {
 
     const handleUndo = () => {
         setReset((prev: boolean) => !prev);
     };
+
 
     const getSaveFunc = (T: "Event" | "Person" | "Project") => {
         switch (T) {
@@ -525,6 +534,7 @@ const AdminForm: React.FC<AdminFormProps> = ({ currentEvents, currentPeople, cur
             <Flex>
                 <Box flex="1" style={boxStyle}>
                     <h2 style={headerStyle}>Events</h2>
+
                     <NewItem 
                         index={0} 
                         handleSave={getCreateFunc("Event")} 
@@ -565,6 +575,7 @@ const AdminForm: React.FC<AdminFormProps> = ({ currentEvents, currentPeople, cur
                         T={"Project"} 
                         handleDelete={getDeleteFunc("Project")}
                     />
+
                 </Box>
             </Flex>
             <Button onClick={handleUndo}>Reset</Button>
