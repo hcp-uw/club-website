@@ -104,6 +104,7 @@ export const exchangeAuth = async (user) => {
 
 export const getGithubUser = async (token) => {
     var username = await auth.getGithubUser(token);
+
     if (username) {
         return username;
     } else {

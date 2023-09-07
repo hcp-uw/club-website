@@ -18,6 +18,7 @@ import { useAuth } from "Context/AuthContext";
 export default function Header(props: { showSidebar: () => void }) {
     const [isLargerThan1200] = useMediaQuery("(min-width: 1200px)");
     const { currentUser, isAdmin } = useAuth()
+
     return (
         <>
             {isLargerThan1200 ? (

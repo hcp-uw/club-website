@@ -1,9 +1,11 @@
 import { createContext, useContext, useEffect, useState } from "react"
+
 import { GithubAuthProvider, GoogleAuthProvider, signInWithPopup } from "firebase/auth"
 import { auth } from "back_end/utils"
 
 // @ts-ignore
 import { checkAdmin } from "@/utils/api";
+
 
 const AuthContext = createContext<any>({})
 
@@ -20,6 +22,7 @@ export const AuthContextProvider = ({children}: {children:React.ReactNode}) => {
   const signIn = async () => {
     const result = await signInWithPopup(auth, provider);
 
+
     return result;
   }
 
@@ -32,6 +35,7 @@ export const AuthContextProvider = ({children}: {children:React.ReactNode}) => {
   }
 
   useEffect(() => {
+
     const unsubscribe = auth.onAuthStateChanged(async user => {
       setCurrentUser(user)
       if (user) {
@@ -42,6 +46,7 @@ export const AuthContextProvider = ({children}: {children:React.ReactNode}) => {
 
     return unsubscribe
   }, [])
+
 
   const value = {
     currentUser,

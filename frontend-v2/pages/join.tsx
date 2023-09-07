@@ -17,12 +17,15 @@ import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import type { ChangeEvent } from "react";
 // @ts-ignore
 import { sendEmail } from "@/utils/api";
+
 import SignInComponent from "components/SignInButton";
 import { UserCredential, User, signOut, OAuthCredential} from "firebase/auth";
 import { auth } from "../back_end/utils/index.js"
 import { useAuth } from "Context/AuthContext";
 import { exchangeAuth } from "utils/api.js";
 
+// @ts-ignore
+import { checkLead } from "@/utils/api";
 const inter = Inter({ subsets: ["latin"] });
 
 function renderJoinPage() {
@@ -235,6 +238,7 @@ export default function Join() {
         );
     };
 
+
     const handleSignInSuccess = async (result: UserCredential) => {
         console.log(isAdmin);
         console.log(getUser());
@@ -277,6 +281,7 @@ export default function Join() {
                 </Center>
 
                 <Center p={8}>
+
                 <Button onClick={handleSignOut}
                         bg='gray'
                         w={'full'}
@@ -291,7 +296,6 @@ export default function Join() {
             </div>
         ) : (
             <div>
-
                 <SignInComponent onSignInSuccess={handleSignInSuccess} />
             </div>
 
