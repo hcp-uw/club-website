@@ -165,8 +165,8 @@ interface ItemProps {
     item: _Item;
     index: number;
     handleInputChange: (index: number, key: string, value: Value) => void;
-    handleSave: (name: string, k: string, v: Value) => boolean;
-    handleDelete: (name: string) => boolean;
+    handleSave: (name: string, k: string, v: Value) => Promise<boolean>;
+    handleDelete: (name: string) => Promise<boolean>;
     T: string
 }
 
@@ -218,8 +218,7 @@ const Item: React.FC<ItemProps> = (props: ItemProps) => {
                 }}
                 onClick={() => {
                     console.log('deleting', item.Name.split(" ").join("_"))
-                    console.log(handleDelete(item.Name.split(" ").join("_")))
-                    window.location.reload();
+                    handleDelete(item.Name).then(() => window.location.reload())
                 }}
             >
                 Delete
@@ -253,8 +252,8 @@ const Item: React.FC<ItemProps> = (props: ItemProps) => {
 
 interface FormProps<_Item> {
     data: _Item[];
-    handleSave: (name: string, k: string, v: Value) => boolean;
-    handleDelete: (name: string) => boolean;
+    handleSave: (name: string, k: string, v: Value) => Promise<boolean>;
+    handleDelete: (name: string) => Promise<boolean>;
     T: string
 }
 
@@ -319,7 +318,7 @@ const Form: React.FC<FormProps<_Person | _Project | _Event>> = ({ data, handleSa
 
 interface NewItemProps {
     index: number;
-    handleSave: (item: _Item) => boolean;
+    handleSave: (item: _Item) => Promise<boolean>;
     T: string
 }
 
@@ -383,8 +382,8 @@ const NewItem: React.FC<NewItemProps> = (props: NewItemProps) => {
             
             else if (data[key] === "false" || data[key] === "False")
                 newData[key] = false;
-            else if (key === "Name")
-                newData[key] = data[key].split(" ").join("_");
+            // else if (key === "Name")
+            //     newData[key] = data[key].split(" ").join("_");
 
         }
 
@@ -419,7 +418,12 @@ const NewItem: React.FC<NewItemProps> = (props: NewItemProps) => {
                 }}
                 onClick={() => {
                     handleSave(transformData(currentData))
-                    window.location.reload();
+                        .then((success: boolean) => {
+                            if (success === false)
+                                alert("Error saving item");
+                            else
+                                window.location.reload();
+                        });
             }}>
                 Save
             </Button>
@@ -502,13 +506,13 @@ const AdminForm: React.FC<AdminFormProps> = ({ currentEvents, currentPeople, cur
         switch (T) {
             case "Event":
                 return (name: string) =>
-                    EventService.deleteEvent(name)
+                    EventService.deleteEvent(name.split(" ").join("_"))
             case "Person":
                 return (name: string) =>
-                    LeadService.deleteLead(name)
+                    LeadService.deleteLead(name.split(" ").join("_"))
             case "Project":
                 return (name: string) =>
-                    ProjectService.deleteProject(name)
+                    ProjectService.deleteProject(name.split(" ").join("_"))
         }
     }
 

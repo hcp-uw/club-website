@@ -11,7 +11,9 @@ import { set } from 'firebase/database';
 // all dates handled as epoch time!!!
 
 // epoch -> Date: new Date(epoch * 1000)
+// epoch -> datetime-local: new Date(epoch * 1000).toISOString().slice(0, 16)
 // Date -> epoch: Date.getTime() / 1000
+
 
 
 export type Value = string | number | boolean | Date;
