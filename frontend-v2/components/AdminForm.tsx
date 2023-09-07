@@ -20,7 +20,8 @@ import {
     _Project, 
     eventTemplate, 
     personTemplate, 
-    projectTemplate 
+    projectTemplate,
+    Value
 } from "../pages/admin";
 
 import * as ImageService from "../back_end/api/image.js"
@@ -30,14 +31,11 @@ import * as ProjectService from "../back_end/api/projects.js"
 
 import { connectStorageEmulator } from "firebase/storage";
 
-interface ItemProps {
-    item: any;
-    index: number;
-    handleInputChange: (index: number, key: string, value: any) => void;
-}
+type _Item = _Person | _Project | _Event;
 
-const getInput = (key: any, val: any, index: any, handleInputChange: any, T: string) => {
-    if (key.indexOf("Date") !== -1)
+
+const getInput = (key: string, val: Value, index: number, handleInputChange: Function, T: string) => {
+    if (key.indexOf("Date") !== -1 && typeof val === "number")
         return (
             <Input
                 type={"datetime-local"}
@@ -83,7 +81,7 @@ const getInput = (key: any, val: any, index: any, handleInputChange: any, T: str
 
         return (
             <div>
-                {<img src={val} alt="Uploaded" />}
+                {<img src={typeof val === 'string' ? val : ""} alt="Uploaded" />}
                 <Input
                     type="file"
                     id="Image"
@@ -110,7 +108,7 @@ const getInput = (key: any, val: any, index: any, handleInputChange: any, T: str
         />
     );
 
-    return val !== null && val.length > 30
+    return typeof val === 'string' && val.length > 30
         ? (
             <Textarea
                 id={key}
@@ -136,57 +134,76 @@ const getInput = (key: any, val: any, index: any, handleInputChange: any, T: str
 };
 
 
+const parseValue = (key: string, value: Value) => {
 
-const Item: React.FC<any> = (ItemProps) => {
-    const { item, index, handleInputChange, handleSave, handleDelete, T } = ItemProps;
+    if (key.indexOf("Date") !== -1) {
+        let convertedValue = value;
+
+        console.log("parsing date", key, value)
+        
+        if (typeof value === "number" && !isNaN(value))
+            return value
+
+        else if (typeof value === 'number' && isNaN(value))
+            convertedValue = -1
+        
+        else if (typeof value === 'string')
+            try {
+                convertedValue = new Date(value).getTime() / 1000;
+            } catch (error) {
+                console.log('error block', error)
+                convertedValue = -1
+            }
+
+        return convertedValue
+    } 
+    
+    return value;
+}
+
+interface ItemProps {
+    item: _Item;
+    index: number;
+    handleInputChange: (index: number, key: string, value: Value) => void;
+    handleSave: (name: string, k: string, v: Value) => boolean;
+    handleDelete: (name: string) => boolean;
+    T: string
+}
+
+const Item: React.FC<ItemProps> = (props: ItemProps) => {
+    const { item, index, handleInputChange, handleSave, handleDelete, T } = props;
 
     const [show, setShow] = useState(false);
 
-    const parseValue = (key: string, value: any) => {
-        if (key.indexOf("Date") !== -1) {
-            console.log("parsing date", key, value)
-            if (typeof value === "number" && !isNaN(value))
-                return value
-
-            else
-                try {
-                    value = new Date(value).getTime() / 1000;
-                } catch (error) {
-                    console.log('error block', error)
-                    value = -1
-                }
-
-            if (isNaN(value))
-                value = -1
-            return value
-        } else
-            return value;
-    }
+    
 
     return show ? (
         <Box key={index} mb={4}>
-            {Object.entries(item).map(([key, value], i) => ([key, parseValue(key, value)])).map(([key, value], i) => (
-                <div key={i}>
-                    <FormLabel htmlFor={key} style={{ fontWeight: 'bold' }}>
-                        {key}
-                    </FormLabel>
-                    <Flex key={key}>
+            {Object.entries(item)
+                .map(([key, value], i) => ({key: key, value: parseValue(key, value)}))
+                .map(({ key, value }, i) => (
+                    // rome-ignore lint/suspicious/noArrayIndexKey: updates every time without saving ref to id anywhere
+                    <div key={i}>
+                        <FormLabel style={{ fontWeight: 'bold' }}>
+                            {key}
+                        </FormLabel>
+                        <Flex>
 
-                        {getInput(key, value, index, handleInputChange, T)}
-                        <Button style={{ marginLeft: "10px" }}
-                            onClick={() => {
-                                if (value === "true" || value === "True")
-                                    value = true;
-                                else if (value === "false" || value === "False")
-                                    value = false;
+                            {getInput(key, value, index, handleInputChange, T)}
+                            <Button style={{ marginLeft: "10px" }}
+                                onClick={() => {
+                                    if (value === "true" || value === "True")
+                                        value = true;
+                                    else if (value === "false" || value === "False")
+                                        value = false;
 
 
-                                handleSave(item.Name.split(" ").join("_"), key, value)
-                            }}>
-                            Save
-                        </Button>
-                    </Flex>
-                </div>
+                                    handleSave(item.Name.split(" ").join("_"), key, value)
+                                }}>
+                                Save
+                            </Button>
+                        </Flex>
+                    </div>
             ))}
             <Button
                 type="button"
@@ -234,10 +251,9 @@ const Item: React.FC<any> = (ItemProps) => {
 }
 
 
-interface FormProps<T> {
-    data: T[];
-    onDataUpdate: any;
-    handleSave: (name: string, k: string, v: any) => boolean;
+interface FormProps<_Item> {
+    data: _Item[];
+    handleSave: (name: string, k: string, v: Value) => boolean;
     handleDelete: (name: string) => boolean;
     T: string
 }
@@ -248,8 +264,8 @@ type FormField = {
     type: "text" | "textarea" | "datetime-local";
 };
 
-const Form: React.FC<FormProps<_Person | _Project | _Event>> = ({ data, onDataUpdate: any, handleSave, handleDelete, T }) => {
-    const [currentData, setCurrentData] = useState<any[]>(data);
+const Form: React.FC<FormProps<_Person | _Project | _Event>> = ({ data, handleSave, handleDelete, T }) => {
+    const [currentData, setCurrentData] = useState<_Item[]>(data);
     const [page, setPage] = useState(0);
     const pageSize = 5;
 
@@ -259,23 +275,20 @@ const Form: React.FC<FormProps<_Person | _Project | _Event>> = ({ data, onDataUp
 
 
 
-    const handleInputChange = (index: number, key: string, value: any) => {
+    const handleInputChange = (index: number, key: string, value: Value) => {
         setCurrentData((prevData) => {
-            const newData = [...prevData];
+            const newData: _Item[] = [...prevData];
             newData[index][key] = value;
             return newData;
         });
     };
 
-    const handleSubmit = () => {
-        // onDataUpdate(currentData)
-        console.log(currentData)
-    };
 
     return (
         <div>
             {[...Array(Math.ceil(currentData.length / pageSize))].map((_, i) => (
                 <Button
+                    // rome-ignore lint/suspicious/noArrayIndexKey: itll just rerender anyways...
                     key={i}
                     type="button"
                     onClick={() => setPage(i)}
@@ -287,6 +300,7 @@ const Form: React.FC<FormProps<_Person | _Project | _Event>> = ({ data, onDataUp
             <form style={{ padding: '20px' }}>
                 {currentData.slice(page * pageSize, page * pageSize + pageSize).map((item, index) => (
                     <Item
+                        // rome-ignore lint/suspicious/noArrayIndexKey: same as above
                         key={index}
                         item={item}
                         index={index}
@@ -302,10 +316,14 @@ const Form: React.FC<FormProps<_Person | _Project | _Event>> = ({ data, onDataUp
 };
 
 
+interface NewItemProps {
+    index: number;
+    handleSave: (item: _Item) => boolean;
+    T: string
+}
 
-
-const NewItem: React.FC<any> = (ItemProps) => {
-    const { index, handleSave, T } = ItemProps;
+const NewItem: React.FC<NewItemProps> = (props: NewItemProps) => {
+    const { index, handleSave, T } = props;
 
     let item: _Person | _Project | _Event;
 
@@ -324,10 +342,10 @@ const NewItem: React.FC<any> = (ItemProps) => {
     }
 
 
-    const [currentData, setCurrentData] = useState<any>(item);
+    const [currentData, setCurrentData] = useState<_Item>(item);
 
-    const handleInputChange = (index: number, key: string, value: any) => {
-        setCurrentData((prevData: any) => {
+    const handleInputChange = (index: number, key: string, value: Value) => {
+        setCurrentData((prevData: _Item) => {
             const newData = {...prevData};
             newData[key] = value;
             return newData;
@@ -336,30 +354,9 @@ const NewItem: React.FC<any> = (ItemProps) => {
 
     const [show, setShow] = useState(false);
 
-    const parseValue = (key: string, value: any) => {
-        if (key.indexOf("Date") !== -1) {
-            console.log("parsing date", key, value)
-            if (typeof value === "number" && !isNaN(value))
-                return value
+    const transformData = (data: _Item) => {
 
-            else
-                try {
-                    value = new Date(value).getTime() / 1000;
-                } catch (error) {
-                    console.log('error block', error)
-                    value = -1
-                }
-
-            if (isNaN(value))
-                value = -1
-            return value
-        } else
-            return value;
-    }
-
-    const transformData = (data: any) => {
-
-        const newData: any = { ...data };
+        const newData: _Item = { ...data };
         
         for (const key in newData) {
             if (newData[key] === "" || newData[key] === undefined) 
@@ -395,16 +392,19 @@ const NewItem: React.FC<any> = (ItemProps) => {
 
     return show ? (
         <Box key={index} mb={4}>
-            {Object.entries(currentData).map(([key, value], i) => ([key, parseValue(key, value)])).map(([key, value], i) => (
-                <div key={i}>
-                    <FormLabel htmlFor={key} style={{ fontWeight: 'bold' }}>
-                        {key}
-                    </FormLabel>
-                    <Flex key={key}>
+            {Object.entries(currentData)
+                .map(([key, value], i) => ({key: key, value: parseValue(key, value)}))
+                .map(({ key, value }, i) => (
+                    // rome-ignore lint/suspicious/noArrayIndexKey: will just rerender. never saved ref to id anywhere
+                    <div key={i}>
+                        <FormLabel style={{ fontWeight: 'bold' }}>
+                            {key}
+                        </FormLabel>
+                        <Flex key={key}>
 
-                        {getInput(key, value, 0, handleInputChange, T)}
-                    </Flex>
-                </div>
+                            {getInput(key, value, 0, handleInputChange, T)}
+                        </Flex>
+                    </div>
             ))}
             <Button 
                 style={{
@@ -417,7 +417,6 @@ const NewItem: React.FC<any> = (ItemProps) => {
                     cursor: 'pointer'
                 }}
                 onClick={() => {
-                    console.log(transformData(currentData))
                     handleSave(transformData(currentData))
                     window.location.reload();
             }}>
@@ -450,16 +449,18 @@ const NewItem: React.FC<any> = (ItemProps) => {
 }
 
 
-
+type Setter<T> = React.Dispatch<React.SetStateAction<T>>;
 interface AdminFormProps {
     currentEvents: _Event[];
     currentPeople: _Person[];
     currentProjects: _Project[];
-    setCurrentEvents: any;
-    setCurrentPeople: any;
-    setCurrentProjects: any;
-    setReset: any;
+    setCurrentEvents: Setter<_Event[]>;
+    setCurrentPeople: Setter<_Person[]>;
+    setCurrentProjects: Setter<_Project[]>;
+    setReset: Setter<boolean>;
 }
+
+
 
 const AdminForm: React.FC<AdminFormProps> = ({ currentEvents, currentPeople, currentProjects, setCurrentEvents, setCurrentPeople, setCurrentProjects, setReset }) => {
 
@@ -470,13 +471,13 @@ const AdminForm: React.FC<AdminFormProps> = ({ currentEvents, currentPeople, cur
     const getSaveFunc = (T: "Event" | "Person" | "Project") => {
         switch (T) {
             case "Event":
-                return (name: string, k: string, v: any) =>
+                return (name: string, k: string, v: Value) =>
                     EventService.updateEvent(name, k, v)
             case "Person":
-                return (name: string, k: string, v: any) =>
+                return (name: string, k: string, v: Value) =>
                     LeadService.updateLead(name, k, v)
             case "Project":
-                return (name: string, k: string, v: any) =>
+                return (name: string, k: string, v: Value) =>
                     ProjectService.updateProject(name, k, v)
         }
     }
@@ -485,13 +486,13 @@ const AdminForm: React.FC<AdminFormProps> = ({ currentEvents, currentPeople, cur
 
         switch (T) {
             case "Event":
-                return (item: any) =>
+                return (item: _Item) =>
                     EventService.createNewEvent(item)
             case "Person":
-                return (item: any) =>
+                return (item: _Item) =>
                     LeadService.createNewLead(item)
             case "Project":
-                return (item: any) =>
+                return (item: _Item) =>
                     ProjectService.createNewProject(item)
         }
     }
@@ -526,7 +527,6 @@ const AdminForm: React.FC<AdminFormProps> = ({ currentEvents, currentPeople, cur
                     />
                     <Form 
                         data={currentEvents} 
-                        onDataUpdate={setCurrentEvents} 
                         handleSave={getSaveFunc("Event")} 
                         T={"Event"} 
                         handleDelete={getDeleteFunc("Event")}
@@ -541,8 +541,7 @@ const AdminForm: React.FC<AdminFormProps> = ({ currentEvents, currentPeople, cur
                         T={"Person"} 
                     />
                     <Form 
-                        data={currentPeople} 
-                        onDataUpdate={setCurrentPeople} 
+                        data={currentPeople}  
                         handleSave={getSaveFunc("Person")} 
                         T={"Person"} 
                         handleDelete={getDeleteFunc("Person")}
@@ -557,7 +556,6 @@ const AdminForm: React.FC<AdminFormProps> = ({ currentEvents, currentPeople, cur
                     />
                     <Form 
                         data={currentProjects} 
-                        onDataUpdate={setCurrentProjects} 
                         handleSave={getSaveFunc("Project")} 
                         T={"Project"} 
                         handleDelete={getDeleteFunc("Project")}

@@ -7,33 +7,41 @@ import { getLeads } from "back_end/api/leads";
 import { getProjects } from "back_end/api/projects";
 import { set } from 'firebase/database';
 
-export interface _Event {
-  Date: Date;
+
+// all dates handled as epoch time!!!
+
+// epoch -> Date: new Date(epoch * 1000)
+// Date -> epoch: Date.getTime() / 1000
+
+
+export type Value = string | number | boolean | Date;
+export interface _Event extends Record<string, Value> {
+  Date: number;
   Name: string;
   Location: string;
-  Sponsor: string | null;
+  Sponsor: string;
   Attendees: number;
   Description: string;
-  Image: string | null;
+  Image: string;
 }
 
-export interface _Person {
+export interface _Person extends Record<string, Value> {
   Name: string;
   id: number;
-  Date_Joined: Date;
+  Date_Joined: number;
   Active: boolean;
   Class_Standing: string;
   Role: string;
   Email: string;
   Team: string;
-  Date_Left: Date | null;
+  Date_Left: number;
   Image: string;
 }
 
-export interface _Project {
+export interface _Project extends Record<string, Value> {
   Name: string;
-  Start_Date: Date;
-  End_Date: Date;
+  Start_Date: number;
+  End_Date: number;
   Completed: boolean;
   Category: string;
   PM: string;
@@ -46,19 +54,20 @@ export interface _Project {
 export const personTemplate: _Person = { 
   Name: "",
   id: -1,
-  Date_Joined: new Date(Date.now()),
+  // epoch time
+  Date_Joined: new Date(Date.now()).getTime() / 1000,
   Active: false,
   Class_Standing: "",
   Role: "",
   Email: "",
   Team: "",
-  Date_Left: null,
+  Date_Left: -1,
   Image: ""
 }
 
 export const eventTemplate: _Event = {
   Name: "",
-  Date: new Date(Date.now()),
+  Date: new Date(Date.now()).getTime() / 1000,
   Description: "",
   Image: "",
   Location: "",
@@ -68,8 +77,8 @@ export const eventTemplate: _Event = {
 
 export const projectTemplate: _Project = {
   Name: "",
-  Start_Date: new Date(Date.now()),
-  End_Date: new Date(Date.now()),
+  Start_Date: new Date(Date.now()).getTime() / 1000,
+  End_Date: new Date(Date.now()).getTime() / 1000,
   Completed: false,
   Category: "",
   PM: "",
