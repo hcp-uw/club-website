@@ -298,7 +298,8 @@ const Form: React.FC<FormProps<_Person | _Project | _Event>> = ({ data, handleSa
                 </Button>
             ))}
             <form style={{ padding: '20px' }}>
-                {currentData.slice(page * pageSize, page * pageSize + pageSize).map((item, index) => (
+                {currentData.map((item, index) => 
+                (
                     <Item
                         // rome-ignore lint/suspicious/noArrayIndexKey: same as above
                         key={index}
@@ -309,7 +310,7 @@ const Form: React.FC<FormProps<_Person | _Project | _Event>> = ({ data, handleSa
                         handleDelete={handleDelete}
                         T={T}
                     />
-                ))}
+                )).filter((_, i) => i >= page * pageSize && i < (page + 1) * pageSize)}
             </form>
         </div>
     );
