@@ -61,7 +61,6 @@ export async function checkMembership(username) {
 }
 
 export async function checkAdmin(auth) {
-
   if (auth == null) {
     return false;
   }
@@ -76,11 +75,9 @@ export async function checkAdmin(auth) {
     data = qRes.val();
     let member = data[key]
 
-
     if (member == null) {
       return false;
     }
-
 
     return member["Club_Lead"];
   } catch (err) {

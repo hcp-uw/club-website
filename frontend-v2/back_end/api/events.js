@@ -17,7 +17,7 @@ import { errObj, getData } from "../utils/utils.js";
 /* -------------------- Events Endpoints -------------------- */
 // Returns all events from database
 export async function getAllEvents(test = "Events") {
-  const data = await getData(test);
+  let data = await getData(test);
   return Array.from(Object.values(data));
 }
 
@@ -42,16 +42,14 @@ export async function getEventByName(eventName, test = "Events") {
     }
 
     // Get ref to event in database
-    const eventRef = ref(database, `${test}/${eventName}`);
+    const eventRef = ref(database, test + "/" + eventName);
 
     // Get the event data
     const snapshot = await get(eventRef);
     if (snapshot.exists()) {
       return snapshot.val();
     } else {
-      console.error(
-        `Event with name '${eventName}' not found in the database.`
-      );
+      console.error(`Event with name '${eventName}' not found in the database.`);
       return null;
     }
   } catch (err) {
@@ -60,10 +58,18 @@ export async function getEventByName(eventName, test = "Events") {
   }
 }
 
+
 /**
  * Creates a new event and saves it to the database.
  * @param {Object} event - The event object to be saved.
- * @returns {Promise<boolean>} Returns true if the event creation is successful, otherwise false.
+ * @param {number} event.Attendees - Number of planned attendees. (Required)
+ * @param {string} event.Date - Date of the event in DateString format. (Required)
+ * @param {string} event.description - Description of the event. (Required)
+ * @param {string} event.imageURL - Hosted URL of the event's image. (Required)
+ * @param {string} event.location - Location of the event. (Required)
+ * @param {string} event.name - Name of the event, also serving as the "unique identifier". (Required)
+ * @param {string} event.Sponsor - Name of the event's sponsor. (Required)
+ * @returns {boolean} Returns true if the event creation is successful, otherwise false.
  */
 export async function createNewEvent(event, test = "Events") {
   try {
@@ -78,7 +84,6 @@ export async function createNewEvent(event, test = "Events") {
       "Sponsor",
     ];
     for (const param of requiredParams) {
-      // rome-ignore lint/suspicious/noPrototypeBuiltins: <explanation>
       if (!event.hasOwnProperty(param)) {
         console.error(`Missing required parameter: ${param}`);
         return false;
@@ -91,8 +96,8 @@ export async function createNewEvent(event, test = "Events") {
       return false;
     }
 
-    if (typeof event.Date !== "number") {
-      console.error("Parameter 'Date' must be of type 'number' (epoch)");
+    if (typeof event.Date !== "string") {
+      console.error("Parameter 'Date' must be of type 'string'");
       return false;
     }
 
@@ -121,18 +126,13 @@ export async function createNewEvent(event, test = "Events") {
       return false;
     }
 
-
-    const keyName = event.Name.split(" ").join("_");
-
     // get ref and snapshot of current event record (shouldn't exist)
-    const eventRef = ref(database, `${test}/${keyName}`);
+    const eventRef = ref(database, test + "/" + event.Name);
     const snapshot = await get(eventRef);
-
+    
     // check if snapshot exists
     if (snapshot.exists()) {
-      console.error(
-        `Event with name '${keyName}' already exists in the database.`
-      );
+      console.error(`Event with name '${event.Name}' already exists in the database.`);
       return false;
     }
 
@@ -150,7 +150,7 @@ export async function createNewEvent(event, test = "Events") {
 /**
  * Deletes an event from the database based on its event name.
  * @param {string} eventName - The name of the event to be deleted.
- * @returns {Promise<boolean>} Returns true if the event deletion is successful, otherwise false.
+ * @returns {boolean} Returns true if the event deletion is successful, otherwise false.
  */
 export async function deleteEvent(eventName, test = "Events") {
   try {
@@ -167,8 +167,7 @@ export async function deleteEvent(eventName, test = "Events") {
     }
 
     // get ref to event in database
-
-    const eventRef = ref(database, `${test}/${eventName}`);
+    const eventRef = ref(database, test + "/" + eventName);
 
     // check if event exists
     const snapshot = await get(eventRef);
@@ -193,7 +192,7 @@ export async function deleteEvent(eventName, test = "Events") {
  * @param {string} eventName - The name of the event to be updated.
  * @param {string} key - The key name of the field to be updated.
  * @param {*} value - The new value to update the field with.
- * @returns {Promise<boolean>} Returns true if the event update is successful, otherwise false.
+ * @returns {boolean} Returns true if the event update is successful, otherwise false.
  */
 export async function updateEvent(eventName, key, value, test = "Events") {
   try {
@@ -228,11 +227,7 @@ export async function updateEvent(eventName, key, value, test = "Events") {
 
     if (!validKeys.includes(key)) {
       console.error(
-
-        `Invalid key '${key}' provided. The valid keys are: ${validKeys.join(
-          ", "
-        )}`
-
+        `Invalid key '${key}' provided. The valid keys are: ${validKeys.join(", ")}`
       );
       return false;
     }
@@ -240,17 +235,14 @@ export async function updateEvent(eventName, key, value, test = "Events") {
     // type check for value
     const valueTypes = {
       Attendees: "number",
-      Date: "number",
+      Date: "string",
       Description: "string",
       Image: "string",
       Location: "string",
       Name: "string",
       Sponsor: "string",
     };
-
-    // rome-ignore lint/suspicious/useValidTypeof: js be like:
-if  (typeof value !== valueTypes[key]) {
-
+    if (typeof value !== valueTypes[key]) {
       console.error(
         `Invalid value type provided for key '${key}'. Expected type: '${valueTypes[key]}'.`
       );
@@ -280,9 +272,8 @@ export async function getEventsBasedOnTime(
   limit = 4,
   test = "Events"
 ) {
-
-  const missingParamErrMsg = "missing parameters, please define two booleans";
-  const typeErrMsg = "incorrect parameter type, expected boolean, got ";
+  let missingParamErrMsg = "missing parameters, please define two booleans";
+  let typeErrMsg = "incorrect parameter type, expected boolean, got ";
 
   // Param checks
   if (upcoming === undefined) {
@@ -296,9 +287,8 @@ export async function getEventsBasedOnTime(
   }
 
   // Getting Date
-
-  const todayStr = new Date().toISOString(); // YYYY-MM-DDTHH:MM:SS.sssz
-  const today = todayStr.substring(0, todayStr.length - 5); // YYYY-MM-DDTHH:MM:SS
+  let todayStr = new Date().toISOString(); // YYYY-MM-DDTHH:MM:SS.sssz
+  let today = todayStr.substring(0, todayStr.length - 5); // YYYY-MM-DDTHH:MM:SS
 
   // Creating query
   let qRes;
@@ -333,8 +323,7 @@ export async function getEventsBasedOnTime(
   }
 
   // Sorting and outputting the results
-
-  const values = Array.from(Object.values(data));
+  let values = Array.from(Object.values(data));
   if (values.length > 1) {
     values.sort(function (a, b) {
       return new Date(a.Date) - new Date(b.Date);
