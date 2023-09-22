@@ -11,17 +11,6 @@ import { parseEvents, parsePeople, parseProjects } from './parsers';
 //     resolve => setTimeout(resolve, ms)
 //   );
 
-//             name: 'Project Name',
-//             startDate: new Date('Wed, 27 July 2019 13:30:00'),
-//             endDate: new Date('Wed, 27 July 2019 13:30:00'),
-//             completed: false,
-//             category: 'Website',
-//             pm: 'student',
-//             gitLink: 'github.com',
-//             description: 'a new project that we started a while back ago. The goal of this project is to make a new sample of. We hope to gain stronger skills in frontend through increased web development skills.',
-//             members: 'person 1, person 2',
-//             image: "https://picsum.photos/200/300",
-
 export const getFeaturedEvents = async (callback) => {
     var data = await events.getEventsBasedOnTime(true);
     if (data) {

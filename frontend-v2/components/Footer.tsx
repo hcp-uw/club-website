@@ -47,7 +47,7 @@ export default function Footer() {
 
     return (
         <Center height='300px'>
-            <VStack>
+            <VStack justifyContent="center">
                 <Link href="/">
                     <Image
                         width="200px"
@@ -62,7 +62,7 @@ export default function Footer() {
                     icons.map(icon => (
                         <Link key={icon.key} href={icon.link}>
                             <FontAwesomeIcon
-                                height='40px'
+                                size="2x"
                                 color='white'
                                 icon={icon.icon}
                             />
@@ -73,7 +73,7 @@ export default function Footer() {
                 <Spacer />
                 <Spacer />
                 <Spacer />
-                <Text fontSize='xs' color='white'>
+                <Text fontSize='xs' color='white' textAlign="center">
                     Copyright © 2023 Husky Coding Project. All Rights Reserved
                 </Text>
             </VStack>

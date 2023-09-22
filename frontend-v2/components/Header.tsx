@@ -17,6 +17,7 @@ import { useAuth } from "Context/AuthContext";
 
 export default function Header(props: { showSidebar: () => void }) {
     const [isLargerThan1200] = useMediaQuery("(min-width: 1200px)");
+    const [isSmallerThan450] = useMediaQuery("(max-width: 450px)");
     const { currentUser, isAdmin } = useAuth()
 
     return (
@@ -48,16 +49,11 @@ export default function Header(props: { showSidebar: () => void }) {
                         ) : (
                             <ButtonGroup variant='ghost' spacing='5'>
                                 <HeaderButton path='/' text='Home' />
-
-                                {isAdmin ? (
-                                    <HeaderButton path='/admin' text='Admin' />
-                                ) : (
-                                    null
-                                ) }
+                                { isAdmin && <HeaderButton path='/admin' text='Admin' /> }
                                 <HeaderButton path='/resources' text='Resources' />
                                 <HeaderButton path='/dashboard' text='Dashboard' />
-                                <HeaderButton path='/profile' text='Profile Maintenance' />
-                                <HeaderButton path='/private_project' text='Project Maintenance' />
+                                <HeaderButton path='/profile' text='Profile' />
+                                <HeaderButton path='/private_project' text='Project' />
                                 <SpecialHeaderButton path='/join' text='Join Us' />
                             </ButtonGroup>
                         )}
@@ -65,9 +61,9 @@ export default function Header(props: { showSidebar: () => void }) {
                     <Spacer />
                 </Flex>
             ) : (
-                <Flex h="150px" justifyContent='flex-start' width='100%'>
+                <Flex h="100px" justifyContent='flex-start' width='100%'>
                     <Center justifyContent='center'>
-                        <Box paddingLeft='50px' width='100px'>
+                        <Box paddingLeft={isSmallerThan450 ? "25px" : "50px"} width='100px'>
                             <IconButton
                                 variant='ghost'
                                 aria-label='menu'
@@ -99,7 +95,7 @@ export default function Header(props: { showSidebar: () => void }) {
                         <LinkBox>
                             <LinkOverlay href="/">
                                 <Image
-                                    width="150px"
+                                    width={isSmallerThan450 ? "100px" : "150px"}
                                     src="/HCPLogoText-Crop.webp"
                                     alt="HCP Logo"
                                 />

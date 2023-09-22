@@ -8,6 +8,8 @@ import {
     IconButton,
     Wrap,
     WrapItem,
+    useMediaQuery,
+    Spacer,
 } from "@chakra-ui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
@@ -29,7 +31,7 @@ function Title() {
             <Center height='80vh'>
                 <Box width='35vw'>
                     <Text display='inline' fontSize="3xl" color="white">
-                        Husky Coding Project's objective is to break the
+                        The Husky Coding Project objective is to break the
                         circular reasoning of
                     </Text>
                     <Text display='inline' fontSize="3xl" color="brand.pink">
@@ -89,7 +91,54 @@ function Title() {
     );
 }
 
-function Events() {
+function TitleMobile() {
+    return (
+        <Flex height='calc(100vh - 150px)' maxW='1500px' direction='column' marginTop="-20px">
+            <Center height='80vh'>
+                <Box width='70vw'>
+                    <Text display='inline' fontSize="2xl" color="white" fontStyle='italic'>
+                        The Husky Coding Project breaks the circular reasoning of
+                    </Text>
+                    <Text display='inline' fontSize="2xl" color="brand.pink" fontStyle='italic'>
+                        {} "needing experience to get experience"
+                    </Text>
+                    <Text display='inline' fontSize="2xl" color="white" fontStyle='italic'>
+                        {} that prevents hundreds of students from landing their
+                        first software internship or job.
+                    </Text>
+                </Box>
+            </Center>
+            <Center height='20vh'>
+                <IconButton
+                    variant='ghost'
+                    isRound={true}
+                    aria-label="Scroll Down"
+                    size='lg'
+                    zIndex='1'
+                    border='3px solid transparent'
+                    onClick={() => {
+                        document
+                            .getElementById("featured-events")!
+                            .scrollIntoView({ behavior: "smooth" });
+                    }}
+                    _hover={{
+                        border: "3px solid white",
+                        cursor: "pointer",
+                    }}
+                    icon={
+                        <FontAwesomeIcon
+                            height='30px'
+                            color='white'
+                            icon={faArrowDown}
+                        />
+                    }
+                />
+            </Center>
+        </Flex>
+    );
+}
+
+function Events(props: {count: number}) {
     const [events, setEvents] = useState<IEventInfo[]>([
         {
             date: new Date("3/21/2023"),
@@ -118,29 +167,42 @@ function Events() {
     // Uses the getFeaturedEvents API
     useEffect(() => {
         const getData = (data: IEventInfo[]) => {
-            setEvents(data);
-            setLoading(false);
+            // setEvents(data);
+            // setLoading(false);
         };
         getFeaturedEvents(getData);
     });
 
     return (
         <Flex dir="row" width='100%' justify='center'>
-            {events.map((event) => (
-                <EventCard
-                    key={event.name}
-                    name={event.name}
-                    date={event.date}
-                    location={event.location}
-                    loading={loading}
-                    image={event.image ?? "/HCPLogo.webp"}
-                />
-            ))}
+            {events.map((event, idx) => {
+                if (idx < props.count) {
+                    return (
+                        <EventCard
+                            key={event.name}
+                            name={event.name}
+                            date={event.date}
+                            location={event.location}
+                            loading={loading}
+                            image={event.image ?? "/HCPLogo.webp"}
+                        />
+                    );
+                }
+            })}
         </Flex>
     );
 }
 
 function FeaturedEvents() {
+    const [isSmallerThan1400] = useMediaQuery("(max-width: 1400px)");
+    const [isSmallerThan1000] = useMediaQuery("(max-width: 1000px)");
+    let count = 3;
+    if (isSmallerThan1400) {
+        count = 2;
+    }
+    if (isSmallerThan1000) {
+        count = 1;
+    }
     return (
         <Flex
             id='featured-events'
@@ -166,11 +228,11 @@ function FeaturedEvents() {
                         align='center'
                         width='70%'
                     >
-                        Featured Events
+                        {count === 1 ? "Featured Event" : "Featured Events"}
                     </Text>
                 </Center>
                 <Center marginTop='35px'>
-                    <Events />
+                    <Events count={count}/>
                 </Center>
             </Box>
         </Flex>
@@ -178,6 +240,7 @@ function FeaturedEvents() {
 }
 
 function MeetingInfo() {
+    const [isLargerThan1000] = useMediaQuery("(min-width: 1000px)");
     return (
         <Flex
             id='meeting-info'
@@ -193,7 +256,7 @@ function MeetingInfo() {
             <Text
                 as='h2'
                 color='white'
-                fontSize={[ "4xl", "4xl", "6xl" ]}
+                fontSize={[ "3xl", "4xl", "5xl", "6xl" ]}
                 fontWeight='semibold'
                 marginTop='8'
                 align='center'
@@ -205,7 +268,7 @@ function MeetingInfo() {
                 width='70%'
                 marginTop='30px'
                 marginBottom='50px'
-                fontSize='2xl'
+                fontSize={[ "md", "xl", "2xl" ]}
                 color='brand.light_brown'
                 align='center'
             >
@@ -215,16 +278,22 @@ function MeetingInfo() {
             <Box borderRadius='15px' overflow='hidden' width='70%' height='370px'>
                 <Room />
             </Box>
-            <Text
-                width='70%'
-                marginTop='5px'
-                fontSize='md'
-                color='brand.light_brown'
-                align='center'
-            >
-                Mechanical Engineering Building Room 248 @ University of
-                Washington
-            </Text>
+            {
+                isLargerThan1000 ? (
+                    <Text
+                        width='70%'
+                        marginTop='5px'
+                        fontSize='md'
+                        color='brand.light_brown'
+                        align='center'
+                    >
+                        Mechanical Engineering Building Room 248 @ University of
+                        Washington
+                    </Text>
+                ) : (
+                    <Spacer paddingBottom='20px'/>
+                )
+            }
         </Flex>
     );
 }
@@ -294,6 +363,8 @@ function Values() {
 }
 
 export default function Home() {
+    const [isSmallerThan1200] = useMediaQuery("(max-width: 1200px)");
+    const [isLargerThan450] = useMediaQuery("(min-width: 450px)");
     // Scroll to top of page
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -301,8 +372,8 @@ export default function Home() {
 
     return (
         <VStack spacing='150px'>
-            <Title />
-            <FeaturedEvents />
+            { isSmallerThan1200 ? <TitleMobile /> : <Title /> }
+            { isLargerThan450 && <FeaturedEvents /> }
             <MeetingInfo />
             <Values />
         </VStack>
