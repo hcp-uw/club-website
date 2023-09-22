@@ -167,8 +167,10 @@ function Events(props: {count: number}) {
     // Uses the getFeaturedEvents API
     useEffect(() => {
         const getData = (data: IEventInfo[]) => {
-            // setEvents(data);
-            // setLoading(false);
+            if (data.length > 0) {
+                setEvents(data);
+                setLoading(false);
+            }
         };
         getFeaturedEvents(getData);
     });
