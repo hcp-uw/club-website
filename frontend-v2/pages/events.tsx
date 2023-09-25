@@ -3,6 +3,7 @@ import {
     Center,
     VStack,
     Text,
+    Spinner,
 } from "@chakra-ui/react";
 // @ts-ignore
 import { getAllEvents } from "@/utils/api";
@@ -37,6 +38,17 @@ interface IDisplayProps {
 function DisplayEvents(props: IDisplayProps) {
     const { events, loading } = props;
 
+    if (loading) {
+        return (
+            <Spinner
+                thickness='4px'
+                speed='0.65s'
+                color='brand.purple'
+                size='xl'
+            />
+        )
+    }
+
     return (
         <VStack>
             {events.map((event: IEventInfo) =>
@@ -47,7 +59,6 @@ function DisplayEvents(props: IDisplayProps) {
                     location={event.location}
                     description={event.description}
                     image={event.image ?? "/HCPLogo.webp"}
-                    loading={loading}
                 />              
             )}
         </VStack>
@@ -60,15 +71,7 @@ export default function Events() {
         window.scrollTo(0, 0);
     }, []);
 
-    const [events, setEvents] = useState<IEventInfo[]>([
-        {
-            date: new Date("3/21/2023"),
-            name: "Default Event",
-            location: "Default Location",
-            description: "Long".repeat(100),
-            image: "",
-        },
-    ]);
+    const [events, setEvents] = useState<IEventInfo[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
 
     useEffect(() => {
@@ -82,7 +85,7 @@ export default function Events() {
     return (
         <VStack spacing='40px'>
             <Title />
-            <DisplayEvents events={events} loading={loading}/>
+            <DisplayEvents events={events} loading={loading || events.length === 0}/>
         </VStack>
     );
 }

@@ -1,109 +1,211 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
-  Center,
-  VStack,
-  Flex,
-  Box,
-  Text,
-  IconButton,
-  Spacer,
-  Image,
+    Center,
+    Flex,
+    Box,
+    Text,
+    Spacer,
+    Image,
+    Spinner,
+    useMediaQuery,
 } from "@chakra-ui/react";
 import { getPeople } from "utils/api";
 import { IPeopleInfo } from "utils/parsers";
 
 export default function About() {
-  // Scroll to top of page
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+    // Scroll to top of page
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
-  const [people, setPeople] = useState<IPeopleInfo[]>([]);
+    const [people, setPeople] = useState<IPeopleInfo[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [isSmallerThan1400] = useMediaQuery("(max-width: 1400px)");
 
-  useEffect(() => {
-    const getData = (data: IPeopleInfo[]) => {
-      setPeople(data)
+    useEffect(() => {
+        const getData = (data: IPeopleInfo[]) => {
+        if (data.length !== 0) {
+            setPeople(data);
+            setIsLoading(false);
+        }
+        }
+        getPeople(getData);
+    }, []);
+
+    function formatName(name: string) {
+        // example Rasmus Makiniemi
+        const lastInitial = `${name.split(' ')[1][0]}.`
+        return `${name.split(' ')[0]} ${lastInitial}`;
     }
-    getPeople(getData);
-  }, []);
 
-  function formatName(name: string) {
-    // example Rasmus Makiniemi
-    const lastInitial = name.split(' ')[1][0] + '.'
-    return name.split(' ')[0] + ' ' + lastInitial;
-  }
-
-  function formatRole(role: string) {
-    // example Onboarding/Education
-    if (role.split('/').length != 1) {
-      return role.split('/')[0] + " & " + role.split('/')[1];
+    function formatRole(role: string) {
+        // example Onboarding/Education
+        if (role.split('/').length !== 1) {
+        return `${role.split('/')[0]} & ${role.split('/')[1]}`;
+        }
+        else return role;
     }
-    else return role;
-  }
 
-  const generateAvatars = () => {
-    return (
-      <>
-        <Text textAlign='center' color='white' fontSize='5xl' marginBottom='50px'>Our Team</Text>
-        <Flex justifyContent='center' flexWrap='wrap' width='80%' margin='auto'>
-          {people.map((i) => {
-            return(
-              <Flex flexDirection='column' alignItems='center' margin='20px' width='15%'>
-                <Box width='150px' height='150px' backgroundImage={i.image} backgroundSize='100%' backgroundPosition='center' borderRadius='50%' marginBottom='30px'></Box>
-                <Text fontSize='2xl' color='white' overflowWrap='anywhere' textAlign='center' width='90%'>{formatName(i.name)}</Text>
-                <Text fontSize='large' color='#FD72F8' overflowWrap='anywhere' textAlign='center'>{formatRole(i.role)}</Text>
-              </Flex>
+    const generateAvatars = useMemo(() => {
+        if (isLoading) {
+            return (
+                <Spinner
+                    thickness='4px'
+                    speed='0.65s'
+                    color='brand.purple'
+                    size='xl'
+                />
             )
-          })}
-        </Flex>
-      </>
-    )
-  }
+        }
+        return (
+            <Flex justifyContent='center' flexWrap='wrap' width='80%' margin='auto' paddingTop="30px">
+                {people.map((person) => {
+                    return(
+                        <Flex 
+                            flexDirection='column'
+                            alignItems='center'
+                            margin='20px'
+                            width='15%'
+                            >
+                            <Box
+                                width='150px'
+                                height='150px'
+                                backgroundImage={ person.image ?? "/HCPLogo.webp" }
+                                backgroundSize='100%'
+                                backgroundPosition='center'
+                                borderRadius='50%'
+                                marginBottom='30px'
+                            />
+                            <Text fontSize={[ "md", "xl", "2xl" ]} color='white' overflowWrap='anywhere' textAlign='center' width='90%'>
+                                { formatName(person.name) }
+                            </Text>
+                            <Text fontSize='large' color='#FD72F8' overflowWrap='anywhere' textAlign='center'>
+                                { formatRole(person.role) }
+                            </Text>
+                        </Flex>
+                    )
+                })}
+            </Flex>
+        )
+    }, [people, isLoading]);
 
-  return (
-    <>
-      <Flex justify="center" margin='auto' width='calc(100vw - 50px)' marginTop='80px'>
-        <Flex direction="column" color='white' maxW='600px' width='70%'>
-          <Text fontSize='5xl' fontWeight='600'>What is the Problem?</Text>
-          <br></br>
-          <Text fontSize='2xl'>
-            The majority of projects offered by CS coursework are solo or in pairs,
-            so future programmers miss out on the invaluable experience of working in larger teams.
-            The leading motivation to do CS class projects are for grades, rather than for the learning experience.
-            <br></br><br></br>
-            Getting internships is the best ways to gain real world experience on the job.
-            However, it is also quite difficult to obtain without having some prior experience.
-            <br></br><br></br>
-            This circular logic plagues every generation of programmers.
-          </Text>
+    const theWhy = useMemo(() => (
+        <Flex 
+            justify="center"
+            margin='auto'
+            width='80vw'
+            marginTop='20px'
+            maxWidth="1500px"
+            direction={isSmallerThan1400 ? "column" : "row"}
+        >
+            <Flex
+                direction="column"
+                color='white'
+                width={isSmallerThan1400 ? "100%" : "60%"}
+                marginBottom={isSmallerThan1400 ? "100px" : undefined}
+            >
+                <Text fontSize={[ "3xl", "4xl", "5xl", "6xl" ]} fontWeight='semibold'>
+                    The Why
+                </Text>
+                <Text fontSize={[ "md", "xl", "2xl" ]} marginTop="1em">
+                    The majority of projects offered by CS coursework are solo or in pairs,
+                    so future programmers miss out on the invaluable experience of working in larger teams.
+                    Additionally, the leading motivation to do CS class projects are for grades, 
+                    rather than for the learning experience.
+                </Text>
+                <Text fontSize={[ "md", "xl", "2xl" ]} marginTop="1em">
+                    Getting internships is the best ways to gain real world experience on the job.
+                    However, it is also quite difficult to obtain without having some prior experience.
+                </Text>
+                <Text fontSize={[ "md", "xl", "2xl" ]} marginTop="1em">
+                    This circular logic plagues every generation of programmers.
+                </Text>
+            </Flex>
+            <Spacer/>
+            <Flex
+                height='100%'
+                width={isSmallerThan1400 ? "100%" : "40%"}
+                marginLeft={isSmallerThan1400 ? undefined: "150px"}
+                alignSelf="center"
+                justifyContent="center"
+            >
+                <Image src="/loop-graphic.png" alt="some cool design"/>
+            </Flex>
         </Flex>
-        <Box height='100px' width='30%' marginLeft='150px' minWidth='400px'>
-          <Image src="/loop-graphic.png" alt="some cool design" width='500px'/>
-        </Box>
-      </Flex>
-      <Spacer height='150px'></Spacer>
+    ), [isSmallerThan1400]);
 
-      <Flex justify="center" margin='auto' width='calc(100vw - 50px)' marginTop='80px'>
-        <Flex direction="column" color='white' maxW='600px' width='70%'>
-          <Text fontSize='5xl' fontWeight='600'>Our Mission</Text>
-          <br></br>
-          <Text fontSize='2xl'>
-            To create a tech internship-like environment that promotes the growth and development
-            of our club members. We provide team-based programming project experience and encouraging
-            <Text as='span' color='#FD72F8'> peer-to-peer learning.</Text>
-            <br></br><br></br>
-            To provide the next generation of programmers & designers with the tools and experience to
-            <Text as='span' color='#FD72F8'> succeed in future tech careers.</Text>
-          </Text>
+    const ourMission = useMemo(() => (
+        <Flex 
+            justify="center"
+            margin='auto'
+            width='80vw'
+            marginTop={isSmallerThan1400 ? "100px" : "150px"}
+            maxWidth="1500px"
+            direction={isSmallerThan1400 ? "column" : "row"}
+        >
+            <Flex
+                direction="column"
+                color='white'
+                width={isSmallerThan1400 ? "100%" : "60%"}
+                marginBottom={isSmallerThan1400 ? "100px" : undefined}
+            >
+                <Text fontSize={[ "3xl", "4xl", "5xl", "6xl" ]} fontWeight='semibold'>
+                    Our Mission
+                </Text>
+                <Text fontSize={[ "md", "xl", "2xl" ]} marginTop="1em">
+                    To create a tech internship-like environment that promotes the growth and development
+                    of our club members. We provide team-based programming project experience and encourage
+                    <Text as='span' color='brand.pink'> peer-to-peer learning </Text>
+                    to provide the next generation of programmers & designers with the tools and experience to
+                    <Text as='span' color='brand.pink'> succeed in future tech careers</Text>.
+                </Text>
+            </Flex>
+            <Flex
+                height='100%'
+                width={isSmallerThan1400 ? "100%" : "40%"}
+                marginLeft={isSmallerThan1400 ? undefined: "150px"}
+                alignSelf="center"
+                justifyContent="center"
+                marginTop="-40px"
+            >
+                <Image src="/output-onlinegiftools.gif" alt="some cool design" width="400px"/>
+            </Flex>
         </Flex>
-        <Box height='100px' width='30%' marginLeft='150px' minWidth='400px'>
-          <Image src="/output-onlinegiftools.gif" alt="some cool design" width='200%'/>
-        </Box>
-      </Flex>
-      <Spacer height='150px'></Spacer>
+    ), [isSmallerThan1400]);
 
-      {generateAvatars()}
-      <Spacer height='150px'></Spacer>
-    </>
-  );
+    const ourTeam = useMemo(() => {
+        if (isSmallerThan1400) return <></>;
+        return (
+            <>
+                <Text
+                    textAlign='center'
+                    color='white'
+                    fontSize={[ "3xl", "4xl", "5xl", "6xl" ]}
+                    marginTop="150px"
+                    fontWeight='semibold'
+                >
+                    Our Team
+                </Text>
+                {isLoading ? (
+                    <Center marginTop="30px">
+                        <Spinner
+                            thickness='4px'
+                            speed='0.65s'
+                            color='brand.purple'
+                            size='xl'
+                        />
+                    </Center>
+                ) : generateAvatars}
+            </>
+        );
+    }, [isLoading, isSmallerThan1400]);
+
+
+    return (
+        <>
+            { theWhy }
+            { ourMission }
+            { ourTeam }
+        </>
+    );
 }

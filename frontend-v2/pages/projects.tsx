@@ -7,6 +7,7 @@ import {
     InputGroup,
     InputLeftElement,
     SimpleGrid,
+    useMediaQuery,
 } from "@chakra-ui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
@@ -79,6 +80,7 @@ interface IDisplayProps {
 
 function DisplayProjects(props: IDisplayProps) {
     const { searchTerm, projects, loading } = props;
+    const [isSmallerThan450] = useMediaQuery("(max-width: 450px)");
 
     // Helper functions for search
     const searchField = (field: keyof IProjectInfo): IProjectInfo[] => {
@@ -127,7 +129,7 @@ function DisplayProjects(props: IDisplayProps) {
         );
     }
     return (
-        <SimpleGrid columns={[1, 1, 2, 2, 3]} spacing='40px'>
+        <SimpleGrid columns={isSmallerThan450 ? undefined : [1, 1, 2, 2, 3]} spacing='40px'>
             {filteredProjects.map((project: IProjectInfo) =>
                 <ProjectCard
                     key={project.name}
