@@ -8,7 +8,7 @@ import {
     Box,
     Skeleton,
 } from "@chakra-ui/react";
-import { SpecialArrowButton } from "./Parts";
+import { SpecialLinkButton } from "./Parts";
 
 interface IProjectCard {
     name: string;
@@ -91,7 +91,7 @@ export default function ProjectCard(props: IProjectCard) {
             </CardBody>
             <CardFooter paddingTop='0px' justifyContent='flex-start'>
                 <Skeleton isLoaded={!loading}>
-                    <SpecialArrowButton path={gitLink ?? ""} text='Details' />
+                    <SpecialLinkButton path={gitLink ?? ""} text='Details' />
                 </Skeleton>
             </CardFooter>
         </Card>

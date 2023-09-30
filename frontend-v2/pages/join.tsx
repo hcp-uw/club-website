@@ -2,242 +2,168 @@ import { useState, useEffect } from "react";
 import { Inter } from "@next/font/google";
 import {
     Flex,
-    Link,
     Text,
-    Button,
     Center,
-    Card,
-    CardBody,
-    Image
+    VStack,
+    Input,
+    Box,
+    Textarea
 } from "@chakra-ui/react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
-
-import type { ChangeEvent } from "react";
+import { faUpRightFromSquare, faEnvelope} from "@fortawesome/free-solid-svg-icons";
 // @ts-ignore
 import { sendEmail } from "@/utils/api";
+// @ts-ignore
+import { checkLead } from "@/utils/api";
+// @ts-ignore
+import { auth } from "@/back_end/utils/index.js"
 
 import SignInComponent from "components/SignInButton";
 import { UserCredential, User, signOut, OAuthCredential} from "firebase/auth";
-import { auth } from "../back_end/utils/index.js"
 import { useAuth } from "Context/AuthContext";
 import { exchangeAuth } from "utils/api.js";
-
-// @ts-ignore
-import { checkLead } from "@/utils/api";
+import { SpecialIconButton, SpecialSubmitButton } from "components/Parts";
 const inter = Inter({ subsets: ["latin"] });
 
-function renderJoinPage() {
+function Title() {
     return (
-
-        <Flex
-
-        //  id={isMobile ? "join-container-mobile" : "join-container"}
-            height='700px'
-            direction='column'
-            width='100vw'
-            maxW='1500px'
-            borderRadius='30px'
-            alignItems='center'
-        >
+        <Center>
             <Text
-                fontFamily={'Segoe'}
-                fontSize='5xl'
-                color="white"
-                marginTop='4'
+                as='h2'
+                color='white'
+                fontSize='6xl'
+                fontWeight='semibold'
             >
                 Join Us
             </Text>
+        </Center>
+    );
+}
+
+function FormLink() {
+    return (
+        <VStack spacing={10}>
             <Text
                 display='inline'
                 fontSize="2xl"
                 color="white"
-                marginTop='8'
+                textAlign="center"
             >
                 Fill out the form below to join Husky Coding Project!
             </Text>
-        {/* {isMobile ? displayJoinPageMobile() : displayJoinPage()} */}
-        </Flex>
+            <SpecialIconButton
+                path = "https://forms.gle/EJZKu64nNQwsGxLm8"
+                text = "Sign-up Form"
+                icon={                        
+                    <FontAwesomeIcon
+                        size="lg"
+                        icon={faUpRightFromSquare}
+                    />
+                }
+            />
+        </VStack>
     )
 }
 
+function EmailForm() {
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [content, setContent] = useState("");
+    const [error, setError] = useState("");
+
+    const isEmailValid = (email: string): boolean => {
+        return /^\S+@\S+\.\S+$/.test(email);
+    }
+
+    const handleClick = () => {
+        if (name.length === 0) {
+            setError("Name is required");
+        } else if (email.length === 0) {
+            setError("Email is required");
+        } else if (content.length === 0) {
+            setError("Content is required");
+        } else if (!isEmailValid(email)) {
+            setError("Invalid email address");
+        } else {
+            setName("");
+            setEmail("");
+            setContent("");
+            sendEmail(name, email, content);
+        }
+    };
+
+    return (
+        <VStack spacing={10} marginTop="50px" width="50vw" minWidth="300px">
+            <Text
+                display='inline'
+                fontSize="2xl"
+                color="white"
+                textAlign="center"
+            >
+                Have any questions? Send us a message!
+            </Text>
+            <VStack spacing={5} width="100%">
+                <Flex direction="row" width="100%">
+                    <Input
+                        variant='outline'
+                        placeholder='Name'
+                        width="50%"
+                        color="white"
+                        marginRight="20px"
+                        onChange={(event) => setName(event.target.value)}
+                        value={name}
+                    />
+                    <Input
+                        variant='outline'
+                        placeholder='Email'
+                        width="50%"
+                        color="white"
+                        onChange={(event) => setEmail(event.target.value)}
+                        value={email}
+                    />
+                </Flex>
+                <Textarea
+                    variant='outline'
+                    placeholder='Type your message here...'
+                    width="100%"
+                    color="white"
+                    height="300px"
+                    onChange={(event) => setContent(event.target.value)}
+                    value={content}
+                />
+            </VStack>
+            <VStack spacing={5} width="100%">
+                <SpecialSubmitButton
+                    text = "Submit"
+                    onClick={ handleClick }
+                    icon={                        
+                        <FontAwesomeIcon
+                            size="lg"
+                            icon={faEnvelope}
+                        />
+                    }
+                />
+                <Text
+                    display='inline'
+                    fontSize="md"
+                    color="red"
+                >
+                    {error}
+                </Text>
+            </VStack>
+        </VStack>
+    );
+}
+
 export default function Join() {
-
-
     // Scroll to top of page
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
 
-    const [width, setWidth] = useState<number | null>(null);
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [content, setContent] = useState("");
+    
     const { currentUser, isAdmin, getUser } = useAuth()
-
-    useEffect(() => {
-        const handleWindowSizeChange = () => {
-            setWidth(window.innerWidth);
-        };
-        window.addEventListener("resize", handleWindowSizeChange);
-        return () => {
-            window.removeEventListener("resize", handleWindowSizeChange);
-        };
-    }, []);
-
-    const isMobile = width === null ? false : width <= 800;
-
-    const renderLink = () => {
-        <div>
-            Hahaha
-            <FontAwesomeIcon
-                height='40px'
-                color='white'
-                icon={faEnvelope}
-            />
-        </div>
-
-    }
-
-    const displayEmailForm = () => {
-        const handleClick = () => {
-            setName("");
-            setEmail("");
-            setContent("");
-            sendEmail(name, email, content);
-        };
-        const handleNameChange = async (
-            event: ChangeEvent<HTMLInputElement>,
-        ) => {
-            setName(event.target.value);
-        };
-        const handleEmailChange = (event: ChangeEvent<HTMLInputElement>) => {
-            setEmail(event.target.value);
-        };
-        const handleContentChange = (event: ChangeEvent<HTMLInputElement>) => {
-            setContent(event.target.value);
-        };
-        return (
-            <div id="emailform">
-                <br />
-                <br />
-                <Text id="objective" variant="subtitle1" color="white">
-                    ...or send us a message :)
-                    <br />
-                    <br />
-                </Text>
-                <form>
-                    <label>
-                        <Text
-                            color="primary"
-                            // required
-                            sx={{ input: { color: "white" } }}
-                            // fullWidth
-                            // focused
-                            id="filled-basic"
-                            // label="Name"
-                            variant="outlined"
-                            // value={name}
-                            onChange={handleNameChange}
-                        />
-                        {/* <input type="text" name="name" value={name} onChange={handleNameChange}/> */}
-                    </label>
-                    <br />
-                    <br />
-                    <label>
-                        <Text
-                            color="primary"
-                            // required
-                            sx={{ input: { color: "white" } }}
-                            // fullWidth
-                            // focused
-                            id="filled-basic"
-                            // label="Email"
-                            variant="outlined"
-                            // value={email}
-                            onChange={handleEmailChange}
-                        />
-                    </label>
-                    <br />
-                    <br />
-                    <label>
-                        <Text
-                            color="primary"
-                            // required
-                            // focused
-                            id="filled-basic"
-                            // label="Message"
-                            variant="outlined"
-                            // multiline
-                            // rows={6}
-                            // fullWidth
-                            // value={content}
-                            onChange={handleContentChange}
-                        />
-                    </label>
-                    <br />
-                    <br />
-                    {/*<IconButton*/}
-                    {/*    variant="contained"*/}
-                    {/*    color="secondary"*/}
-                    {/*    onClick={handleClick}*/}
-                    {/*    endIcon={<SendIcon />}*/}
-                    {/*    disabled={name === "" || email === "" || content === ""}*/}
-                    {/*>*/}
-                    {/*    Submit*/}
-                    {/*</IconButton>*/}
-                </form>
-            </div>
-        );
-    };
-
-    const displayJoinPage = () => {
-        return (
-            // <div className="google-form-embed">
-            //     <iframe
-            //         className="iframe"
-            //         title="club sign up google form"
-            //         frameBorder={0}
-            //         src="https://docs.google.com/forms/d/e/1FAIpQLSc5wyLuacKqZpezaffwB8jZZVz9yBo83tvA-U_vsRMiPbGslA/viewform?embedded=true"
-            //     >
-            //         Loading…
-            //     </iframe>
-            //     {displayEmailForm()}
-            // </div>
-            <div style={{ width: "70%" }}>
-                {/*<IconButton*/}
-                {/*    color="secondary"*/}
-                {/*    variant="contained"*/}
-                {/*    href="https://forms.gle/JpJaoznG4FBvS1paA"*/}
-                {/*    target="_blank"*/}
-                {/*>*/}
-                {/*    {" "}*/}
-                {/*    Link to Form{" "}*/}
-                {/*</IconButton>*/}
-                <br />
-                {displayEmailForm()}
-            </div>
-        );
-    };
-
-    // IconButton link to google form
-    const displayJoinPageMobile = () => {
-        return (
-            <div>
-                {/*<IconButton*/}
-                {/*    color="secondary"*/}
-                {/*    variant="contained"*/}
-                {/*    href="https://forms.gle/JpJaoznG4FBvS1paA"*/}
-                {/*    target="_blank"*/}
-                {/*>*/}
-                {/*    {" "}*/}
-                {/*    Link to Form{" "}*/}
-                {/*</IconButton>*/}
-            </div>
-        );
-    };
-
 
     const handleSignInSuccess = async (result: UserCredential) => {
         console.log(isAdmin);
@@ -256,98 +182,98 @@ export default function Join() {
     };
 
     return (
-        <div id={isMobile ? "join-background-mobile" : "join-background"}>
-            <>
-        {currentUser ? (
-
-            <div>
-                <Center>
-                    <Card
-                        background="brand.mid_white"
-                        width='400px'
-                        height='100px'
-                    >
-                        <CardBody alignContent="flex-start">
-                            <Image
-                                boxSize="50px"
-                                src={currentUser.photoURL ?? ""}
-
-                            />
-                            <Text>
-                                {currentUser.displayName}
-                            </Text>
-                        </CardBody>
-                    </Card>
-                </Center>
-
-                <Center p={8}>
-
-                <Button onClick={handleSignOut}
-                        bg='gray'
-                        w={'full'}
-                        maxW={'md'}
-                        variant={'outline'}
-                >
-                    <Center>
-                    <Text>Sign Out</Text>
-                    </Center>
-                </Button>
-                </Center>
-            </div>
-        ) : (
-            <div>
-                <SignInComponent onSignInSuccess={handleSignInSuccess} />
-            </div>
-
-        )}
-        </>
-            <Flex
-            //  id={isMobile ? "join-container-mobile" : "join-container"}
-                height='700px'
-                direction='column'
-                width='100vw'
-                maxW='1500px'
-                borderRadius='30px'
-                alignItems='center'
-            >
-
-                <Text
-                    fontFamily={'Segoe'}
-                    fontSize='5xl'
-                    color="white"
-                    marginTop='4'
-                >
-                    Join Us
-                </Text>
-                <Text
-                    display='inline'
-                    fontSize="2xl"
-                    color="white"
-                    marginTop='8'
-                >
-                    Fill out the form below to join Husky Coding Project!
-                </Text>
-
-                <Link href="https://forms.gle/JpJaoznG4FBvS1paA">
-                    <Button
-                        rightIcon={                        <FontAwesomeIcon
-                            // height='40px'
-                            // color='white'
-                            icon={faEnvelope}
-                        />}
-                        colorScheme='purple' size='s' variant='solid'>
-                        Link to Form
-                    </Button>
-                </Link>
-                {/* <FontAwesomeIcon
-                    height='40px'
-                    color='white'
-                    icon={faEnvelope}
-                /> */}
-            </Flex>
-
-
-        </div>
+        <VStack spacing='40px'>
+            <Title />
+            <FormLink />
+            <EmailForm />
+        </VStack>
     );
-}
 
+    // return (
+    //     <div id={isMobile ? "join-background-mobile" : "join-background"}>
+    //         <>
+    //     {currentUser ? (
+
+    //         <div>
+    //             <Center>
+    //                 <Card
+    //                     background="brand.mid_white"
+    //                     width='400px'
+    //                     height='100px'
+    //                 >
+    //                     <CardBody alignContent="flex-start">
+    //                         <Image
+    //                             boxSize="50px"
+    //                             src={currentUser.photoURL ?? ""}
+    //                         />
+    //                         <Text>
+    //                             {currentUser.displayName}
+    //                         </Text>
+    //                     </CardBody>
+    //                 </Card>
+    //             </Center>
+    //             <Center p={8}>
+    //             <Button onClick={handleSignOut}
+    //                     bg='gray'
+    //                     w={'full'}
+    //                     maxW={'md'}
+    //                     variant={'outline'}
+    //             >
+    //                 <Center>
+    //                 <Text>Sign Out</Text>
+    //                 </Center>
+    //             </Button>
+    //             </Center>
+    //         </div>
+    //     ) : (
+    //         <div>
+    //             <SignInComponent onSignInSuccess={handleSignInSuccess} />
+    //         </div>
+    //     )}
+    //     </>
+    //         <Flex
+    //         //  id={isMobile ? "join-container-mobile" : "join-container"}
+    //             height='700px'
+    //             direction='column'
+    //             width='100vw'
+    //             maxW='1500px'
+    //             borderRadius='30px'
+    //             alignItems='center'
+    //         >
+    //             <Text
+    //                 fontFamily={'Segoe'}
+    //                 fontSize='5xl'
+    //                 color="white"
+    //                 marginTop='4'
+    //             >
+    //                 Join Us
+    //             </Text>
+    //             <Text
+    //                 display='inline'
+    //                 fontSize="2xl"
+    //                 color="white"
+    //                 marginTop='8'
+    //             >
+    //                 Fill out the form below to join Husky Coding Project!
+    //             </Text>
+
+    //             <Link href="https://forms.gle/JpJaoznG4FBvS1paA">
+    //                 <Button
+    //                     rightIcon={                        <FontAwesomeIcon
+    //                         // height='40px'
+    //                         // color='white'
+    //                         icon={faEnvelope}
+    //                     />}
+    //                     colorScheme='purple' size='s' variant='solid'>
+    //                     Link to Form
+    //                 </Button>
+    //             </Link>
+    //             {/* <FontAwesomeIcon
+    //                 height='40px'
+    //                 color='white'
+    //                 icon={faEnvelope}
+    //             /> */}
+    //         </Flex>
+    //     </div>
+    // );
+}

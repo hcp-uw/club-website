@@ -69,7 +69,7 @@ export default function Layout({ children }: { children: ReactElement }) {
                 {!isLargerThan1200 && (
                     <Sidebar show={showSide} handleShow={showSidebar} />
                 )}
-                <Box marginTop='150px' width='100vw'>
+                <Box marginTop={isLargerThan1200 ? '150px' : '100px'} width='100vw'>
                     {children}
                 </Box>
                 <Footer />

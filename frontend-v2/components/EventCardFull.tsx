@@ -4,22 +4,21 @@ import {
     VStack,
     Card,
     CardBody,
-    CardFooter,
     Box,
     Skeleton,
 } from "@chakra-ui/react";
-import { SpecialLinkButton } from "./Parts";
 
-interface IEventCard {
+interface IEventCardFull {
     name: string;
     date: Date;
     location: string;
     image: string;
+    description: string;
     loading: boolean;
 }
 
-export default function EventCard(props: IEventCard) {
-    const {name, date, location, image, loading} = props;
+export default function EventCardFull(props: IEventCardFull) {
+    const {name, date, location, image, description, loading} = props;
 
     return (
         <Card
@@ -27,7 +26,6 @@ export default function EventCard(props: IEventCard) {
             size='sm'
             key={name}
             width='300px'
-            height='375px'
             borderRadius='15px'
             marginX='25px'
             background='brand.mid_white'
@@ -40,21 +38,21 @@ export default function EventCard(props: IEventCard) {
                         alt={name}
                         borderRadius='15px'
                         width='100%'
-                        height='150px'
+                        height='300px'
                         objectFit='cover'
                     />
                 </Skeleton>
                 <VStack paddingTop='10px' direction='column' spacing='2'>
                     <Skeleton isLoaded={!loading} width='100%'>
                         <Box justifyContent='flex-start' width='100%'>
-                            <Text fontSize='2xl' fontWeight='bold'>
+                            <Text fontSize='xl' fontWeight='bold'>
                                 {name}
                             </Text>
                         </Box>
                     </Skeleton>
                     <Skeleton isLoaded={!loading} width='100%'>
                         <Box justifyContent='flex-start' width='100%'>
-                            <Text fontSize='lg'>
+                            <Text fontSize='md'>
                                 {date.toLocaleDateString()} •{" "}
                                 {date.toLocaleTimeString()}
                             </Text>
@@ -62,18 +60,20 @@ export default function EventCard(props: IEventCard) {
                     </Skeleton>
                     <Skeleton isLoaded={!loading} width='100%'>
                         <Box justifyContent='flex-start' width='100%'>
-                            <Text fontSize='lg'>
+                            <Text fontSize='md'>
                                 Location: {location}
+                            </Text>
+                        </Box>
+                    </Skeleton>
+                    <Skeleton isLoaded={!loading} width='100%'>
+                        <Box justifyContent='flex-start' width='100%'>
+                            <Text fontSize='sm'>
+                                {description}
                             </Text>
                         </Box>
                     </Skeleton>
                 </VStack>
             </CardBody>
-            <CardFooter paddingTop='0px' justifyContent='flex-start'>
-                <Skeleton isLoaded={!loading}>
-                    <SpecialLinkButton path='/events' text='Details' />
-                </Skeleton>
-            </CardFooter>
         </Card>
     );
 }

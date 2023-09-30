@@ -12,7 +12,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 // @ts-ignore
-import { getProjects } from "@/utils/api";
+import { getAllProjects } from "@/utils/api";
 import { ChangeEvent, lazy, useEffect, useState } from "react";
 import { IProjectInfo } from "utils/parsers";
 import ProjectCard from "components/ProjectCard";
@@ -202,7 +202,7 @@ export default function Projects() {
             setProjects(data);
             setLoading(false);
         }
-        getProjects(getData);
+        getAllProjects(getData);
     }, []);
 
     return (

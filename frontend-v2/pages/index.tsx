@@ -92,8 +92,9 @@ function Title() {
 }
 
 function TitleMobile() {
+    const [isLargerThan450] = useMediaQuery("(min-width: 450px)");
     return (
-        <Flex height='calc(100vh - 150px)' maxW='1500px' direction='column' marginTop="-20px">
+        <Flex height='calc(100vh - 150px)' maxW='1500px' direction='column' marginTop="20px">
             <Center height='80vh'>
                 <Box width='70vw'>
                     <Text display='inline' fontSize="2xl" color="white" fontStyle='italic'>
@@ -118,7 +119,7 @@ function TitleMobile() {
                     border='3px solid transparent'
                     onClick={() => {
                         document
-                            .getElementById("featured-events")!
+                            .getElementById(isLargerThan450 ? "featured-events" : "meeting-info" )!
                             .scrollIntoView({ behavior: "smooth" });
                     }}
                     _hover={{
@@ -243,6 +244,8 @@ function FeaturedEvents() {
 
 function MeetingInfo() {
     const [isLargerThan1000] = useMediaQuery("(min-width: 1000px)");
+    const [isLargerThan450] = useMediaQuery("(min-width: 450px)");
+
     return (
         <Flex
             id='meeting-info'
@@ -250,7 +253,11 @@ function MeetingInfo() {
             direction='column'
             width='80vw'
             maxW='1500px'
-            bgGradient='linear(to-t, brand.mid_purple, brand.hot_pink)'
+            bgGradient={
+                isLargerThan450 ? 
+                'linear(to-t, brand.mid_purple, brand.hot_pink)' : 
+                'linear(to-b, brand.mid_purple, brand.hot_pink)'
+            }
             borderRadius='30px'
             alignItems='center'
             paddingBottom='10px'

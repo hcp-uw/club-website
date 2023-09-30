@@ -4,12 +4,15 @@ import {
     VStack,
     Text,
     Spinner,
+    useMediaQuery,
+    SimpleGrid,
 } from "@chakra-ui/react";
 // @ts-ignore
 import { getAllEvents } from "@/utils/api";
 import { lazy, useEffect, useState } from "react";
 import { IEventInfo } from "utils/parsers";
 import EventPanel from "components/EventPanel";
+import EventCardFull from "components/EventCardFull";
 
 const Room = lazy(() => import("components/Room"));
 const inter = Inter({ subsets: ["latin"] });
@@ -29,7 +32,6 @@ function Title() {
     );
 }
 
-
 interface IDisplayProps {
     events: IEventInfo[];
     loading: boolean;
@@ -37,6 +39,8 @@ interface IDisplayProps {
 
 function DisplayEvents(props: IDisplayProps) {
     const { events, loading } = props;
+    const [isSmallerThan1200] = useMediaQuery("(max-width: 1200px)");
+    const [isSmallerThan450] = useMediaQuery("(max-width: 450px)");
 
     if (loading) {
         return (
@@ -46,6 +50,24 @@ function DisplayEvents(props: IDisplayProps) {
                 color='brand.purple'
                 size='xl'
             />
+        )
+    }
+
+    if (isSmallerThan1200) {
+        return (
+            <SimpleGrid columns={isSmallerThan450 ? undefined : [1, 1, 2, 2, 3]} spacing='40px'>
+                {events.map((event) => (
+                    <EventCardFull
+                        key={event.name}
+                        name={event.name}
+                        date={event.date}
+                        location={event.location}
+                        description={event.description}
+                        image={event.image ?? "/HCPLogo.webp"}
+                        loading={loading}
+                    />
+                ))}
+            </SimpleGrid>
         )
     }
 

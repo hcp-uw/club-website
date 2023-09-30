@@ -30,8 +30,8 @@ export const parseProjects = (data: any[]) => {
     const ret = data.map(obj => {
         const res: IProjectInfo = {
             name: obj.Name,
-            startDate: new Date(obj.Start_Date),
-            endDate: new Date(obj.End_Date),
+            startDate: new Date(obj.Start_Date * 1000),
+            endDate: new Date(obj.End_Date * 1000),
             completed: obj.Completed,
             category: obj.Description,
             pm: obj.PM,

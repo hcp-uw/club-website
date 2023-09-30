@@ -4,6 +4,7 @@ import {
     Flex,
     Text,
     VStack,
+    Spacer,
 } from "@chakra-ui/react";
 
 interface IEventPanel {
@@ -20,7 +21,6 @@ export default function EventPanel(props: IEventPanel) {
     return (
         <Flex
             id='meeting-info'
-            height='450px'
             direction='row'
             width='80vw'
             maxW='1500px'
@@ -29,30 +29,29 @@ export default function EventPanel(props: IEventPanel) {
             alignItems='center'
             marginBottom='50px'
         >
-            <Box width='30vw' maxW='500px'>
+            <Box width='500px' margin='50px'>
                 <Image
                     src={image}
                     alt={name}
                     height='350px'
                     width='350px'
-                    marginLeft='50px'
                     borderRadius='15px'
                     objectFit='cover'
                 />
             </Box>
-            <VStack width='50vw' maxWidth='1000px'>
+            <VStack width='calc(min(80vw, 1500px) - 350px)' paddingRight="50px" marginTop='50px' marginBottom='50px'>
                 <Box justifyContent='flex-start' width='100%'>
-                    <Text fontSize='4xl' fontWeight='bold' color='white'>
+                    <Text fontSize={[ "2xl", "2xl", "4xl" ]} fontWeight='bold' color='white'>
                         {name}
                     </Text>
                 </Box>
                 <Box justifyContent='flex-start' width='100%'>
-                    <Text fontSize='xl' fontWeight='bold' color='white'>
+                    <Text fontSize={[ "md", "md", "xl" ]} fontWeight='bold' color='white'>
                         {date.toLocaleDateString()} • {location}
                     </Text>
                 </Box>
                 <Box justifyContent='flex-start' width='100%'>
-                    <Text fontSize='xl' color='white'>
+                    <Text fontSize={[ "md", "md", "xl" ]} color='white'>
                         {description}
                     </Text>
                 </Box>
