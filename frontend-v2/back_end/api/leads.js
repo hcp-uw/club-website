@@ -127,7 +127,6 @@ export async function deleteLead(leadName, test = "Club_Leads") {
  * @returns {Promise<boolean>} Returns true if the update is successful, otherwise false.
  */
 export async function updateLead(leadName, key, value, test = "Club_Leads") {
-  console.log(leadName, key, value);
   try {
     // check required parameters are provided
     if (!leadName || !key || value === undefined) {

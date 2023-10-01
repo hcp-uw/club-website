@@ -295,10 +295,9 @@ export async function getEventsBasedOnTime(
     return errObj;
   }
 
-  // Getting Date
+  // Getting todays's date in Epoch format
 
-  const todayStr = new Date().toISOString(); // YYYY-MM-DDTHH:MM:SS.sssz
-  const today = todayStr.substring(0, todayStr.length - 5); // YYYY-MM-DDTHH:MM:SS
+  const today = new Date().getTime()/1000;
 
   // Creating query
   let qRes;
