@@ -385,6 +385,8 @@ const NewItem: React.FC<NewItemProps> = (props: NewItemProps) => {
         return newData;
     }
 
+    console.log(currentData)
+
     return show ? (
         <Box key={index} mb={4}>
             {Object.entries(currentData)
