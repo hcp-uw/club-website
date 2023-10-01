@@ -22,7 +22,7 @@ import {
     personTemplate, 
     projectTemplate,
     Value
-} from "../pages/admin";
+} from "../devpages/admin";
 
 import * as ImageService from "../back_end/api/image.js"
 import * as EventService from "../back_end/api/events.js"
@@ -384,8 +384,6 @@ const NewItem: React.FC<NewItemProps> = (props: NewItemProps) => {
 
         return newData;
     }
-
-    console.log(currentData)
 
     return show ? (
         <Box key={index} mb={4}>

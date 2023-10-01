@@ -76,7 +76,7 @@ export default function ProjectCard(props: IProjectCard) {
                         <Box justifyContent='flex-start' width='100%'>
                             <Text fontSize='sm'>
                                 {startDate.toLocaleDateString()} •{" "}
-                                {completed ? endDate.toLocaleTimeString() : "Present"}
+                                {completed ? endDate.toLocaleDateString() : "Present"}
                             </Text>
                         </Box>
                     </Skeleton>
