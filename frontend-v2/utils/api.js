@@ -63,6 +63,7 @@ export const sendEmail = async (name, email, notes) => {
         message: notes,
         reply_to: email,
     };
+    console.log(name);
 
     emailjs
         .send(
