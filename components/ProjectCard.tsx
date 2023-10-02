@@ -36,7 +36,7 @@ export default function ProjectCard(props: IProjectCard) {
         description,
         members,
         image,
-        loading
+        loading,
     } = props;
 
     return (
@@ -76,15 +76,15 @@ export default function ProjectCard(props: IProjectCard) {
                         <Box justifyContent='flex-start' width='100%'>
                             <Text fontSize='sm'>
                                 {startDate.toLocaleDateString()} •{" "}
-                                {completed ? endDate.toLocaleDateString() : "Present"}
+                                {completed
+                                    ? endDate.toLocaleDateString()
+                                    : "Present"}
                             </Text>
                         </Box>
                     </Skeleton>
                     <Skeleton isLoaded={!loading} width='100%'>
                         <Box justifyContent='flex-start' width='100%'>
-                            <Text fontSize='xs'>
-                                {description}
-                            </Text>
+                            <Text fontSize='xs'>{description}</Text>
                         </Box>
                     </Skeleton>
                 </VStack>

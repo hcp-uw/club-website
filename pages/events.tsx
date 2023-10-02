@@ -1,12 +1,6 @@
 import { Inter } from "@next/font/google";
-import {
-    Center,
-    VStack,
-    Text,
-    Spinner,
-    SimpleGrid,
-} from "@chakra-ui/react";
-import { useMediaQuery } from '@chakra-ui/react'
+import { Center, VStack, Text, Spinner, SimpleGrid } from "@chakra-ui/react";
+import { useMediaQuery } from "@chakra-ui/react";
 // @ts-ignore
 import { getAllEvents } from "@/utils/api";
 import { lazy, useEffect, useState } from "react";
@@ -22,12 +16,7 @@ const inter = Inter({ subsets: ["latin"] });
 function Title() {
     return (
         <Center>
-            <Text
-                as='h2'
-                color='white'
-                fontSize='6xl'
-                fontWeight='semibold'
-            >
+            <Text as='h2' color='white' fontSize='6xl' fontWeight='semibold'>
                 Events
             </Text>
         </Center>
@@ -58,12 +47,15 @@ function DisplayEvents(props: IDisplayProps) {
                 color='brand.purple'
                 size='xl'
             />
-        )
+        );
     }
 
     if (isSmallerThan1200) {
         return (
-            <SimpleGrid columns={isSmallerThan450 ? undefined : [1, 1, 2, 2, 3]} spacing='40px'>
+            <SimpleGrid
+                columns={isSmallerThan450 ? undefined : [1, 1, 2, 2, 3]}
+                spacing='40px'
+            >
                 {events.map((event) => (
                     <EventCardFull
                         key={event.name}
@@ -76,12 +68,12 @@ function DisplayEvents(props: IDisplayProps) {
                     />
                 ))}
             </SimpleGrid>
-        )
+        );
     }
 
     return (
         <VStack>
-            {events.map((event: IEventInfo) =>
+            {events.map((event: IEventInfo) => (
                 <EventPanel
                     key={event.name}
                     name={event.name}
@@ -89,8 +81,8 @@ function DisplayEvents(props: IDisplayProps) {
                     location={event.location}
                     description={event.description}
                     image={event.image ?? "/HCPLogo.webp"}
-                />              
-            )}
+                />
+            ))}
         </VStack>
     );
 }
@@ -108,14 +100,17 @@ export default function Events() {
         const getData = (data: IEventInfo[]) => {
             setEvents(data);
             setLoading(false);
-        }
+        };
         getAllEvents(getData, true);
     }, []);
 
     return (
         <VStack spacing='40px'>
             <Title />
-            <DisplayEvents events={events} loading={loading || events.length === 0}/>
+            <DisplayEvents
+                events={events}
+                loading={loading || events.length === 0}
+            />
         </VStack>
     );
 }

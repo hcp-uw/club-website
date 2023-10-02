@@ -19,7 +19,7 @@ interface IEventCard {
 }
 
 export default function EventCard(props: IEventCard) {
-    const {name, date, location, image, loading} = props;
+    const { name, date, location, image, loading } = props;
 
     return (
         <Card
@@ -62,9 +62,7 @@ export default function EventCard(props: IEventCard) {
                     </Skeleton>
                     <Skeleton isLoaded={!loading} width='100%'>
                         <Box justifyContent='flex-start' width='100%'>
-                            <Text fontSize='lg'>
-                                Location: {location}
-                            </Text>
+                            <Text fontSize='lg'>Location: {location}</Text>
                         </Box>
                     </Skeleton>
                 </VStack>

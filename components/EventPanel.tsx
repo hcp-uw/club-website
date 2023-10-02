@@ -1,10 +1,4 @@
-import {
-    Image,
-    Box,
-    Flex,
-    Text,
-    VStack,
-} from "@chakra-ui/react";
+import { Image, Box, Flex, Text, VStack } from "@chakra-ui/react";
 
 interface IEventPanel {
     name: string;
@@ -15,7 +9,7 @@ interface IEventPanel {
 }
 
 export default function EventPanel(props: IEventPanel) {
-    const {name, date, location, description, image} = props;
+    const { name, date, location, description, image } = props;
 
     return (
         <Flex
@@ -38,19 +32,32 @@ export default function EventPanel(props: IEventPanel) {
                     objectFit='cover'
                 />
             </Box>
-            <VStack width='calc(min(80vw, 1500px) - 350px)' paddingRight="50px" marginTop='50px' marginBottom='50px'>
+            <VStack
+                width='calc(min(80vw, 1500px) - 350px)'
+                paddingRight="50px"
+                marginTop='50px'
+                marginBottom='50px'
+            >
                 <Box justifyContent='flex-start' width='100%'>
-                    <Text fontSize={[ "2xl", "2xl", "4xl" ]} fontWeight='bold' color='white'>
+                    <Text
+                        fontSize={["2xl", "2xl", "4xl"]}
+                        fontWeight='bold'
+                        color='white'
+                    >
                         {name}
                     </Text>
                 </Box>
                 <Box justifyContent='flex-start' width='100%'>
-                    <Text fontSize={[ "md", "md", "xl" ]} fontWeight='bold' color='white'>
+                    <Text
+                        fontSize={["md", "md", "xl"]}
+                        fontWeight='bold'
+                        color='white'
+                    >
                         {date.toLocaleDateString()} • {location}
                     </Text>
                 </Box>
                 <Box justifyContent='flex-start' width='100%'>
-                    <Text fontSize={[ "md", "md", "xl" ]} color='white'>
+                    <Text fontSize={["md", "md", "xl"]} color='white'>
                         {description}
                     </Text>
                 </Box>

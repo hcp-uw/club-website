@@ -19,27 +19,27 @@ export default function Sidebar(props: ISideBar) {
     const { show, handleShow } = props;
     // const { currentUser, isAdmin } = useAuth()
 
-    const buttons : ISidebarButton[] = [
+    const buttons: ISidebarButton[] = [
         {
-            path: '/',
-            text: 'Home',
+            path: "/",
+            text: "Home",
         },
         {
-            path: '/about',
-            text: 'About Us',
+            path: "/about",
+            text: "About Us",
         },
         {
-            path: '/projects',
-            text: 'Projects',
+            path: "/projects",
+            text: "Projects",
         },
         {
-            path: '/events',
-            text: 'Events',
+            path: "/events",
+            text: "Events",
         },
         {
-            path: '/join',
-            text: 'Join Us',
-        }
+            path: "/join",
+            text: "Join Us",
+        },
     ];
 
     return (
@@ -74,11 +74,14 @@ export default function Sidebar(props: ISideBar) {
                     />
                 }
             />
-            {
-                buttons.map(button =>
-                    <SidebarButton key={button.text} path={button.path} text={button.text} handleShow={handleShow} />
-                )
-            }
+            {buttons.map((button) => (
+                <SidebarButton
+                    key={button.text}
+                    path={button.path}
+                    text={button.text}
+                    handleShow={handleShow}
+                />
+            ))}
         </Flex>
     );
 }

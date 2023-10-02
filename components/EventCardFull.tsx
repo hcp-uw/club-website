@@ -18,7 +18,7 @@ interface IEventCardFull {
 }
 
 export default function EventCardFull(props: IEventCardFull) {
-    const {name, date, location, image, description, loading} = props;
+    const { name, date, location, image, description, loading } = props;
 
     return (
         <Card
@@ -60,16 +60,12 @@ export default function EventCardFull(props: IEventCardFull) {
                     </Skeleton>
                     <Skeleton isLoaded={!loading} width='100%'>
                         <Box justifyContent='flex-start' width='100%'>
-                            <Text fontSize='md'>
-                                Location: {location}
-                            </Text>
+                            <Text fontSize='md'>Location: {location}</Text>
                         </Box>
                     </Skeleton>
                     <Skeleton isLoaded={!loading} width='100%'>
                         <Box justifyContent='flex-start' width='100%'>
-                            <Text fontSize='sm'>
-                                {description}
-                            </Text>
+                            <Text fontSize='sm'>{description}</Text>
                         </Box>
                     </Skeleton>
                 </VStack>

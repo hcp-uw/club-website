@@ -10,7 +10,7 @@ import {
 } from "@chakra-ui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import { useMediaQuery } from '@chakra-ui/react'
+import { useMediaQuery } from "@chakra-ui/react";
 // @ts-ignore
 import { getAllProjects } from "@/utils/api";
 import { ChangeEvent, lazy, useEffect, useState } from "react";
@@ -21,14 +21,8 @@ const inter = Inter({ subsets: ["latin"] });
 
 function Title() {
     return (
-
         <Center>
-            <Text
-                as='h2'
-                color='white'
-                fontSize='6xl'
-                fontWeight='semibold'
-            >
+            <Text as='h2' color='white' fontSize='6xl' fontWeight='semibold'>
                 Projects
             </Text>
         </Center>
@@ -63,8 +57,8 @@ function SearchBar(props: ISearchBar) {
                     borderRadius='2xl'
                     maxW='1500px'
                     size="lg"
-                    onChange={
-                        (e: ChangeEvent<HTMLInputElement>) => setSearchTerm(e.target.value)
+                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                        setSearchTerm(e.target.value)
                     }
                 />
             </InputGroup>
@@ -91,11 +85,20 @@ function DisplayProjects(props: IDisplayProps) {
             return [];
         }
         return projects.filter((obj: IProjectInfo) =>
-            obj[field]?.toString().toLowerCase().includes(searchTerm.toLowerCase()));
+            obj[field]
+                ?.toString()
+                .toLowerCase()
+                .includes(searchTerm.toLowerCase()),
+        );
     };
 
-    const filterDuplicates = (curr: IProjectInfo[], add: IProjectInfo[]): IProjectInfo[] => {
-        return add.filter((obj: IProjectInfo, idx: number) => curr.indexOf(obj) === -1);
+    const filterDuplicates = (
+        curr: IProjectInfo[],
+        add: IProjectInfo[],
+    ): IProjectInfo[] => {
+        return add.filter(
+            (obj: IProjectInfo, idx: number) => curr.indexOf(obj) === -1,
+        );
     };
 
     const filterProjects = (): IProjectInfo[] => {
@@ -103,10 +106,16 @@ function DisplayProjects(props: IDisplayProps) {
             return projects ?? [];
         }
         const cards: IProjectInfo[] = [];
-        const filterOrder: (keyof IProjectInfo)[] =
-            ["name", "category", "description", "pm", "members"];
+        const filterOrder: (keyof IProjectInfo)[] = [
+            "name",
+            "category",
+            "description",
+            "pm",
+            "members",
+        ];
         filterOrder.forEach((key: keyof IProjectInfo) =>
-            cards.push(...filterDuplicates(cards, searchField(key))));
+            cards.push(...filterDuplicates(cards, searchField(key))),
+        );
         return cards;
     };
 
@@ -132,8 +141,11 @@ function DisplayProjects(props: IDisplayProps) {
         );
     }
     return (
-        <SimpleGrid columns={isSmallerThan450 ? undefined : [1, 1, 2, 2, 3]} spacing='40px'>
-            {filteredProjects.map((project: IProjectInfo) =>
+        <SimpleGrid
+            columns={isSmallerThan450 ? undefined : [1, 1, 2, 2, 3]}
+            spacing='40px'
+        >
+            {filteredProjects.map((project: IProjectInfo) => (
                 <ProjectCard
                     key={project.name}
                     name={project.name}
@@ -148,7 +160,7 @@ function DisplayProjects(props: IDisplayProps) {
                     image={project.image ?? "/HCPLogo.webp"}
                     loading={loading}
                 />
-            )}
+            ))}
         </SimpleGrid>
     );
 }
@@ -169,7 +181,8 @@ export default function Projects() {
             category: "",
             pm: "",
             gitLink: "",
-            description: "Default description that is very long and should wrap around to the next few lines.",
+            description:
+                "Default description that is very long and should wrap around to the next few lines.",
             members: "",
             image: "",
         },
@@ -181,7 +194,8 @@ export default function Projects() {
             category: "",
             pm: "",
             gitLink: "",
-            description: "Default description that is very long and should wrap around to the next few lines.",
+            description:
+                "Default description that is very long and should wrap around to the next few lines.",
             members: "",
             image: "",
         },
@@ -193,7 +207,8 @@ export default function Projects() {
             category: "",
             pm: "",
             gitLink: "",
-            description: "Default description that is very long and should wrap around to the next few lines.",
+            description:
+                "Default description that is very long and should wrap around to the next few lines.",
             members: "",
             image: "",
         },
@@ -204,15 +219,19 @@ export default function Projects() {
         const getData = (data: IProjectInfo[]) => {
             setProjects(data);
             setLoading(false);
-        }
+        };
         getAllProjects(getData);
     }, []);
 
     return (
         <VStack spacing='40px'>
             <Title />
-            <SearchBar setSearchTerm={setSearchTerm}/>
-            <DisplayProjects searchTerm={searchTerm} projects={projects} loading={loading}/>
+            <SearchBar setSearchTerm={setSearchTerm} />
+            <DisplayProjects
+                searchTerm={searchTerm}
+                projects={projects}
+                loading={loading}
+            />
         </VStack>
     );
 }

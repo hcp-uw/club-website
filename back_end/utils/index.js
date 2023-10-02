@@ -6,7 +6,6 @@ import { getDatabase } from "firebase/database";
 import { getAuth } from "firebase/auth";
 import { getStorage } from "firebase/storage";
 
-
 // TODO: Add SDKs for Firebase products that you want to use
 // I think we need to import the data base that we are actually going to use
 

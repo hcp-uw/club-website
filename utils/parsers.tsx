@@ -27,7 +27,7 @@ export interface IProjectInfo {
 
 // rome-ignore lint/suspicious/noExplicitAny: The backend does not have types
 export const parseProjects = (data: any[]) => {
-    const ret = data.map(obj => {
+    const ret = data.map((obj) => {
         const res: IProjectInfo = {
             name: obj.Name,
             startDate: new Date(obj.Start_Date * 1000),
@@ -55,7 +55,7 @@ export interface IEventInfo {
 
 // rome-ignore lint/suspicious/noExplicitAny: The backend does not have types
 export const parseEvents = (data: any[]) => {
-    const ret = data.map(obj => {
+    const ret = data.map((obj) => {
         const res: IEventInfo = {
             date: new Date(obj.Date),
             name: obj.Name,
@@ -75,14 +75,14 @@ export interface IPeopleInfo {
     dateLeft: Date;
     email: string;
     image: string | null;
-    name: string,
-    role: string,
-    team: string,
+    name: string;
+    role: string;
+    team: string;
 }
 
 // rome-ignore lint/suspicious/noExplicitAny: The backend does not have types
 export const parsePeople = (data: any[]) => {
-    const ret = data.map(obj => {
+    const ret = data.map((obj) => {
         const res: IPeopleInfo = {
             active: obj.active,
             year: obj.Class_Standing,

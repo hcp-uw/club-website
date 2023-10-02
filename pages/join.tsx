@@ -1,22 +1,18 @@
 import { useState, useEffect } from "react";
 import { Inter } from "@next/font/google";
-import {
-    Flex,
-    Text,
-    Center,
-    VStack,
-    Input,
-    Textarea
-} from "@chakra-ui/react";
+import { Flex, Text, Center, VStack, Input, Textarea } from "@chakra-ui/react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUpRightFromSquare, faEnvelope} from "@fortawesome/free-solid-svg-icons";
+import {
+    faUpRightFromSquare,
+    faEnvelope,
+} from "@fortawesome/free-solid-svg-icons";
 // @ts-ignore
 import { sendEmail } from "@/utils/api";
 // @ts-ignore
-import { auth } from "@/back_end/utils/index.js"
+import { auth } from "@/back_end/utils/index.js";
 
-import { UserCredential, signOut} from "firebase/auth";
+import { UserCredential, signOut } from "firebase/auth";
 // @ts-ignore
 // import { useAuth } from "@/context/AuthContext";
 // @ts-ignore
@@ -28,12 +24,7 @@ const inter = Inter({ subsets: ["latin"] });
 function Title() {
     return (
         <Center>
-            <Text
-                as='h2'
-                color='white'
-                fontSize='6xl'
-                fontWeight='semibold'
-            >
+            <Text as='h2' color='white' fontSize='6xl' fontWeight='semibold'>
                 Join Us
             </Text>
         </Center>
@@ -52,17 +43,12 @@ function FormLink() {
                 Fill out the form below to join Husky Coding Project!
             </Text>
             <SpecialIconButton
-                path = "https://forms.gle/EJZKu64nNQwsGxLm8"
-                text = "Sign-up Form"
-                icon={                        
-                    <FontAwesomeIcon
-                        size="lg"
-                        icon={faUpRightFromSquare}
-                    />
-                }
+                path="https://forms.gle/EJZKu64nNQwsGxLm8"
+                text="Sign-up Form"
+                icon={<FontAwesomeIcon size="lg" icon={faUpRightFromSquare} />}
             />
         </VStack>
-    )
+    );
 }
 
 function EmailForm() {
@@ -73,7 +59,7 @@ function EmailForm() {
 
     const isEmailValid = (email: string): boolean => {
         return /^\S+@\S+\.\S+$/.test(email);
-    }
+    };
 
     const handleClick = () => {
         if (name.length === 0) {
@@ -134,20 +120,11 @@ function EmailForm() {
             </VStack>
             <VStack spacing={5} width="100%">
                 <SpecialSubmitButton
-                    text = "Submit"
-                    onClick={ handleClick }
-                    icon={                        
-                        <FontAwesomeIcon
-                            size="lg"
-                            icon={faEnvelope}
-                        />
-                    }
+                    text="Submit"
+                    onClick={handleClick}
+                    icon={<FontAwesomeIcon size="lg" icon={faEnvelope} />}
                 />
-                <Text
-                    display='inline'
-                    fontSize="md"
-                    color="red"
-                >
+                <Text display='inline' fontSize="md" color="red">
                     {error}
                 </Text>
             </VStack>
@@ -161,7 +138,6 @@ export default function Join() {
         window.scrollTo(0, 0);
     }, []);
 
-    
     // const { currentUser, isAdmin, getUser } = useAuth()
 
     // const handleSignInSuccess = async (result: UserCredential) => {

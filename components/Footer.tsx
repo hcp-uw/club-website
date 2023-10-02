@@ -16,9 +16,9 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 
 interface IIcon {
-    key: string,
-    link: string,
-    icon: IconDefinition,
+    key: string;
+    link: string;
+    icon: IconDefinition;
 }
 
 export default function Footer() {
@@ -43,7 +43,7 @@ export default function Footer() {
             link: "mailto:hcpuw@uw.edu",
             icon: faEnvelope,
         },
-    ]
+    ];
 
     return (
         <Center height='300px'>
@@ -58,8 +58,7 @@ export default function Footer() {
                 <Spacer />
                 <Spacer />
                 <HStack spacing={4}>
-                {
-                    icons.map(icon => (
+                    {icons.map((icon) => (
                         <Link key={icon.key} href={icon.link}>
                             <FontAwesomeIcon
                                 size="2x"
@@ -67,8 +66,7 @@ export default function Footer() {
                                 icon={icon.icon}
                             />
                         </Link>
-                    ))
-                }
+                    ))}
                 </HStack>
                 <Spacer />
                 <Spacer />

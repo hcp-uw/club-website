@@ -4,7 +4,7 @@ import * as events from "@/back_end/api/events.js";
 import * as projects from "@/back_end/api/projects.js";
 import * as auth from "@/back_end/api/auth.js";
 import emailjs from "@emailjs/browser";
-import { parseEvents, parsePeople, parseProjects } from './parsers';
+import { parseEvents, parsePeople, parseProjects } from "./parsers";
 
 // For dummy endpoints
 // const delay = ms => new Promise(
@@ -89,7 +89,7 @@ export const exchangeAuth = async (user) => {
     } else {
         return "";
     }
-}
+};
 
 export const getGithubUser = async (token) => {
     const username = await auth.getGithubUser(token);
@@ -109,5 +109,4 @@ export const checkMembership = async (username) => {
 export const checkAdmin = async (authObject) => {
     const isAdmin = await auth.checkAdmin(authObject);
     return isAdmin;
-}
-
+};

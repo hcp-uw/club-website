@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { Box, Flex } from "@chakra-ui/react";
-import { useMediaQuery } from '@chakra-ui/react'
+import { useMediaQuery } from "@chakra-ui/react";
 import { ReactElement, useEffect, useState } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
@@ -16,7 +16,7 @@ export default function Layout({ children }: { children: ReactElement }) {
 
     // This effect hides/shows the header on scroll
     useEffect(() => {
-        if (typeof window !== 'undefined') {
+        if (typeof window !== "undefined") {
             let lastScrollY = window.pageYOffset;
 
             const updateScrollDirection = () => {
@@ -32,7 +32,7 @@ export default function Layout({ children }: { children: ReactElement }) {
             };
             window.addEventListener("scroll", updateScrollDirection);
             return () => {
-                if (typeof window !== 'undefined') {
+                if (typeof window !== "undefined") {
                     window.removeEventListener("scroll", updateScrollDirection);
                 }
             };
@@ -77,7 +77,10 @@ export default function Layout({ children }: { children: ReactElement }) {
                 {!isLargerThan1200 && (
                     <Sidebar show={showSide} handleShow={showSidebar} />
                 )}
-                <Box marginTop={isLargerThan1200 ? '150px' : '100px'} width='100vw'>
+                <Box
+                    marginTop={isLargerThan1200 ? "150px" : "100px"}
+                    width='100vw'
+                >
                     {children}
                 </Box>
                 <Footer />

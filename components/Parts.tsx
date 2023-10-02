@@ -2,7 +2,6 @@ import { Button, Text } from "@chakra-ui/react";
 import { FormEventHandler, ReactElement } from "react";
 import NextLink from "next/link";
 
-
 interface IButton {
     text: string;
     textColor?: string;
@@ -206,7 +205,11 @@ export const NormalButton = (props: ILinkButton) => {
                     cursor: "pointer",
                 }}
             >
-                <Text color={textColor ?? 'white'} fontSize='lg' fontWeight='normal'>
+                <Text
+                    color={textColor ?? "white"}
+                    fontSize='lg'
+                    fontWeight='normal'
+                >
                     {text}
                 </Text>
             </Button>
@@ -221,7 +224,10 @@ export const SpecialLinkButton = (props: ILinkButton) => {
     const { path, text } = props;
 
     return (
-        <NextLink href={path} target={path.charAt(0) === "/" ? undefined : "_blank"}>
+        <NextLink
+            href={path}
+            target={path.charAt(0) === "/" ? undefined : "_blank"}
+        >
             <Button
                 rounded="lg"
                 bgGradient="linear(to-b, brand.purple, brand.dark_purple)"

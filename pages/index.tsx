@@ -12,10 +12,10 @@ import {
 } from "@chakra-ui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
-import { useMediaQuery } from '@chakra-ui/react'
+import { useMediaQuery } from "@chakra-ui/react";
 // @ts-ignore
 import { getFeaturedEvents } from "@/utils/api";
-import Image from 'next/image';
+import Image from "next/image";
 import { lazy, useEffect, useState } from "react";
 // @ts-ignore
 import EventCard from "@/components/EventCard";
@@ -23,7 +23,6 @@ import EventCard from "@/components/EventCard";
 import { IEventInfo } from "@/utils/parsers";
 // @ts-ignore
 import Room from "@/components/Room";
-
 
 // @ts-ignore
 // const Room = lazy(() => import("@/components/Room"));
@@ -52,7 +51,7 @@ function Title() {
                         <Image
                             width={200}
                             height={200}
-                            style={{ width: '30vw' }}
+                            style={{ width: "30vw" }}
                             src="/HCPLogoText-Crop.webp"
                             alt="HCP Logo"
                         />
@@ -75,7 +74,8 @@ function Title() {
                     border='3px solid transparent'
                     onClick={() => {
                         document
-                            .getElementById("featured-events")?.scrollIntoView({ behavior: "smooth" });
+                            .getElementById("featured-events")
+                            ?.scrollIntoView({ behavior: "smooth" });
                     }}
                     _hover={{
                         border: "3px solid white",
@@ -100,16 +100,37 @@ function TitleMobile() {
         fallback: true, // return false on the server, and re-evaluate on the client side
     });
     return (
-        <Flex height='calc(100vh - 150px)' maxW='1500px' direction='column' marginTop="20px">
+        <Flex
+            height='calc(100vh - 150px)'
+            maxW='1500px'
+            direction='column'
+            marginTop="20px"
+        >
             <Center height='80vh'>
                 <Box width='70vw'>
-                    <Text display='inline' fontSize="2xl" color="white" fontStyle='italic'>
-                        The Husky Coding Project breaks the circular reasoning of
+                    <Text
+                        display='inline'
+                        fontSize="2xl"
+                        color="white"
+                        fontStyle='italic'
+                    >
+                        The Husky Coding Project breaks the circular reasoning
+                        of
                     </Text>
-                    <Text display='inline' fontSize="2xl" color="brand.pink" fontStyle='italic'>
+                    <Text
+                        display='inline'
+                        fontSize="2xl"
+                        color="brand.pink"
+                        fontStyle='italic'
+                    >
                         {} "needing experience to get experience"
                     </Text>
-                    <Text display='inline' fontSize="2xl" color="white" fontStyle='italic'>
+                    <Text
+                        display='inline'
+                        fontSize="2xl"
+                        color="white"
+                        fontStyle='italic'
+                    >
                         {} that prevents hundreds of students from landing their
                         first software internship or job.
                     </Text>
@@ -125,7 +146,12 @@ function TitleMobile() {
                     border='3px solid transparent'
                     onClick={() => {
                         document
-                            .getElementById(isLargerThan450 ? "featured-events" : "meeting-info" )?.scrollIntoView({ behavior: "smooth" });
+                            .getElementById(
+                                isLargerThan450
+                                    ? "featured-events"
+                                    : "meeting-info",
+                            )
+                            ?.scrollIntoView({ behavior: "smooth" });
                     }}
                     _hover={{
                         border: "3px solid white",
@@ -144,7 +170,7 @@ function TitleMobile() {
     );
 }
 
-function Events(props: {count: number}) {
+function Events(props: { count: number }) {
     const [events, setEvents] = useState<IEventInfo[]>([
         {
             date: new Date("3/21/2023"),
@@ -236,7 +262,7 @@ function FeaturedEvents() {
                     <Text
                         as='h2'
                         color='white'
-                        fontSize={[ "4xl", "4xl", "6xl" ]}
+                        fontSize={["4xl", "4xl", "6xl"]}
                         fontWeight='semibold'
                         marginTop='8'
                         align='center'
@@ -246,7 +272,7 @@ function FeaturedEvents() {
                     </Text>
                 </Center>
                 <Center marginTop='35px'>
-                    <Events count={count}/>
+                    <Events count={count} />
                 </Center>
             </Box>
         </Flex>
@@ -271,9 +297,9 @@ function MeetingInfo() {
             width='80vw'
             maxW='1500px'
             bgGradient={
-                isLargerThan450 ? 
-                'linear(to-t, brand.mid_purple, brand.hot_pink)' : 
-                'linear(to-b, brand.mid_purple, brand.hot_pink)'
+                isLargerThan450
+                    ? "linear(to-t, brand.mid_purple, brand.hot_pink)"
+                    : "linear(to-b, brand.mid_purple, brand.hot_pink)"
             }
             borderRadius='30px'
             alignItems='center'
@@ -282,7 +308,7 @@ function MeetingInfo() {
             <Text
                 as='h2'
                 color='white'
-                fontSize={[ "3xl", "4xl", "5xl", "6xl" ]}
+                fontSize={["3xl", "4xl", "5xl", "6xl"]}
                 fontWeight='semibold'
                 marginTop='8'
                 align='center'
@@ -294,18 +320,22 @@ function MeetingInfo() {
                 width='70%'
                 marginTop='30px'
                 marginBottom='50px'
-                fontSize={[ "md", "xl", "2xl" ]}
+                fontSize={["md", "xl", "2xl"]}
                 color='brand.light_brown'
                 align='center'
             >
                 Join us every Thursday from 6:00pm to 7:30pm PST at MEB
                 (Mechanical Engineering Building) 248!
             </Text>
-            <Box borderRadius='15px' overflow='hidden' width='70%' height='370px'>
+            <Box
+                borderRadius='15px'
+                overflow='hidden'
+                width='70%'
+                height='370px'
+            >
                 <Room />
             </Box>
-            {
-                isLargerThan1000 ? (
+            {isLargerThan1000 ? (
                 <Text
                     width='70%'
                     marginTop='5px'
@@ -316,10 +346,9 @@ function MeetingInfo() {
                     Mechanical Engineering Building Room 248 @ University of
                     Washington
                 </Text>
-                ) : (
-                    <Spacer paddingBottom='20px'/>
-                )
-            }
+            ) : (
+                <Spacer paddingBottom='20px' />
+            )}
         </Flex>
     );
 }
@@ -349,7 +378,7 @@ function Values() {
             <Text
                 as='h2'
                 color='white'
-                fontSize={[ "4xl", "4xl", "6xl" ]}
+                fontSize={["4xl", "4xl", "6xl"]}
                 fontWeight='semibold'
                 marginTop='8'
                 align='center'
@@ -367,7 +396,7 @@ function Values() {
                             <Image
                                 width={125}
                                 height={125}
-                                style={{ width: 'auto', height: '125px' }}
+                                style={{ width: "auto", height: "125px" }}
                                 src={slogan.icon}
                                 alt={slogan.name}
                             />
@@ -403,8 +432,8 @@ export default function Home() {
 
     return (
         <VStack spacing='150px'>
-            { isSmallerThan1200 ? <TitleMobile /> : <Title /> }
-            { isLargerThan450 && <FeaturedEvents /> }
+            {isSmallerThan1200 ? <TitleMobile /> : <Title />}
+            {isLargerThan450 && <FeaturedEvents />}
             <MeetingInfo />
             <Values />
         </VStack>
