@@ -322,12 +322,10 @@ function MeetingInfo() {
                 color='brand.light_brown'
                 align='center'
             >
-                Join us every Thursday from 6:00pm to 7:30pm PST at MEB
-                (Mechanical Engineering Building) 248!
+                Join us every Tuesday from 6:00pm to 7:30pm PST at CSE2
+                G04!
             </Text>
             <Box
-                borderRadius='15px'
-                overflow='hidden'
                 width='70%'
                 height='370px'
             >
@@ -341,7 +339,7 @@ function MeetingInfo() {
                     color='brand.light_brown'
                     align='center'
                 >
-                    Mechanical Engineering Building Room 248 @ University of
+                    Gates Center Room G04 @ University of
                     Washington
                 </Text>
             ) : (
