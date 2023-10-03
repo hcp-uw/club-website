@@ -57,7 +57,7 @@ export interface IEventInfo {
 export const parseEvents = (data: any[]) => {
     const ret = data.map((obj) => {
         const res: IEventInfo = {
-            date: new Date(obj.Date),
+            date: new Date(obj.Date * 1000),
             name: obj.Name,
             location: obj.Location,
             description: obj.Description,
@@ -86,8 +86,8 @@ export const parsePeople = (data: any[]) => {
         const res: IPeopleInfo = {
             active: obj.active,
             year: obj.Class_Standing,
-            dateJoined: new Date(obj.Date_Joined),
-            dateLeft: new Date(obj.Date_Left),
+            dateJoined: new Date(obj.Date_Joined * 1000),
+            dateLeft: new Date(obj.Date_Left * 1000),
             email: obj.Email,
             image: isValidHttpUrl(obj.Image) ? obj.Image : null,
             name: obj.Name,

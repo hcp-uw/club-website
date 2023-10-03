@@ -14,6 +14,10 @@ import {
     faFacebookSquare,
     faLinkedin,
 } from "@fortawesome/free-brands-svg-icons";
+import '@fortawesome/fontawesome-svg-core/styles.css';
+// Prevent fontawesome from adding its CSS since we did it manually above:
+import { config } from '@fortawesome/fontawesome-svg-core';
+config.autoAddCss = false;
 
 interface IIcon {
     key: string;
@@ -62,7 +66,7 @@ export default function Footer() {
                         <Link key={icon.key} href={icon.link}>
                             <FontAwesomeIcon
                                 size="2x"
-                                color='white'
+                                color="white"
                                 icon={icon.icon}
                             />
                         </Link>

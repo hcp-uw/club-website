@@ -24,8 +24,6 @@ import { IEventInfo } from "@/utils/parsers";
 // @ts-ignore
 import Room from "@/components/Room";
 
-// @ts-ignore
-// const Room = lazy(() => import("@/components/Room"));
 const inter = Inter({ subsets: ["latin"] });
 
 function Title() {

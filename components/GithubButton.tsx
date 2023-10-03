@@ -5,7 +5,7 @@ import { UserCredential } from "firebase/auth";
 // @ts-ignore
 // import { useAuth } from "@/context/AuthContext"
 import { Button, Center, Text } from "@chakra-ui/react";
-import { VscGithub } from "react-icons/vsc";
+// import { VscGithub } from "react-icons/vsc";
 
 interface GithubLoginProps {
     onLoginSuccess: (result: UserCredential) => void;
@@ -31,7 +31,7 @@ function GithubLoginComponent({ onLoginSuccess }: GithubLoginProps) {
                 w={"full"}
                 maxW={"md"}
                 variant={"outline"}
-                leftIcon={<VscGithub />}
+                // leftIcon={<VscGithub />}
             >
                 <Center>
                     <Text>Test login</Text>

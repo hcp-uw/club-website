@@ -19,6 +19,9 @@ import { UserCredential, signOut } from "firebase/auth";
 import { exchangeAuth } from "@/utils/api.js";
 // @ts-ignore
 import { SpecialIconButton, SpecialSubmitButton } from "@/components/Parts";
+// Prevent fontawesome from adding its CSS since we did it manually above:
+import { config } from '@fortawesome/fontawesome-svg-core';
+config.autoAddCss = false;
 const inter = Inter({ subsets: ["latin"] });
 
 function Title() {
