@@ -3,8 +3,9 @@ import { useAuth } from "@/context/AuthContext";
 import { useEffect } from "react";
 import Router from "next/router";
 import { Center, Text } from "@chakra-ui/react";
+import withAuth from "components/withAuth";
 
-export default function private_project() {
+const private_project = () => {
   const { currentUser } = useAuth();
 
   useEffect(() => {
@@ -21,10 +22,13 @@ export default function private_project() {
     <div>
       <Center>
         <Text color='orange' fontSize='xl' fontWeight='normal'>
-          Resources Page
+          Dashboard Page
         </Text>
       </Center>
     </div>
   )
 }
-export {};
+
+export default function DashboardProtected() {
+    return withAuth(private_project);
+}

@@ -18,7 +18,7 @@ export const AuthContextProvider = ({children}: {children:React.ReactNode}) => {
   provider.setCustomParameters({ prompt: 'select_account' });
 
   // rome-ignore lint/suspicious/noExplicitAny: <explanation>
-  const [currentUser, setCurrentUser] = useState<any>(null)
+  const [currentUser, setCurrentUser] = useState<any>({username: 'elijah'})
   const [isAdmin, setAdmin] = useState(false)
   const [loading, setLoading] = useState(true)
 
