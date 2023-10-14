@@ -8,12 +8,12 @@ import {
     Flex,
 } from "@chakra-ui/react";
 
-import { 
-    _Event, 
-    _Person, 
-    _Project, 
-    eventTemplate, 
-    personTemplate, 
+import {
+    _Event,
+    _Person,
+    _Project,
+    eventTemplate,
+    personTemplate,
     projectTemplate,
     Value
 // @ts-ignore
@@ -32,21 +32,33 @@ type _Item = _Person | _Project | _Event;
 
 
 const getInput = (key: string, val: Value, index: number, handleInputChange: Function, T: string) => {
-    if (key.indexOf("Date") !== -1 && typeof val === "number")
+    if (key.indexOf("Date") !== -1 && typeof val === "number") {
+        let date = val !== -1 && val !== null && val !== undefined
+            ? new Date(val * 1000)
+            : undefined
+
+        if (date !== undefined) {
+            date.setHours(date.getHours() - date.getTimezoneOffset() / 60)
+        }
+
+        const adjDate = date !== undefined
+            ? date.toISOString().slice(0, 16)
+            : ""
+
         return (
             <Input
                 type={"datetime-local"}
                 id={key}
                 name={key}
-                value={val !== -1 && val !== null && val !== undefined
-                    ? new Date(val * 1000).toISOString().slice(0, 16)
-                    : ""}
+                value={adjDate}
                 onChange={(event) =>
                     handleInputChange(index, key, event.target.value)
                 }
                 style={{ borderRadius: '4px', padding: '8px', border: '1px solid #ccc' }}
             />
         );
+    }
+
 
     if (key === "Image") {
 
@@ -134,13 +146,13 @@ const parseValue = (key: string, value: Value) => {
 
     if (key.indexOf("Date") !== -1) {
         let convertedValue = value;
-        
+
         if (typeof value === "number" && !isNaN(value))
             return value
 
         else if (typeof value === 'number' && isNaN(value))
             convertedValue = -1
-        
+
         else if (typeof value === 'string')
             try {
                 convertedValue = new Date(value).getTime() / 1000;
@@ -149,8 +161,8 @@ const parseValue = (key: string, value: Value) => {
             }
 
         return convertedValue
-    } 
-    
+    }
+
     return value;
 }
 
@@ -168,7 +180,7 @@ const Item: React.FC<ItemProps> = (props: ItemProps) => {
 
     const [show, setShow] = useState(false);
 
-    
+
 
     return show ? (
         <Box key={index} mb={4}>
@@ -289,7 +301,7 @@ const Form: React.FC<FormProps<_Person | _Project | _Event>> = ({ data, handleSa
                 </Button>
             ))}
             <form style={{ padding: '20px' }}>
-                {currentData.map((item, index) => 
+                {currentData.map((item, index) =>
                 (
                     <Item
                         // rome-ignore lint/suspicious/noArrayIndexKey: same as above
@@ -349,9 +361,9 @@ const NewItem: React.FC<NewItemProps> = (props: NewItemProps) => {
     const transformData = (data: _Item) => {
 
         const newData: _Item = { ...data };
-        
+
         for (const key in newData) {
-            if (newData[key] === "" || newData[key] === undefined) 
+            if (newData[key] === "" || newData[key] === undefined)
                 switch (typeof newData[key]) {
                     case "string":
                         newData[key] = "";
@@ -366,12 +378,12 @@ const NewItem: React.FC<NewItemProps> = (props: NewItemProps) => {
                         break;
                 }
 
-            else if (key.indexOf("Date") !== -1) 
+            else if (key.indexOf("Date") !== -1)
                 newData[key] = parseValue(key, data[key]);
 
             else if (data[key] === "true" || data[key] === "True")
                 newData[key] = true;
-            
+
             else if (data[key] === "false" || data[key] === "False")
                 newData[key] = false;
             // else if (key === "Name")
@@ -398,7 +410,7 @@ const NewItem: React.FC<NewItemProps> = (props: NewItemProps) => {
                         </Flex>
                     </div>
             ))}
-            <Button 
+            <Button
                 style={{
                     backgroundColor: '#007bff',
                     color: '#fff',
@@ -517,44 +529,44 @@ const AdminForm: React.FC<AdminFormProps> = ({ currentEvents, currentPeople, cur
             <Flex>
                 <Box flex="1" style={boxStyle}>
                     <h2 style={headerStyle}>Events</h2>
-                    <NewItem 
-                        index={0} 
-                        handleSave={getCreateFunc("Event")} 
-                        T={"Event"} 
+                    <NewItem
+                        index={0}
+                        handleSave={getCreateFunc("Event")}
+                        T={"Event"}
                     />
-                    <Form 
-                        data={currentEvents} 
-                        handleSave={getSaveFunc("Event")} 
-                        T={"Event"} 
+                    <Form
+                        data={currentEvents}
+                        handleSave={getSaveFunc("Event")}
+                        T={"Event"}
                         handleDelete={getDeleteFunc("Event")}
                     />
-                    
+
                 </Box>
                 <Box flex="1" style={boxStyle}>
                     <h2 style={headerStyle}>People</h2>
-                    <NewItem 
-                        index={0} 
-                        handleSave={getCreateFunc("Person")} 
-                        T={"Person"} 
+                    <NewItem
+                        index={0}
+                        handleSave={getCreateFunc("Person")}
+                        T={"Person"}
                     />
-                    <Form 
-                        data={currentPeople}  
-                        handleSave={getSaveFunc("Person")} 
-                        T={"Person"} 
+                    <Form
+                        data={currentPeople}
+                        handleSave={getSaveFunc("Person")}
+                        T={"Person"}
                         handleDelete={getDeleteFunc("Person")}
                     />
                 </Box>
                 <Box flex="1" style={boxStyle}>
                     <h2 style={headerStyle}>Projects</h2>
-                    <NewItem 
+                    <NewItem
                         index={0}
-                        handleSave={getCreateFunc("Project")} 
-                        T={"Project"} 
+                        handleSave={getCreateFunc("Project")}
+                        T={"Project"}
                     />
-                    <Form 
-                        data={currentProjects} 
-                        handleSave={getSaveFunc("Project")} 
-                        T={"Project"} 
+                    <Form
+                        data={currentProjects}
+                        handleSave={getSaveFunc("Project")}
+                        T={"Project"}
                         handleDelete={getDeleteFunc("Project")}
                     />
                 </Box>
