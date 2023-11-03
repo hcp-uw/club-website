@@ -29,17 +29,17 @@ export default function Footer() {
     const icons: IIcon[] = [
         {
             key: "instagram",
-            link: "https://instagram.com/huskycodingproject?igshid=YmMyMTA2M2Y=",
+            link: "https://instagram.com/hcp.uw",
             icon: faInstagram,
         },
         {
             key: "linkedin",
-            link: "https://www.linkedin.com/company/husky-coding-project/",
+            link: "https://linkedin.com/company/hcp-uw",
             icon: faLinkedin,
         },
         {
             key: "facebook",
-            link: "https://www.facebook.com/profile.php?id=100087380841446",
+            link: "https://facebook.com/hcp.uw",
             icon: faFacebookSquare,
         },
         {
