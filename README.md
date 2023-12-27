@@ -25,9 +25,9 @@ git clone https://github.com/hcp-uw/club-website.git
 ```sh
 cd ${HOME}/club-website/
 ```
-4) Install all dependencies using `yarn` (or `yarn install`)
+4) Install all dependencies using `yarn deps`
 ```sh
-yarn
+yarn deps
 ```
 
 ## Running the App Locally 

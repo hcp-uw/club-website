@@ -9,7 +9,7 @@
     "start": "next start",
     "lint": "biome check .",
     "fmt": "biome format . --write",
-    "postinstall": "npm -C ./back_end install"
+    "deps": "yarn install && npm -C ./back_end install"
   },
   "dependencies": {
     "@chakra-ui/react": "^2.5.1",
