@@ -31,6 +31,7 @@ interface ILoginProps {
 
 function LoginForm(props: ILoginProps) {
     const { session } = props;
+    console.log(session);
     if (session) {
         return (
             <VStack spacing={10} marginTop="50px" width="50vw" minWidth="300px">
