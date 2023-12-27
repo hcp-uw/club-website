@@ -1,12 +1,12 @@
 import {
-    Image,
-    Text,
-    VStack,
+    Box,
     Card,
     CardBody,
     CardFooter,
-    Box,
+    Image,
     Skeleton,
+    Text,
+    VStack,
 } from "@chakra-ui/react";
 import { SpecialLinkButton } from "./Parts";
 

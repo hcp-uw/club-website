@@ -1,11 +1,11 @@
 import {
-    ref,
-    query,
+    equalTo,
     get,
     orderByChild,
-    equalTo,
-    set,
+    query,
+    ref,
     remove,
+    set,
     update,
 } from "firebase/database";
 import { database } from "../utils/index.js";

@@ -1,12 +1,12 @@
-import { getLeads } from "../api/leads.js";
-import { getAllEvents } from "../api/events.js";
-import { getProjects } from "../api/projects.js";
 import { assert } from "chai";
+import { getAllEvents } from "../api/events.js";
+import { getLeads } from "../api/leads.js";
+import { getProjects } from "../api/projects.js";
 
 describe("Testing Get all Functions.", () => {
     it("Get All Officers", async () => {
-        let rsp = await getLeads("Test/Club_Leads");
-        let expected = [
+        const rsp = await getLeads("Test/Club_Leads");
+        const expected = [
             {
                 Active: true,
                 Class_Standing: "Senior",
@@ -34,8 +34,8 @@ describe("Testing Get all Functions.", () => {
     });
 
     it("Get All Events", async () => {
-        let rsp = await getAllEvents("Test/Events");
-        let expected = [
+        const rsp = await getAllEvents("Test/Events");
+        const expected = [
             {
                 Attendees: 69,
                 Date: "2007-10-20T16:00-07:00",
@@ -68,8 +68,8 @@ describe("Testing Get all Functions.", () => {
     });
 
     it("Get All Projects", async () => {
-        let rsp = await getProjects("Test/Projects");
-        let expected = [
+        const rsp = await getProjects("Test/Projects");
+        const expected = [
             {
                 Category: "Web_Project",
                 Completed: false,

@@ -1,23 +1,23 @@
 import {
+    Box,
+    ButtonGroup,
+    Center,
     Flex,
-    Spacer,
+    IconButton,
     Image,
     LinkBox,
-    ButtonGroup,
     LinkOverlay,
-    Center,
-    Box,
-    IconButton,
+    Spacer,
 } from "@chakra-ui/react";
-import { useSession, signOut } from "next-auth/react";
 import { useMediaQuery } from "@chakra-ui/react";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { signOut, useSession } from "next-auth/react";
 
 // Prevent fontawesome from adding its CSS since we did it manually above:
 import { config } from "@fortawesome/fontawesome-svg-core";
+import { faUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 // @ts-ignore
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 config.autoAddCss = false;
 
 import {

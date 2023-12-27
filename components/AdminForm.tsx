@@ -1,28 +1,28 @@
-import React, { useEffect, useState } from "react";
 import {
     Box,
     Button,
+    Flex,
     FormLabel,
     Input,
     Textarea,
-    Flex,
 } from "@chakra-ui/react";
+import React, { useEffect, useState } from "react";
 
 import {
+    Value,
     _Event,
     _Person,
     _Project,
     eventTemplate,
     personTemplate,
     projectTemplate,
-    Value,
     // @ts-ignore
 } from "@/pages/admin";
 
 // @ts-ignore
-import * as ImageService from "@/back_end/api/image.js";
-// @ts-ignore
 import * as EventService from "@/back_end/api/events.js";
+// @ts-ignore
+import * as ImageService from "@/back_end/api/image.js";
 // @ts-ignore
 import * as LeadService from "@/back_end/api/leads.js";
 // @ts-ignore

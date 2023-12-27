@@ -1,22 +1,22 @@
-import { Inter } from "@next/font/google";
+// @ts-ignore
+import ProjectCard from "@/components/ProjectCard";
+// @ts-ignore
+import { getAllProjects } from "@/utils/api";
 import {
     Center,
-    VStack,
-    Text,
     Input,
     InputGroup,
     InputLeftElement,
     SimpleGrid,
+    Text,
+    VStack,
 } from "@chakra-ui/react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { useMediaQuery } from "@chakra-ui/react";
-// @ts-ignore
-import { getAllProjects } from "@/utils/api";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Inter } from "@next/font/google";
 import { ChangeEvent, lazy, useEffect, useState } from "react";
 import { IProjectInfo } from "utils/parsers";
-// @ts-ignore
-import ProjectCard from "@/components/ProjectCard";
 const inter = Inter({ subsets: ["latin"] });
 
 function Title() {

@@ -1,6 +1,6 @@
 import { Button, Text } from "@chakra-ui/react";
-import { FormEventHandler, ReactElement } from "react";
 import NextLink from "next/link";
+import { FormEventHandler, ReactElement } from "react";
 
 interface IButton {
     text: string;

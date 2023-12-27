@@ -1,4 +1,4 @@
-import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { storage } from "../utils/index.js";
 
 export async function getURL(namespace, fileName) {

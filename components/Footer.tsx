@@ -1,22 +1,22 @@
 import {
     Center,
+    HStack,
     Image,
     Link,
+    Spacer,
     Text,
     VStack,
-    HStack,
-    Spacer,
 } from "@chakra-ui/react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { IconDefinition, faEnvelope } from "@fortawesome/free-solid-svg-icons";
-import {
-    faInstagram,
-    faFacebookSquare,
-    faLinkedin,
-} from "@fortawesome/free-brands-svg-icons";
-import "@fortawesome/fontawesome-svg-core/styles.css";
 // Prevent fontawesome from adding its CSS since we did it manually above:
 import { config } from "@fortawesome/fontawesome-svg-core";
+import "@fortawesome/fontawesome-svg-core/styles.css";
+import {
+    faFacebookSquare,
+    faInstagram,
+    faLinkedin,
+} from "@fortawesome/free-brands-svg-icons";
+import { IconDefinition, faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 config.autoAddCss = false;
 
 interface IIcon {

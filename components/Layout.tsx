@@ -1,9 +1,9 @@
-import Head from "next/head";
 import { Box, Flex } from "@chakra-ui/react";
 import { useMediaQuery } from "@chakra-ui/react";
+import Head from "next/head";
 import { ReactElement, useEffect, useState } from "react";
-import Header from "./Header";
 import Footer from "./Footer";
+import Header from "./Header";
 import Sidebar from "./Sidebar";
 
 export default function Layout({ children }: { children: ReactElement }) {

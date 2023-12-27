@@ -1,22 +1,22 @@
+import { assert } from "chai";
 import {
-    updateEvent,
     createNewEvent,
     deleteEvent,
     getEventByName,
+    updateEvent,
 } from "../api/events.js";
 import {
-    updateLead,
     createNewLead,
     deleteLead,
     getLeadByName,
+    updateLead,
 } from "../api/leads.js";
 import {
-    updateProject,
     createNewProject,
     deleteProject,
     getProjectByName,
+    updateProject,
 } from "../api/projects.js";
-import { assert } from "chai";
 
 describe("Testing updateEvent", () => {
     beforeEach(async () => {

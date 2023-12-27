@@ -1,4 +1,4 @@
-import { Image, Box, Flex, Text, VStack } from "@chakra-ui/react";
+import { Box, Flex, Image, Text, VStack } from "@chakra-ui/react";
 
 interface IEventPanel {
     name: string;

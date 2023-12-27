@@ -1,8 +1,8 @@
+import * as auth from "@/back_end/api/auth.js";
+import * as events from "@/back_end/api/events.js";
 // import axios from 'axios';
 import * as leads from "@/back_end/api/leads.js";
-import * as events from "@/back_end/api/events.js";
 import * as projects from "@/back_end/api/projects.js";
-import * as auth from "@/back_end/api/auth.js";
 import emailjs from "@emailjs/browser";
 import { parseEvents, parsePeople, parseProjects } from "./parsers";
 

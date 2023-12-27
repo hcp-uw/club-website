@@ -1,15 +1,15 @@
 import {
-    ref,
-    query,
-    get,
-    set,
-    remove,
-    orderByChild,
-    startAt,
     endAt,
-    update,
+    get,
     limitToFirst,
     limitToLast,
+    orderByChild,
+    query,
+    ref,
+    remove,
+    set,
+    startAt,
+    update,
 } from "firebase/database";
 import { database } from "../utils/index.js";
 import { errObj, getData } from "../utils/utils.js";
@@ -331,9 +331,7 @@ export async function getEventsBasedOnTime(
 
     const values = Array.from(Object.values(data));
     if (values.length > 1) {
-        values.sort(function (a, b) {
-            return new Date(a.Date) - new Date(b.Date);
-        });
+        values.sort((a, b) => new Date(a.Date) - new Date(b.Date));
     }
     return values;
 }

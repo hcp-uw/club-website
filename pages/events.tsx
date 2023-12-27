@@ -1,15 +1,15 @@
-import { Inter } from "@next/font/google";
-import { Center, VStack, Text, Spinner, SimpleGrid } from "@chakra-ui/react";
-import { useMediaQuery } from "@chakra-ui/react";
 // @ts-ignore
-import { getAllEvents } from "@/utils/api";
-import { lazy, useEffect, useState } from "react";
-// @ts-ignore
-import { IEventInfo } from "@/utils/parsers";
+import EventCardFull from "@/components/EventCardFull";
 // @ts-ignore
 import EventPanel from "@/components/EventPanel";
 // @ts-ignore
-import EventCardFull from "@/components/EventCardFull";
+import { getAllEvents } from "@/utils/api";
+// @ts-ignore
+import { IEventInfo } from "@/utils/parsers";
+import { Center, SimpleGrid, Spinner, Text, VStack } from "@chakra-ui/react";
+import { useMediaQuery } from "@chakra-ui/react";
+import { Inter } from "@next/font/google";
+import { lazy, useEffect, useState } from "react";
 // @ts-ignore
 const inter = Inter({ subsets: ["latin"] });
 

@@ -1,18 +1,18 @@
-import { useEffect, useMemo, useState } from "react";
-import {
-    Center,
-    Flex,
-    Box,
-    Text,
-    Spacer,
-    Image,
-    Spinner,
-} from "@chakra-ui/react";
-import { useMediaQuery } from "@chakra-ui/react";
 // @ts-ignore
 import { getPeople } from "@/utils/api";
 // @ts-ignore
 import { IPeopleInfo } from "@/utils/parsers";
+import {
+    Box,
+    Center,
+    Flex,
+    Image,
+    Spacer,
+    Spinner,
+    Text,
+} from "@chakra-ui/react";
+import { useMediaQuery } from "@chakra-ui/react";
+import { useEffect, useMemo, useState } from "react";
 
 export default function About() {
     // Scroll to top of page

@@ -1,10 +1,10 @@
-import { getShortenedProject } from "../api/projects.js";
 import { assert } from "chai";
+import { getShortenedProject } from "../api/projects.js";
 
 describe("Testing Get Shortened Project Functions.", () => {
     it("Shortened Project", async () => {
-        let rsp = await getShortenedProject("Test/Projects");
-        let expected = [
+        const rsp = await getShortenedProject("Test/Projects");
+        const expected = [
             { Name: "Project1", Description: "testdesc", Image: "Image" },
             { Name: "Project2", Description: "TestDesc", Image: "Image" },
         ];

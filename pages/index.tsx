@@ -1,28 +1,28 @@
-import { Inter } from "@next/font/google";
-import {
-    Center,
-    VStack,
-    Flex,
-    Box,
-    Text,
-    IconButton,
-    Wrap,
-    WrapItem,
-    Spacer,
-} from "@chakra-ui/react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
-import { useMediaQuery } from "@chakra-ui/react";
-// @ts-ignore
-import { getFeaturedEvents } from "@/utils/api";
-import Image from "next/image";
-import { lazy, useEffect, useState } from "react";
 // @ts-ignore
 import EventCard from "@/components/EventCard";
 // @ts-ignore
-import { IEventInfo } from "@/utils/parsers";
-// @ts-ignore
 import Room from "@/components/Room";
+// @ts-ignore
+import { getFeaturedEvents } from "@/utils/api";
+// @ts-ignore
+import { IEventInfo } from "@/utils/parsers";
+import {
+    Box,
+    Center,
+    Flex,
+    IconButton,
+    Spacer,
+    Text,
+    VStack,
+    Wrap,
+    WrapItem,
+} from "@chakra-ui/react";
+import { useMediaQuery } from "@chakra-ui/react";
+import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Inter } from "@next/font/google";
+import Image from "next/image";
+import { lazy, useEffect, useState } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 

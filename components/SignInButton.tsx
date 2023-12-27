@@ -1,10 +1,10 @@
-// For testing purposes only
-// Set to be removed
-import React from "react";
-import { UserCredential } from "firebase/auth";
 // @ts-ignore
 // import { useAuth } from "@/context/AuthContext"
 import { Button, Center, Text } from "@chakra-ui/react";
+import { UserCredential } from "firebase/auth";
+// For testing purposes only
+// Set to be removed
+import React from "react";
 // import { VscGithub } from "react-icons/vsc";
 
 interface SignInProps {

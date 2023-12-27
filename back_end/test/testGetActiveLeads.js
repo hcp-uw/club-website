@@ -1,10 +1,10 @@
-import { getActiveLeads } from "../api/leads.js";
 import { assert } from "chai";
+import { getActiveLeads } from "../api/leads.js";
 
 describe("Testing Get Active Leads Functions.", () => {
     it("Active Leads", async () => {
-        let rsp = await getActiveLeads("Test/Club_Leads");
-        let expected = [
+        const rsp = await getActiveLeads("Test/Club_Leads");
+        const expected = [
             {
                 Active: true,
                 Class_Standing: "Senior",

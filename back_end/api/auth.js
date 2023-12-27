@@ -1,6 +1,6 @@
 import axios from "axios";
+import { get, query, ref } from "firebase/database";
 import { database } from "../utils/index.js";
-import { ref, query, get } from "firebase/database";
 
 const orgName = "hcp-uw";
 const HCP_ACCESS_TOKEN = process.env.NEXT_PUBLIC_HCP_ACCESS_TOKEN;
@@ -68,15 +68,15 @@ export async function checkAdmin(auth) {
         return false;
     }
 
-    let email = auth.email;
-    let key = email.split("@")[0];
+    const email = auth.email;
+    const key = email.split("@")[0];
     let qRes;
     let data;
     try {
-        let q = query(ref(database, "Update/Members"));
+        const q = query(ref(database, "Update/Members"));
         qRes = await get(q);
         data = qRes.val();
-        let member = data[key];
+        const member = data[key];
 
         if (member == null) {
             return false;

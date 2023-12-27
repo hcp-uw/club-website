@@ -1,18 +1,18 @@
-import { useState, useEffect } from "react";
+import { Center, Flex, Input, Text, Textarea, VStack } from "@chakra-ui/react";
 import { Inter } from "@next/font/google";
-import { Flex, Text, Center, VStack, Input, Textarea } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-    faUpRightFromSquare,
-    faEnvelope,
-} from "@fortawesome/free-solid-svg-icons";
-// @ts-ignore
-import { sendEmail } from "@/utils/api";
 // @ts-ignore
 import { SpecialIconButton, SpecialIconSubmitButton } from "@/components/Parts";
+// @ts-ignore
+import { sendEmail } from "@/utils/api";
 // Prevent fontawesome from adding its CSS since we did it manually above:
 import { config } from "@fortawesome/fontawesome-svg-core";
+import {
+    faEnvelope,
+    faUpRightFromSquare,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 config.autoAddCss = false;
 const inter = Inter({ subsets: ["latin"] });
 

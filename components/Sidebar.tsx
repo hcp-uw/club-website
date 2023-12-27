@@ -1,6 +1,6 @@
 import { Flex, IconButton } from "@chakra-ui/react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { SidebarButton } from "./Parts";
 // @ts-ignore
 // import { useAuth } from "@/context/AuthContext";

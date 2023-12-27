@@ -25,7 +25,7 @@ export interface IProjectInfo {
     image: string | null;
 }
 
-// rome-ignore lint/suspicious/noExplicitAny: The backend does not have types
+// biome-ignore lint/suspicious/noExplicitAny: The backend does not have types
 export const parseProjects = (data: any[]) => {
     const ret = data.map((obj) => {
         const res: IProjectInfo = {

@@ -1,11 +1,11 @@
-import { getLeads, createNewLead, deleteLead } from "../api/leads.js";
-import { getAllEvents, createNewEvent, deleteEvent } from "../api/events.js";
+import { assert } from "chai";
+import { createNewEvent, deleteEvent, getAllEvents } from "../api/events.js";
+import { createNewLead, deleteLead, getLeads } from "../api/leads.js";
 import {
-    getProjects,
     createNewProject,
     deleteProject,
+    getProjects,
 } from "../api/projects.js";
-import { assert } from "chai";
 
 describe("Testing createNewEvent and deleteEvent", () => {
     afterEach(async () => {

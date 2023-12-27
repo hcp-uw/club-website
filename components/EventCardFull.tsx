@@ -1,11 +1,11 @@
 import {
-    Image,
-    Text,
-    VStack,
+    Box,
     Card,
     CardBody,
-    Box,
+    Image,
     Skeleton,
+    Text,
+    VStack,
 } from "@chakra-ui/react";
 
 interface IEventCardFull {
