@@ -10,15 +10,7 @@ import {
 // @ts-ignore
 import { sendEmail } from "@/utils/api";
 // @ts-ignore
-import { auth } from "@/back_end/utils/index.js";
-
-import { UserCredential, signOut } from "firebase/auth";
-// @ts-ignore
-// import { useAuth } from "@/context/AuthContext";
-// @ts-ignore
-import { exchangeAuth } from "@/utils/api.js";
-// @ts-ignore
-import { SpecialIconButton, SpecialSubmitButton } from "@/components/Parts";
+import { SpecialIconButton, SpecialIconSubmitButton } from "@/components/Parts";
 // Prevent fontawesome from adding its CSS since we did it manually above:
 import { config } from '@fortawesome/fontawesome-svg-core';
 config.autoAddCss = false;
@@ -122,7 +114,7 @@ function EmailForm() {
                 />
             </VStack>
             <VStack spacing={5} width="100%">
-                <SpecialSubmitButton
+                <SpecialIconSubmitButton
                     text="Submit"
                     onClick={handleClick}
                     icon={<FontAwesomeIcon size="lg" icon={faEnvelope} />}
@@ -141,24 +133,6 @@ export default function Join() {
         window.scrollTo(0, 0);
     }, []);
 
-    // const { currentUser, isAdmin, getUser } = useAuth()
-
-    // const handleSignInSuccess = async (result: UserCredential) => {
-    //     console.log(isAdmin);
-    //     console.log(getUser());
-    //     const user = auth.currentUser
-    //     console.log(await user?.getIdToken());
-    //     console.log(await exchangeAuth(user?.getIdToken()))
-    // }
-
-    const handleSignOut = async () => {
-        try {
-            await signOut(auth);
-        } catch (err) {
-            console.error(err);
-        }
-    };
-
     return (
         <VStack spacing='40px'>
             <Title />
@@ -166,92 +140,4 @@ export default function Join() {
             <EmailForm />
         </VStack>
     );
-
-    // return (
-    //     <div id={isMobile ? "join-background-mobile" : "join-background"}>
-    //         <>
-    //     {currentUser ? (
-
-    //         <div>
-    //             <Center>
-    //                 <Card
-    //                     background="brand.mid_white"
-    //                     width='400px'
-    //                     height='100px'
-    //                 >
-    //                     <CardBody alignContent="flex-start">
-    //                         <Image
-    //                             boxSize="50px"
-    //                             src={currentUser.photoURL ?? ""}
-    //                         />
-    //                         <Text>
-    //                             {currentUser.displayName}
-    //                         </Text>
-    //                     </CardBody>
-    //                 </Card>
-    //             </Center>
-    //             <Center p={8}>
-    //             <Button onClick={handleSignOut}
-    //                     bg='gray'
-    //                     w={'full'}
-    //                     maxW={'md'}
-    //                     variant={'outline'}
-    //             >
-    //                 <Center>
-    //                 <Text>Sign Out</Text>
-    //                 </Center>
-    //             </Button>
-    //             </Center>
-    //         </div>
-    //     ) : (
-    //         <div>
-    //             <SignInComponent onSignInSuccess={handleSignInSuccess} />
-    //         </div>
-    //     )}
-    //     </>
-    //         <Flex
-    //         //  id={isMobile ? "join-container-mobile" : "join-container"}
-    //             height='700px'
-    //             direction='column'
-    //             width='100vw'
-    //             maxW='1500px'
-    //             borderRadius='30px'
-    //             alignItems='center'
-    //         >
-    //             <Text
-    //                 fontFamily={'Segoe'}
-    //                 fontSize='5xl'
-    //                 color="white"
-    //                 marginTop='4'
-    //             >
-    //                 Join Us
-    //             </Text>
-    //             <Text
-    //                 display='inline'
-    //                 fontSize="2xl"
-    //                 color="white"
-    //                 marginTop='8'
-    //             >
-    //                 Fill out the form below to join Husky Coding Project!
-    //             </Text>
-
-    //             <Link href="https://forms.gle/JpJaoznG4FBvS1paA">
-    //                 <Button
-    //                     rightIcon={                        <FontAwesomeIcon
-    //                         // height='40px'
-    //                         // color='white'
-    //                         icon={faEnvelope}
-    //                     />}
-    //                     colorScheme='purple' size='s' variant='solid'>
-    //                     Link to Form
-    //                 </Button>
-    //             </Link>
-    //             {/* <FontAwesomeIcon
-    //                 height='40px'
-    //                 color='white'
-    //                 icon={faEnvelope}
-    //             /> */}
-    //         </Flex>
-    //     </div>
-    // );
 }

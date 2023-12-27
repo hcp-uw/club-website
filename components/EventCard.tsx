@@ -20,7 +20,6 @@ interface IEventCard {
 
 export default function EventCard(props: IEventCard) {
     const { name, date, location, image, loading } = props;
-    console.log(date);
     return (
         <Card
             variant='elevated'
