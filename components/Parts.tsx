@@ -126,7 +126,7 @@ export const SpecialIconButton = (props: IIconButton) => {
 /**
  * Special Header Button (purple gradient with white border on hover)
  */
-export const SpecialSubmitButton = (props: IIconCallbackButton) => {
+export const SpecialIconSubmitButton = (props: IIconCallbackButton) => {
     const { text, onClick, icon } = props;
 
     return (
@@ -155,6 +155,41 @@ export const SpecialSubmitButton = (props: IIconCallbackButton) => {
                 paddingBottom={5}
                 paddingTop={5}
                 marginRight={2}
+            >
+                {text}
+            </Text>
+        </Button>
+    );
+};
+
+/**
+ * Special Header Button (purple gradient with white border on hover)
+ */
+export const SpecialSubmitButton = (props: ICallbackButton) => {
+    const { text, onClick } = props;
+
+    return (
+        <Button
+            rounded="xl"
+            bgGradient="linear(to-b, brand.purple, brand.dark_purple)"
+            color="white"
+            shadow='xl'
+            height='50px'
+            marginLeft='3px'
+            marginRight='3px'
+            _hover={{
+                border: "3px solid white",
+                cursor: "pointer",
+                marginLeft: "0px",
+                marginRight: "0px",
+            }}
+            onClick={onClick}
+        >
+            <Text
+                color='white'
+                fontSize='xl'
+                fontWeight='normal'
+                padding={5}
             >
                 {text}
             </Text>

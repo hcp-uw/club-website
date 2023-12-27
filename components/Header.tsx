@@ -9,12 +9,18 @@ import {
     Box,
     IconButton,
 } from "@chakra-ui/react";
+import { useSession, signOut } from "next-auth/react";
 import { useMediaQuery } from "@chakra-ui/react";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { HeaderButton, SpecialHeaderButton } from "./Parts";
+
+// Prevent fontawesome from adding its CSS since we did it manually above:
+import { config } from '@fortawesome/fontawesome-svg-core';
 // @ts-ignore
-// import { useAuth } from "@/context/AuthContext";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
+config.autoAddCss = false;
+
+import { HeaderButton, SpecialHeaderButton, SpecialSubmitButton } from "./Parts";
 
 export default function Header(props: { showSidebar: () => void }) {
     const [isLargerThan1200] = useMediaQuery("(min-width: 1200px)", {
@@ -25,7 +31,7 @@ export default function Header(props: { showSidebar: () => void }) {
         ssr: true,
         fallback: false, // return false on the server, and re-evaluate on the client side
     });
-    // const { currentUser, isAdmin } = useAuth()
+    const { data: session } = useSession();
 
     return (
         <>
@@ -45,26 +51,24 @@ export default function Header(props: { showSidebar: () => void }) {
                     </Center>
                     <Spacer />
                     <Center>
-                        <ButtonGroup variant='ghost' spacing='5'>
-                            <HeaderButton path='/' text='Home' />
-                            <HeaderButton path='/about' text='About Us' />
-                            <HeaderButton path='/projects' text='Projects' />
-                            <HeaderButton path='/events' text='Events' />
-                            <SpecialHeaderButton path='/join' text='Join Us' />
-                        </ButtonGroup>
-                        {/* {!currentUser ? (
-                            
-                        ) : (
+                        {
+                            session && session.user?.email === "huskycodingproject@gmail.com" ?
+                            <ButtonGroup variant='ghost' spacing='5'>
+                                <HeaderButton path='/admin' text='Admin' />
+                                <SpecialSubmitButton
+                                    onClick={() => signOut()}
+                                    text='Logout'
+                                />
+                            </ButtonGroup>
+                            :
                             <ButtonGroup variant='ghost' spacing='5'>
                                 <HeaderButton path='/' text='Home' />
-                                { isAdmin && <HeaderButton path='/admin' text='Admin' /> }
-                                <HeaderButton path='/resources' text='Resources' />
-                                <HeaderButton path='/dashboard' text='Dashboard' />
-                                <HeaderButton path='/profile' text='Profile' />
-                                <HeaderButton path='/private_project' text='Project' />
+                                <HeaderButton path='/about' text='About Us' />
+                                <HeaderButton path='/projects' text='Projects' />
+                                <HeaderButton path='/events' text='Events' />
                                 <SpecialHeaderButton path='/join' text='Join Us' />
                             </ButtonGroup>
-                        )} */}
+                        }
                     </Center>
                     <Spacer />
                 </Flex>

@@ -17,7 +17,7 @@ import {
     projectTemplate,
     Value,
     // @ts-ignore
-} from "@/devpages/admin";
+} from "@/pages/admin";
 
 // @ts-ignore
 import * as ImageService from "@/back_end/api/image.js";
