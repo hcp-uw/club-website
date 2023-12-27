@@ -23,21 +23,17 @@ git clone https://github.com/hcp-uw/club-website.git
 ```
 3) Go to `${HOME}/club-website/.`
 ```sh
-cd {HOME}/club-website/
+cd ${HOME}/club-website/
 ```
-4) Install all dependencies using `yarn deps`
+4) Install all dependencies using `yarn` (or `yarn install`)
 ```sh
-yarn deps
+yarn
 ```
-<!-- 5) Run the application locally using `yarn run dev`
-```sh
-yarn run dev
-``` -->
 
 ## Running the App Locally 
 
 ```sh
-yarn run dev
+yarn dev
 ```
 
 Runs the app in the development mode.\
@@ -75,10 +71,10 @@ To apply fixes:
 yarn lint --apply
 ```
 
-To apply suggested fixes:
+To apply unsafe fixes:
 
 ```shell
-yarn lint --apply-suggested
+yarn lint --apply-unsafe
 ```
 
 ### Formatter
