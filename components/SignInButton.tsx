@@ -1,4 +1,3 @@
-// @ts-ignore
 // import { useAuth } from "@/context/AuthContext"
 import { Button, Center, Text } from "@chakra-ui/react";
 import { UserCredential } from "firebase/auth";

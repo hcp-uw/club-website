@@ -1,10 +1,8 @@
-// @ts-ignore
 import Layout from "@/components/Layout";
 import "@/styles/globals.css";
 import { ChakraProvider } from "@chakra-ui/react";
 import { extendTheme, theme as baseTheme } from "@chakra-ui/react";
 import { SessionProvider } from "next-auth/react";
-// @ts-ignore
 // import { AuthContextProvider } from "@/context/AuthContext";
 
 const colors = {

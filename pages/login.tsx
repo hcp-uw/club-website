@@ -8,7 +8,6 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import {
     SpecialIconSubmitButton,
     SpecialSubmitButton,
-    // @ts-ignore
 } from "@/components/Parts";
 // Prevent fontawesome from adding its CSS since we did it manually above:
 import { config } from "@fortawesome/fontawesome-svg-core";
@@ -49,6 +48,7 @@ function LoginForm(props: ILoginProps) {
                 <SpecialSubmitButton
                     text="Logout"
                     onClick={() => signOut()}
+                    // @ts-ignore
                     icon={
                         <FontAwesomeIcon size="lg" icon={faUpRightFromSquare} />
                     }

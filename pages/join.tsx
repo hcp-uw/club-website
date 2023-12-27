@@ -2,9 +2,7 @@ import { Center, Flex, Input, Text, Textarea, VStack } from "@chakra-ui/react";
 import { Inter } from "@next/font/google";
 import { useEffect, useState } from "react";
 
-// @ts-ignore
 import { SpecialIconButton, SpecialIconSubmitButton } from "@/components/Parts";
-// @ts-ignore
 import { sendEmail } from "@/utils/api";
 // Prevent fontawesome from adding its CSS since we did it manually above:
 import { config } from "@fortawesome/fontawesome-svg-core";

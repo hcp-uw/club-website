@@ -1,6 +1,4 @@
-// @ts-ignore
 import ProjectCard from "@/components/ProjectCard";
-// @ts-ignore
 import { getAllProjects } from "@/utils/api";
 import {
     Center,

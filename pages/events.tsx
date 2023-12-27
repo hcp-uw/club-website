@@ -1,10 +1,6 @@
-// @ts-ignore
 import EventCardFull from "@/components/EventCardFull";
-// @ts-ignore
 import EventPanel from "@/components/EventPanel";
-// @ts-ignore
 import { getAllEvents } from "@/utils/api";
-// @ts-ignore
 import { IEventInfo } from "@/utils/parsers";
 import { Center, SimpleGrid, Spinner, Text, VStack } from "@chakra-ui/react";
 import { useMediaQuery } from "@chakra-ui/react";

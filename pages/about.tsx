@@ -1,6 +1,4 @@
-// @ts-ignore
 import { getPeople } from "@/utils/api";
-// @ts-ignore
 import { IPeopleInfo } from "@/utils/parsers";
 import {
     Box,

@@ -1,10 +1,6 @@
-// @ts-ignore
 import { getAllEvents } from "@/back_end/api/events";
-// @ts-ignore
 import { getLeads } from "@/back_end/api/leads";
-// @ts-ignore
 import { getProjects } from "@/back_end/api/projects";
-// @ts-ignore
 import AdminForm from "@/components/AdminForm";
 import { useSession } from "next-auth/react";
 import ErrorPage from "next/error";

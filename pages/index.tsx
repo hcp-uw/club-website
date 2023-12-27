@@ -1,10 +1,6 @@
-// @ts-ignore
 import EventCard from "@/components/EventCard";
-// @ts-ignore
 import Room from "@/components/Room";
-// @ts-ignore
 import { getFeaturedEvents } from "@/utils/api";
-// @ts-ignore
 import { IEventInfo } from "@/utils/parsers";
 import {
     Box,

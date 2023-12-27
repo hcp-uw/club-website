@@ -16,16 +16,11 @@ import {
     eventTemplate,
     personTemplate,
     projectTemplate,
-    // @ts-ignore
 } from "@/pages/admin";
 
-// @ts-ignore
 import * as EventService from "@/back_end/api/events.js";
-// @ts-ignore
 import * as ImageService from "@/back_end/api/image.js";
-// @ts-ignore
 import * as LeadService from "@/back_end/api/leads.js";
-// @ts-ignore
 import * as ProjectService from "@/back_end/api/projects.js";
 
 type _Item = _Person | _Project | _Event;
