@@ -30,7 +30,7 @@ function SignInComponent({ onSignInSuccess }: SignInProps) {
         <Center p={8}>
             <Button
                 onClick={handleSignIn}
-                bg='gray'
+                bg="gray"
                 w={"full"}
                 maxW={"md"}
                 variant={"outline"}

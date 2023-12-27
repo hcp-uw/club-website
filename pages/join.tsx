@@ -12,14 +12,14 @@ import { sendEmail } from "@/utils/api";
 // @ts-ignore
 import { SpecialIconButton, SpecialIconSubmitButton } from "@/components/Parts";
 // Prevent fontawesome from adding its CSS since we did it manually above:
-import { config } from '@fortawesome/fontawesome-svg-core';
+import { config } from "@fortawesome/fontawesome-svg-core";
 config.autoAddCss = false;
 const inter = Inter({ subsets: ["latin"] });
 
 function Title() {
     return (
         <Center>
-            <Text as='h2' color='white' fontSize='6xl' fontWeight='semibold'>
+            <Text as="h2" color="white" fontSize="6xl" fontWeight="semibold">
                 Join Us
             </Text>
         </Center>
@@ -30,7 +30,7 @@ function FormLink() {
     return (
         <VStack spacing={10}>
             <Text
-                display='inline'
+                display="inline"
                 fontSize="2xl"
                 color="white"
                 textAlign="center"
@@ -76,7 +76,7 @@ function EmailForm() {
     return (
         <VStack spacing={10} marginTop="50px" width="50vw" minWidth="300px">
             <Text
-                display='inline'
+                display="inline"
                 fontSize="2xl"
                 color="white"
                 textAlign="center"
@@ -86,8 +86,8 @@ function EmailForm() {
             <VStack spacing={5} width="100%">
                 <Flex direction="row" width="100%">
                     <Input
-                        variant='outline'
-                        placeholder='Name'
+                        variant="outline"
+                        placeholder="Name"
                         width="50%"
                         color="white"
                         marginRight="20px"
@@ -95,8 +95,8 @@ function EmailForm() {
                         value={name}
                     />
                     <Input
-                        variant='outline'
-                        placeholder='Email'
+                        variant="outline"
+                        placeholder="Email"
                         width="50%"
                         color="white"
                         onChange={(event) => setEmail(event.target.value)}
@@ -104,8 +104,8 @@ function EmailForm() {
                     />
                 </Flex>
                 <Textarea
-                    variant='outline'
-                    placeholder='Type your message here...'
+                    variant="outline"
+                    placeholder="Type your message here..."
                     width="100%"
                     color="white"
                     height="300px"
@@ -119,7 +119,7 @@ function EmailForm() {
                     onClick={handleClick}
                     icon={<FontAwesomeIcon size="lg" icon={faEnvelope} />}
                 />
-                <Text display='inline' fontSize="md" color="red">
+                <Text display="inline" fontSize="md" color="red">
                     {error}
                 </Text>
             </VStack>
@@ -134,7 +134,7 @@ export default function Join() {
     }, []);
 
     return (
-        <VStack spacing='40px'>
+        <VStack spacing="40px">
             <Title />
             <FormLink />
             <EmailForm />

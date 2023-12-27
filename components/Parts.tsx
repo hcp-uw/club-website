@@ -33,13 +33,13 @@ export const HeaderButton = (props: ILinkButton) => {
     return (
         <NextLink href={path}>
             <Button
-                variant='ghost'
+                variant="ghost"
                 rounded="xl"
-                height='50px'
-                border='3px solid transparent'
+                height="50px"
+                border="3px solid transparent"
                 _hover={{ border: "3px solid white", cursor: "pointer" }}
             >
-                <Text color='white' fontSize='xl' fontWeight='normal'>
+                <Text color="white" fontSize="xl" fontWeight="normal">
                     {text}
                 </Text>
             </Button>
@@ -59,10 +59,10 @@ export const SpecialHeaderButton = (props: ILinkButton) => {
                 rounded="xl"
                 bgGradient="linear(to-b, brand.purple, brand.dark_purple)"
                 color="white"
-                shadow='xl'
-                height='50px'
-                marginLeft='3px'
-                marginRight='3px'
+                shadow="xl"
+                height="50px"
+                marginLeft="3px"
+                marginRight="3px"
                 _hover={{
                     border: "3px solid white",
                     cursor: "pointer",
@@ -71,9 +71,9 @@ export const SpecialHeaderButton = (props: ILinkButton) => {
                 }}
             >
                 <Text
-                    color='white'
-                    fontSize='xl'
-                    fontWeight='normal'
+                    color="white"
+                    fontSize="xl"
+                    fontWeight="normal"
                     padding={5}
                 >
                     {text}
@@ -95,10 +95,10 @@ export const SpecialIconButton = (props: IIconButton) => {
                 rounded="xl"
                 bgGradient="linear(to-b, brand.purple, brand.dark_purple)"
                 color="white"
-                shadow='xl'
-                height='50px'
-                marginLeft='3px'
-                marginRight='3px'
+                shadow="xl"
+                height="50px"
+                marginLeft="3px"
+                marginRight="3px"
                 _hover={{
                     border: "3px solid white",
                     cursor: "pointer",
@@ -108,9 +108,9 @@ export const SpecialIconButton = (props: IIconButton) => {
                 rightIcon={icon}
             >
                 <Text
-                    color='white'
-                    fontSize='xl'
-                    fontWeight='normal'
+                    color="white"
+                    fontSize="xl"
+                    fontWeight="normal"
                     paddingLeft={5}
                     paddingBottom={5}
                     paddingTop={5}
@@ -134,10 +134,10 @@ export const SpecialIconSubmitButton = (props: IIconCallbackButton) => {
             rounded="xl"
             bgGradient="linear(to-b, brand.purple, brand.dark_purple)"
             color="white"
-            shadow='xl'
-            height='50px'
-            marginLeft='3px'
-            marginRight='3px'
+            shadow="xl"
+            height="50px"
+            marginLeft="3px"
+            marginRight="3px"
             _hover={{
                 border: "3px solid white",
                 cursor: "pointer",
@@ -148,9 +148,9 @@ export const SpecialIconSubmitButton = (props: IIconCallbackButton) => {
             onClick={onClick}
         >
             <Text
-                color='white'
-                fontSize='xl'
-                fontWeight='normal'
+                color="white"
+                fontSize="xl"
+                fontWeight="normal"
                 paddingLeft={5}
                 paddingBottom={5}
                 paddingTop={5}
@@ -173,10 +173,10 @@ export const SpecialSubmitButton = (props: ICallbackButton) => {
             rounded="xl"
             bgGradient="linear(to-b, brand.purple, brand.dark_purple)"
             color="white"
-            shadow='xl'
-            height='50px'
-            marginLeft='3px'
-            marginRight='3px'
+            shadow="xl"
+            height="50px"
+            marginLeft="3px"
+            marginRight="3px"
             _hover={{
                 border: "3px solid white",
                 cursor: "pointer",
@@ -185,12 +185,7 @@ export const SpecialSubmitButton = (props: ICallbackButton) => {
             }}
             onClick={onClick}
         >
-            <Text
-                color='white'
-                fontSize='xl'
-                fontWeight='normal'
-                padding={5}
-            >
+            <Text color="white" fontSize="xl" fontWeight="normal" padding={5}>
                 {text}
             </Text>
         </Button>
@@ -206,15 +201,15 @@ export const SidebarButton = (props: ILinkButton) => {
     return (
         <NextLink href={path}>
             <Button
-                variant='ghost'
-                width='100%'
+                variant="ghost"
+                width="100%"
                 rounded="xl"
-                height='50px'
-                border='3px solid transparent'
+                height="50px"
+                border="3px solid transparent"
                 _hover={{ border: "3px solid white", cursor: "pointer" }}
                 onClick={handleShow}
             >
-                <Text color='white' fontSize='xl' fontWeight='normal'>
+                <Text color="white" fontSize="xl" fontWeight="normal">
                     {text}
                 </Text>
             </Button>
@@ -231,10 +226,10 @@ export const NormalButton = (props: ILinkButton) => {
     return (
         <NextLink href={path}>
             <Button
-                variant='ghost'
+                variant="ghost"
                 rounded="lg"
-                height='40px'
-                border='3px solid transparent'
+                height="40px"
+                border="3px solid transparent"
                 _hover={{
                     border: `3px solid ${textColor}`,
                     cursor: "pointer",
@@ -242,8 +237,8 @@ export const NormalButton = (props: ILinkButton) => {
             >
                 <Text
                     color={textColor ?? "white"}
-                    fontSize='lg'
-                    fontWeight='normal'
+                    fontSize="lg"
+                    fontWeight="normal"
                 >
                     {text}
                 </Text>
@@ -267,14 +262,14 @@ export const SpecialLinkButton = (props: ILinkButton) => {
                 rounded="lg"
                 bgGradient="linear(to-b, brand.purple, brand.dark_purple)"
                 color="white"
-                shadow='lg'
-                height='40px'
+                shadow="lg"
+                height="40px"
                 _hover={{ cursor: "pointer" }}
             >
                 <Text
-                    color='white'
-                    fontSize='xl'
-                    fontWeight='normal'
+                    color="white"
+                    fontSize="xl"
+                    fontWeight="normal"
                     padding={5}
                 >
                     {text}

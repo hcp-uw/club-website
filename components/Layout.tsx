@@ -58,19 +58,19 @@ export default function Layout({ children }: { children: ReactElement }) {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <Flex
-                flexDirection='column'
-                minH='100vh'
-                bgGradient='linear(to-b, brand.blue, brand.dark_blue)'
+                flexDirection="column"
+                minH="100vh"
+                bgGradient="linear(to-b, brand.blue, brand.dark_blue)"
             >
                 <Box
-                    position='fixed'
+                    position="fixed"
                     top={scrollDirection === "up" ? "0px" : "-150px"}
-                    transitionProperty='all'
-                    transitionTimingFunction='cubic-bezier(0.4, 0, 0.2, 1)'
-                    transitionDuration='500ms'
-                    width='100vw'
-                    backdropFilter='blur(10px)'
-                    zIndex='98'
+                    transitionProperty="all"
+                    transitionTimingFunction="cubic-bezier(0.4, 0, 0.2, 1)"
+                    transitionDuration="500ms"
+                    width="100vw"
+                    backdropFilter="blur(10px)"
+                    zIndex="98"
                 >
                     <Header showSidebar={showSidebar} />
                 </Box>
@@ -79,7 +79,7 @@ export default function Layout({ children }: { children: ReactElement }) {
                 )}
                 <Box
                     marginTop={isLargerThan1200 ? "150px" : "100px"}
-                    width='100vw'
+                    width="100vw"
                 >
                     {children}
                 </Box>

@@ -14,9 +14,9 @@ import {
     faFacebookSquare,
     faLinkedin,
 } from "@fortawesome/free-brands-svg-icons";
-import '@fortawesome/fontawesome-svg-core/styles.css';
+import "@fortawesome/fontawesome-svg-core/styles.css";
 // Prevent fontawesome from adding its CSS since we did it manually above:
-import { config } from '@fortawesome/fontawesome-svg-core';
+import { config } from "@fortawesome/fontawesome-svg-core";
 config.autoAddCss = false;
 
 interface IIcon {
@@ -50,7 +50,7 @@ export default function Footer() {
     ];
 
     return (
-        <Center height='300px'>
+        <Center height="300px">
             <VStack justifyContent="center">
                 <Link href="/">
                     <Image
@@ -75,7 +75,7 @@ export default function Footer() {
                 <Spacer />
                 <Spacer />
                 <Spacer />
-                <Text fontSize='xs' color='white' textAlign="center">
+                <Text fontSize="xs" color="white" textAlign="center">
                     Copyright © 2023 Husky Coding Project. All Rights Reserved
                 </Text>
             </VStack>

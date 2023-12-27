@@ -16,7 +16,7 @@ const inter = Inter({ subsets: ["latin"] });
 function Title() {
     return (
         <Center>
-            <Text as='h2' color='white' fontSize='6xl' fontWeight='semibold'>
+            <Text as="h2" color="white" fontSize="6xl" fontWeight="semibold">
                 Events
             </Text>
         </Center>
@@ -42,10 +42,10 @@ function DisplayEvents(props: IDisplayProps) {
     if (loading) {
         return (
             <Spinner
-                thickness='4px'
-                speed='0.65s'
-                color='brand.purple'
-                size='xl'
+                thickness="4px"
+                speed="0.65s"
+                color="brand.purple"
+                size="xl"
             />
         );
     }
@@ -54,7 +54,7 @@ function DisplayEvents(props: IDisplayProps) {
         return (
             <SimpleGrid
                 columns={isSmallerThan450 ? undefined : [1, 1, 2, 2, 3]}
-                spacing='40px'
+                spacing="40px"
             >
                 {events.map((event) => (
                     <EventCardFull
@@ -105,7 +105,7 @@ export default function Events() {
     }, []);
 
     return (
-        <VStack spacing='40px'>
+        <VStack spacing="40px">
             <Title />
             <DisplayEvents
                 events={events}

@@ -54,55 +54,55 @@ export default function About() {
         if (isLoading) {
             return (
                 <Spinner
-                    thickness='4px'
-                    speed='0.65s'
-                    color='brand.purple'
-                    size='xl'
+                    thickness="4px"
+                    speed="0.65s"
+                    color="brand.purple"
+                    size="xl"
                 />
             );
         }
         return (
             <Flex
-                justifyContent='center'
-                flexWrap='wrap'
-                width='80%'
-                margin='auto'
+                justifyContent="center"
+                flexWrap="wrap"
+                width="80%"
+                margin="auto"
                 paddingTop="30px"
             >
                 {people.map((person) => {
                     return (
                         <Flex
-                            flexDirection='column'
-                            alignItems='center'
-                            margin='20px'
-                            width='15%'
+                            flexDirection="column"
+                            alignItems="center"
+                            margin="20px"
+                            width="15%"
                             key={person.email}
                         >
                             <Box
-                                width='150px'
-                                height='150px'
+                                width="150px"
+                                height="150px"
                                 backgroundImage={
                                     person.image ?? "/HCPLogo.webp"
                                 }
-                                backgroundSize='100%'
-                                backgroundPosition='center'
-                                borderRadius='50%'
-                                marginBottom='30px'
+                                backgroundSize="100%"
+                                backgroundPosition="center"
+                                borderRadius="50%"
+                                marginBottom="30px"
                             />
                             <Text
                                 fontSize={["md", "xl", "2xl"]}
-                                color='white'
-                                overflowWrap='anywhere'
-                                textAlign='center'
-                                width='90%'
+                                color="white"
+                                overflowWrap="anywhere"
+                                textAlign="center"
+                                width="90%"
                             >
                                 {formatName(person.name)}
                             </Text>
                             <Text
-                                fontSize='large'
-                                color='#FD72F8'
-                                overflowWrap='anywhere'
-                                textAlign='center'
+                                fontSize="large"
+                                color="#FD72F8"
+                                overflowWrap="anywhere"
+                                textAlign="center"
                             >
                                 {formatRole(person.role)}
                             </Text>
@@ -117,21 +117,21 @@ export default function About() {
         () => (
             <Flex
                 justify="center"
-                margin='auto'
-                width='80vw'
-                marginTop='20px'
+                margin="auto"
+                width="80vw"
+                marginTop="20px"
                 maxWidth="1500px"
                 direction={isSmallerThan1400 ? "column" : "row"}
             >
                 <Flex
                     direction="column"
-                    color='white'
+                    color="white"
                     width={isSmallerThan1400 ? "100%" : "60%"}
                     marginBottom={isSmallerThan1400 ? "100px" : undefined}
                 >
                     <Text
                         fontSize={["3xl", "4xl", "5xl", "6xl"]}
-                        fontWeight='semibold'
+                        fontWeight="semibold"
                     >
                         The Why
                     </Text>
@@ -156,7 +156,7 @@ export default function About() {
                 </Flex>
                 <Spacer />
                 <Flex
-                    height='100%'
+                    height="100%"
                     width={isSmallerThan1400 ? "100%" : "40%"}
                     marginLeft={isSmallerThan1400 ? undefined : "150px"}
                     alignSelf="center"
@@ -173,28 +173,28 @@ export default function About() {
         () => (
             <Flex
                 justify="center"
-                margin='auto'
-                width='80vw'
+                margin="auto"
+                width="80vw"
                 marginTop={isSmallerThan1400 ? "100px" : "150px"}
                 maxWidth="1500px"
                 direction={isSmallerThan1400 ? "column" : "row"}
             >
                 <Flex
                     direction="column"
-                    color='white'
+                    color="white"
                     width={isSmallerThan1400 ? "100%" : "60%"}
                     marginBottom={isSmallerThan1400 ? "100px" : undefined}
                 >
                     <Text
                         fontSize={["3xl", "4xl", "5xl", "6xl"]}
-                        fontWeight='semibold'
+                        fontWeight="semibold"
                     >
                         Our Mission
                     </Text>
                     <Box>
                         <Text
                             fontSize={["md", "xl", "2xl"]}
-                            display='inline'
+                            display="inline"
                             marginTop="1em"
                         >
                             To create a tech internship-like environment that
@@ -204,26 +204,26 @@ export default function About() {
                         </Text>
                         <Text
                             fontSize={["md", "xl", "2xl"]}
-                            display='inline'
-                            color='brand.pink'
+                            display="inline"
+                            color="brand.pink"
                         >
                             {} peer-to-peer learning
                         </Text>
-                        <Text fontSize={["md", "xl", "2xl"]} display='inline'>
+                        <Text fontSize={["md", "xl", "2xl"]} display="inline">
                             {} to provide the next generation of programmers &
                             designers with the tools and experience to
                         </Text>
                         <Text
                             fontSize={["md", "xl", "2xl"]}
-                            display='inline'
-                            color='brand.pink'
+                            display="inline"
+                            color="brand.pink"
                         >
                             {} succeed in future tech careers.
                         </Text>
                     </Box>
                 </Flex>
                 <Flex
-                    height='100%'
+                    height="100%"
                     width={isSmallerThan1400 ? "100%" : "40%"}
                     marginLeft={isSmallerThan1400 ? undefined : "150px"}
                     alignSelf="center"
@@ -246,21 +246,21 @@ export default function About() {
         return (
             <>
                 <Text
-                    textAlign='center'
-                    color='white'
+                    textAlign="center"
+                    color="white"
                     fontSize={["3xl", "4xl", "5xl", "6xl"]}
                     marginTop="150px"
-                    fontWeight='semibold'
+                    fontWeight="semibold"
                 >
                     Our Team
                 </Text>
                 {isLoading ? (
                     <Center marginTop="30px">
                         <Spinner
-                            thickness='4px'
-                            speed='0.65s'
-                            color='brand.purple'
-                            size='xl'
+                            thickness="4px"
+                            speed="0.65s"
+                            color="brand.purple"
+                            size="xl"
                         />
                     </Center>
                 ) : (

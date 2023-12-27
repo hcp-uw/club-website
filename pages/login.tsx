@@ -6,9 +6,12 @@ import { useSession, signIn, signOut } from "next-auth/react";
 import { Session } from "next-auth";
 
 // Prevent fontawesome from adding its CSS since we did it manually above:
-import { config } from '@fortawesome/fontawesome-svg-core';
-// @ts-ignore
-import { SpecialSubmitButton, SpecialIconSubmitButton } from "@/components/Parts";
+import { config } from "@fortawesome/fontawesome-svg-core";
+import {
+    SpecialSubmitButton,
+    SpecialIconSubmitButton,
+    // @ts-ignore
+} from "@/components/Parts";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 config.autoAddCss = false;
@@ -18,7 +21,7 @@ const inter = Inter({ subsets: ["latin"] });
 function Title() {
     return (
         <Center>
-            <Text as='h2' color='white' fontSize='6xl' fontWeight='semibold'>
+            <Text as="h2" color="white" fontSize="6xl" fontWeight="semibold">
                 Member Login
             </Text>
         </Center>
@@ -36,7 +39,7 @@ function LoginForm(props: ILoginProps) {
         return (
             <VStack spacing={10} marginTop="50px" width="50vw" minWidth="300px">
                 <Text
-                    display='inline'
+                    display="inline"
                     fontSize="2xl"
                     color="white"
                     textAlign="center"
@@ -46,7 +49,9 @@ function LoginForm(props: ILoginProps) {
                 <SpecialSubmitButton
                     text="Logout"
                     onClick={() => signOut()}
-                    icon={<FontAwesomeIcon size="lg" icon={faUpRightFromSquare} />}
+                    icon={
+                        <FontAwesomeIcon size="lg" icon={faUpRightFromSquare} />
+                    }
                 />
             </VStack>
         );
@@ -54,7 +59,7 @@ function LoginForm(props: ILoginProps) {
     return (
         <VStack spacing={10} marginTop="50px" width="50vw" minWidth="300px">
             <Text
-                display='inline'
+                display="inline"
                 fontSize="2xl"
                 color="white"
                 textAlign="center"
@@ -78,9 +83,9 @@ export default function Login() {
 
     const { data: session } = useSession();
     return (
-        <VStack spacing='40px'>
+        <VStack spacing="40px">
             <Title />
-            <LoginForm session={session}/>
+            <LoginForm session={session} />
         </VStack>
     );
 }

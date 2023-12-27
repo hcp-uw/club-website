@@ -8,7 +8,7 @@ import { getLeads } from "@/back_end/api/leads";
 // @ts-ignore
 import { getProjects } from "@/back_end/api/projects";
 import { useSession } from "next-auth/react";
-import ErrorPage from 'next/error';
+import ErrorPage from "next/error";
 
 // all dates handled as epoch time!!!
 
@@ -95,7 +95,7 @@ export default function Admin() {
     const [currentPeople, setCurrentPeople] = useState<_Person[]>([]);
     const [currentProjects, setCurrentProjects] = useState<_Project[]>([]);
     const [reset, setReset] = useState<boolean>(false);
-    const {data: session} = useSession();
+    const { data: session } = useSession();
 
     useEffect(() => {
         getAllEvents().then((res: SetStateAction<_Event[]>) => {
@@ -112,7 +112,7 @@ export default function Admin() {
     }, [reset]);
 
     if (!session || session.user?.email !== "huskycodingproject@gmail.com") {
-        return <ErrorPage statusCode={404}/>;
+        return <ErrorPage statusCode={404} />;
     }
 
     return (

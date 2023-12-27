@@ -28,23 +28,23 @@ const inter = Inter({ subsets: ["latin"] });
 
 function Title() {
     return (
-        <Flex height='calc(100vh - 150px)' maxW='1500px' direction='column'>
-            <Center height='80vh'>
-                <Box width='35vw'>
-                    <Text display='inline' fontSize="3xl" color="white">
+        <Flex height="calc(100vh - 150px)" maxW="1500px" direction="column">
+            <Center height="80vh">
+                <Box width="35vw">
+                    <Text display="inline" fontSize="3xl" color="white">
                         The Husky Coding Project objective is to break the
                         circular reasoning of
                     </Text>
-                    <Text display='inline' fontSize="3xl" color="brand.pink">
+                    <Text display="inline" fontSize="3xl" color="brand.pink">
                         {} "needing experience to get experience"
                     </Text>
-                    <Text display='inline' fontSize="3xl" color="white">
+                    <Text display="inline" fontSize="3xl" color="white">
                         {} that prevents hundreds of students from landing their
                         first software internship or job.
                     </Text>
                 </Box>
-                <Box width='15vw' />
-                <Box width='35vw'>
+                <Box width="15vw" />
+                <Box width="35vw">
                     <Center>
                         <Image
                             width={200}
@@ -54,7 +54,7 @@ function Title() {
                             alt="HCP Logo"
                         />
                     </Center>
-                    <Box height='30px' />
+                    <Box height="30px" />
                     <Center>
                         <Text as="kbd" fontSize="4xl" color="white">
                             Let's Git Good!
@@ -62,14 +62,14 @@ function Title() {
                     </Center>
                 </Box>
             </Center>
-            <Center height='20vh'>
+            <Center height="20vh">
                 <IconButton
-                    variant='ghost'
+                    variant="ghost"
                     isRound={true}
                     aria-label="Scroll Down"
-                    size='lg'
-                    zIndex='1'
-                    border='3px solid transparent'
+                    size="lg"
+                    zIndex="1"
+                    border="3px solid transparent"
                     onClick={() => {
                         document
                             .getElementById("featured-events")
@@ -81,8 +81,8 @@ function Title() {
                     }}
                     icon={
                         <FontAwesomeIcon
-                            height='30px'
-                            color='white'
+                            height="30px"
+                            color="white"
                             icon={faArrowDown}
                         />
                     }
@@ -99,49 +99,49 @@ function TitleMobile() {
     });
     return (
         <Flex
-            height='calc(100vh - 150px)'
-            maxW='1500px'
-            direction='column'
+            height="calc(100vh - 150px)"
+            maxW="1500px"
+            direction="column"
             marginTop="20px"
         >
-            <Center height='80vh'>
-                <Box width='70vw'>
+            <Center height="80vh">
+                <Box width="70vw">
                     <Text
-                        display='inline'
+                        display="inline"
                         fontSize="2xl"
                         color="white"
-                        fontStyle='italic'
+                        fontStyle="italic"
                     >
                         The Husky Coding Project breaks the circular reasoning
                         of
                     </Text>
                     <Text
-                        display='inline'
+                        display="inline"
                         fontSize="2xl"
                         color="brand.pink"
-                        fontStyle='italic'
+                        fontStyle="italic"
                     >
                         {} "needing experience to get experience"
                     </Text>
                     <Text
-                        display='inline'
+                        display="inline"
                         fontSize="2xl"
                         color="white"
-                        fontStyle='italic'
+                        fontStyle="italic"
                     >
                         {} that prevents hundreds of students from landing their
                         first software internship or job.
                     </Text>
                 </Box>
             </Center>
-            <Center height='20vh'>
+            <Center height="20vh">
                 <IconButton
-                    variant='ghost'
+                    variant="ghost"
                     isRound={true}
                     aria-label="Scroll Down"
-                    size='lg'
-                    zIndex='1'
-                    border='3px solid transparent'
+                    size="lg"
+                    zIndex="1"
+                    border="3px solid transparent"
                     onClick={() => {
                         document
                             .getElementById(
@@ -157,8 +157,8 @@ function TitleMobile() {
                     }}
                     icon={
                         <FontAwesomeIcon
-                            height='30px'
-                            color='white'
+                            height="30px"
+                            color="white"
                             icon={faArrowDown}
                         />
                     }
@@ -206,7 +206,7 @@ function Events(props: { count: number }) {
     });
 
     return (
-        <Flex dir="row" width='100%' justify='center'>
+        <Flex dir="row" width="100%" justify="center">
             {events.map((event, idx) => {
                 if (idx < props.count) {
                     return (
@@ -243,33 +243,33 @@ function FeaturedEvents() {
     }
     return (
         <Flex
-            id='featured-events'
-            height='550px'
-            direction='column'
-            width='80vw'
-            maxW='1500px'
-            scrollMarginTop='100px'
+            id="featured-events"
+            height="550px"
+            direction="column"
+            width="80vw"
+            maxW="1500px"
+            scrollMarginTop="100px"
         >
             <Box
-                bgGradient='linear(to-b, brand.mid_purple, brand.hot_pink)'
-                borderRadius='30px'
-                height='450px'
-                width='100%'
+                bgGradient="linear(to-b, brand.mid_purple, brand.hot_pink)"
+                borderRadius="30px"
+                height="450px"
+                width="100%"
             >
                 <Center>
                     <Text
-                        as='h2'
-                        color='white'
+                        as="h2"
+                        color="white"
                         fontSize={["4xl", "4xl", "6xl"]}
-                        fontWeight='semibold'
-                        marginTop='8'
-                        align='center'
-                        width='70%'
+                        fontWeight="semibold"
+                        marginTop="8"
+                        align="center"
+                        width="70%"
                     >
                         {count === 1 ? "Featured Event" : "Featured Events"}
                     </Text>
                 </Center>
-                <Center marginTop='35px'>
+                <Center marginTop="35px">
                     <Events count={count} />
                 </Center>
             </Box>
@@ -289,61 +289,56 @@ function MeetingInfo() {
 
     return (
         <Flex
-            id='meeting-info'
-            height='700px'
-            direction='column'
-            width='80vw'
-            maxW='1500px'
+            id="meeting-info"
+            height="700px"
+            direction="column"
+            width="80vw"
+            maxW="1500px"
             bgGradient={
                 isLargerThan450
                     ? "linear(to-t, brand.mid_purple, brand.hot_pink)"
                     : "linear(to-b, brand.mid_purple, brand.hot_pink)"
             }
-            borderRadius='30px'
-            alignItems='center'
-            paddingBottom='10px'
+            borderRadius="30px"
+            alignItems="center"
+            paddingBottom="10px"
         >
             <Text
-                as='h2'
-                color='white'
+                as="h2"
+                color="white"
                 fontSize={["3xl", "4xl", "5xl", "6xl"]}
-                fontWeight='semibold'
-                marginTop='8'
-                align='center'
-                width='70%'
+                fontWeight="semibold"
+                marginTop="8"
+                align="center"
+                width="70%"
             >
                 General Meetings
             </Text>
             <Text
-                width='70%'
-                marginTop='30px'
-                marginBottom='50px'
+                width="70%"
+                marginTop="30px"
+                marginBottom="50px"
                 fontSize={["md", "xl", "2xl"]}
-                color='brand.light_brown'
-                align='center'
+                color="brand.light_brown"
+                align="center"
             >
-                Join us every Tuesday from 6:00pm to 7:30pm PST at CSE2
-                G04!
+                Join us every Tuesday from 6:00pm to 7:30pm PST at CSE2 G04!
             </Text>
-            <Box
-                width='70%'
-                height='370px'
-            >
+            <Box width="70%" height="370px">
                 <Room />
             </Box>
             {isLargerThan1000 ? (
                 <Text
-                    width='70%'
-                    marginTop='5px'
-                    fontSize='md'
-                    color='brand.light_brown'
-                    align='center'
+                    width="70%"
+                    marginTop="5px"
+                    fontSize="md"
+                    color="brand.light_brown"
+                    align="center"
                 >
-                    Gates Center Room G04 @ University of
-                    Washington
+                    Gates Center Room G04 @ University of Washington
                 </Text>
             ) : (
-                <Spacer paddingBottom='20px' />
+                <Spacer paddingBottom="20px" />
             )}
         </Flex>
     );
@@ -363,31 +358,31 @@ function Values() {
     ];
     return (
         <VStack
-            id='club-values'
-            minHeight='400px'
-            height='fit-content'
-            direction='column'
-            width='80vw'
-            alignItems='center'
-            marginBottom='150px'
+            id="club-values"
+            minHeight="400px"
+            height="fit-content"
+            direction="column"
+            width="80vw"
+            alignItems="center"
+            marginBottom="150px"
         >
             <Text
-                as='h2'
-                color='white'
+                as="h2"
+                color="white"
                 fontSize={["4xl", "4xl", "6xl"]}
-                fontWeight='semibold'
-                marginTop='8'
-                align='center'
+                fontWeight="semibold"
+                marginTop="8"
+                align="center"
             >
                 Club Values
             </Text>
-            <Wrap spacing='20' justify='center' paddingTop='80px'>
+            <Wrap spacing="20" justify="center" paddingTop="80px">
                 {slogans.map((slogan) => (
                     <WrapItem key={slogan.name}>
                         <VStack
-                            direction='column'
-                            width='200px'
-                            alignItems='center'
+                            direction="column"
+                            width="200px"
+                            alignItems="center"
                         >
                             <Image
                                 width={125}
@@ -397,10 +392,10 @@ function Values() {
                                 alt={slogan.name}
                             />
                             <Text
-                                marginTop='25px'
-                                fontSize='2xl'
-                                color='white'
-                                align='center'
+                                marginTop="25px"
+                                fontSize="2xl"
+                                color="white"
+                                align="center"
                             >
                                 {slogan.name}
                             </Text>
@@ -427,7 +422,7 @@ export default function Home() {
     }, []);
 
     return (
-        <VStack spacing='150px'>
+        <VStack spacing="150px">
             {isSmallerThan1200 ? <TitleMobile /> : <Title />}
             {isLargerThan450 && <FeaturedEvents />}
             <MeetingInfo />

@@ -22,7 +22,7 @@ const inter = Inter({ subsets: ["latin"] });
 function Title() {
     return (
         <Center>
-            <Text as='h2' color='white' fontSize='6xl' fontWeight='semibold'>
+            <Text as="h2" color="white" fontSize="6xl" fontWeight="semibold">
                 Projects
             </Text>
         </Center>
@@ -40,22 +40,22 @@ function SearchBar(props: ISearchBar) {
         <Center>
             <InputGroup>
                 <InputLeftElement
-                    pointerEvents='none'
+                    pointerEvents="none"
                     paddingLeft={2}
                     paddingTop={2}
                 >
                     <FontAwesomeIcon
-                        color='grey'
-                        height='20px'
+                        color="grey"
+                        height="20px"
                         icon={faSearch}
                     />
                 </InputLeftElement>
                 <Input
-                    placeholder='Search for projects...'
-                    textColor='white'
-                    width='80vw'
-                    borderRadius='2xl'
-                    maxW='1500px'
+                    placeholder="Search for projects..."
+                    textColor="white"
+                    width="80vw"
+                    borderRadius="2xl"
+                    maxW="1500px"
                     size="lg"
                     onChange={(e: ChangeEvent<HTMLInputElement>) =>
                         setSearchTerm(e.target.value)
@@ -130,10 +130,10 @@ function DisplayProjects(props: IDisplayProps) {
         return (
             <VStack paddingBottom={100}>
                 <Text
-                    as='h6'
-                    color='white'
-                    fontSize='2xl'
-                    fontWeight='semibold'
+                    as="h6"
+                    color="white"
+                    fontSize="2xl"
+                    fontWeight="semibold"
                 >
                     No projects found :(
                 </Text>
@@ -143,7 +143,7 @@ function DisplayProjects(props: IDisplayProps) {
     return (
         <SimpleGrid
             columns={isSmallerThan450 ? undefined : [1, 1, 2, 2, 3]}
-            spacing='40px'
+            spacing="40px"
         >
             {filteredProjects.map((project: IProjectInfo) => (
                 <ProjectCard
@@ -224,7 +224,7 @@ export default function Projects() {
     }, []);
 
     return (
-        <VStack spacing='40px'>
+        <VStack spacing="40px">
             <Title />
             <SearchBar setSearchTerm={setSearchTerm} />
             <DisplayProjects
