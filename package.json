@@ -43,6 +43,6 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^1.5.3",
-    "chai": "^4.3.7"
+    "chai": "^5.0.3"
   }
 }
