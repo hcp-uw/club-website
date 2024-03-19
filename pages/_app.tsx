@@ -7,6 +7,7 @@ import Layout from "@/components/Layout";
 // @ts-ignore
 // import { AuthContextProvider } from "@/context/AuthContext";
 
+
 const colors = {
     brand: {
         purple: "#894AD9",
@@ -23,6 +24,7 @@ const colors = {
 const theme = extendTheme({ colors });
 
 export default function App({ Component, pageProps }: AppProps) {
+
     return (
         <ChakraProvider theme={theme}>
             <Layout>

@@ -3,6 +3,7 @@ import * as leads from "@/back_end/api/leads.js";
 import * as events from "@/back_end/api/events.js";
 import * as projects from "@/back_end/api/projects.js";
 import * as auth from "@/back_end/api/auth.js";
+import * as github from "@/back_end/api/github.js";
 import emailjs from "@emailjs/browser";
 import { parseEvents, parsePeople, parseProjects } from './parsers';
 
@@ -10,6 +11,34 @@ import { parseEvents, parsePeople, parseProjects } from './parsers';
 // const delay = ms => new Promise(
 //     resolve => setTimeout(resolve, ms)
 //   );
+
+export const getMembersForGithubTeams = async (callback) => {
+    const data = await github.getMembersForTeams();
+    if (data) {
+        callback(data);
+    } else {
+        callback([]);
+    }
+}
+
+
+export const getAllGithubMembers = async (callback) => {
+    const data = await github.getMembers();
+    if (data) {
+        callback(data);
+    } else {
+        callback([]);
+    }
+}
+
+export const getAllGithubTeams = async (callback) => {
+    const data = await github.getTeams();
+    if (data) {
+        callback(data);
+    } else {
+        callback([]);
+    }
+}
 
 export const getFeaturedEvents = async (callback) => {
     const data = await events.getEventsBasedOnTime(true);
