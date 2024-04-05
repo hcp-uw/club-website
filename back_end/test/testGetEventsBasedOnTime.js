@@ -1,10 +1,10 @@
-import { getEventsBasedOnTime } from "../api/events.js";
 import { assert } from "chai";
+import { getEventsBasedOnTime } from "../api/events.js";
 
 describe("Testing event endpoints", () => {
     it("Get upcoming events", async () => {
-        let get = await getEventsBasedOnTime(true, 4, "Test/Events");
-        let expected = [
+        const get = await getEventsBasedOnTime(true, 4, "Test/Events");
+        const expected = [
             {
                 Attendees: 21,
                 Date: "2192-10-20T16:00-07:00",
@@ -19,8 +19,8 @@ describe("Testing event endpoints", () => {
     });
 
     it("Get old events", async () => {
-        let get = await getEventsBasedOnTime(false, 2, "Test/Events");
-        let expected = [
+        const get = await getEventsBasedOnTime(false, 2, "Test/Events");
+        const expected = [
             {
                 Attendees: 69,
                 Date: "2007-10-20T16:00-07:00",
@@ -44,8 +44,8 @@ describe("Testing event endpoints", () => {
     });
 
     it("Get old events with limit", async () => {
-        let get = await getEventsBasedOnTime(false, 1, "Test/Events");
-        let expected = [
+        const get = await getEventsBasedOnTime(false, 1, "Test/Events");
+        const expected = [
             {
                 Attendees: 24,
                 Date: "2008-10-20T16:00-07:00",

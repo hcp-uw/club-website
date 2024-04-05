@@ -1,10 +1,10 @@
-import { getActiveProjects } from "../api/projects.js";
 import { assert } from "chai";
+import { getActiveProjects } from "../api/projects.js";
 
 describe("Testing Get Active Projects.", () => {
     it("Active", async () => {
-        let rsp = await getActiveProjects(true, "Test/Projects");
-        let expected = [
+        const rsp = await getActiveProjects(true, "Test/Projects");
+        const expected = [
             {
                 Category: "Web_Project",
                 Completed: false,
@@ -22,8 +22,8 @@ describe("Testing Get Active Projects.", () => {
     });
 
     it("Inactive", async () => {
-        let rsp = await getActiveProjects(false, "Test/Projects");
-        let expected = [
+        const rsp = await getActiveProjects(false, "Test/Projects");
+        const expected = [
             {
                 Category: "Web_project",
                 Completed: true,

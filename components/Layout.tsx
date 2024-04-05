@@ -1,9 +1,9 @@
-import Head from "next/head";
 import { Box, Flex } from "@chakra-ui/react";
-import { useMediaQuery } from '@chakra-ui/react'
+import { useMediaQuery } from "@chakra-ui/react";
+import Head from "next/head";
 import { ReactElement, useEffect, useState } from "react";
-import Header from "./Header";
 import Footer from "./Footer";
+import Header from "./Header";
 import Sidebar from "./Sidebar";
 
 export default function Layout({ children }: { children: ReactElement }) {
@@ -16,7 +16,7 @@ export default function Layout({ children }: { children: ReactElement }) {
 
     // This effect hides/shows the header on scroll
     useEffect(() => {
-        if (typeof window !== 'undefined') {
+        if (typeof window !== "undefined") {
             let lastScrollY = window.pageYOffset;
 
             const updateScrollDirection = () => {
@@ -32,7 +32,7 @@ export default function Layout({ children }: { children: ReactElement }) {
             };
             window.addEventListener("scroll", updateScrollDirection);
             return () => {
-                if (typeof window !== 'undefined') {
+                if (typeof window !== "undefined") {
                     window.removeEventListener("scroll", updateScrollDirection);
                 }
             };
@@ -58,26 +58,29 @@ export default function Layout({ children }: { children: ReactElement }) {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <Flex
-                flexDirection='column'
-                minH='100vh'
-                bgGradient='linear(to-b, brand.blue, brand.dark_blue)'
+                flexDirection="column"
+                minH="100vh"
+                bgGradient="linear(to-b, brand.blue, brand.dark_blue)"
             >
                 <Box
-                    position='fixed'
+                    position="fixed"
                     top={scrollDirection === "up" ? "0px" : "-150px"}
-                    transitionProperty='all'
-                    transitionTimingFunction='cubic-bezier(0.4, 0, 0.2, 1)'
-                    transitionDuration='500ms'
-                    width='100vw'
-                    backdropFilter='blur(10px)'
-                    zIndex='98'
+                    transitionProperty="all"
+                    transitionTimingFunction="cubic-bezier(0.4, 0, 0.2, 1)"
+                    transitionDuration="500ms"
+                    width="100vw"
+                    backdropFilter="blur(10px)"
+                    zIndex="98"
                 >
                     <Header showSidebar={showSidebar} />
                 </Box>
                 {!isLargerThan1200 && (
                     <Sidebar show={showSide} handleShow={showSidebar} />
                 )}
-                <Box marginTop={isLargerThan1200 ? '150px' : '100px'} width='100vw'>
+                <Box
+                    marginTop={isLargerThan1200 ? "150px" : "100px"}
+                    width="100vw"
+                >
                     {children}
                 </Box>
                 <Footer />

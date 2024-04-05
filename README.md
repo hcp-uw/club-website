@@ -4,10 +4,10 @@
 
 # Husky Coding Project Official Website
 
-The first iteration of [the Husky Coding Project Official Website](https://hcp-uw.web.app/home) built with [React](https://reactjs.org/) leveraging [Material UI as our components library](https://mui.com/). Hosted with [Firebase](https://firebase.google.com/).
+The [the Husky Coding Project Official Website](https://hcp-uw.vercel.app/home) built with [NextJS](https://nextjs.org/) leveraging [ChakraUI](https://chakra-ui.com/) as our components library. Hosted with [Vercel](https://vercel.com/).
 
-<a href="https://github.com/hcp-uw/club-website"><img alt="Latest Release" src="https://img.shields.io/badge/latest-v1.0.0-brightgreen"></a>
-<a href="https://hcp-uw.web.app/home"><img alt="Successful Production" src="https://img.shields.io/badge/production-success-brightgreen"></a>
+<a href="https://github.com/hcp-uw/club-website"><img alt="Latest Release" src="https://img.shields.io/badge/latest-v2.0.0-brightgreen"></a>
+<a href="https://hcp-uw.vercel.app/home"><img alt="Successful Production" src="https://img.shields.io/badge/production-success-brightgreen"></a>
 
 </div>
 
@@ -23,29 +23,17 @@ git clone https://github.com/hcp-uw/club-website.git
 ```
 3) Go to `${HOME}/club-website/.`
 ```sh
-cd {HOME}/club-website/
+cd ${HOME}/club-website/
 ```
-4) Install all dependencies using `yarn install`
+4) Install all dependencies using `yarn` (or `yarn install`)
 ```sh
-yarn install
-```
-<!-- 5) Run the application using `yarn start`
-```sh
-yarn start
-``` -->
-5) Go to club-website/src/back-end/
-```sh
-cd club-website/src/back-end/
-```
-6) Install back-end dependencies
-```sh
-npm install
+yarn
 ```
 
 ## Running the App Locally 
 
 ```sh
-yarn start
+yarn dev
 ```
 
 Runs the app in the development mode.\
@@ -75,32 +63,24 @@ Your app is ready to be deployed!
 
 ```sh
 yarn lint
-# or
-npm run lint
 ```
 
 To apply fixes:
 
 ```shell
 yarn lint --apply
-# or
-npm run lint -- --apply
 ```
 
-To apply suggested fixes:
+To apply unsafe fixes:
 
 ```shell
-yarn lint --apply-suggested
-# or
-npm run lint -- --apply-suggested
+yarn lint --apply-unsafe
 ```
 
 ### Formatter
 
 ```sh
 yarn fmt
-# or
-npm run fmt
 ```
 
 For more information about Linter and Formatter, please visit https://docs.rome.tools/.
@@ -135,5 +115,3 @@ $ git push origin v2.0.0
 <a href="https://github.com/hcp-uw/club-website/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=hcp-uw/club-website" />
 </a>
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

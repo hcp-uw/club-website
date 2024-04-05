@@ -1,10 +1,8 @@
+import Layout from "@/components/Layout";
 import "@/styles/globals.css";
-import type { AppProps } from "next/app";
 import { ChakraProvider } from "@chakra-ui/react";
 import { extendTheme, theme as baseTheme } from "@chakra-ui/react";
-// @ts-ignore
-import Layout from "@/components/Layout";
-// @ts-ignore
+import { SessionProvider } from "next-auth/react";
 // import { AuthContextProvider } from "@/context/AuthContext";
 
 
@@ -23,13 +21,14 @@ const colors = {
 };
 const theme = extendTheme({ colors });
 
-export default function App({ Component, pageProps }: AppProps) {
-
+export default function App({ Component, pageProps, session }: any) {
     return (
-        <ChakraProvider theme={theme}>
-            <Layout>
-                <Component {...pageProps} />
-            </Layout>
-        </ChakraProvider>
+        <SessionProvider session={session}>
+            <ChakraProvider theme={theme}>
+                <Layout>
+                    <Component {...pageProps} />
+                </Layout>
+            </ChakraProvider>
+        </SessionProvider>
     );
 }

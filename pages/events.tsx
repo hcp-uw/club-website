@@ -1,33 +1,18 @@
-import { Inter } from "@next/font/google";
-import {
-    Center,
-    VStack,
-    Text,
-    Spinner,
-    SimpleGrid,
-} from "@chakra-ui/react";
-import { useMediaQuery } from '@chakra-ui/react'
-// @ts-ignore
-import { getAllEvents } from "@/utils/api";
-import { lazy, useEffect, useState } from "react";
-// @ts-ignore
-import { IEventInfo } from "@/utils/parsers";
-// @ts-ignore
-import EventPanel from "@/components/EventPanel";
-// @ts-ignore
 import EventCardFull from "@/components/EventCardFull";
+import EventPanel from "@/components/EventPanel";
+import { getAllEvents } from "@/utils/api";
+import { IEventInfo } from "@/utils/parsers";
+import { Center, SimpleGrid, Spinner, Text, VStack } from "@chakra-ui/react";
+import { useMediaQuery } from "@chakra-ui/react";
+import { Inter } from "@next/font/google";
+import { lazy, useEffect, useState } from "react";
 // @ts-ignore
 const inter = Inter({ subsets: ["latin"] });
 
 function Title() {
     return (
         <Center>
-            <Text
-                as='h2'
-                color='white'
-                fontSize='6xl'
-                fontWeight='semibold'
-            >
+            <Text as="h2" color="white" fontSize="6xl" fontWeight="semibold">
                 Events
             </Text>
         </Center>
@@ -53,17 +38,20 @@ function DisplayEvents(props: IDisplayProps) {
     if (loading) {
         return (
             <Spinner
-                thickness='4px'
-                speed='0.65s'
-                color='brand.purple'
-                size='xl'
+                thickness="4px"
+                speed="0.65s"
+                color="brand.purple"
+                size="xl"
             />
-        )
+        );
     }
 
     if (isSmallerThan1200) {
         return (
-            <SimpleGrid columns={isSmallerThan450 ? undefined : [1, 1, 2, 2, 3]} spacing='40px'>
+            <SimpleGrid
+                columns={isSmallerThan450 ? undefined : [1, 1, 2, 2, 3]}
+                spacing="40px"
+            >
                 {events.map((event) => (
                     <EventCardFull
                         key={event.name}
@@ -76,12 +64,12 @@ function DisplayEvents(props: IDisplayProps) {
                     />
                 ))}
             </SimpleGrid>
-        )
+        );
     }
 
     return (
         <VStack>
-            {events.map((event: IEventInfo) =>
+            {events.map((event: IEventInfo) => (
                 <EventPanel
                     key={event.name}
                     name={event.name}
@@ -89,8 +77,8 @@ function DisplayEvents(props: IDisplayProps) {
                     location={event.location}
                     description={event.description}
                     image={event.image ?? "/HCPLogo.webp"}
-                />              
-            )}
+                />
+            ))}
         </VStack>
     );
 }
@@ -108,14 +96,17 @@ export default function Events() {
         const getData = (data: IEventInfo[]) => {
             setEvents(data);
             setLoading(false);
-        }
+        };
         getAllEvents(getData, true);
     }, []);
 
     return (
-        <VStack spacing='40px'>
+        <VStack spacing="40px">
             <Title />
-            <DisplayEvents events={events} loading={loading || events.length === 0}/>
+            <DisplayEvents
+                events={events}
+                loading={loading || events.length === 0}
+            />
         </VStack>
     );
 }

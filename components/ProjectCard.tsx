@@ -1,12 +1,12 @@
 import {
-    Image,
-    Text,
-    VStack,
+    Box,
     Card,
     CardBody,
     CardFooter,
-    Box,
+    Image,
     Skeleton,
+    Text,
+    VStack,
 } from "@chakra-ui/react";
 import { SpecialLinkButton } from "./Parts";
 
@@ -36,62 +36,62 @@ export default function ProjectCard(props: IProjectCard) {
         description,
         members,
         image,
-        loading
+        loading,
     } = props;
 
     return (
         <Card
-            variant='elevated'
-            size='sm'
+            variant="elevated"
+            size="sm"
             key={name}
-            width='300px'
-            height='375px'
-            borderRadius='15px'
-            marginX='25px'
-            background='brand.mid_white'
+            width="300px"
+            height="375px"
+            borderRadius="15px"
+            marginX="25px"
+            background="brand.mid_white"
             color="black"
-            borderWidth='5px'
+            borderWidth="5px"
             borderColor={completed ? "black" : "green.500"}
         >
-            <CardBody alignContent='flex-start'>
+            <CardBody alignContent="flex-start">
                 <Skeleton isLoaded={!loading}>
                     <Image
                         src={image}
                         alt={name}
-                        borderRadius='15px'
-                        width='100%'
-                        height='150px'
-                        objectFit='cover'
+                        borderRadius="15px"
+                        width="100%"
+                        height="150px"
+                        objectFit="cover"
                     />
                 </Skeleton>
-                <VStack paddingTop='10px' direction='column' spacing='2'>
-                    <Skeleton isLoaded={!loading} width='100%'>
-                        <Box justifyContent='flex-start' width='100%'>
-                            <Text fontSize='lg' fontWeight='bold'>
+                <VStack paddingTop="10px" direction="column" spacing="2">
+                    <Skeleton isLoaded={!loading} width="100%">
+                        <Box justifyContent="flex-start" width="100%">
+                            <Text fontSize="lg" fontWeight="bold">
                                 {name}
                             </Text>
                         </Box>
                     </Skeleton>
-                    <Skeleton isLoaded={!loading} width='100%'>
-                        <Box justifyContent='flex-start' width='100%'>
-                            <Text fontSize='sm'>
+                    <Skeleton isLoaded={!loading} width="100%">
+                        <Box justifyContent="flex-start" width="100%">
+                            <Text fontSize="sm">
                                 {startDate.toLocaleDateString()} •{" "}
-                                {completed ? endDate.toLocaleDateString() : "Present"}
+                                {completed
+                                    ? endDate.toLocaleDateString()
+                                    : "Present"}
                             </Text>
                         </Box>
                     </Skeleton>
-                    <Skeleton isLoaded={!loading} width='100%'>
-                        <Box justifyContent='flex-start' width='100%'>
-                            <Text fontSize='xs'>
-                                {description}
-                            </Text>
+                    <Skeleton isLoaded={!loading} width="100%">
+                        <Box justifyContent="flex-start" width="100%">
+                            <Text fontSize="xs">{description}</Text>
                         </Box>
                     </Skeleton>
                 </VStack>
             </CardBody>
-            <CardFooter paddingTop='0px' justifyContent='flex-start'>
+            <CardFooter paddingTop="0px" justifyContent="flex-start">
                 <Skeleton isLoaded={!loading}>
-                    <SpecialLinkButton path={gitLink ?? ""} text='Details' />
+                    <SpecialLinkButton path={gitLink ?? ""} text="Details" />
                 </Skeleton>
             </CardFooter>
         </Card>

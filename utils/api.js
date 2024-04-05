@@ -1,11 +1,10 @@
+import * as auth from "@/back_end/api/auth.js";
+import * as events from "@/back_end/api/events.js";
 // import axios from 'axios';
 import * as leads from "@/back_end/api/leads.js";
-import * as events from "@/back_end/api/events.js";
 import * as projects from "@/back_end/api/projects.js";
-import * as auth from "@/back_end/api/auth.js";
-import * as github from "@/back_end/api/github.js";
 import emailjs from "@emailjs/browser";
-import { parseEvents, parsePeople, parseProjects } from './parsers';
+import { parseEvents, parsePeople, parseProjects } from "./parsers";
 
 // For dummy endpoints
 // const delay = ms => new Promise(
@@ -92,7 +91,6 @@ export const sendEmail = async (name, email, notes) => {
         message: notes,
         reply_to: email,
     };
-    console.log(name);
 
     emailjs
         .send(
@@ -118,7 +116,7 @@ export const exchangeAuth = async (user) => {
     } else {
         return "";
     }
-}
+};
 
 export const getGithubUser = async (token) => {
     const username = await auth.getGithubUser(token);
@@ -138,5 +136,4 @@ export const checkMembership = async (username) => {
 export const checkAdmin = async (authObject) => {
     const isAdmin = await auth.checkAdmin(authObject);
     return isAdmin;
-}
-
+};

@@ -1,4 +1,4 @@
-import { ref, get } from "firebase/database";
+import { get, ref } from "firebase/database";
 import { database } from "./index.js";
 
 // Returns all Data passed through the queryString

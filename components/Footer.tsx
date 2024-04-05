@@ -1,41 +1,45 @@
 import {
     Center,
+    HStack,
     Image,
     Link,
+    Spacer,
     Text,
     VStack,
-    HStack,
-    Spacer,
 } from "@chakra-ui/react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { IconDefinition, faEnvelope } from "@fortawesome/free-solid-svg-icons";
+// Prevent fontawesome from adding its CSS since we did it manually above:
+import { config } from "@fortawesome/fontawesome-svg-core";
+import "@fortawesome/fontawesome-svg-core/styles.css";
 import {
-    faInstagram,
     faFacebookSquare,
+    faInstagram,
     faLinkedin,
 } from "@fortawesome/free-brands-svg-icons";
+import { IconDefinition, faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+config.autoAddCss = false;
 
 interface IIcon {
-    key: string,
-    link: string,
-    icon: IconDefinition,
+    key: string;
+    link: string;
+    icon: IconDefinition;
 }
 
 export default function Footer() {
     const icons: IIcon[] = [
         {
             key: "instagram",
-            link: "https://instagram.com/huskycodingproject?igshid=YmMyMTA2M2Y=",
+            link: "https://instagram.com/hcp.uw",
             icon: faInstagram,
         },
         {
             key: "linkedin",
-            link: "https://www.linkedin.com/company/husky-coding-project/",
+            link: "https://linkedin.com/company/hcp-uw",
             icon: faLinkedin,
         },
         {
             key: "facebook",
-            link: "https://www.facebook.com/profile.php?id=100087380841446",
+            link: "https://facebook.com/hcp.uw",
             icon: faFacebookSquare,
         },
         {
@@ -43,10 +47,10 @@ export default function Footer() {
             link: "mailto:hcpuw@uw.edu",
             icon: faEnvelope,
         },
-    ]
+    ];
 
     return (
-        <Center height='300px'>
+        <Center height="300px">
             <VStack justifyContent="center">
                 <Link href="/">
                     <Image
@@ -58,22 +62,20 @@ export default function Footer() {
                 <Spacer />
                 <Spacer />
                 <HStack spacing={4}>
-                {
-                    icons.map(icon => (
+                    {icons.map((icon) => (
                         <Link key={icon.key} href={icon.link}>
                             <FontAwesomeIcon
                                 size="2x"
-                                color='white'
+                                color="white"
                                 icon={icon.icon}
                             />
                         </Link>
-                    ))
-                }
+                    ))}
                 </HStack>
                 <Spacer />
                 <Spacer />
                 <Spacer />
-                <Text fontSize='xs' color='white' textAlign="center">
+                <Text fontSize="xs" color="white" textAlign="center">
                     Copyright © 2023 Husky Coding Project. All Rights Reserved
                 </Text>
             </VStack>
