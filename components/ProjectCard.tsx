@@ -46,12 +46,12 @@ export default function ProjectCard(props: IProjectCard) {
             key={name}
             width="300px"
             height="375px"
-            borderRadius="15px"
+            borderRadius="20px"
             marginX="25px"
             background="brand.mid_white"
             color="black"
             borderWidth="5px"
-            borderColor={completed ? "black" : "green.500"}
+            borderColor={"white"}
         >
             <CardBody alignContent="flex-start">
                 <Skeleton isLoaded={!loading}>
@@ -75,9 +75,9 @@ export default function ProjectCard(props: IProjectCard) {
                     <Skeleton isLoaded={!loading} width="100%">
                         <Box justifyContent="flex-start" width="100%">
                             <Text fontSize="sm">
-                                {startDate.toLocaleDateString()} •{" "}
+                                {startDate.toLocaleDateString('UTC', {month: "long", year: 'numeric'})} -{" "}
                                 {completed
-                                    ? endDate.toLocaleDateString()
+                                    ? endDate.toLocaleDateString('UTC', {month: "long", year: 'numeric'})
                                     : "Present"}
                             </Text>
                         </Box>

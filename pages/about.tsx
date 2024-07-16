@@ -63,7 +63,7 @@ export default function About() {
             <Flex
                 justifyContent="center"
                 flexWrap="wrap"
-                width="80%"
+                width="65vw"
                 margin="auto"
                 paddingTop="30px"
             >
@@ -116,7 +116,7 @@ export default function About() {
             <Flex
                 justify="center"
                 margin="auto"
-                width="80vw"
+                width="65vw"
                 marginTop="20px"
                 maxWidth="1500px"
                 direction={isSmallerThan1400 ? "column" : "row"}
@@ -172,7 +172,7 @@ export default function About() {
             <Flex
                 justify="center"
                 margin="auto"
-                width="80vw"
+                width="65vw"
                 marginTop={isSmallerThan1400 ? "100px" : "150px"}
                 maxWidth="1500px"
                 direction={isSmallerThan1400 ? "column" : "row"}
