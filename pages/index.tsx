@@ -318,10 +318,15 @@ function MeetingInfo() {
                 color="brand.light_brown"
                 align="center"
             >
-                Join us every Tuesday from 6:00pm to 7:30pm PST at CSE2 G04!
-            </Text>
-            <Box width="70%" height="370px">
+                Join us every Tuesday from 6:00pm to 7:30pm PST at MOR Hall 220!
+            </Text> 
+            <Box width="60%" height="370px" style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+            }}>
                 <Room />
+
             </Box>
             {isLargerThan1000 ? (
                 <Text
@@ -331,7 +336,7 @@ function MeetingInfo() {
                     color="brand.light_brown"
                     align="center"
                 >
-                    Gates Center Room G04 @ University of Washington
+                    More Hall 220 @ University of Washington
                 </Text>
             ) : (
                 <Spacer paddingBottom="20px" />

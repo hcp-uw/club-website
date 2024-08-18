@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { useMediaQuery } from '@react-hook/media-query';
 
-
 const Room = () => {
  const [isClient, setIsClient] = useState(false);
  const isLargeScreen = useMediaQuery('(min-width: 1000px)');
@@ -52,6 +51,3 @@ const Room = () => {
 
 
 export default Room;
-
-
-
