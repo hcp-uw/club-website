@@ -5,6 +5,7 @@ import { extendTheme, theme as baseTheme } from "@chakra-ui/react";
 import { SessionProvider } from "next-auth/react";
 // import { AuthContextProvider } from "@/context/AuthContext";
 
+
 const colors = {
     brand: {
         purple: "#894AD9",

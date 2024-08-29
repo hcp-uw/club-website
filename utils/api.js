@@ -11,6 +11,34 @@ import { parseEvents, parsePeople, parseProjects } from "./parsers";
 //     resolve => setTimeout(resolve, ms)
 //   );
 
+export const getMembersForGithubTeams = async (callback) => {
+    const data = await github.getMembersForTeams();
+    if (data) {
+        callback(data);
+    } else {
+        callback([]);
+    }
+}
+
+
+export const getAllGithubMembers = async (callback) => {
+    const data = await github.getMembers();
+    if (data) {
+        callback(data);
+    } else {
+        callback([]);
+    }
+}
+
+export const getAllGithubTeams = async (callback) => {
+    const data = await github.getTeams();
+    if (data) {
+        callback(data);
+    } else {
+        callback([]);
+    }
+}
+
 export const getFeaturedEvents = async (callback) => {
     const data = await events.getEventsBasedOnTime(true);
     if (data) {

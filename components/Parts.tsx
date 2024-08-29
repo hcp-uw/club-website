@@ -260,7 +260,7 @@ export const SpecialLinkButton = (props: ILinkButton) => {
         >
             <Button
                 rounded="lg"
-                bgGradient="linear(to-b, brand.purple, brand.dark_purple)"
+                bgGradient="linear(to-b, #8f29e6, #6619a8)"
                 color="white"
                 shadow="lg"
                 height="40px"

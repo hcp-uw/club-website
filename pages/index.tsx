@@ -24,7 +24,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 function Title() {
     return (
-        <Flex height="calc(100vh - 150px)" maxW="1500px" direction="column">
+        <Flex height="calc(100vh - 150px)" maxW="1200px" direction="column">
             <Center height="80vh">
                 <Box width="35vw">
                     <Text display="inline" fontSize="3xl" color="white">
@@ -68,7 +68,7 @@ function Title() {
                     border="3px solid transparent"
                     onClick={() => {
                         document
-                            .getElementById("featured-events")
+                            .getElementById("meeting-info")
                             ?.scrollIntoView({ behavior: "smooth" });
                     }}
                     _hover={{
@@ -222,7 +222,7 @@ function Events(props: { count: number }) {
 }
 
 function FeaturedEvents() {
-    const [isSmallerThan1400] = useMediaQuery("(max-width: 1400px)", {
+    const [isSmallerThan1400] = useMediaQuery("(max-width: 1200px)", {
         ssr: true,
         fallback: false, // return false on the server, and re-evaluate on the client side
     });
@@ -288,7 +288,7 @@ function MeetingInfo() {
             id="meeting-info"
             height="700px"
             direction="column"
-            width="80vw"
+            width="65vw"
             maxW="1500px"
             bgGradient={
                 isLargerThan450
@@ -425,7 +425,7 @@ export default function Home() {
     return (
         <VStack spacing="150px">
             {isSmallerThan1200 ? <TitleMobile /> : <Title />}
-            {isLargerThan450 && <FeaturedEvents />}
+            {/* {isLargerThan450 && <FeaturedEvents />} */}
             <MeetingInfo />
             <Values />
         </VStack>

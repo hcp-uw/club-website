@@ -40,7 +40,7 @@ export default function Header(props: { showSidebar: () => void }) {
     return (
         <>
             {isLargerThan1200 ? (
-                <Flex h="150px">
+                <Flex h="125px">
                     <Spacer />
                     <Center>
                         <LinkBox>
@@ -73,7 +73,7 @@ export default function Header(props: { showSidebar: () => void }) {
                                     path="/projects"
                                     text="Projects"
                                 />
-                                <HeaderButton path="/events" text="Events" />
+                                {/* <HeaderButton path="/events" text="Events" /> */}
                                 <SpecialHeaderButton
                                     path="/join"
                                     text="Join Us"
