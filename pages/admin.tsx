@@ -4,7 +4,7 @@ import { getProjects } from "@/back_end/api/projects";
 import AdminForm from "@/components/AdminForm";
 import { useSession } from "next-auth/react";
 import ErrorPage from "next/error";
-import { SetStateAction, useEffect, useState } from "react";
+import { type SetStateAction, useEffect, useState } from "react";
 
 // all dates handled as epoch time!!!
 

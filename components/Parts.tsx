@@ -1,6 +1,6 @@
 import { Button, Text } from "@chakra-ui/react";
 import NextLink from "next/link";
-import { FormEventHandler, ReactElement } from "react";
+import type { FormEventHandler, ReactElement } from "react";
 
 interface IButton {
     text: string;
@@ -34,7 +34,6 @@ export const HeaderButton = (props: ILinkButton) => {
         <NextLink href={path}>
             <Button
                 variant="ghost"
-                rounded="xl"
                 height="50px"
                 border="3px solid transparent"
                 _hover={{ border: "3px solid white", cursor: "pointer" }}
@@ -56,7 +55,6 @@ export const SpecialHeaderButton = (props: ILinkButton) => {
     return (
         <NextLink href={path}>
             <Button
-                rounded="xl"
                 bgGradient="linear(to-b, brand.purple, brand.dark_purple)"
                 color="white"
                 shadow="xl"
@@ -92,7 +90,6 @@ export const SpecialIconButton = (props: IIconButton) => {
     return (
         <NextLink href={path} target="_blank">
             <Button
-                rounded="xl"
                 bgGradient="linear(to-b, brand.purple, brand.dark_purple)"
                 color="white"
                 shadow="xl"
@@ -131,7 +128,6 @@ export const SpecialIconSubmitButton = (props: IIconCallbackButton) => {
 
     return (
         <Button
-            rounded="xl"
             bgGradient="linear(to-b, brand.purple, brand.dark_purple)"
             color="white"
             shadow="xl"
@@ -170,7 +166,6 @@ export const SpecialSubmitButton = (props: ICallbackButton) => {
 
     return (
         <Button
-            rounded="xl"
             bgGradient="linear(to-b, brand.purple, brand.dark_purple)"
             color="white"
             shadow="xl"
@@ -203,7 +198,6 @@ export const SidebarButton = (props: ILinkButton) => {
             <Button
                 variant="ghost"
                 width="100%"
-                rounded="xl"
                 height="50px"
                 border="3px solid transparent"
                 _hover={{ border: "3px solid white", cursor: "pointer" }}

@@ -1,23 +1,23 @@
 {
-  "name": "back_end",
-  "version": "1.0.0",
-  "description": "Back End dependencies",
-  "main": "index.js",
-  "type": "module",
-  "directories": {
-    "doc": "docs",
-    "test": "test"
-  },
-  "scripts": {
-    "test": "mocha test/*.js --exit"
-  },
-  "author": "Ben,Frank,Wu",
-  "license": "ISC",
-  "dependencies": {
-    "@supabase/supabase-js": "^2.39.7",
-    "chai": "^4.3.6",
-    "chart.js": "^4.4.1",
-    "firebase": "9.10.0",
-    "mocha": "^10.0.0"
-  }
+    "name": "back_end",
+    "version": "1.0.0",
+    "description": "Back End dependencies",
+    "main": "index.js",
+    "type": "module",
+    "directories": {
+        "doc": "docs",
+        "test": "test"
+    },
+    "scripts": {
+        "test": "mocha test/*.js --exit"
+    },
+    "author": "Ben,Frank,Wu",
+    "license": "ISC",
+    "dependencies": {
+        "@supabase/supabase-js": "^2.39.7",
+        "chai": "^4.3.6",
+        "chart.js": "^4.4.1",
+        "firebase": "9.10.0",
+        "mocha": "^10.0.0"
+    }
 }

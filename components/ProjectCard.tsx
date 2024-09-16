@@ -3,10 +3,12 @@ import {
     Card,
     CardBody,
     CardFooter,
+    Flex,
     Image,
     Skeleton,
     Text,
     VStack,
+    useColorModeValue,
 } from "@chakra-ui/react";
 import { SpecialLinkButton } from "./Parts";
 
@@ -30,68 +32,94 @@ export default function ProjectCard(props: IProjectCard) {
         startDate,
         endDate,
         completed,
-        category,
-        pm,
-        gitLink,
         description,
-        members,
+        gitLink,
         image,
         loading,
     } = props;
 
+    // Adjust card styling dynamically for color modes
+    const cardBg = useColorModeValue("gray.900", "gray.700");
+    const textColor = useColorModeValue("white", "white");
+
     return (
         <Card
             variant="elevated"
-            size="sm"
             key={name}
-            width="300px"
-            height="375px"
-            borderRadius="20px"
+            width="320px"
+            height="400px" // Fixed height to keep things uniform
             marginX="25px"
-            background="brand.mid_white"
-            color="black"
-            borderWidth="5px"
-            borderColor={"white"}
+            bg={cardBg}
+            color={textColor}
+            boxShadow="lg"
+            transition="all 0.3s ease"
+            _hover={{
+                transform: "scale(1.05)",
+                boxShadow: "2xl",
+            }}
+            display="flex"
+            flexDirection="column"
+            justifyContent="space-between"
         >
-            <CardBody alignContent="flex-start">
-                <Skeleton isLoaded={!loading}>
+            <CardBody padding="16px">
+                <Skeleton isLoaded={!loading} borderRadius="10px">
                     <Image
                         src={image}
                         alt={name}
-                        borderRadius="15px"
+                        borderRadius="12px"
                         width="100%"
-                        height="150px"
+                        height="160px"
                         objectFit="cover"
                     />
                 </Skeleton>
-                <VStack paddingTop="10px" direction="column" spacing="2">
+                <VStack
+                    paddingTop="12px"
+                    align="flex-start"
+                    spacing="2"
+                    flexGrow={1}
+                >
                     <Skeleton isLoaded={!loading} width="100%">
-                        <Box justifyContent="flex-start" width="100%">
-                            <Text fontSize="lg" fontWeight="bold">
+                        <Box>
+                            <Text fontSize="xl" fontWeight="bold">
                                 {name}
                             </Text>
                         </Box>
                     </Skeleton>
                     <Skeleton isLoaded={!loading} width="100%">
-                        <Box justifyContent="flex-start" width="100%">
-                            <Text fontSize="sm">
-                                {startDate.toLocaleDateString('UTC', {month: "long", year: 'numeric'})} -{" "}
+                        <Box>
+                            <Text fontSize="sm" color="gray.500">
+                                {startDate.toLocaleDateString("UTC", {
+                                    month: "long",
+                                    year: "numeric",
+                                })}{" "}
+                                -{" "}
                                 {completed
-                                    ? endDate.toLocaleDateString('UTC', {month: "long", year: 'numeric'})
+                                    ? endDate.toLocaleDateString("UTC", {
+                                          month: "long",
+                                          year: "numeric",
+                                      })
                                     : "Present"}
                             </Text>
                         </Box>
                     </Skeleton>
                     <Skeleton isLoaded={!loading} width="100%">
-                        <Box justifyContent="flex-start" width="100%">
-                            <Text fontSize="xs">{description}</Text>
+                        <Box>
+                            <Text
+                                fontSize="sm"
+                                noOfLines={3} // Restrict to 3 lines, truncating the rest
+                                overflow="hidden"
+                                textOverflow="ellipsis"
+                                whiteSpace="normal"
+                            >
+                                {description}
+                            </Text>
                         </Box>
                     </Skeleton>
                 </VStack>
             </CardBody>
-            <CardFooter paddingTop="0px" justifyContent="flex-start">
+            <CardFooter padding="16px" justifyContent="flex-start">
                 <Skeleton isLoaded={!loading}>
-                    <SpecialLinkButton path={gitLink ?? ""} text="Details" />
+                    <SpecialLinkButton path={gitLink ?? ""} text="GitHub" />
                 </Skeleton>
             </CardFooter>
         </Card>

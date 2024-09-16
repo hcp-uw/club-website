@@ -246,7 +246,7 @@ export async function updateEvent(eventName, key, value, test = "Events") {
             Sponsor: "string",
         };
 
-        // rome-ignore lint/suspicious/useValidTypeof: js be like:
+        // biome-ignore lint/suspicious/useValidTypeof: js be like:
         if (typeof value !== valueTypes[key]) {
             console.error(
                 `Invalid value type provided for key '${key}'. Expected type: '${valueTypes[key]}'.`,
