@@ -263,7 +263,7 @@ export async function updateProject(
             Start_Date: "number",
         };
 
-        // rome-ignore lint/suspicious/useValidTypeof: gotta
+        // biome-ignore lint/suspicious/useValidTypeof: gotta
         if (typeof value !== valueTypes[key]) {
             console.error(
                 `Invalid value type provided for key '${key}'. Expected type: '${valueTypes[key]}'.`,

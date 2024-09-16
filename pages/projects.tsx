@@ -13,8 +13,8 @@ import { useMediaQuery } from "@chakra-ui/react";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Inter } from "@next/font/google";
-import { ChangeEvent, lazy, useEffect, useState } from "react";
-import { IProjectInfo } from "utils/parsers";
+import { type ChangeEvent, lazy, useEffect, useState } from "react";
+import type { IProjectInfo } from "utils/parsers";
 const inter = Inter({ subsets: ["latin"] });
 
 function Title() {
@@ -43,7 +43,7 @@ function SearchBar(props: ISearchBar) {
                     paddingTop={2}
                 >
                     <FontAwesomeIcon
-                        color="grey"
+                        color="white"
                         height="20px"
                         icon={faSearch}
                     />

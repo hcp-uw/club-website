@@ -53,7 +53,7 @@ export interface IEventInfo {
     image: string | null;
 }
 
-// rome-ignore lint/suspicious/noExplicitAny: The backend does not have types
+// biome-ignore lint/suspicious/noExplicitAny: The backend does not have types
 export const parseEvents = (data: any[]) => {
     const ret = data.map((obj) => {
         const res: IEventInfo = {

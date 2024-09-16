@@ -1,7 +1,7 @@
 import EventCardFull from "@/components/EventCardFull";
 import EventPanel from "@/components/EventPanel";
 import { getAllEvents } from "@/utils/api";
-import { IEventInfo } from "@/utils/parsers";
+import type { IEventInfo } from "@/utils/parsers";
 import { Center, SimpleGrid, Spinner, Text, VStack } from "@chakra-ui/react";
 import { useMediaQuery } from "@chakra-ui/react";
 import { Inter } from "@next/font/google";

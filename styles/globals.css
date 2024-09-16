@@ -115,3 +115,17 @@ a {
   font-family: 'Segoe';
   src: url(../public/fonts/Segoe-UI-Variable-Static-Text-Bold.ttf) format("truetype")
 }
+
+.slick-prev, .slick-next {
+  z-index: 1;
+}
+.slick-prev:before, .slick-next:before {
+  color: black;
+}
+.slick-dots li button:before {
+  font-size: 12px;
+  color: black;
+}
+.slick-dots li.slick-active button:before {
+  color: black;
+}

@@ -1,6 +1,6 @@
 // import { useAuth } from "@/context/AuthContext"
 import { Button, Center, Text } from "@chakra-ui/react";
-import { UserCredential } from "firebase/auth";
+import type { UserCredential } from "firebase/auth";
 // For testing purposes only
 // Set to be removed
 import React from "react";
@@ -14,12 +14,7 @@ function SignInComponent({ onSignInSuccess }: SignInProps) {
     // const { signIn } = useAuth()
     const handleSignIn = async () => {
         try {
-            // let sam = await getGithubUser(process.env.NEXT_PUBLIC_MY_ACCESS_TOKEN);
-            // let out = await checkMembership(sam);
-            // console.log(out);
-            // const result = await signIn()
-            // onSignInSuccess(result)
-            // rome-ignore lint/correctness/noUnreachable: <explanation>
+            // biome-ignore lint/correctness/noUnreachable: <explanation>
         } catch (err) {
             console.error(err);
         }

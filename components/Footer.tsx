@@ -15,7 +15,10 @@ import {
     faInstagram,
     faLinkedin,
 } from "@fortawesome/free-brands-svg-icons";
-import { IconDefinition, faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import {
+    type IconDefinition,
+    faEnvelope,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 config.autoAddCss = false;
 

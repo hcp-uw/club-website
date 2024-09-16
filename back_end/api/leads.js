@@ -186,7 +186,7 @@ export async function updateLead(leadName, key, value, test = "Club_Leads") {
             Team: "string",
         };
 
-        // rome-ignore lint/suspicious/useValidTypeof: dont make me explain myself
+        // biome-ignore lint/suspicious/useValidTypeof: dont make me explain myself
         if (typeof value !== valueTypes[key]) {
             console.error(
                 `Invalid value type provided for key '${key}'. Expected type: '${valueTypes[key]}'.`,

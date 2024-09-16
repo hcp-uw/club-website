@@ -18,8 +18,7 @@ export const getMembersForGithubTeams = async (callback) => {
     } else {
         callback([]);
     }
-}
-
+};
 
 export const getAllGithubMembers = async (callback) => {
     const data = await github.getMembers();
@@ -28,7 +27,7 @@ export const getAllGithubMembers = async (callback) => {
     } else {
         callback([]);
     }
-}
+};
 
 export const getAllGithubTeams = async (callback) => {
     const data = await github.getTeams();
@@ -37,7 +36,7 @@ export const getAllGithubTeams = async (callback) => {
     } else {
         callback([]);
     }
-}
+};
 
 export const getFeaturedEvents = async (callback) => {
     const data = await events.getEventsBasedOnTime(true);

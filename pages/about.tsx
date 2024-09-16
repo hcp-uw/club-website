@@ -1,5 +1,5 @@
 import { getPeople } from "@/utils/api";
-import { IPeopleInfo } from "@/utils/parsers";
+import type { IPeopleInfo } from "@/utils/parsers";
 import {
     Box,
     Center,

@@ -27,4 +27,4 @@
 //     </div>
 //   )
 // }
-export {};
+export type {};

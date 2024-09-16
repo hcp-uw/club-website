@@ -2,7 +2,7 @@ import { Center, Flex, Input, Text, Textarea, VStack } from "@chakra-ui/react";
 import { Inter } from "@next/font/google";
 import { useEffect, useState } from "react";
 
-import { Session } from "next-auth";
+import type { Session } from "next-auth";
 import { signIn, signOut, useSession } from "next-auth/react";
 
 import {

@@ -8,6 +8,7 @@ import {
     LinkBox,
     LinkOverlay,
     Spacer,
+    Text,
 } from "@chakra-ui/react";
 import { useMediaQuery } from "@chakra-ui/react";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
@@ -25,6 +26,12 @@ import {
     SpecialHeaderButton,
     SpecialSubmitButton,
 } from "./Parts";
+
+const PseudoLogo = ({ fontSize = "2xl" }) => (
+    <Text fontSize={fontSize} color="white" fontWeight="bold">
+        {"<Husky Coding Project />"}
+    </Text>
+);
 
 export default function Header(props: { showSidebar: () => void }) {
     const [isLargerThan1200] = useMediaQuery("(min-width: 1200px)", {
@@ -45,11 +52,7 @@ export default function Header(props: { showSidebar: () => void }) {
                     <Center>
                         <LinkBox>
                             <LinkOverlay href="/">
-                                <Image
-                                    width="150px"
-                                    src="/HCPLogoText-Crop.webp"
-                                    alt="HCP Logo"
-                                />
+                                <PseudoLogo fontSize="3xl" />
                             </LinkOverlay>
                         </LinkBox>
                     </Center>
@@ -120,11 +123,7 @@ export default function Header(props: { showSidebar: () => void }) {
                     >
                         <LinkBox>
                             <LinkOverlay href="/">
-                                <Image
-                                    width={isSmallerThan450 ? "100px" : "150px"}
-                                    src="/HCPLogoText-Crop.webp"
-                                    alt="HCP Logo"
-                                />
+                                <PseudoLogo fontSize="calc(3vw + 1vh)" />
                             </LinkOverlay>
                         </LinkBox>
                     </Center>
